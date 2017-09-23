@@ -5,3 +5,4 @@ rsync
 htop
 ranger
 feh
+wget

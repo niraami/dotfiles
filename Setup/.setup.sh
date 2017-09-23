@@ -32,6 +32,10 @@ replace "/etc/environment" "$CONF/System/environment";
 replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 
+replace "/home/$USER/.config/Trolltech.conf" "$CONF/Trolltech.conf";
+replace "/usr/share/themes/Iris_Night" "$CONF/Themes/Iris Night";
+replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
+
 #Xorg
 replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
 replace "/home/$USER/.Xresources" "$CONF/System/.Xresources";

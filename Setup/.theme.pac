@@ -1,0 +1,2 @@
+lxappearance
+qt5-styleplugins

@@ -1,0 +1,42 @@
+style "treeview" {
+    fg[PRELIGHT] = @selected_bg_color
+    fg[SELECTED] = @selected_bg_color
+    fg[ACTIVE] = @selected_bg_color
+
+    bg[NORMAL]   = @base_color
+    bg[SELECTED] = @base_color
+    bg[PRELIGHT] = @base_color
+    bg[SELECTED] = @base_color
+
+    text[NORMAL  ] = @text_color
+    text[SELECTED] = @selected_bg_color
+    text[ACTIVE  ] = @selected_bg_color
+
+    base[SELECTED] = @base_color
+    base[ACTIVE  ] = @base_color
+
+	GtkTreeView::odd_row_color  = @base_color
+	GtkTreeView::even_row_color = @base_color
+	GtkTreeView::odd_col_color = @base_color
+	GtkTreeView::even_col_color = @base_color	
+
+    engine "murrine" {
+        cellstyle = 0
+        listviewstyle = 0
+        listviewheaderstyle = 0
+        progressbarstyle = 0
+        glazestyle = 0
+
+
+        gradient_shades = {1.0, 1.0, 1.0, 1.0}
+    }
+}
+
+widget_class "*List" style "treeview"
+widget_class "*GtkTree*" style "treeview"
+widget_class "*GtkCList*" style "treeview"
+widget_class "*GtkCTree*" style "treeview"
+widget_class "*GtkList*" style "treeview"
+widget_class "*.ETree.*" style "treeview"
+class "GtkTreeView" style "treeview"
+
