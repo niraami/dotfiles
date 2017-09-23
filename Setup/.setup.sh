@@ -32,15 +32,16 @@ replace "/etc/environment" "$CONF/System/environment";
 replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 
-replace "/home/$USER/.config/Trolltech.conf" "$CONF/Trolltech.conf";
-replace "/usr/share/themes/Iris_Night" "$CONF/Themes/Iris Night";
-replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
-
 #Xorg
 replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
 replace "/home/$USER/.Xresources" "$CONF/System/.Xresources";
 replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/System/Xorg/30-touchpad.conf";
 replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/System/Xorg/90-monitor.conf";
+
+#Themes
+replace "/home/$USER/.config/Trolltech.conf" "$CONF/Trolltech.conf";
+replace "/usr/share/themes/Iris_Night" "$CONF/Themes/Iris Night";
+replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
 
 #Tor
 replace "/etc/tor/torrc" "$CONF/System/tor/torrc";
@@ -49,7 +50,7 @@ replace "/etc/systemd/system/multi-user.target.wants/tor.service" "$CONF/System/
 replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 
 #SSH
-
+replace "/etc/ssh" "$CONF/System/ssh";
 
 #Tools
 replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
