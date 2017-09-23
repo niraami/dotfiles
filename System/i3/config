@@ -134,6 +134,9 @@ bindsym $mod+r mode "resize"
     bindsym $mod+XF86AudioNext            exec --no-startup-id mpvc next;
     bindsym $mod+XF86AudioPrev            exec --no-startup-id mpvc prev;
 
+    bindsym XF86MonBrightnessUp           exec --no-startup-id /config/scripts/backlight.sh 5;
+    bindsym XF86MonBrightnessDown         exec --no-startup-id /config/scripts/backlight.sh -5;
+
     bindsym $mod+Shift+f                  exec --no-startup-id /.config/scripts/scr_flip.sh;
 
     bindsym XF86AudioMute	                exec --no-startup-id /.config/scripts/Keybinds/mute_all_toggle.sh;
