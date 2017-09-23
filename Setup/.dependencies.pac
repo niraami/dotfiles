@@ -9,3 +9,4 @@ recode
 rar
 unzip
 p7zip
+onboard
