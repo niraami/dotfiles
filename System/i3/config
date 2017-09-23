@@ -35,6 +35,15 @@ set $color-br-urgent      #8c0000
 
 set $color-ic             #6b6b6b
 
+#i3-gaps
+for_window [class="^.*"] border pixel 3;
+
+gaps inner 20
+gaps outer 8
+
+smart_gaps on
+smart_borders on
+
 # Altered/Default Configuration #
 
 font pango:Cantarell 8
@@ -116,8 +125,7 @@ bindsym $mod+r mode "resize"
 
     bindsym $mod+XF86AudioRaiseVolume     exec --no-startup-id mpvc volume +2;
     bindsym $mod+XF86AudioLowerVolume     exec --no-startup-id mpvc volume -2;
-    #bindsym XF86AudioRaiseVolume          exec --no-startup-id mpc volume +2;
-    #bindsym XF86AudioLowerVolume          exec --no-startup-id mpc volume -2;   
+   
     bindsym XF86AudioRaiseVolume          exec --no-startup-id amixer set Master 2%+;
     bindsym XF86AudioLowerVolume          exec --no-startup-id amixer set Master 2%-;
 
@@ -127,8 +135,6 @@ bindsym $mod+r mode "resize"
     bindsym $mod+XF86AudioPrev            exec --no-startup-id mpvc prev;
 
     bindsym $mod+Shift+f                  exec --no-startup-id /.config/scripts/scr_flip.sh;
-    #bindsym XF86MonBrightnessUp           exec --no-startup-id /.config/scripts/backlight.sh 5;
-    #bindsym XF86MonBrightnessDown         exec --no-startup-id /.config/scripts/backlight.sh -5;
 
     bindsym XF86AudioMute	                exec --no-startup-id /.config/scripts/Keybinds/mute_all_toggle.sh;
 
