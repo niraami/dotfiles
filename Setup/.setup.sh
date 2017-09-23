@@ -1,6 +1,9 @@
 USER="areuz";
 CONF="/.config";
 
+OLDIFS="$IFS";
+IFS=$(echo -en "\n\b");
+
 function replace() {
   if [ -f "$1" ] || [ -d "$1" ]; then mv "$1" "$CONF/Backup"; rm -rf "$1";
   elif [ ! -d "$(dirname "$1")" ]; then mkdir "$(dirname "$1")";
@@ -10,10 +13,14 @@ function replace() {
 }
 
 #Install dependencies
-if [ ! -z "$1" ]; then
-  sudo -u "$USER" yaourt -S "$CONF/Setup/.*.pac" --noconfirm;
-
+if [ "$1" == "deps" ]; then
+  sudo -u "$USER" yaourt -S "$CONF/Setup/.dependencies.pac" --noconfirm;
 fi;
+if [ "$1" == "full" ]; then
+  for PAC in $(find "$CONF" -name ".*.pac"); do
+    sudo -u "$USER" yaourt -S "$PAC" ;#--noconfirm;
+  done;
+fi
 
 #Everyday Essentials
 replace "/home/$USER/.xinitrc" "$CONF/.xinitrc";
@@ -34,7 +41,7 @@ replace "/usr/lib/systemd/system/tor.service" "$CONF/tor/tor.service";
 
 
 #Tools
-replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh"
+replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
 replace "/etc/vimrc" "$CONF/vim/vimrc";
 replace "/home/$USER/.config/ranger" "$CONF/ranger/";
 replace "/usr/bin/win_kvm" "$CONF/scripts/windows_kvm.sh";
@@ -42,3 +49,5 @@ replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
 replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
+
+IFS="$OLDIFS";
