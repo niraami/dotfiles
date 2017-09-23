@@ -3,15 +3,15 @@
 if ! pidlock -l bat_watch $$; then exit 1; fi;
 trap "pidlock -u bat_watch;" EXIT;
 
-if [ ! -d /sys/class/power_supply/BAT1 ]; then exit 127; fi;
+if [ ! -d /sys/class/power_supply/BAT0 ]; then exit 127; fi;
 
 boot=true;
 laststatus="";
 lastcap=100;
 
 while [ true ]; do 
-	cap=$(cat /sys/class/power_supply/BAT1/capacity);
-	status=$(cat /sys/class/power_supply/BAT1/status);
+	cap=$(cat /sys/class/power_supply/BAT0/capacity);
+	status=$(cat /sys/class/power_supply/BAT0/status);
 	
 	if [[ "$boot" = false && ! "$status" == "$laststatus" && "$status" == "Charging" ]]; then
 		notify-send -a "Battery Watchdog" -t 2000 -u low "Charging" "Battery now charging";

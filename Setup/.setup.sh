@@ -5,7 +5,7 @@ OLDIFS="$IFS";
 IFS=$(echo -en "\n\b");
 
 function replace() {
-  if [ -f "$1" ] || [ -d "$1" ]; then mv "$1" "$CONF/Backup"; rm -rf "$1";
+  if [ -f "$1" ] || [ -d "$1" ]; then mv "$1" "$CONF/Backup"; rm -f "$1";
   elif [ ! -d "$(dirname "$1")" ]; then mkdir "$(dirname "$1")";
   fi;
 
@@ -22,25 +22,26 @@ if [ "$1" == "full" ]; then
   done;
 fi
 
-#Everyday Essentials
-replace "/home/$USER/.xinitrc" "$CONF/.xinitrc";
-replace "/home/$USER/.config/i3/config" "$CONF/i3/config";
-replace "/home/$USER/.bash_profile" "$CONF/.bash_profile";
-replace "/home/$USER/.bashrc" "$CONF/.bashrc";
-replace "/home/$USER/.fonts" "$CONF/fonts/";
-replace "/etc/environment" "$CONF/environment";
+#System Essentials
+replace "/home/$USER/.xinitrc" "$CONF/System/.xinitrc";
+replace "/home/$USER/.config/i3/config" "$CONF/System/i3/config";
+replace "/home/$USER/.bash_profile" "$CONF/System/.bash_profile";
+replace "/home/$USER/.bashrc" "$CONF/System/.bashrc";
+replace "/home/$USER/.fonts" "$CONF/System/fonts/";
+replace "/etc/environment" "$CONF/System/environment";
+replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 
 #Xorg
-replace "/home/$USER/.Xdefaults" "$CONF/.Xdefaults";
-replace "/home/$USER/.Xresources" "$CONF/.Xresources";
-replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/Xorg/30-touchpad.conf";
-replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/Xorg/90-monitor.conf";
+replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
+replace "/home/$USER/.Xresources" "$CONF/System/.Xresources";
+replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/System/Xorg/30-touchpad.conf";
+replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/System/Xorg/90-monitor.conf";
 
 #Tor
-replace "/etc/tor/torrc" "$CONF/tor/torrc";
-replace "/etc/systemd/system/tor.service" "$CONF/tor/tor.service";
-replace "/etc/systemd/system/multi-user.target.wants/tor.service" "$CONF/tor/tor.service";
-replace "/usr/lib/systemd/system/tor.service" "$CONF/tor/tor.service";
+replace "/etc/tor/torrc" "$CONF/System/tor/torrc";
+replace "/etc/systemd/system/tor.service" "$CONF/System/tor/tor.service";
+replace "/etc/systemd/system/multi-user.target.wants/tor.service" "$CONF/System/tor/tor.service";
+replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 
 #SSH
 
@@ -54,5 +55,8 @@ replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
 replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
+
+chmod 777 -R "$CONF";
+chown areuz:areuz -R "$CONF";
 
 IFS="$OLDIFS";

@@ -1,0 +1,1 @@
+/.config/System/.bash_profile
