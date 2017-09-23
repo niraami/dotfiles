@@ -6,3 +6,4 @@ htop
 ranger
 feh
 wget
+openssh
