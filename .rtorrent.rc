@@ -1,0 +1,52 @@
+system.file_allocate.set = yes
+
+#min_peers = 50
+max_peers = 50
+
+#min_peers_seed = 10
+max_peers_seed = 25
+
+max_uploads = 15
+download_rate = 0
+upload_rate = 0
+
+directory = /media/Foxi/Temp/Torrent_Data
+
+session = /media/Foxi/Temp/Torrents/Session/
+
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+#schedule = watch_directory,5,5,load_start=./watch/*.torrent
+#schedule = untied_directory,5,5,stop_untied=
+
+# Close torrents when diskspace is low.
+#schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+# The ip address reported to the tracker.
+#ip = 127.0.0.1
+#ip = rakshasa.no
+
+# The ip address the listening socket and outgoing connections is
+# bound to.
+#bind = 127.0.0.1
+#bind = rakshasa.no
+
+port_range = 49173-49273
+
+# Start opening ports at a random position within the port range.
+#port_random = yes
+
+check_hash = yes
+
+use_udp_trackers = yes
+
+# Alternative calls to bind and ip that should handle dynamic ip's.
+#schedule = ip_tick,0,1800,ip=rakshasa
+#schedule = bind_tick,0,1800,bind=rakshasa
+
+encryption = allow_incoming,try_outgoing,enable_retry
+
+dht = on 
+dht_port = 6881
+
+peer_exchange = yes

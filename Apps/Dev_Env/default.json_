@@ -1,0 +1,29 @@
+{
+  "name" : "default",
+  "lang" : {
+    "name" : "c++",
+    "compiler" : {
+      "name" : "g++",
+      "args" : [
+        "--std=c++11",
+        "-Werror"
+      ]
+    },
+    "backup" : true
+  },
+  "setup" : {
+    "screens" : 1,
+    "main_screen" : 1,
+    "panes" : 2,
+    "bottom_bar" : true,
+    "upper_bar" : false,
+    "clone" : false
+  },
+  "github" : {
+    "active" : false,
+    "init" : false,
+    "name" : "",
+    "user" : "",
+    "password" : ""
+  }
+}
