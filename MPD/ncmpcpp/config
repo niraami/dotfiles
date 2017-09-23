@@ -1,10 +1,10 @@
-ncmpcpp_directory = "/config/ncmpcpp/"
+ncmpcpp_directory = "/.config/MPD/ncmpcpp/"
 
-lyrics_directory = "/config/lyrics"
+lyrics_directory = "/config/MPD/lyrics"
 
 mpd_host = "localhost"
 mpd_port = "6600"
-mpd_music_dir = "/media/Foxi/Data/Music/"
+mpd_music_dir = "/media/Storage/Data/Music/"
 mpd_connection_timeout = "10"
 mpd_crossfade_time = "3"
 

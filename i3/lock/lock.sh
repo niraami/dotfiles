@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "${0%/*}";
 
-#original="/config/wallpaper/wallpaper.jpg";
+#original="/.config/wallpaper/wallpaper.jpg";
 #modified="./image.png";
 #icon="./icon_dark.png";
 
@@ -48,5 +48,3 @@ i3lock \
   \
   --blur=5\
   -S 0 -k -t;
-
-#ICON       https://www.iconfinder.com/Ikonografia

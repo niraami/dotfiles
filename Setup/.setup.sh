@@ -9,6 +9,9 @@ function replace() {
   ln -s "$2" "$1";
 }
 
+#Install dependencies
+sudo -u "$USER" yaourt -S "$CONF/Setup/.dependencies" --noconfirm;
+
 #Everyday Essentials
 replace "/home/$USER/.xinitrc" "$CONF/.xinitrc";
 replace "/home/$USER/.config/i3/config" "$CONF/i3/config";
@@ -32,6 +35,7 @@ replace "/etc/vimrc" "$CONF/vim/vimrc";
 replace "/home/$USER/.config/ranger" "$CONF/ranger/";
 replace "/usr/bin/chromium" "$CONF/Apps/Chromium_Select/chromium_select.sh";
 replace "/usr/bin/win_kvm" "$CONF/scripts/windows_kvm.sh";
+replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
 replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
