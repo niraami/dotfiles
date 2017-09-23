@@ -10,7 +10,10 @@ function replace() {
 }
 
 #Install dependencies
-sudo -u "$USER" yaourt -S "$CONF/Setup/.dependencies" --noconfirm;
+if [ ! -z "$1" ]; then
+  sudo -u "$USER" yaourt -S "$CONF/Setup/.*.pac" --noconfirm;
+
+fi;
 
 #Everyday Essentials
 replace "/home/$USER/.xinitrc" "$CONF/.xinitrc";
@@ -31,9 +34,9 @@ replace "/usr/lib/systemd/system/tor.service" "$CONF/tor/tor.service";
 
 
 #Tools
+replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh"
 replace "/etc/vimrc" "$CONF/vim/vimrc";
 replace "/home/$USER/.config/ranger" "$CONF/ranger/";
-replace "/usr/bin/chromium" "$CONF/Apps/Chromium_Select/chromium_select.sh";
 replace "/usr/bin/win_kvm" "$CONF/scripts/windows_kvm.sh";
 replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 

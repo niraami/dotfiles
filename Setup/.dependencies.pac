@@ -1,6 +1,3 @@
-rxvt-unicode
-feh
-rofi
 i3lock-color-git
 devmon
 dunst
@@ -9,3 +6,6 @@ xdialog
 scrot
 bc
 recode
+rar
+unzip
+p7zip

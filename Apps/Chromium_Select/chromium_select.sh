@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd /config/scripts/Chromium_Select/;
+cd /.config/Apps/Chromium_Select/;
 
 files=($(find -mindepth 1 -type f ! -name "chromium_select.sh" -name "*.sh"));
 count=$(echo ${#files[@]});
