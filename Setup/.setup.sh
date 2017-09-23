@@ -30,6 +30,7 @@ replace "/home/$USER/.bashrc" "$CONF/System/.bashrc";
 replace "/home/$USER/.fonts" "$CONF/System/fonts/";
 replace "/etc/environment" "$CONF/System/environment";
 replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
+replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 
 #Xorg
 replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
