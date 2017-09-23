@@ -9,4 +9,4 @@ recode
 rar
 unzip
 p7zip
-onboard
+matchbox-keyboard
