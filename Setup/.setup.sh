@@ -25,11 +25,16 @@ fi
 #Everyday Essentials
 replace "/home/$USER/.xinitrc" "$CONF/.xinitrc";
 replace "/home/$USER/.config/i3/config" "$CONF/i3/config";
-replace "/home/$USER/.Xdefaults" "$CONF/.Xdefaults";
 replace "/home/$USER/.bash_profile" "$CONF/.bash_profile";
 replace "/home/$USER/.bashrc" "$CONF/.bashrc";
 replace "/home/$USER/.fonts" "$CONF/fonts/";
 replace "/etc/environment" "$CONF/environment";
+
+#Xorg
+replace "/home/$USER/.Xdefaults" "$CONF/.Xdefaults";
+replace "/home/$USER/.Xresources" "$CONF/.Xresources";
+replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/Xorg/30-touchpad.conf";
+replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/Xorg/90-monitor.conf";
 
 #Tor
 replace "/etc/tor/torrc" "$CONF/tor/torrc";
