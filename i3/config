@@ -98,16 +98,16 @@ bindsym $mod+r mode "resize"
 
   #Control (Binds)
     bindsym $mod+Return  	                exec --no-startup-id urxvt;
-    bindsym $mod+x        	              exec --no-startup-id /config/i3/lock/lock.sh;
-    bindsym F2            	              exec rofi -show "run" -config /config/rofi/config.cfg -run-list-command ". /config/scripts/list_alias.sh" -run-command "/bin/bash -i -c '{cmd}'" &
-    bindsym F3                            exec --no-startup-id /config/scripts/Apps/adapter_menu.sh
+    bindsym $mod+x        	              exec --no-startup-id /.config/i3/lock/lock.sh;
+    bindsym F2            	              exec rofi -show "run" -config /.config/rofi/config.cfg -run-list-command ". /config/scripts/list_alias.sh" -run-command "/bin/bash -i -c '{cmd}'" &
+    bindsym F3                            exec --no-startup-id /.config/Apps/adapter_menu.sh
 
-    bindsym Mod4+s		                    exec --no-startup-id /config/scripts/Keybinds/layout_toggle.sh;
-    bindsym Mod4+Shift+s                  exec --no-startup-id /config/scripts/Keybinds/layout_toggle.sh;
+    bindsym Mod4+s		                    exec --no-startup-id /.config/scripts/Keybinds/layout_toggle.sh;
+    bindsym Mod4+Shift+s                  exec --no-startup-id /.config/scripts/Keybinds/layout_toggle.sh;
 
-    bindsym $mod+Shift+e                  exec --no-startup-id /config/scripts/Apps/power_menu.sh;
-    bindsym XF86PowerOff                  exec --no-startup-id /config/scripts/Apps/power_menu.sh;
-    bindsym Print                         exec --no-startup-id /config/scripts/Apps/scrcap.sh
+    bindsym $mod+Shift+e                  exec --no-startup-id /.config/Apps/power_menu.sh;
+    bindsym XF86PowerOff                  exec --no-startup-id /.config/Apps/power_menu.sh;
+    bindsym Print                         exec --no-startup-id /.config/Apps/scrcap.sh
 
     bindsym XF86AudioPlay	                exec --no-startup-id mpc toggle;
     bindsym XF86AudioStop                 exec --no-startup-id mpc stop;
@@ -126,10 +126,10 @@ bindsym $mod+r mode "resize"
     bindsym $mod+XF86AudioNext            exec --no-startup-id mpvc next;
     bindsym $mod+XF86AudioPrev            exec --no-startup-id mpvc prev;
 
-    bindsym XF86MonBrightnessUp           exec --no-startup-id /config/scripts/backlight.sh 5;
-    bindsym XF86MonBrightnessDown         exec --no-startup-id /config/scripts/backlight.sh -5;
+    bindsym XF86MonBrightnessUp           exec --no-startup-id /.config/scripts/backlight.sh 5;
+    bindsym XF86MonBrightnessDown         exec --no-startup-id /.config/scripts/backlight.sh -5;
 
-    bindsym XF86AudioMute	                exec --no-startup-id /config/scripts/Keybinds/mute_all_toggle.sh;
+    bindsym XF86AudioMute	                exec --no-startup-id /.config/scripts/Keybinds/mute_all_toggle.sh;
 
   #Visual (Aesthetics)
     #Global Colors            BORDER                  BACKGROUND                  TEXT                  INDICATOR
@@ -140,7 +140,7 @@ bindsym $mod+r mode "resize"
 
     bar {
       tray_output DP-3
-      status_command /config/i3/bar/script.sh
+      status_command /.config/i3/bar/script.sh
       font pango:Cantarell 9
 
       colors {
@@ -165,23 +165,20 @@ bindsym $mod+r mode "resize"
 
   #Automatic Execution
    
-    exec_always --no-startup-id   numlockx on;
-    exec_always --no-startup-id   xrandr --output DP-5 --pos 0x0 --output DP-3 --pos 1920x0;
+    exec --no-startup-id          urxvt -title "_ncmpcpp" -bg [85]#0a0a0a -e ncmpcpp -c /.config/ncmpcpp/config;
+    exec --no-startup-id          urxvt -tltle "_visualizer" -bg [85]#0a0a0a -e ncmpcpp -c /.config/ncmpcpp/vis_config;
 
-    exec --no-startup-id          urxvt -title "_ncmpcpp" -bg [85]#0a0a0a -e ncmpcpp -c /config/ncmpcpp/config;
-    exec --no-startup-id          urxvt -tltle "_visualizer" -bg [85]#0a0a0a -e ncmpcpp -c /config/ncmpcpp/vis_config;
-
-    exec --no-startup-id          /config/scripts/Watchdogs/net.sh;
-    exec --no-startup-id          /config/scripts/Watchdogs/gmail.sh;
-    exec --no-startup-id          /config/scripts/Watchdogs/mpc.sh;
-    exec --no-startup-id          /config/scripts/Watchdogs/mpvc.sh;
-    exec --no-startup-id          /config/scripts/Watchdogs/sshd.sh;
+    exec --no-startup-id          /.config/scripts/Watchdogs/net.sh;
+    exec --no-startup-id          /.config/scripts/Watchdogs/gmail.sh;
+    exec --no-startup-id          /.config/scripts/Watchdogs/mpc.sh;
+    exec --no-startup-id          /.config/scripts/Watchdogs/mpvc.sh;
+    exec --no-startup-id          /.config/scripts/Watchdogs/sshd.sh;
    
     exec --no-startup-id          devmon --no-gui;
-    exec --no-startup-id          compton -b --conf /config/compton/compton.conf;
-    exec --no-startup-id          feh --bg-scale /config/wallpaper/wallpaper.jpg;
-    exec --no-startup-id          dunst -conf /config/dunst/dunstrc;
-    exec --no-startup-id          mpd /config/mpd/mpd.conf;
+    exec --no-startup-id          compton -b --conf /.config/compton/compton.conf;
+    exec --no-startup-id          feh --bg-scale /.config/wallpaper/wallpaper.jpg;
+    exec --no-startup-id          dunst -conf /.config/dunst/dunstrc;
+    exec --no-startup-id          mpd /.config/mpd/mpd.conf;
     exec --no-startup-id          deluge;
 
-    exec --no-startup-id          for f in /config/on_boot/*.sh; do "$f"; done;
+    exec --no-startup-id          for f in /.config/on_boot/*.sh; do "$f"; done;
