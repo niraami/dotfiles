@@ -174,9 +174,6 @@ bindsym $mod+r mode "resize"
     
   #Automatic Execution
    
-    exec --no-startup-id          urxvt -title "_ncmpcpp" -bg [85]#0a0a0a -e ncmpcpp -c /.config/ncmpcpp/config;
-    exec --no-startup-id          urxvt -tltle "_visualizer" -bg [85]#0a0a0a -e ncmpcpp -c /.config/ncmpcpp/vis_config;
-
     exec --no-startup-id          /.config/scripts/Watchdogs/net.sh;
     exec --no-startup-id          /.config/scripts/Watchdogs/gmail.sh;
     exec --no-startup-id          /.config/scripts/Watchdogs/mpc.sh;
@@ -184,10 +181,9 @@ bindsym $mod+r mode "resize"
     exec --no-startup-id          /.config/scripts/Watchdogs/sshd.sh;
    
     exec --no-startup-id          devmon --no-gui;
-    exec --no-startup-id          compton -b --conf /.config/compton/compton.conf;
     exec --no-startup-id          feh --bg-scale /.config/wallpaper/wallpaper.jpg;
     exec --no-startup-id          dunst -conf /.config/dunst/dunstrc;
-    exec --no-startup-id          mpd /.config/mpd/mpd.conf;
+    exec --no-startup-id          mpd /.config/MPD/mpd.conf;
     exec --no-startup-id          deluge;
 
     exec --no-startup-id          for f in /.config/System/on_boot/*.sh; do "$f"; done;
