@@ -1,2 +1,0 @@
-QT_QPA_PLATFORMTHEME=gtk2
-exec i3;
