@@ -1,15 +1,4 @@
 #!/usr/bin/env bash
-cd "${0%/*}";
-
-#original="/.config/wallpaper/wallpaper.jpg";
-#modified="./image.png";
-#icon="./icon_dark.png";
-
-#if [ "$1" == "--reset" ]; then rm $modified; exit; fi;
-
-#if ! [ -a $modified ]; then 
-#  convert $original -resize 1920x1080 $modified;
-#fi;
 
 i3lock \
   --textcolor=bbbbbbff\
@@ -29,22 +18,22 @@ i3lock \
   \
   --veriftext=""\
   --wrongtext="Access Denied"\
-  --textsize=20\
+  --textsize=30\
   \
   --timestr="%H:%M:%S"\
   --timepos="ix-200:(h/6)"\
   --timecolor=ffffffff\
   --timefont="sans-serif"\
-  --timesize=80\
+  --timesize=90\
   \
   --datepos="ix-200:(h/6)+50"\
   --datestr="%A %d.%m"\
   --datecolor=ffffffff\
   --datefont="sans-serif"\
-  --datesize=26\
+  --datesize=40\
   \
-  --modsize=12\
-  --radius=100\
+  --modsize=50\
+  --radius=150\
   \
-  --blur=5\
+  --blur=6\
   -S 0 -k -t;
