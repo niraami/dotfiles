@@ -32096,3 +32096,8 @@ Sep 22 07:45 : player: played "Artists/Approaching_Nirvana/FLAC/Animals/Approach
 Sep 22 16:03 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
 Sep 23 10:29 : player: played "Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac"
                                                                                                                                                 Sep 23 12:44 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Sep 24 12:31 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Sep 24 12:31 : exception: inotify_add_watch() has failed: No such file or directory
+Sep 24 12:31 : exception: Failed to decode /media/Storage/Data/Music/Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac
+Sep 24 12:31 : exception: nested: Failed to open /media/Storage/Data/Music/Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac: No such file or directory
+Sep 24 12:31 : player: played "Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac"
