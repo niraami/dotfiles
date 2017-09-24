@@ -7,3 +7,4 @@ ranger
 feh
 wget
 openssh
+cmst

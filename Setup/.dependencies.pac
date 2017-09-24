@@ -9,5 +9,4 @@ recode
 rar
 unzip
 p7zip
-matchbox-keyboard
 terminus-font
