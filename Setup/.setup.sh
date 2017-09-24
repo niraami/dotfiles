@@ -48,7 +48,7 @@ replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
 replace "/etc/tor/torrc" "$CONF/System/tor/torrc";
 #replace "/etc/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 #replace "/etc/systemd/system/multi-user.target.wants/tor.service" "$CONF/System/tor/tor.service";
-#replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
+replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 
 #SSH
 replace "/etc/ssh" "$CONF/System/ssh";
