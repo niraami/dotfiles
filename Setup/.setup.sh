@@ -51,6 +51,8 @@ replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 
 #SSH
 replace "/etc/ssh" "$CONF/System/ssh";
+replace "/etc/systemd/system/sockets.target.wants/sshd.socket" "$CONF/System/ssh/sshd.socket";
+replace "/usr/lib/systemd/system/sshd.socket" "$CONF/System/ssh/sshd.socket";
 
 #Tools
 replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
@@ -62,7 +64,7 @@ replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 #Other
 replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
 
-chmod 777 -R "$CONF";
-chown areuz:areuz -R "$CONF";
+chmod 777 -R "$CONF/";
+chown areuz:areuz -R "$CONF/";
 
 IFS="$OLDIFS";
