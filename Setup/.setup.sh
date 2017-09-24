@@ -53,6 +53,7 @@ replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 replace "/etc/ssh" "$CONF/System/ssh";
 replace "/etc/systemd/system/sockets.target.wants/sshd.socket" "$CONF/System/ssh/sshd.socket";
 replace "/usr/lib/systemd/system/sshd.socket" "$CONF/System/ssh/sshd.socket";
+replace "/home/$USER/.ssh/known_hosts" "$CONF/System/ssh/known_hosts";
 
 #Tools
 replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
