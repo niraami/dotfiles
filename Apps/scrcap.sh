@@ -20,7 +20,7 @@ for((unused = 0; used[unused] == 1; ++unused)); do true; done;
 unused="screenshot$unused.png";
 
 filename=$(Xdialog --stdout --allow-close --center --title "Screenshot Dialog" \
-  --fselect "$scr_repo$unused" 25 100);
+  --fselect "$scr_repo$unused" 50 160);
 
 #filename=$(Xdialog --stdout --allow-close\
 #      --title "Screenshot Dialog" \

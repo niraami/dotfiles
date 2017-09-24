@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 out=$(Xdialog --stdout --title "Power Menu" --screen-center --center --allow-close --no-tags \
-	--menubox "Actions:" 16 40 8 \
+	--menubox "Actions:" 28 80 8 \
 	"1" "Shutdown [hard]" \
   "1" "Shutdown [soft]" \
 	"2" "Shutdown [i3]" \

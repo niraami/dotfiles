@@ -19,7 +19,7 @@ for ((i = 0 ; i < $count ; i++)); do
 done;
 
 out="$(Xdialog --stdout --title "Comms Adapter Menu" --center --no-tags\
- --checklist "Adapters:" $((7 + $count*2)) 40 $count $data)";
+ --checklist "Adapters:" $(($count*7)) 80 $count $data)";
 
 if [ $? == 1 ]; then exit; fi;
 

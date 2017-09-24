@@ -17,7 +17,7 @@ for File in ${files_sorted[@]}; do
 done;
 
 out="$(Xdialog --stdout --title "Chromium Select Menu" --center --no-tags\
-  --radiolist "Modes:" $(($count*4)) 40 $count $data)";
+  --radiolist "Modes:" $(($count*6)) 60 $count $data)";
 
 if [ $? -eq 1 ]; then exit 1; fi;
 
