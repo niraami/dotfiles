@@ -32101,3 +32101,4 @@ Sep 24 12:31 : exception: inotify_add_watch() has failed: No such file or direct
 Sep 24 12:31 : exception: Failed to decode /media/Storage/Data/Music/Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac
 Sep 24 12:31 : exception: nested: Failed to open /media/Storage/Data/Music/Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac: No such file or directory
 Sep 24 12:31 : player: played "Artists/Approaching_Nirvana/FLAC/Animals/Approaching Nirvana - A Single Day (Instrumental).flac"
+Sep 24 12:36 : exception: Failed to create /.config/MPD/mpd/mpd.state: No such file or directory
