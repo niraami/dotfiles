@@ -167,7 +167,6 @@ bindsym $mod+r mode "resize"
     }
     
     for_window [class="Xdialog"]                    floating enable;
-    for_window [title="Keyboard"]                   floating enable, border pixel 0, resize set 3840 480, move absolute position 0 1680;
     for_window [title="Ranger_Browser"]             floating enable;
     for_window [title="QT5-Application-Debug"]      floating enable;
     for_window [class="Steam" title="^(?!Steam$)"]  floating enable;
