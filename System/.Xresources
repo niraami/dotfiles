@@ -1,6 +1,1 @@
-! Fonts {{{
-Xft.antialias:  true
-Xft.hinting:    true
-Xft.rgba:       rgb
-Xft.dpi:        192
-! }}}
+/.config/.VARIANT/xyzy/System/.Xresources
