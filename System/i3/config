@@ -107,7 +107,7 @@ bindsym $mod+r mode "resize"
 
   #Control (Binds)
     bindsym $mod+Return  	                exec --no-startup-id urxvt;
-    bindsym $mod+x        	              exec --no-startup-id /.config/i3/lock/lock.sh;
+    bindsym $mod+x        	              exec --no-startup-id /.config/System/i3/lock/lock.sh;
     bindsym F2            	              exec rofi -show "run" -config /.config/rofi/config.cfg -run-list-command ". /config/scripts/list_alias.sh" -run-command "/bin/bash -i -c '{cmd}'" &
     bindsym F3                            exec --no-startup-id /.config/Apps/adapter_menu.sh
     
