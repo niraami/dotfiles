@@ -56,6 +56,11 @@ replace "/etc/systemd/system/sockets.target.wants/sshd.socket" "$CONF/System/ssh
 replace "/usr/lib/systemd/system/sshd.socket" "$CONF/System/ssh/sshd.socket";
 replace "/home/$USER/.ssh/known_hosts" "$CONF/System/ssh/known_hosts";
 
+#LAMP
+replace "/etc/httpd" "$CONF/LAMP/httpd";
+replace "/srv/http" "$CONF/LAMP/http";
+replace "/etc/php" "$CONF/LAMP/php";
+
 #Tools
 replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
 replace "/etc/vimrc" "$CONF/vim/vimrc";
