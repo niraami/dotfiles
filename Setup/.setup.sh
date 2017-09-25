@@ -1,13 +1,14 @@
 USER="areuz";
 CONF="/.config";
+BAK="$CONF/Backup/Bak_$(date +"%d.%m.%y_%H.%M.%S")";
 
 OLDIFS="$IFS";
 IFS=$(echo -en "\n\b");
 
 function ln_replace() {
-  if [ -f "$1" ] || [ -d "$1" ]; then 
-    if [ ! -d "$CONF/Backup" ]; then mkdir "$CONF/Backup"; fi;
-    mv "$1" "$CONF/Backup"; rm -f "$1";
+  if [ -a "$1" ] || [ -d "$1" ] || [ -h "$1" ]; then 
+    mkdir -p "$BAK";
+    mv "$1" "$BAK/"; rm -f "$1";
   elif [ ! -d "$(dirname "$1")" ]; then mkdir "$(dirname "$1")";
   fi;
 
@@ -45,8 +46,6 @@ for File in $(find "$CONF/.VARIANT/$SEL" -type f); do
   ln_replace "$CONF/$(echo "$File" | cut -d '/' -f 5-)" "$File";
   echo "/$(echo "$File" | cut -d '/' -f 5-)" >> "$CONF/.git/info/exclude";
 done;
-
-exit;
 
 #System Essentials
 ln_replace "/home/$USER/.xinitrc" "$CONF/System/.xinitrc";
@@ -96,6 +95,11 @@ ln_replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
 ln_replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
+
+cd "$CONF";
+
+git submodule init;
+git submodule update;
 
 chmod 777 -R "$CONF/";
 chown areuz:areuz -R "$CONF/";
