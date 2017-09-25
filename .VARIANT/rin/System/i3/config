@@ -3,15 +3,15 @@
 set $CONF /.config
 
 set $mod  Mod1
-set $Ws1  "1:"
-set $Ws2  "2:"
-set $Ws3  "3:"
-set $Ws4  "4:"
-set $Ws5  "5:"
-set $Ws6  "6:"
-set $Ws7  "7:"
-set $Ws8  "8:"
-set $Ws9  "9:"
+set $Ws1  "1"
+set $Ws2  "2"
+set $Ws3  "3"
+set $Ws4  "4"
+set $Ws5  "5"
+set $Ws6  "6"
+set $Ws7  "7"
+set $Ws8  "8"
+set $Ws9  "9"
 
 workspace $Ws1 output DP-5
 workspace $Ws2 output DP-3
@@ -153,7 +153,7 @@ bindsym $mod+r mode "resize"
     bar {
       tray_output DP-3
       status_command $CONF/System/i3/bar/script.sh
-      font pango:Cantarell 8
+      font pango:Cantarell 9
 
       colors {
         background  $color-bg

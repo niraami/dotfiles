@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/Apps/Chromium_Select/chromium_select.sh

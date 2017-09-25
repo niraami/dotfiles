@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/Apps/adapter_menu.sh
