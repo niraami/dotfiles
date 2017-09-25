@@ -1,1 +1,1 @@
-/.config/.VARIANT/xyzy/System/i3/lock/lock.sh
+/.config/.VARIANT/rin/System/i3/lock/lock.sh
