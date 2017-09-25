@@ -8,3 +8,4 @@ feh
 wget
 openssh
 cmst
+sshfs
