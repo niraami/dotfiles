@@ -1,1 +1,1 @@
-/.config/.VARIANT/xyzy/System/i3/bar/scripts/date.sh
+/.config/.VARIANT/rin/System/i3/bar/scripts/date.sh
