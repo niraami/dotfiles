@@ -1,0 +1,12 @@
+[Unit]
+Description=Restart connman on resume.
+After=suspend.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/systemctl restart connman
+ExecStart=/usr/bin/echo connman-resume: Successfully restarted connman
+
+[Install]
+WantedBy=suspend.target

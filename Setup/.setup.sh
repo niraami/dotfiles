@@ -57,6 +57,7 @@ ln_replace "/etc/environment" "$CONF/System/environment";
 ln_replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 ln_replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 ln_replace "/etc/vconsole.conf" "/$CONF/System/vconsole.conf";
+ln_replace "/etc/systemd/system/connman-resume.service" "$CONF/System/connman/connman-resume.service";
 
 #Xorg
 ln_replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
@@ -71,7 +72,7 @@ ln_replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
 
 #Tor
 ln_replace "/etc/tor/torrc" "$CONF/System/tor/torrc";
-#ln_replace "/etc/systemd/system/tor.service" "$CONF/System/tor/tor.service";
+ln_replace "/etc/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 #ln_replace "/etc/systemd/system/multi-user.target.wants/tor.service" "$CONF/System/tor/tor.service";
 ln_replace "/usr/lib/systemd/system/tor.service" "$CONF/System/tor/tor.service";
 
@@ -95,6 +96,7 @@ ln_replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
 ln_replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
+ln_replace "/home/$USER/eagle" "$CONF/eagle";
 
 cd "$CONF";
 
@@ -103,5 +105,7 @@ git submodule update;
 
 chmod 777 -R "$CONF/";
 chown areuz:areuz -R "$CONF/";
+
+cat "$CONF/Setup/.extra.txt";
 
 IFS="$OLDIFS";

@@ -17,4 +17,5 @@ qemu-system-x86_64 \
   -usbdevice tablet \
   -soundhw hda \
   -net nic -net user \
+  -device vfio-pci,host=01:00.0 \
   | sudo tee /var/log/WinQEMU.log

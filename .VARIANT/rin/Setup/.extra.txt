@@ -1,0 +1,6 @@
+Recommended modifications:
+systemctl enable connman;
+
+Optional manual modifications:
+systemctl enable connman-resume;
+systemctl enable tor;
