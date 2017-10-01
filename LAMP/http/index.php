@@ -1,3 +1,1 @@
-<?php
-  phpinfo();
-?>
+/.config/.VARIANT/rin/LAMP/http/index.php
