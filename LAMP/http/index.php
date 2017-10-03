@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/LAMP/http/index.php
+/.config/.VARIANT/xyzy/LAMP/http/index.php

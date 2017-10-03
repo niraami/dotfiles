@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/System/i3/bar/scripts/network.sh
+/.config/.VARIANT/xyzy/System/i3/bar/scripts/network.sh
