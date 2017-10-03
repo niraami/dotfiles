@@ -58,7 +58,7 @@ ln_replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 ln_replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 ln_replace "/etc/vconsole.conf" "/$CONF/System/vconsole.conf";
 ln_replace "/etc/systemd/system/connman-resume.service" "$CONF/System/connman/connman-resume.service";
-ln_replace "/etc/udev/rules.d/" "$CONF/System/rules.d";
+ln_replace "/etc/udev/rules.d" "$CONF/System/rules.d";
 
 
 #Xorg
