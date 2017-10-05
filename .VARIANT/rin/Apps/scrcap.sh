@@ -22,10 +22,6 @@ unused="screenshot$unused.png";
 filename=$(Xdialog --stdout --allow-close --center --title "Screenshot Dialog" \
   --fselect "$scr_repo$unused" 50 160);
 
-#filename=$(Xdialog --stdout --allow-close\
-#      --title "Screenshot Dialog" \
-#      --center --inputbox "Screenshot Filename:" 12 40 "$unused");
-
 if [ -z "$filename" ]; then
   rm "$tmp_file";
   exit 127;
