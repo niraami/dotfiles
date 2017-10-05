@@ -69,10 +69,7 @@ ln_replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/System/Xorg/90-monitor.
 
 #Themes
 ln_replace "/home/$USER/.config/Trolltech.conf" "$CONF/Trolltech.conf";
-ln_replace "/usr/share/themes/Iris_Night" "$CONF/Themes/Iris Night";
 ln_replace "/usr/share/icons/Flat_Remix" "$CONF/Themes/Flat-Remix/Flat Remix";
-
-ln_replace "/root/.themes/Iris_Night" "$CONF/Themes/Iris Night";
 
 #Tor
 ln_replace "/etc/tor/torrc" "$CONF/System/tor/torrc";
