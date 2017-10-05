@@ -9,7 +9,7 @@ function ln_replace() {
   if [ -a "$1" ] || [ -d "$1" ] || [ -h "$1" ]; then 
     mkdir -p "$BAK";
     mv "$1" "$BAK/"; rm -f "$1";
-  elif [ ! -d "$(dirname "$1")" ]; then mkdir "$(dirname "$1")";
+  elif [ ! -d "$(dirname "$1")" ]; then mkdir -p "$(dirname "$1")";
   fi;
 
   ln -s "$2" "$1";
