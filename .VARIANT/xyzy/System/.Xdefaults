@@ -1,5 +1,6 @@
 URxvt.font:		          xft:DejaVu Sans Mono:size=9
 URxvt.depth: 		        32
+URxvt.transparent:      false
 URxvt.scrollBar:	      false
 URxvt.cursorUnderline: 	true
 URxvt.cursorBlink:	    true
