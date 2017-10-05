@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" ]; then CWD="$PWD";
+if [ ! -d "$1" ]; then CWD="$PWD";
 else CWD="$1/";
 fi;
 
