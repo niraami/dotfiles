@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/LAMP/http/index.php
