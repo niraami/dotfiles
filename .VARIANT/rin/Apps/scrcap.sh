@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #'scrcap.sh' 05.01.2017 : 13:30
 
-scr_repo="/media/Foxi/Data/Screenshots/"
+scr_repo="/media/Storage/Pictures/Screenshots/"
 tmp_file="/tmp/scrcap.png"
 sleep 0.1;
 scrot -b -q 100 -s -z "$tmp_file"

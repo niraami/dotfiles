@@ -18,7 +18,7 @@ elif [ $output -lt 50 ]; then
 fi;
 
 echo -e "{" \
-	"\"separator_block_width\":12," \
+	"\"separator_block_width\":24," \
 	"\"color\":\"$outColor\"," \
 	"\"full_text\":\"$output%\"}";
 

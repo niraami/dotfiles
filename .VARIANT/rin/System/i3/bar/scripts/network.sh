@@ -12,6 +12,6 @@ if [[ "$output" == "127.0.0.2" || "$output" = false || "$output" == "" ]]; then
 fi;
 
 echo -e "{" \
-	"\"separator_block_width\":12," \
+	"\"separator_block_width\":24," \
 	"\"color\":\"$outColor\"," \
        	"\"full_text\":\"$output\"}";
