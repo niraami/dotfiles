@@ -12,7 +12,11 @@ function ln_replace() {
   elif [ ! -d "$(dirname "$1")" ]; then mkdir -p "$(dirname "$1")";
   fi;
 
-  ln -s "$2" "$1";
+  if [ -a "$2" ] || [ -d "$2" ] || [ -h "$2" ]; then
+    ln -s "$2" "$1";
+  else
+    echo -e "File '$2' doesn't exist, or isn't valid\n";
+  fi;
 }
 
 #Install dependencies
@@ -91,8 +95,9 @@ ln_replace "/etc/php" "$CONF/LAMP/php";
 #Tools
 ln_replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
 ln_replace "/etc/vimrc" "$CONF/vim/vimrc";
+ln_replace "/home/$USER/.vim/colors" "$CONF/vim/colors";
 ln_replace "/home/$USER/.config/ranger" "$CONF/ranger/";
-ln_replace "/usr/bin/win_kvm" "$CONF/scripts/windows_kvm.sh";
+ln_replace "/usr/bin/win_kvm" "$CONF/Apps/windows_kvm.sh";
 ln_replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 
 #Other
