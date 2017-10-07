@@ -5,7 +5,7 @@ After=suspend.target
 [Service]
 Type=oneshot
 RemainAfterExit=no
-TimeoutSec=1
+TimeoutSec=2
 ExecStart=/usr/bin/systemctl restart wpa_supplicant
 ExecStart=/usr/bin/systemctl restart connman
 ExecStart=/usr/bin/echo connman-resume: Successfully restarted networking

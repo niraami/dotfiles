@@ -3,9 +3,11 @@ Description=Start lockscreen after suspend;
 After=suspend.target
 
 [Service]
+User=areuz
+
 Type=oneshot
 RemainAfterExit=no
-TimeoutSec=0
+TimeoutSec=5
 ExecStart=/.config/System/i3/lock/lock.sh
 
 [Install]

@@ -25,7 +25,5 @@ case $out in
 		;;
 	4)
 		systemctl suspend;
-    sleep 3;
-    /config/i3/lock/lock.sh;
-		;;
+    ;;
 esac;
