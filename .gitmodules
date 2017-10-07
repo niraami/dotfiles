@@ -1,9 +1,6 @@
 [submodule "Themes/Flat-Remix"]
 	path = Themes/Flat-Remix
 	url = https://github.com/daniruiz/Flat-Remix
-[submodule "Themes/enso-os"]
-	path = Themes/enso-os
-	url = https://github.com/nick92/enso-os
 [submodule "vim/badwolf"]
 	path = vim/badwolf
 	url = https://github.com/sjl/badwolf
