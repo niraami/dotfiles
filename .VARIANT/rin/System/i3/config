@@ -13,15 +13,6 @@ set $Ws7  "7"
 set $Ws8  "8"
 set $Ws9  "9"
 
-workspace $Ws1 output DP-5
-workspace $Ws2 output DP-3
-workspace $Ws3 output DP-5
-workspace $Ws4 output DP-3
-workspace $Ws5 output DP-5
-workspace $Ws6 output DP-3
-workspace $Ws7 output DP-5
-workspace $Ws8 output DP-3
-workspace $Ws9 output DP-5
 
 set $color-bg             #202327
 set $color-bg-inactive    #141618
@@ -152,7 +143,7 @@ bindsym $mod+r mode "resize"
     client.urgent             $color-br-urgent        $color-bg-urgent            $color-fg           	$color-ic
 
     bar {
-      tray_output eDP-1
+      tray_output eDP1
       status_command $CONF/System/i3/bar/script.sh
       font pango:Cantarell 9
 
