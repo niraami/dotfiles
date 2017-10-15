@@ -9,8 +9,8 @@ while true; do
   done;
   
   nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1';
-  nvidia-settings -a '[gpu:0]/GPUGraphicsClockOffset[3]=75';
-  nvidia-settings -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=1150';
+  nvidia-settings -a '[gpu:0]/GPUGraphicsClockOffset[3]=70';
+  nvidia-settings -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=1100';
   nvidia-settings -a "[gpu:0]/GPUFanControlState=1";
   nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=60";
   

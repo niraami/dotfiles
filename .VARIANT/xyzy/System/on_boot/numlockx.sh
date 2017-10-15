@@ -1,1 +1,3 @@
-numlockx on;
+sleep 2;
+
+numlockx;
