@@ -168,4 +168,4 @@ bindsym $mod+r mode "resize"
     exec --no-startup-id          mpd $CONF/MPD/mpd.conf;
     exec --no-startup-di          deluge;
 
-    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do "$f"; done;
+    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do "$f  &"; done;
