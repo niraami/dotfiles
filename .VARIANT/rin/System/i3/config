@@ -143,7 +143,6 @@ bindsym $mod+r mode "resize"
     client.urgent             $color-br-urgent        $color-bg-urgent            $color-fg           	$color-ic
 
     bar {
-      tray_output eDP1
       status_command $CONF/System/i3/bar/script.sh
       font pango:Cantarell 9
 
