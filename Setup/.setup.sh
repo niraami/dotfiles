@@ -67,8 +67,8 @@ ln_replace "/etc/udev/rules.d" "$CONF/System/rules.d";
 #Xorg
 ln_replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
 ln_replace "/home/$USER/.Xresources" "$CONF/System/.Xresources";
+ln_replace "/etc/X11/xorg.conf.d/20-nvidia.conf" "$CONF/System/Xorg/20-nvidia.conf";
 ln_replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/System/Xorg/30-touchpad.conf";
-ln_replace "/etc/X11/xorg.conf.d/90-monitor.conf" "$CONF/System/Xorg/90-monitor.conf";
 
 #Themes
 ln_replace "/home/$USER/.config/Trolltech.conf" "$CONF/Trolltech.conf";
