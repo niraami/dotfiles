@@ -31,7 +31,7 @@ done;
 
 for _Zip in $(find "$CWD" -maxdepth 1 -type f -iname "*.zip"); do
   cd "$(mkdir_ "$_Zip")";
-  unzip -j "$_Zip" | tee "$CWD/.uncomp_errors";
+  unzip "$_Zip" | tee "$CWD/.uncomp_errors";
 done;
 
 for _7Z  in $(find "$CWD" -maxdepth 1 -type f -iname "*.7z"); do
