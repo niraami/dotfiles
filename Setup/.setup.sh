@@ -101,6 +101,7 @@ ln_replace "/etc/php" "$CONF/LAMP/php";
 #Vim
 ln_replace "/etc/vimrc" "$CONF/vim/vimrc";
 ln_replace "/home/$USER/.vim/colors" "$CONF/vim/colors";
+ln_replace "/root/.vim/colors" "$CONF/vim/colors";
 
 #Tools
 ln_replace "/usr/bin/chromium_" "$CONF/Apps/Chromium_Select/chromium_select.sh";
