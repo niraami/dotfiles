@@ -1,3 +1,6 @@
 [submodule "Themes/Flat-Remix"]
 	path = Themes/Flat-Remix
 	url = https://github.com/daniruiz/Flat-Remix
+[submodule "vim/badwolf"]
+	path = vim/badwolf
+	url = https://github.com/sjl/badwolf

@@ -19,6 +19,9 @@ set smarttab
 set encoding=utf-8
 set fileencoding=utf-8
 
+colorscheme badwolf
+syntax on
+
 cmap w!! w !sudo /usr/bin/tee > /dev/null %
 
 " If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'

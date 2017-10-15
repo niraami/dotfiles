@@ -1,5 +1,6 @@
 Recommended modifications:
 systemctl enable connman;
+systemctl enable lightdm;
 
 Optional manual modifications:
 systemctl enable connman-resume;

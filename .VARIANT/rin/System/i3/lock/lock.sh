@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DISPLAY=:0
+
 i3lock \
   --textcolor=bbbbbbff\
   \
