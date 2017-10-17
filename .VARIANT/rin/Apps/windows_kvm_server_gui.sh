@@ -6,7 +6,6 @@ tput reset;
 qemu-system-x86_64 \
   -boot order=d \
   -device virtio-scsi-pci,id=scsi \
-  -cdrom "/media/Storage/Virtual/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO" \
   -drive file="/media/Storage/Virtual/win_server_gui.img",format=raw,aio=native,cache.direct=on \
   -m 8192 \
   -smp 4,sockets=1,cores=2,threads=2 \
