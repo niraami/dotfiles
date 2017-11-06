@@ -26,17 +26,17 @@ IFS=$(echo -en "\n\b")
 
 for _Rar in $(find "$CWD" -maxdepth 1 -type f -iname "*.rar"); do
   cd "$(mkdir_ "$_Rar")";
-  rar x -or "$_Rar" | tee "$CWD/.uncomp_errors";
+  rar x -or "$_Rar";
 done;
 
 for _Zip in $(find "$CWD" -maxdepth 1 -type f -iname "*.zip"); do
   cd "$(mkdir_ "$_Zip")";
-  unzip "$_Zip" | tee "$CWD/.uncomp_errors";
+  unzip "$_Zip";
 done;
 
 for _7Z  in $(find "$CWD" -maxdepth 1 -type f -iname "*.7z"); do
   cd "$(mkdir_ "$_7Z")";
-  7za x \""$_7Z"\" | tee "$CWD/.uncomp_errors";
+  7za x \""$_7Z"\";
 done;
 
 if [ ! -s "$CWD/.uncomp_errors" ]; then rm "$CWD/.uncomp_errors"; fi;
