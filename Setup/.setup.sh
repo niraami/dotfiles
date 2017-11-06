@@ -68,6 +68,7 @@ ln_replace "/etc/udev/rules.d" "$CONF/System/rules.d";
 ln_replace "/home/$USER/.Xdefaults" "$CONF/System/.Xdefaults";
 ln_replace "/home/$USER/.Xresources" "$CONF/System/.Xresources";
 ln_replace "/etc/X11/xorg.conf.d/20-nvidia.conf" "$CONF/System/Xorg/20-nvidia.conf";
+ln_replace "/etc/X11/xorg.conf.d/20-intel.conf" "$CONF/System/Xorg/20-intel.conf";
 ln_replace "/etc/X11/xorg.conf.d/30-touchpad.conf" "$CONF/System/Xorg/30-touchpad.conf";
 
 #Themes
