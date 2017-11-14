@@ -98,6 +98,7 @@ ln_replace "/etc/systemd/system/lock-on_resume.service" "$CONF/System/service/lo
 ln_replace "/etc/httpd" "$CONF/LAMP/httpd";
 ln_replace "/srv/http" "$CONF/LAMP/http";
 ln_replace "/etc/php" "$CONF/LAMP/php";
+ln_replace "/etc/webapps/phpmyadmin" "$CONF/LAMP/phpmyadmin";
 
 #Vim
 ln_replace "/etc/vimrc" "$CONF/vim/vimrc";
@@ -119,7 +120,7 @@ cd "$CONF";
 git submodule init;
 git submodule update;
 
-chmod 777 -R "$CONF/";
+chmod 755 -R "$CONF/";
 chown areuz:areuz -R "$CONF/";
 
 cat "$CONF/Setup/.extra.txt";
