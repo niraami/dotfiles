@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-local_dir="/media/Foxi/Work/School/Adlerka_3B/"
+local_dir="/media/Storage/School/Adlerka_4B_Betka/"
 
 #Initialization
 hostip=$(echo $(nmblookup "KIKA") | awk -F' ' '{ print $1 }');
@@ -13,7 +13,7 @@ if [ -d "/mnt/KIKA_share" ] && [ "$(mountpoint "/mnt/KIKA_share/" | awk -F ' ' '
 elif [ ! -d "/mnt/KIKA_share" ]; then sudo mkdir "/mnt/KIKA_share/";
 fi;
 
-if sudo mount -o user="60624" "//"$hostip"/60624/" "/mnt/KIKA_share/"; then
+if sudo mount -o user="72624" "//"$hostip"/72624/" "/mnt/KIKA_share/"; then
 	echo -e "\nMount successful!\nTransfering data...";
 	sudo rsync --verbose --recursive --checksum --chmod 777 --progress --ipv6 \
 		"$local_dir" \
@@ -25,7 +25,7 @@ if sudo mount -o user="60624" "//"$hostip"/60624/" "/mnt/KIKA_share/"; then
 	sudo umount "/mnt/KIKA_share/";
 	sudo rmdir "/mnt/KIKA_share/";
 else
-	echo "\nError mounting //"$hostip"/60624/!";
+	echo "\nError mounting //"$hostip"/72624/!";
 	echo "Cleaning up...";
 	if [ -d "/mnt/KIKA_share/" ]; then sudo rmdir "/mnt/KIKA_share/"; fi;
 	exit 2;
