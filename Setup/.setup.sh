@@ -114,6 +114,7 @@ ln_replace "/usr/bin/pidlock" "$CONF/scripts/pidlock.sh";
 #Other
 ln_replace "/home/$USER/.ncmpcpp" "$CONF/MPD/ncmpcpp/config";
 ln_replace "/home/$USER/eagle" "$CONF/eagle";
+ln_replace "/home/$USER/.local/share/rofi/themes/default.rasi" "$CONF/rofi/default.rasi";
 
 cd "$CONF";
 
