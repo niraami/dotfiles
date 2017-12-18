@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
+source ~/.config/env_config/.display;
 THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 
 Args=();
+Args+=("-dpi" "$DPI"); 
 Args+=("-dmenu" "-no-custom");
 Args+=("-theme" "default");
+Args+=("-p" "Action:");
 
 Opts=();
 Opts+=("Shutdown" "Shutdown i3" "Reboot" "Suspend");

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ~/.config/env_config/.display;
 THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 Modi=();
@@ -12,6 +13,7 @@ Modi=${Modi%?};
 
 
 Args=();
+Args+=("-dpi" "$DPI");
 Args+=("-theme" "default");
 Args+=("-display-run" "Run");
 Args+=("-sidebar-mode");

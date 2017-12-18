@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 
@@ -14,6 +15,7 @@ Modi="${Modi%?}";
 
 
 Args=();
+Args+=("-dpi" "$DPI"); 
 Args+=("-theme" "default");
 Args+=("-sidebar-mode");
 
