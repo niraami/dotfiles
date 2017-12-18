@@ -110,14 +110,14 @@ bindsym $mod+r mode "resize"
   #Control (Binds)
     bindsym $mod+Return  	                exec --no-startup-id urxvt;
     bindsym $mod+x        	              exec --no-startup-id $CONF/System/i3/lock/lock.sh;
-    bindsym F2            	              exec rofi -show "run" -config $CONF/rofi/config.cfg -run-list-command ". $CONF/scripts/list_alias.sh" -run-command "/bin/bash -i -c '{cmd}'" &
+    bindsym F2            	              exec --no-startup-id $CONF/rofi/rofi.sh &
     bindsym F3                            exec --no-startup-id $CONF/Apps/adapter_menu.sh
     
     bindsym Mod4+s		                    exec --no-startup-id $CONF/scripts/Keybinds/layout_toggle.sh;
     bindsym Mod4+Shift+s                  exec --no-startup-id $CONF/scripts/Keybinds/layout_toggle.sh;
 
-    bindsym $mod+Shift+e                  exec --no-startup-id $CONF/Apps/power_menu.sh;
-    bindsym XF86PowerOff                  exec --no-startup-id $CONF/Apps/power_menu.sh;
+    bindsym $mod+Shift+e                  exec --no-startup-id $CONF/rofi/*"Power Menu"/run*.sh;
+    bindsym XF86PowerOff                  exec --no-startup-id $CONF/rofi/*"Power Menu"/run*.sh;
     bindsym Print                         exec --no-startup-id $CONF/Apps/scrcap.sh
 
     bindsym XF86AudioRaiseVolume          exec --no-startup-id mpc volume +2;
@@ -163,9 +163,8 @@ bindsym $mod+r mode "resize"
     exec --no-startup-id          $CONF/scripts/Watchdogs/sshd.sh;
    
     exec --no-startup-id          devmon --no-gui;
-    exec --no-startup-id          feh --bg-scale $CONF/wallpaper/wallpaper.jpg;
     exec --no-startup-id          dunst -conf $CONF/dunst/dunstrc;
     exec --no-startup-id          mpd $CONF/MPD/mpd.conf;
     exec --no-startup-di          deluge;
 
-    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do "$f  &"; done;
+    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do sh "$f" & done;
