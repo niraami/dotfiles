@@ -15,7 +15,6 @@ Modi="${Modi%?}";
 
 Args=();
 Args+=("-theme" "default");
-Args+=("-display-run" "Run");
 Args+=("-sidebar-mode");
 
 
