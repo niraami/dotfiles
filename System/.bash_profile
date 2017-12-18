@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/System/.bash_profile
+/.config/.VARIANT/xyzy/System/.bash_profile
