@@ -16,7 +16,8 @@ qemu-system-x86_64 \
   -machine type=q35,accel=kvm  \
   -enable-kvm \
   -usbdevice tablet \
-  -usb -device usb-host,hostbus=1,hostaddr=1 \
+  -usb -device usb-host,vendorid=0x046d,productid=0x082c \
+  -usb -device usb-host,vendorid=0x058f,productid=0x6387 \
   -soundhw ac97 \
   -net nic -net user \
   | sudo tee /var/log/WinQEMU.log
