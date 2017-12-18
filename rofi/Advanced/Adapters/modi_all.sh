@@ -11,13 +11,13 @@ if [ $# -eq 0 ]; then
     c_teth+=("$( if [[ ${teth[$i]} == "True" ]]; then
       echo "$fgg"Tethering"$fgg_";  else  echo "$fgr"OFF"$fgr_"; fi)");
   done;
+
+  out="";
+  for ((i=0; i<$n_adapter; i++)); do
+    out+="${type[$i]}^^^${c_power[$i]}^${c_conn[$i]}^${c_teth[$i]}\n";
+  done;
+
+  echo "$( echo -e "$out" | column -s\^ -t )";
 fi;
-
-out="";
-for ((i=0; i<$n_adapter; i++)); do
-  out+="${type[$i]}^^^${c_power[$i]}^${c_conn[$i]}^${c_teth[$i]}\n";
-done;
-
-echo "$( echo -e "$out" | column -s\^ -t )";
 
 
