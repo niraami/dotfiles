@@ -16,4 +16,7 @@ if [ $# -eq 0 ]; then
 elif [[ "${Opts[@]}" =~ "$1" ]]; then
   sh "$( find "$THIS"/Advanced/"$1" -iname _*.sh )" > /dev/null &
 
+else
+  $0;
+
 fi;

@@ -60,6 +60,6 @@ elif [[ "${Opts[@]}" =~ "$1" ]]; then
   esac;
 
 else
-  echo "Internal script error";
+  $0;
 
 fi;

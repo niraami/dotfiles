@@ -36,13 +36,18 @@ elif [[ "Details Enable Disable Start Stop" =~ "$1" ]]; then
       notify-send -a "Daemon Manager" "$1" "$(echo "$pass" | sudo -S systemctl disable $STATE)";
       ;;
     "Start")
-      notify-send -a "Daemon Manager" "$1" "$(echo "$pass" | sudo -S systemctl start $STATE)";
+      notify-send -a "Daemon Manager" "$1" "Starting $STATE";
+      echo "$pass" | sudo -S systemctl start $STATE &
       ;;
     "Stop")
-      notify-send -a "Daemon Manager" "$1" "$(echo "$pass" | sudo -S systemctl stop $STATE)";
+      notify-send -a "Daemon Manager" "$1" "Stopped $STATE";
+      echo "$pass" | sudo -S systemctl stop $STATE &
       ;;
 
   esac;
+
+else
+  $0;
 
 fi;
 

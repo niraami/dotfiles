@@ -4,6 +4,7 @@ THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 Modi=();
 Modi+=("run");
+Modi+=("Chrome:$THIS/chromium.sh");
 Modi+=("Advanced:$THIS/advanced.sh");
 _Modi=("run");
 

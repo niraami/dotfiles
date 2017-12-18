@@ -37,7 +37,6 @@ if [[ "${Opts[@]}" =~ "$out" ]]; then
   esac;
 
 else
-  echo "Internal script error";
-  exit;
+  $0;
 
 fi;
