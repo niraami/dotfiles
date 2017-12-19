@@ -59,6 +59,8 @@ elif [[ "${Opts[@]}" =~ "$1" ]]; then
       ;;
   esac;
 
+  $0;
+
 else
   $0;
 

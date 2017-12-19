@@ -46,6 +46,8 @@ elif [[ "Details Enable Disable Start Stop" =~ "$1" ]]; then
 
   esac;
 
+  $0 $STATE;
+
 else
   $0;
 

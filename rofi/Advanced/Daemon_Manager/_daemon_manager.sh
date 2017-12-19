@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+source ~/.config/env_config/.display;
 THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 
