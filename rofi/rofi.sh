@@ -6,7 +6,7 @@ Modi=();
 Modi+=("run");
 Modi+=("Chrome:$THIS/chromium.sh");
 Modi+=("Advanced:$THIS/advanced.sh");
-_Modi=("run");
+_Modi=("Chrome");
 
 #Rewrite modi as a comma delimited string
 printf -v Modi "%s," "${Modi[@]}";
