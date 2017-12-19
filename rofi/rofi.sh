@@ -3,9 +3,9 @@ source ~/.config/env_config/.display;
 THIS="$( cd "$(dirname "$0")"; pwd -P )";
 
 Modi=();
-Modi+=("run");
-Modi+=("Chrome:$THIS/chromium.sh");
 Modi+=("Advanced:$THIS/advanced.sh");
+Modi+=("Chrome:$THIS/chromium.sh");
+Modi+=("run");
 _Modi=("Chrome");
 
 #Rewrite modi as a comma delimited string
