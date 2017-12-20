@@ -62,6 +62,7 @@ ln_replace "/etc/systemd/logind.conf" "$CONF/System/logind.conf";
 ln_replace "/etc/modprobe.d/alsa-base.conf" "$CONF/System/alsa-base.conf";
 ln_replace "/etc/vconsole.conf" "$CONF/System/vconsole.conf";
 ln_replace "/etc/udev/rules.d" "$CONF/System/rules.d";
+ln_replace "/etc/systemd/coredump.conf" "$CONF/System/systemd/coredump.conf";
 ln_replace "/home/$USER/.config/env_config" "$CONF/System/env_config";
 
 
