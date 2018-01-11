@@ -17,5 +17,4 @@ qemu-system-x86_64 \
   -enable-kvm \
   -usbdevice tablet \
   -soundhw ac97 \
-  -net nic -net user \
-  | sudo tee /var/log/WinQEMU.log
+  -net nic -net user;

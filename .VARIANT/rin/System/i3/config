@@ -102,14 +102,15 @@ bindsym $mod+r mode "resize"
   #Control (Binds)
     bindsym $mod+Return  	                exec --no-startup-id urxvt;
     bindsym $mod+x        	              exec --no-startup-id $CONF/System/i3/lock/lock.sh;
-    bindsym F2            	              exec rofi -show "run" -config $CONF/rofi/config.cfg -run-list-command ". $CONF/scripts/list_alias.sh" -run-command "/bin/bash -i -c '{cmd}'" &
-    bindsym F3                            exec --no-startup-id $CONF/Apps/adapter_menu.sh
+    bindsym F2            	              exec --no-startup-id $CONF/rofi/rofi.sh &
+    bindsym F3                            exec --no-startup-id $CONF/rofi/Advanced/Adapters/_adapters.sh
+
     
     bindsym Mod4+s		                    exec --no-startup-id $CONF/scripts/Keybinds/layout_toggle.sh;
     bindsym Mod4+Shift+s                  exec --no-startup-id $CONF/scripts/Keybinds/layout_toggle.sh;
 
-    bindsym $mod+Shift+e                  exec --no-startup-id $CONF/Apps/power_menu.sh;
-    bindsym XF86PowerOff                  exec --no-startup-id $CONF/Apps/power_menu.sh;
+    bindsym $mod+Shift+e                  exec --no-startup-id $CONF/rofi/Advanced/Power/_power.sh
+    bindsym XF86PowerOff                  exec --no-startup-id $CONF/rofi/Advanced/Power/_power.sh
     bindsym Print                         exec --no-startup-id $CONF/Apps/scrcap.sh
 
     bindsym XF86AudioPlay	                exec --no-startup-id mpc toggle;
