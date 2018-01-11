@@ -17,21 +17,21 @@ if [ $# -eq 0 ]; then
 elif [[ "${Opts[@]}" =~ "$1" ]]; then
   case "$1" in
     "Normal")
-      chromium > /dev/null 2>&1 &
+      google-chrome-stable > /dev/null 2>&1 &
       ;;
 
     "Incognito")
       if [ -d "$incognito_dir" ]; then rm -rf "$incognito_dir"; fi;
       mkdir "$incognito_dir";
 
-      chromium --incognito --user-data-dir="$incognito_dir" > /dev/null 2>&1 &
+      google-chrome-stable --incognito --user-data-dir="$incognito_dir" > /dev/null 2>&1 &
       ;;
 
     "Tor")
       if [ -d "$tor_dir" ]; then rm -rf "$tor_dir"; fi;
       mkdir "$tor_dir";
 
-      chromium --incognito \
+      google-chrome-stable --incognito \
         --user-data-dir="$tor_dir" \
         --proxy-server="socks5://127.0.0.1:9050" \
         --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy" > /dev/null 2>&1 &
@@ -41,7 +41,7 @@ elif [[ "${Opts[@]}" =~ "$1" ]]; then
       if [ -d "$i2p_dir" ]; then rm -rf "$i2p_dir"; fi;
       mkdir "$i2p_dir";
 
-      chromium http://127.0.0.1:7657/home --incognito \
+      google-chrome-stable http://127.0.0.1:7657/home --incognito \
         --user-data-dir="$i2p_dir" \
         --proxy-server=127.0.0.1:4444 \
         --proxy-bypass-list="127.0.0.1" > /dev/null 2>&1 &

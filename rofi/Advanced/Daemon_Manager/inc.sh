@@ -4,10 +4,7 @@ STATEFILE="/tmp/rofiscript.state";
 STATE="$(cat $STATEFILE)";
 
 
-if [ $# -eq 0 ]; then
-  test;
-
-elif [ $(systemctl status "$1" | wc -l) -gt 0 ]; then
+if [ $(systemctl status "$1" | wc -l) -gt 0 ]; then
   echo "$1" > "$STATEFILE";
 
   Opts+=("$(if [ "$(systemctl is-enabled "$1")" == "enabled" ]; then
@@ -43,13 +40,9 @@ elif [[ "Details Enable Disable Start Stop" =~ "$1" ]]; then
       notify-send -a "Daemon Manager" "$1" "Stopped $STATE";
       echo "$pass" | sudo -S systemctl stop $STATE &
       ;;
-
   esac;
 
   $0 $STATE;
-
-else
-  $0;
 
 fi;
 

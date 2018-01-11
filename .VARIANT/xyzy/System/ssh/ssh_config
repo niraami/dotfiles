@@ -1,7 +1,0 @@
-# ssh_config(5) man page.
-
-Host saiko_arch
-  User        areuz
-  HostName    188.167.167.50
-  Port        25800
-  ForwardX11  yes

@@ -7,7 +7,7 @@ Opts+=("Daemon_Manager");
 Opts+=("Files");
 Opts+=("Tools");
 Opts+=("Settings");
-Opts+=("Devices");
+Opts+=("Mountpoints");
 Opts+=("Power");
 
 if [ $# -eq 0 ]; then

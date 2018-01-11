@@ -8,8 +8,4 @@ if [ $# -eq 0 ]; then
         tail -n +2 |
           head -n -2 |
             sort;
-
-else
-  source "$THIS/inc.sh";
-
 fi;

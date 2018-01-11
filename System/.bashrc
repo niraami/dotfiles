@@ -10,6 +10,8 @@ alias ls='ls --color=auto'
 alias rr='ranger -r /.config/ranger/'
 alias sugparted='sudo gparted'
 
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
+
 export STEAM_FRAME_FORCE_CLOSE=1
 export EDITOR=vim
 
