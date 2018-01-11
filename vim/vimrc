@@ -16,6 +16,7 @@ set shiftwidth=2
 set expandtab
 set smarttab
 
+set enc=utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 

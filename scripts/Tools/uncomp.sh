@@ -10,10 +10,10 @@ if [ ! -d "$out_dir" ]; then mkdir "$out_dir"; fi;
 function mkdir_() {
   if [ -z "$1" ]; then return; fi;
   iterator=0;
-  newdir=""$out_dir"/$(basename $1 | awk -F '.' '{print $1}')"
+  newdir="$out_dir/$(basename $1 | awk -F '.' '{print $1}')"
   newdir_="$newdir";
   while [ -d "$newdir_" ]; do
-    newdir_=""$newdir"_$iterator";
+    newdir_="$newdir-$iterator";
     ((iterator++));
   done;
 
@@ -36,9 +36,7 @@ done;
 
 for _7Z  in $(find "$CWD" -maxdepth 1 -type f -iname "*.7z"); do
   cd "$(mkdir_ "$_7Z")";
-  7za x \""$_7Z"\";
+  7za x "$_7Z";
 done;
-
-if [ ! -s "$CWD/.uncomp_errors" ]; then rm "$CWD/.uncomp_errors"; fi;
 
 IFS="$OLDIFS";

@@ -19,4 +19,4 @@ nvidia-settings -a '[gpu:0]/GPUMemoryTransferRateOffset[3]=1100';
 nvidia-settings -a "[gpu:0]/GPUFanControlState=1";
 nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=60";
   
-ethminer --farm-recheck 200 -U -RH -v 0 -S eu1.ethermine.org:14444 -FS us1.ethermine.org:14444 -O 0x6489312EE73FF530C9deD9500F14f7cfec5451BE.Saiko;
+ethminer --farm-recheck 200 -U -RH -v 0 -S eu1.ethermine.org:14444 -FS us1.ethermine.org:14444 -O 0xbc5296A0c1a053Eed3E5880f4d22faCB856e0186.Xyzy;
