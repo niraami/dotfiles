@@ -159,14 +159,9 @@ if [ "$INSTALL" == "y" ]; then
       DEST="$( echo ${dsc[$i]} | envsubst )";
       SRC="$CONFIG/${src[$i]}";
     fi;
-  
-    #If this path=file & exists
-    if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
-      CHANGE_LIST+="Replacing... ";
-      rm -f "$DEST";
 
     #If this path is already taken by a directory - but not a linked directory
-    elif [[ -d "$DEST" && ! -L "$DEST" ]]; then      
+    if [[ -d "$DEST" && ! -L "$DEST" ]]; then      
       echo -e "Delete and replace? [y/n]\n$DEST\n\n> ";
 
       CONFIRM="";
@@ -178,6 +173,11 @@ if [ "$INSTALL" == "y" ]; then
         CHANGE_LIST+="Replaced directory... ";
         rm -rf "$DEST";
       fi;
+
+    #If this path=file & exists
+    if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
+      CHANGE_LIST+="Replacing... ";
+      rm -f "$DEST";
     fi;
 
     CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
