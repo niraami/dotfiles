@@ -33,6 +33,8 @@ vim/vimrc                     > /etc/vimrc
 vim/colors                    > $HOME/.vim/colors
 vim/colors                    > /root/.vim/colors
 
+MPD/mpv                       > $HOME/.config/mpv
+
 rofi/default.rasi             > $HOME/.local/share/rofi/themes/default.rasi
 
 Apps/windows_kvm.sh           > /usr/local/bin/win_kvm
