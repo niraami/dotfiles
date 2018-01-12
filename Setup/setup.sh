@@ -175,7 +175,7 @@ if [ "$INSTALL" == "y" ]; then
       fi;
 
     #If this path=file & exists
-    if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
+    elif [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
       CHANGE_LIST+="Replacing... ";
       rm -f "$DEST";
     fi;
