@@ -1,0 +1,1 @@
+/.config/.VARIANT/rin/System/i3/bar/scripts/network.sh

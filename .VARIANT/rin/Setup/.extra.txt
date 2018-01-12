@@ -1,8 +1,0 @@
-Recommended modifications:
-systemctl enable connman;
-systemctl enable lightdm;
-
-Optional manual modifications:
-systemctl enable connman-resume;
-systemctl enable tor;
-copy themes/Steam to Steam/skins folder;

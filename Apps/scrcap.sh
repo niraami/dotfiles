@@ -1,0 +1,1 @@
+/.config/.VARIANT/rin/Apps/scrcap.sh
