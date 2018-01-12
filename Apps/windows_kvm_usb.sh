@@ -1,1 +1,0 @@
-/.config/.VARIANT/rin/Apps/windows_kvm_usb.sh
