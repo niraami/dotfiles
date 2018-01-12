@@ -4,3 +4,11 @@
 [submodule "vim/badwolf"]
 	path = vim/badwolf
 	url = https://github.com/sjl/badwolf
+[submodule ".VARIANT/rin/System/ssh"]
+	path = .VARIANT/rin/System/ssh
+	url = https://github.com/Areuz/dotfiles_private
+	branch = rin
+[submodule ".VARIANT/xyzy/System/ssh"]
+	path = .VARIANT/xyzy/System/ssh
+	url = https://github.com/Areuz/dotfiles_private
+	branch = xyzy
