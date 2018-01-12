@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/System/i3/bar/scripts/key_layout.sh

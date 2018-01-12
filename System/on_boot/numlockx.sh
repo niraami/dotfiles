@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/System/on_boot/numlockx.sh

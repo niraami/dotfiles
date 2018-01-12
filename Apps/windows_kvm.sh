@@ -1,1 +1,0 @@
-/.config/.VARIANT/xyzy/Apps/windows_kvm.sh
