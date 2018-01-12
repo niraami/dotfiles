@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/Apps/scrcap.sh
+/.config/.VARIANT/xyzy/Apps/scrcap.sh

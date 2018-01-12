@@ -1,0 +1,1 @@
+/.config/.VARIANT/xyzy/System/on_boot/deluge.sh

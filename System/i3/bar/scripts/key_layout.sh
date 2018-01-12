@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/System/i3/bar/scripts/key_layout.sh
+/.config/.VARIANT/xyzy/System/i3/bar/scripts/key_layout.sh

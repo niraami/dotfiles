@@ -1,1 +1,1 @@
-/.config/.VARIANT/rin/Apps/windows_kvm.sh
+/.config/.VARIANT/xyzy/Apps/windows_kvm.sh
