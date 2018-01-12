@@ -162,7 +162,7 @@ if [ "$INSTALL" == "y" ]; then
 
     #If this path is already taken by a directory - but not a linked directory
     if [[ -d "$DEST" && ! -L "$DEST" ]]; then      
-      echo -e "Delete and replace? [y/n]\n$DEST\n\n> ";
+      echo -en "Delete and replace? [y/n]\n$DEST\n\n> ";
 
       CONFIRM="";
       while [[ "$CONFIRM" != "y" && "$CONFIRM" != "n" ]]; do

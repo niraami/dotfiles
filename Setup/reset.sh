@@ -12,32 +12,12 @@ while [[ ! -d "$CONFIG" || ! -d "$CONFIG/.VARIANT" ]]; do
 done;
 
 
-
-#VARIANTS
-#Switch to .VARIANT folder
-cd "$CONFIG/.VARIANT";
-
-VARIANT="\\";
-while [[ ! -d "$VARIANT" || "$VARIANT" == "" ]]; do
-  clear;
-  echo -e "Config dir: $CONFIG\n";
-
-  echo "Choose environment variant:";
-  for VAR in ./*; do
-    echo -e "  $(basename $VAR)";
-  done;
-  echo -en "\n> ";
-
-  read -e VARIANT;
-done;
-
-
-#Switch back to config root
+#Switch to config root
 cd "$CONFIG";
 
 #Symlink .VARIANT files
 CHANGE_LIST=();
-for FILE in $(find "$CONFIG/.VARIANT/$VARIANT" -type f -o -type l); do
+for FILE in $(find "$CONFIG/.VARIANT/" -type f -o -type l); do
   #Remove extra slashes
   FILE="$(readlink -m "$FILE")";
 
