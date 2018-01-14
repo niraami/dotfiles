@@ -26,6 +26,12 @@ while [[ ! -d "$CONFIG" || ! -d "$CONFIG/.VARIANT" ]]; do
   read -e CONFIG;
 done;
 
+#Reset the Config dir
+$CONFIG/Setup/reset.sh "$CONFIG";
+
+#Pause so the user can read it
+echo -en "\nPress any key to continue...\n\n> ";
+read -N 1;
 
 
 #VARIANTS
@@ -50,27 +56,33 @@ done;
 #Switch back to config root
 cd "$CONFIG";
 
-#Symlink .VARIANT files
+#Symlink .VARIANT & .PRIVATE files/directories
 CHANGE_LIST=();
-for FILE in $(find "$CONFIG/.VARIANT/$VARIANT" -type f -o -type l); do
+for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
+  -type f -o -type l); do
+
   #Remove extra slashes
-  FILE="$(realpath -s "$FILE")";
+  SRC="$(realpath -s "$SRC")";
 
-  DIR="$(dirname $FILE | cut -d "/" -f 5-)";
+  #Generate parent directory name - remove all prefixes and filename
+  DIR="${SRC/"$( realpath -s "$CONFIG/.VARIANT/$VARIANT" )"/}";
+  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/$VARIANT" )"/}";
+  DIR="$( sed 's:/[^/]*$::' <<< "$DIR" )";
+
+  DEST="./$DIR/$( basename "$SRC" )";
+
+  if [[ ! -d "./$DIR" || -L "./$DIR" ]]; then
+    if [ -L "./$DIR" ]; then CHANGE_LIST+="$(rm -vf "./$DIR") "; fi;
+    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "./$DIR")[folder]\n";
+
+  else
+    if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
+      CHANGE_LIST+="Replacing... ";
+      rm -f "$DEST";
+    fi;
   
-  if [ ! -d $DIR ]; then
-    mkdir -p $DIR;
+    CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
   fi;
- 
-  DEST="./$DIR/$( basename $FILE )";
-
-  #If this path=file & exists
-  if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
-    CHANGE_LIST+="Replacing... ";
-    rm -f "$DEST";
-  fi;
-
-  CHANGE_LIST+="$(ln -vs "$FILE" "$DEST")\n";
 done;
 
 #Print all changes

@@ -2,7 +2,11 @@
 # areuz - 12.01.2018
 
 #CONFIG FOLDER
-CONFIG="\\";
+if [ "$#" -eq 0 ]; then 
+  CONFIG="\\"; 
+else
+  CONFIG="$1";
+fi;
 while [[ ! -d "$CONFIG" || ! -d "$CONFIG/.VARIANT" ]]; do
   clear;
   echo -e "Enter your config directory path: ";
@@ -17,20 +21,19 @@ cd "$CONFIG";
 
 #Symlink .VARIANT files
 CHANGE_LIST=();
-for FILE in $(find "$CONFIG/.VARIANT/" -type f -o -type l); do
+for FILE in $( find "$CONFIG/.VARIANT/" "$CONFIG/.PRIVATE/" -type f -o -type l ! -path ".git" ); do
   #Remove extra slashes
   FILE="$(readlink -m "$FILE")";
 
   DIR="$(dirname $FILE | cut -d "/" -f 5-)";
   DEST="./$DIR/$( basename $FILE )";
 
-  CHANGE_LIST+="$(rm -fv "$DEST")\n";
+  #Remove only if it's a link - precaution
+  if [ -L "$DEST" ]; then
+    CHANGE_LIST+="$(rm -fv "$DEST")\n";
+  fi;
 done;
 
 #Print all changes
 echo -e "$( echo -e $CHANGE_LIST | column -s '>' -t -o '' )";
-
-#Pause so the user can read it
-echo -en "\nPress any key to continue...\n\n> ";
-read -N 1;
 
