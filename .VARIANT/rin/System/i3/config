@@ -173,7 +173,6 @@ bindsym $mod+r mode "resize"
     exec --no-startup-id          $CONF/scripts/Watchdogs/mpvc.sh;
     exec --no-startup-id          $CONF/scripts/Watchdogs/sshd.sh;
    
-    exec --no-startup-id          devmon --no-gui;
     exec --no-startup-id          dunst -conf $CONF/dunst/dunstrc;
     exec --no-startup-id          mpd $CONF/MPD/mpd.conf;
 
