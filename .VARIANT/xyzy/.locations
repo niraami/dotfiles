@@ -1,4 +1,4 @@
-#List of config -> system file relations for rin
+#List of config -> system file relations for xyzy
 
 System/.xinitrc               > $HOME/.xinitrc
 System/i3/config              > $HOME/.config/i3/config
