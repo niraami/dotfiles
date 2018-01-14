@@ -94,7 +94,7 @@ $cfg['SaveDir'] = '';
  * Possible values: 25, 50, 100, 250, 500
  * default = 25
  */
-//$cfg['MaxRows'] = 50;
+$cfg['MaxRows'] = 50;
 
 /**
  * Disallow editing of binary fields
