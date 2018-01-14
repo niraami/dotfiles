@@ -57,6 +57,9 @@ done;
 cd "$CONFIG";
 
 #Symlink .VARIANT & .PRIVATE files/directories
+#First remove the old local exclude file:
+rm -f ".git/info/exclude";
+
 CHANGE_LIST=();
 for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   "$CONFIG/.PRIVATE/Global/"* -type f -o -type l); do
@@ -65,20 +68,22 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   SRC="$(realpath -s "$SRC")";
 
   #Generate parent directory name - remove all prefixes and filename
-  DIR="${SRC/"$( realpath -s "$CONFIG/.VARIANT/$VARIANT" )"/}";
-  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/$VARIANT" )"/}";
-  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/Global" )"/}";
+  DIR="${SRC/"$( realpath -s "$CONFIG/.VARIANT/$VARIANT" )/"/}";
+  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/$VARIANT" )/"/}";
+  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/Global" )/"/}";
+  DIR="$( dirname "$DIR" )";
 
-  DIR="$( sed 's:/[^/]*$::' <<< "$DIR" )";
+  DEST="$DIR/$( basename "$SRC" )";
 
-  DEST="./$DIR/$( basename "$SRC" )";
-
-  if [[ ! -d "./$DIR" || -L "./$DIR" ]]; then
-    if [ -L "./$DIR" ]; then
+  if [[ ! -d "$DIR" || -L "$DIR" ]]; then
+    if [ -L "$DIR" ]; then
       CHANGE_LIST+="Replacing... ";
-      rm -f "./$DIR"; 
+      rm -f "$DIR"; 
     fi;
-    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "./$DIR")>[folder]\n";
+    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "$DIR")>[folder]\n";
+
+    #Add to ignored files
+    echo "$DIR" >> ".git/info/exclude";
 
   else
     if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
@@ -87,6 +92,9 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
     fi;
   
     CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
+    
+    #Add to ignored files
+    echo "$DEST" >> ".git/info/exclude";
   fi;
 done;
 
