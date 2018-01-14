@@ -21,19 +21,19 @@ cd "$CONFIG";
 
 #Symlink .VARIANT files
 CHANGE_LIST=();
-for FILE in $( find "$CONFIG/.VARIANT/" "$CONFIG/.PRIVATE/" -type f -o -type l ! -path ".git" ); do
+for FILE in $( find "$CONFIG/.VARIANT/" "$CONFIG/.PRIVATE/" ! -path *".git"* ); do
   #Remove extra slashes
   FILE="$(readlink -m "$FILE")";
 
   DIR="$(dirname $FILE | cut -d "/" -f 5-)";
   DEST="./$DIR/$( basename $FILE )";
 
-  #Remove only if it's a link - precaution
+  #Remove only if it's a link
   if [ -L "$DEST" ]; then
     CHANGE_LIST+="$(rm -fv "$DEST")\n";
   fi;
 done;
 
 #Print all changes
-echo -e "$( echo -e $CHANGE_LIST | column -s '>' -t -o '' )";
+echo -e $CHANGE_LIST;
 

@@ -72,8 +72,11 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   DEST="./$DIR/$( basename "$SRC" )";
 
   if [[ ! -d "./$DIR" || -L "./$DIR" ]]; then
-    if [ -L "./$DIR" ]; then CHANGE_LIST+="$(rm -vf "./$DIR") "; fi;
-    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "./$DIR")[folder]\n";
+    if [ -L "./$DIR" ]; then
+      CHANGE_LIST+="Replacing... ";
+      rm -f "./$DIR"; 
+    fi;
+    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "./$DIR")>[folder]\n";
 
   else
     if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
