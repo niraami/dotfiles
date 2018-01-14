@@ -20,6 +20,9 @@ done;
 cd "$CONFIG";
 
 #Symlink .VARIANT files
+#First remove the old local exclude file:
+CHANGE_LIST+="$(rm -fv ".git/info/exclude")\n";
+
 CHANGE_LIST=();
 for FILE in $( find "$CONFIG/.VARIANT/" "$CONFIG/.PRIVATE/" ! -path *".git"* ); do
   #Remove extra slashes
