@@ -59,7 +59,7 @@ cd "$CONFIG";
 #Symlink .VARIANT & .PRIVATE files/directories
 CHANGE_LIST=();
 for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
-  -type f -o -type l); do
+  "$CONFIG/.PRIVATE/Global/"* -type f -o -type l); do
 
   #Remove extra slashes
   SRC="$(realpath -s "$SRC")";
@@ -67,6 +67,8 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   #Generate parent directory name - remove all prefixes and filename
   DIR="${SRC/"$( realpath -s "$CONFIG/.VARIANT/$VARIANT" )"/}";
   DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/$VARIANT" )"/}";
+  DIR="${DIR/"$( realpath -s "$CONFIG/.PRIVATE/Global" )"/}";
+
   DIR="$( sed 's:/[^/]*$::' <<< "$DIR" )";
 
   DEST="./$DIR/$( basename "$SRC" )";
