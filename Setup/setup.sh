@@ -57,9 +57,6 @@ done;
 cd "$CONFIG";
 
 #Symlink .VARIANT & .PRIVATE files/directories
-#First remove the old local exclude file:
-rm -f ".git/info/exclude";
-
 CHANGE_LIST=();
 for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   "$CONFIG/.PRIVATE/Global/"* -type f -o -type l); do
@@ -76,14 +73,18 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
   DEST="$DIR/$( basename "$SRC" )";
 
   if [[ ! -d "$DIR" || -L "$DIR" ]]; then
-    if [ -L "$DIR" ]; then
-      CHANGE_LIST+="Replacing... ";
-      rm -f "$DIR"; 
-    fi;
-    CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "$DIR")>[folder]\n";
+    if [ "$LAST_DIR" != "$DIR" ]; then
+      LAST_DIR="$DIR";
 
-    #Add to ignored files
-    echo "$DIR" >> ".git/info/exclude";
+      if [ -L "$DIR" ]; then
+        CHANGE_LIST+="Replacing... ";
+        rm -f "$DIR"; 
+      fi;
+      CHANGE_LIST+=">$(ln -vs "$(dirname "$SRC")" "$DIR")>[folder]\n";
+
+      #Add to ignored files
+      echo "$DIR" >> ".git/info/exclude";
+    fi;
 
   else
     if [ "$( stat "$DEST" 2> /dev/null )" != "" ]; then
