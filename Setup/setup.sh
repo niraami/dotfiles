@@ -101,7 +101,7 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
       rm -f "$DEST";
     fi;
   
-    CHANGE_LIST+=">$(ln -vP "$SRC" "$DEST")\n";
+    CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
     
     #Add to ignored files
     echo "$DEST" >> ".git/info/exclude";
