@@ -10,7 +10,8 @@ nohup qemu-system-x86_64 \
   -vga virtio -display gtk,gl=on \
   -machine type=q35,accel=kvm  \
   -enable-kvm \
-  -device intel-iommu -usbdevice tablet \
+  -device intel-iommu \
+  -usbdevice tablet \
   -soundhw ac97 \
   -net nic -net user \
   | sudo tee /var/log/WinQEMU.log
