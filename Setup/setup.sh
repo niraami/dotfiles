@@ -10,6 +10,26 @@ contains () {
 }
 
 
+
+#INITIALIZE GIT SUBMODULES
+GIT_INIT="";
+while [[ "$GIT_INIT" != "y" && "$GIT_INIT" != "n" ]]; do
+  clear;
+  echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
+  
+  echo -en "Initialize/update Git submodules? [y/n]\n\n> "
+
+  read -N 1 GIT_INIT;
+done;
+echo -e "\n\n";
+
+if [ "$GIT_INIT" == "y" ]; then
+  git submodule update --init --recursive;
+  git submodule update --recursive --remote
+fi;
+
+
+
 #USERNAME
 USER="";
 while ! contains "$USER" $(users); do
@@ -220,23 +240,4 @@ if [ "$INSTALL" == "y" ]; then
   #Pause so the user can read it
   echo -en "\nPress any key to continue...\n\n> ";
   read -N 1;
-fi;
-
-
-
-#INITIALIZE GIT SUBMODULES
-GIT_INIT="";
-while [[ "$GIT_INIT" != "y" && "$GIT_INIT" != "n" ]]; do
-  clear;
-  echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
-  
-  echo -en "Initialize/update Git submodules? [y/n]\n\n> "
-
-  read -N 1 GIT_INIT;
-done;
-echo -e "\n\n";
-
-if [ "$GIT_INIT" == "y" ]; then
-  git submodule update --init --recursive;
-  git submodule update --recursive --remote
 fi;
