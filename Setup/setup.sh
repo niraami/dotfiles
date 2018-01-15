@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 # areuz - 12.01.2018
 
+#Array contains function
+contains () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
+
+
 #USERNAME
 USER="";
-while [[ ! "$USER" =~ "$(users)" || "$USER" == "" ]]; do
+while ! contains "$USER" $(users); do
   clear;
   echo "Select your username:";
-  echo -e "  $(users | tr " " "\n  ")";
+  echo -e "  $(users | sed 's/ /\n  /')";
   echo -en "\n> ";
 
   read USER;
@@ -92,7 +101,7 @@ for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
       rm -f "$DEST";
     fi;
   
-    CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
+    CHANGE_LIST+=">$(ln -vP "$SRC" "$DEST")\n";
     
     #Add to ignored files
     echo "$DEST" >> ".git/info/exclude";
@@ -110,9 +119,7 @@ read -N 1;
 
 #DEPENDENCIES
 DEPS="";
-OPT=(none core all);
-OPT_=(none core all); 
-while [[ ${OPT[@]} == ${OPT_[@]} ]]; do
+while [[ ! contains "$DEPS" "(none core all)" ]]; do
   clear;
   echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
 
@@ -122,8 +129,6 @@ while [[ ${OPT[@]} == ${OPT_[@]} ]]; do
   if [ "$DEPS" == "" ]; then
     DEPS="none";
   fi;
-  
-  OPT_=(${OPT[@]/$DEPS/});
 done;
 
 #Install dependencies
