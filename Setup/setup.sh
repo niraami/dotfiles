@@ -118,18 +118,18 @@ read -N 1;
 
 
 #DEPENDENCIES
-DEPS="";
-while [[ ! contains "$DEPS" "(none core all)" ]]; do
-  clear;
-  echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
-
-  echo -en "Do you want to install packages? [none/core/all]\n\n> "
-  
-  read DEPS;
-  if [ "$DEPS" == "" ]; then
-    DEPS="none";
-  fi;
-done;
+#DEPS="";
+#while [[ ! contains "$DEPS" "(none core all)" ]]; do
+#  clear;
+#  echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
+#
+#  echo -en "Do you want to install packages? [none/core/all]\n\n> "
+#  
+#  read DEPS;
+#  if [ "$DEPS" == "" ]; then
+#    DEPS="none";
+#  fi;
+#done;
 
 #Install dependencies
 if [ "$DEPS" != "none" ]; then
