@@ -1,0 +1,13 @@
+[Unit]
+Description=Ethereum Mining
+After=
+
+[Service]
+Type=simple
+WatchdogSec=1200
+Restart=always
+ExecStart=/usr/bin/ethminer --farm-recheck 200 -U -RH -v 0 -S eu1.ethermine.org:14444 -FS us1.ethermine.org:14444 -O 0xbc5296A0c1a053Eed3E5880f4d22faCB856e0186.Xyzy
+ExecReload=/usr/bin/killall "ethminer"
+
+[Install]
+WantedBy=multi-user.target

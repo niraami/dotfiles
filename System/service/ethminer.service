@@ -1,13 +1,1 @@
-[Unit]
-Description=Ethereum Mining
-After=
-
-[Service]
-Type=notify
-WatchdogSec=1200
-Restart=always
-ExecStart=/.config/scripts/ethereum.sh
-ExecReload=/usr/bin/killall "ethminer"
-
-[Install]
-WantedBy=multi-user.target
+/.config/.VARIANT/xyzy/System/service/ethminer.service
