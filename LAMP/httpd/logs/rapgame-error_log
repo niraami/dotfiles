@@ -1,0 +1,13 @@
+[Fri Jan 26 17:59:09.077137 2018] [negotiation:error] [pid 14634] [client 66.249.93.206:59623] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Sat Jan 27 15:32:54.147985 2018] [negotiation:error] [pid 15110] [client 66.249.93.206:33515] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Sat Jan 27 15:52:41.988547 2018] [php7:warn] [pid 14768] [client 109.230.51.134:50161] PHP Warning:  require(lib/_session.inc): failed to open stream: No such file or directory in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 15:52:41.988972 2018] [php7:error] [pid 14768] [client 109.230.51.134:50161] PHP Fatal error:  require(): Failed opening required 'lib/_session.inc' (include_path='.:') in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 16:11:10.680668 2018] [php7:warn] [pid 14764] [client 188.167.167.50:52148] PHP Warning:  require(lib/_session.inc): failed to open stream: No such file or directory in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 16:11:10.680701 2018] [php7:error] [pid 14764] [client 188.167.167.50:52148] PHP Fatal error:  require(): Failed opening required 'lib/_session.inc' (include_path='.:') in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 16:22:38.360247 2018] [php7:warn] [pid 14765] [client 109.230.51.134:50529] PHP Warning:  require(lib/_session.inc): failed to open stream: No such file or directory in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 16:22:38.360301 2018] [php7:error] [pid 14765] [client 109.230.51.134:50529] PHP Fatal error:  require(): Failed opening required 'lib/_session.inc' (include_path='.:') in /media/Foxi/Data/Server/rapgame/index.php on line 1
+[Sat Jan 27 23:48:39.351925 2018] [negotiation:error] [pid 14765] [client 66.249.93.204:35664] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Sun Jan 28 13:29:10.399704 2018] [negotiation:error] [pid 7949] [client 66.249.93.204:57971] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Sun Jan 28 21:50:54.111737 2018] [negotiation:error] [pid 5644] [client 66.249.93.204:33215] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Mon Jan 29 14:37:46.376368 2018] [negotiation:error] [pid 7872] [client 66.249.93.205:54937] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var
+[Tue Jan 30 09:35:55.261347 2018] [negotiation:error] [pid 4323] [client 66.249.93.204:65333] AH00690: no acceptable variant: /usr/share/httpd/error/HTTP_NOT_FOUND.html.var

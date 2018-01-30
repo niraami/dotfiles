@@ -1,0 +1,3 @@
+[Thu Jan 25 00:08:25.146483 2018] [php7:notice] [pid 14877] [client ::1:35516] PHP Notice:  Undefined index: username in /media/Foxi/Projects/chat-pcoz/chat.php on line 8
+[Thu Jan 25 00:08:25.146530 2018] [php7:notice] [pid 14877] [client ::1:35516] PHP Notice:  Undefined index: user_id in /media/Foxi/Projects/chat-pcoz/chat.php on line 9
+[Thu Jan 25 00:08:25.146537 2018] [php7:notice] [pid 14877] [client ::1:35516] PHP Notice:  Undefined index: user_email in /media/Foxi/Projects/chat-pcoz/chat.php on line 10
