@@ -88,8 +88,13 @@ cd "$CONFIG";
 
 #Symlink .VARIANT & .PRIVATE files/directories
 CHANGE_LIST=();
-for SRC in $(find "$CONFIG/.VARIANT/$VARIANT" "$CONFIG/.PRIVATE/$VARIANT/"* \
-  "$CONFIG/.PRIVATE/Global/"* -type f -o -type l); do
+
+sources=("$CONFIG/.VARIANT/$VARIANT");
+if [ -d "$CONFIG/.PRIVATE/" ]; then
+  sources+=("$CONFIG/.PRIVATE/$VARIANT/*" "$CONFIG/.PRIVATE/Global/*");
+fi;
+
+for SRC in $(find ${sources[@]} -type f -o -type l); do
 
   #Remove extra slashes
   SRC="$(realpath -s "$SRC")";
