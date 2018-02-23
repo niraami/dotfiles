@@ -15,13 +15,6 @@ set $Ws9  "9:"
 
 workspace $Ws1 output DP-5
 workspace $Ws2 output DP-3
-workspace $Ws3 output DP-5
-workspace $Ws4 output DP-3
-workspace $Ws5 output DP-5
-workspace $Ws6 output DP-3
-workspace $Ws7 output DP-5
-workspace $Ws8 output DP-3
-workspace $Ws9 output DP-5
 
 set $color-bg             #202327
 set $color-bg-inactive    #141618

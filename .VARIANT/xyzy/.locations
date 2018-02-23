@@ -18,8 +18,7 @@ System/Xorg/*                 > /etc/X11/xorg.conf.d/
 System/torrc                  > /etc/tor/torrc
 
 System/ssh                    > /etc/ssh
-System/ssh/known_hosts        > $HOME/.ssh/known_hosts
-System/ssh/sshd.socket        > /etc/systemd/system/sshd.socket
+System/ssh                    > $HOME/.ssh
 
 System/service/*              > /etc/systemd/system/
 

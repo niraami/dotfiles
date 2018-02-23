@@ -8,7 +8,7 @@ scrot -b -q 100 -s -z "$tmp_file"
 
 if [ $? == 2 ]; then exit 2; fi;
 
-num_used=$(ls "$scr_repo" | sed 's/[^0-9]*//g');
+num_used=$(find "$scr_repo" -maxdepth 1 -type f | sed 's/[^0-9]*//g');
 
 declare -a used;
 for i in ${num_used[@]}; do

@@ -1,0 +1,9 @@
+Description=SASS watchdog for chat
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/sass --watch /media/Foxi/Projects/chat/style/sass:/media/Foxi/Projects/chat/style
+
+[Install]
+WantedBy=multi-user.target
