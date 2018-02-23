@@ -1,2 +1,1 @@
 mpv
-mpvc-git

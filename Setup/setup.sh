@@ -149,7 +149,7 @@ read -N 1;
 #  clear;
 #  echo -e "User: $USER\nConfig dir: $CONFIG\nVariant: $VARIANT\n";
 #
-#  echo -en "Do you want to install packages? [none/core/all]\n\n> "
+##  echo -en "Do you want to install packages? [none/core/all]\n\n> "
 #  
 #  read DEPS;
 #  if [ "$DEPS" == "" ]; then
@@ -236,7 +236,10 @@ if [ "$INSTALL" == "y" ]; then
       CHANGE_LIST+="Replacing... ";
       rm -f "$DEST";
     fi;
-
+    
+    if [ ! -d $(dirname "$DEST") ]; then
+      mkdir -p $(dirname "$DEST");
+    fi;
     CHANGE_LIST+=">$(ln -vs "$SRC" "$DEST")\n";
   done;
 

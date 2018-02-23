@@ -1,11 +1,9 @@
 rxvt-unicode
 vim
-valgrind
 rsync
 htop
 ranger
 feh
 wget
 openssh
-cmst
 sshfs
