@@ -36,9 +36,7 @@ while [ 1 ]; do
 	if [ $NDATE == $IDATE ] || [ "$BOOT" = true ]; then ODATE="$(./scripts/date.sh)"; NDATE=0; fi;
 	if [ $NKEY == $IKEY ] || [ "$BOOT" = true ]; then OKEY="$(./scripts/key_layout.sh)"; NKEY=0; fi;
 	if [ $NBAT == $IBAT ] || [ "$BOOT" = true ]; then OBAT="$(./scripts/battery.sh)"; NBAT=0; fi;
-	if [ $NNETWORK == $INETWORK ] || [ "$BOOT" = true ]; then ONETWORK="$(./scripts/network.sh)"; NNETWORK=0; fi;
 	
-	if [ "$ONETWORK" != "" ]; then output+="$ONETWORK,"; fi;
 	if [ "$OBAT" != "" ]; then output+="$OBAT,"; fi;
 	if [ "$OKEY" != "" ]; then output+="$OKEY,"; fi;
 	if [ "$ODATE" != "" ]; then output+="$ODATE,"; fi;

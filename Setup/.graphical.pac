@@ -1,6 +1,6 @@
 gtk-engines
 gtk-engine-murrine
-chromium
-pepper-flash
+google-chrome
 deluge
+rofi
 lxappearance
