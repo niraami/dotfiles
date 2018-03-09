@@ -102,6 +102,7 @@ bindsym $mod+r mode "resize"
 
   #Control (Binds)
     bindsym $mod+Return  	                exec --no-startup-id urxvt;
+    bindsym $mod+Shift+Return             exec --no-startup-id pcmanfm /media;
     bindsym $mod+x        	              exec --no-startup-id $CONF/System/i3/lock/lock.sh;
     bindsym F2            	              exec --no-startup-id $CONF/rofi/rofi.sh &
     bindsym F3                            exec --no-startup-id $CONF/rofi/Advanced/Adapters/_adapters.sh
