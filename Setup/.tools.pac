@@ -2,7 +2,8 @@ rxvt-unicode
 vim
 rsync
 htop
-ranger
+trash-cli
+atom
 feh
 wget
 openssh
