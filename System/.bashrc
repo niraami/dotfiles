@@ -6,6 +6,7 @@
 #[[ $- != *i* ]] && return
 
 alias sudo='sudo ';
+alias feh='feh -Zdr.';
 alias ls='ls --color=auto';
 alias rr='ranger -r /.config/ranger/';
 alias sugparted='sudo gparted';
