@@ -17,6 +17,7 @@ export STEAM_FRAME_FORCE_CLOSE=1;
 export EDITOR=vim;
 
 export QT_QPA_PLATFORMTHEME=gtk2;
+export SAL_USE_VCLPLUGIN=gtk3
 
 export GPU_FORCE_64BIT_PTR=0;
 export GPU_MAX_HEAP_SIZE=100;
