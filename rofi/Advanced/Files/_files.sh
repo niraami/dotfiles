@@ -6,7 +6,9 @@ Opts=();
 
 
 if [ $# -eq 0 ]; then
-  printf "%s\n" "${Opts[@]}";
+	pcmanfm /media &
+  #printf "%s\n" "${Opts[@]}";
 
 elif [[ "${Opts[@]}" =~ "$1" ]]; then
-
+	pcmanfm /media &
+fi;
