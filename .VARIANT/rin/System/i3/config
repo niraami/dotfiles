@@ -30,7 +30,7 @@ set $color-ic             #606060
 
 for_window [class="^.*"] floating disable;
 #i3-gaps
-for_window [class="^.*"] border pixel 5;
+#for_window [class="^.*"] border pixel 5;
 
 gaps inner 20
 gaps outer -5
@@ -167,13 +167,11 @@ bindsym $mod+r mode "resize"
     
   #Automatic Execution
    
-    exec --no-startup-id          $CONF/scripts/Watchdogs/net.sh;
+    exec --no-startup-id          $CONF/scripts/Watchdogs/bat.sh;
     exec --no-startup-id          $CONF/scripts/Watchdogs/gmail.sh;
-    exec --no-startup-id          $CONF/scripts/Watchdogs/mpc.sh;
-    exec --no-startup-id          $CONF/scripts/Watchdogs/mpvc.sh;
     exec --no-startup-id          $CONF/scripts/Watchdogs/sshd.sh;
    
     exec --no-startup-id          dunst -conf $CONF/dunst/dunstrc;
     exec --no-startup-id          mpd $CONF/MPD/mpd.conf;
 
-    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do "$f"; done;
+    exec --no-startup-id          for f in $CONF/System/on_boot/*.sh; do "$f" & done;
