@@ -21,6 +21,7 @@ System/ssh                    > /etc/ssh
 System/ssh                    > $HOME/.ssh
 
 System/service/*              > /etc/systemd/system/
+System/applications/*         > $HOME/.local/share/applications/
 
 LAMP/httpd                    > /etc/httpd
 LAMP/http                     > /srv/http
