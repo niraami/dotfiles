@@ -1,3 +1,7 @@
-*.swp
-/LAMP/http
-/LAMP/httpd
+/.media/wallpaper/edit
+/.media/wallpaper/Android
+
+ranger/tmp
+ranger/commands_full.py
+
+vim/.netrwhist

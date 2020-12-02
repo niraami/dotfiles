@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-RESOLUTION=1920x1080
-WIDTH=1920
-HEIGHT=1080
-DPI=$( cat /.config/System/.Xresources | grep dpi | awk -F' ' '{print $2}' );
