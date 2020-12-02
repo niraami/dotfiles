@@ -1,7 +1,5 @@
 # Custom Variables #
 
-set $CONF ~/.config
-
 # Workspaces
 set $mod  Mod1
 set $Ws1  "1"
@@ -49,7 +47,7 @@ bindsym $mod+v                      split v
 
 bindsym $mod+a                      focus parent
 bindsym $mod+f                      fullscreen toggle
-bindsym $mod+space	            floating toggle
+bindsym $mod+space	                floating toggle
 
 bindsym $mod+j                      focus left
 bindsym $mod+k                      focus down
@@ -95,7 +93,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-#Bindings (actions)
+# Bindings (actions)
 bindsym $mod+Return           exec --no-startup-id urxvt
 bindsym F2                    exec --no-startup-id ~/.config/rofi/rofi.sh &
 
@@ -112,15 +110,18 @@ bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-mute @DEFAULT_
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-#Global Colors            BORDER                  BACKGROUND                  TEXT                  INDICATOR
+# Global Colors            BORDER                  BACKGROUND                  TEXT                  INDICATOR
 client.focused            $color-br               $color-bg                   $color-fg             $color-ic
 client.unfocused          $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
 client.focused_inactive   $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
 client.urgent             $color-br-urgent        $color-bg-urgent            $color-fg             $color-ic
   
-#Startup actions  
-exec_always --no-startup-id  $CONF/polybar/launch.sh
+# Startup actions  
+exec_always --no-startup-id  ~/.config/polybar/launch.sh
 exec_always --no-startup-id  /usr/bin/feh --randomize --bg-fill $HOME/.wallpaper
 
+# Background daemons
 exec        --no-startup-id  dex -a
 exec        --no-startup-id  devmon --sync
+exec        --no-startup-id  deadd-notification-center
+exec        --no-startup-id  picom --config ~/.config/picom.conf
