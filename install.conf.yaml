@@ -2,6 +2,7 @@
     link:
       create: true
       relink: true
+      force: true
 
 - clean: ['~']
 
@@ -26,7 +27,7 @@
     ~/.icons/default:       icons/default/
     ~/.gnupg/gpg.conf:      gnupg/gpg.conf
 
-- yays:
+- yay:
     # Essentials
     - vim
     - man-db
