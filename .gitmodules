@@ -23,3 +23,6 @@
 [submodule "vim/plugged/snow"]
 	path = vim/plugged/snow
 	url = https://github.com/nightsense/snow
+[submodule "dotbot-git"]
+	path = dotbot-git
+	url = https://github.com/DrDynamic/dotbot-git.git
