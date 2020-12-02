@@ -5,10 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -16,10 +12,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   archlinux
   git
-  adb
+  auto-notify
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# zsh-auto-notify
+AUTO_NOTIFY_IGNORE+=("ranger")
+export AUTO_NOTIFY_THRESHOLD=8
+export AUTO_NOTIFY_EXPIRE_TIME=10000
 
 alias feh='feh -Zdr.'
 alias ls='ls -la --color=auto'
