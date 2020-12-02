@@ -1,0 +1,3 @@
+
+
+exec i3 &> /dev/null

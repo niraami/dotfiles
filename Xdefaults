@@ -1,0 +1,13 @@
+URxvt.font:             xft:DejaVu Sans Mono:size=8
+URxvt.depth:            32
+URxvt.scrollBar:        false
+URxvt.cursorUnderline:  true
+URxvt.cursorBlink:      true
+URxvt.scrollTtyOutput:  true
+URxvt.saveLines:        65535
+URxvt.background:       rgba:0000/0000/0000/cccc
+URxvt.foreground:       rgba:baba/f2f2/f8Ff/ffff
+URxvt.highlightColor:   rgba:ffff/0000/0000/ffff
+URxvt.transparent:      true
+URxvt.shading:          14
+URxvt.fade:             20

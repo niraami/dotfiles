@@ -1,9 +1,25 @@
-[submodule "Themes/Flat-Remix"]
-	path = Themes/Flat-Remix
-	url = https://github.com/daniruiz/Flat-Remix
-[submodule "vim/badwolf"]
-	path = vim/badwolf
-	url = https://github.com/sjl/badwolf
-[submodule ".PRIVATE"]
-	path = .PRIVATE
-	url = https://github.com/Areuz/dotfiles_private.git
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "dotbot-yay"]
+	path = dotbot-yay
+	url = https://github.com/oxson/dotbot-yay
+[submodule "dotbot-sudo"]
+	path = dotbot-sudo
+	url = https://github.com/DrDynamic/dotbot-sudo
+[submodule "vim/plugged/vim-airline"]
+	path = vim/plugged/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/plugged/vim-airline-themes"]
+	path = vim/plugged/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/plugged/vim-bufferline"]
+	path = vim/plugged/vim-bufferline
+	url = https://github.com/bling/vim-bufferline
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "vim/plugged/snow"]
+	path = vim/plugged/snow
+	url = https://github.com/nightsense/snow

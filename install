@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+CONFIG="install.conf.yaml"
+CONFIG_YAY="packages.conf.yaml"
+
+DOTBOT_DIR="dotbot"
+DOTBOT_BIN="bin/dotbot"
+
+DOTBOT_YAY="dotbot-yay/yay.py"
+DOTBOT_SUDO="dotbot-sudo/sudo.py"
+
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+# Configs
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -p "${BASEDIR}/${DOTBOT_SUDO}" -p "${BASEDIR}/${DOTBOT_YAY}" -c "${CONFIG}" "${@}"

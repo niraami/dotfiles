@@ -1,0 +1,76 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.zshrc:
+    ~/.p10k.zsh:
+    ~/.oh-my-zsh:
+    ~/.zlogin:
+    ~/.Xdefaults:
+    ~/.Xresources:
+    ~/.xinitrc:
+    ~/.gtkrc-2.0:
+    ~/.vimrc:
+    ~/.vim:
+    ~/.wallpaper:           .media/wallpaper/Desktop/
+    ~/.config/i3:           config/i3/
+    ~/.config/polybar:      config/polybar/
+    ~/.config/ranger:       config/ranger/
+    ~/.config/rofi:         config/rofi/
+    ~/.config/keepassxc:    config/keepassxc/
+    ~/.config/gtk-3.0:      config/gtk-3.0/
+    ~/.icons/default:       icons/default/
+    ~/.gnupg/gpg.conf:      gnupg/gpg.conf
+
+- shell:
+  # Install Plug plugins into vim
+  - vim +PlugInstall +qall
+
+- yay:
+    # Essentials
+    - man-db
+    # Terminal/ZSH
+    - zsh
+    - oh-my-zsh-git
+    - zsh-completions
+    - trash-cli
+    # Interface
+    - xorg-server
+    - xorg-apps
+    - xorg-xinit
+    - xorg-xrdb
+    - i3-gaps
+    - rxvt-unicode
+    - rofi
+    - polybar
+    # Fonts
+    - ttf-dejavu                # default font for urxvt & some gui apps
+    - ttf-unifont               # unicode characters (especially chinese & cyrilic)
+    - terminus-font             # non-gui terminal font (vconsole.conf)
+    - ttf-roboto                # general purpose font (popular on web)
+    - ttf-fantasque-sans-mono   # polybar
+    - ttf-material-icons-git    # polybar
+    # Audio
+    - pulseaudio
+    - pulseaudio-alsa
+    - pulseaudio-bluetooth
+    - pavucontrol-qt
+    # Tools
+    - playerctl
+    - feh
+    - dex
+    
+
+- sudo:
+    - link:
+        /etc/vconsole.conf:
+          path: root/etc/vconsole.conf
+          force: true
+        /etc/X11/xorg.conf.d/00-keyboard.conf:
+          path: root/etc/X11/xorg.conf.d/00-keyboard.conf
+        /usr/share/themes/Midnight-GrayNight:
+          path: usr/share/themes/Midnight-GrayNight
