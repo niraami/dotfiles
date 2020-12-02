@@ -6,6 +6,14 @@
 
 - clean: ['~']
 
+- git:
+    'oh-my-zsh/custom/themes/powerlevel10k':
+      url: 'https://github.com/romkatv/powerlevel10k'
+      description: 'powerlevel10k theme into oh-my-zsh/custom/themes'
+    'oh-my-zsh/custom/plugins/auto-notify':
+      url: 'https://github.com/MichaelAquilina/zsh-auto-notify'
+      description: 'auto-notify plugin into oh-my-zsh/custom/plugins'
+
 - link:
     ~/.zshrc:
     ~/.p10k.zsh:
@@ -67,18 +75,10 @@
     - playerctl
     - feh
     - dex
-    
-- git:
-    'oh-my-zsh/themes/powerlevel10k':
-      url: 'https://github.com/romkatv/powerlevel10k'
-      description: 'powerlevel10k theme into oh-my-zsh/themes'
 
 - shell:
   # Install Plug plugins into vim
-  - vim +PlugInstall +qall
-  # Symlink oh-my-zsh theme into the theme folder
-  - ln -s oh-my-zsh/themes/powerlevel10k/powerlevel10k.zsh-theme oh-my-zsh/themes/
-  
+  - vim +PlugInstall +qall 
 
 - sudo:
     - link:

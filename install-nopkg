@@ -9,7 +9,6 @@ DOTBOT_BIN="bin/dotbot"
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-DOTBOT_YAY="${BASEDIR}/dotbot-yay/yay.py"
 DOTBOT_SUDO="${BASEDIR}/dotbot-sudo/sudo.py"
 DOTBOT_GIT="${BASEDIR}/dotbot-git/git.py"
 
@@ -18,4 +17,4 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 # Configs
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -p "${DOTBOT_SUDO}" -p "${DOTBOT_YAY}" -p "${DOTBOT_GIT}" -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -p "${DOTBOT_SUDO}" -p "${DOTBOT_GIT}" -c "${CONFIG}" "${@}"
