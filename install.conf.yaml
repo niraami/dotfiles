@@ -75,6 +75,8 @@
     - playerctl
     - feh
     - dex
+    # Dotbot dependencies
+    - python-yaml
 
 - shell:
   # Install Plug plugins into vim
