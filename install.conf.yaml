@@ -25,17 +25,18 @@
     ~/.gtkrc-2.0:
     ~/.vimrc:
     ~/.vim:
-    ~/.wallpaper:           .media/wallpaper/Desktop/
-    ~/.config/i3:           config/i3/
-    ~/.config/polybar:      config/polybar/
-    ~/.config/ranger:       config/ranger/
-    ~/.config/rofi:         config/rofi/
-    ~/.config/keepassxc:    config/keepassxc/
-    ~/.config/gtk-3.0:      config/gtk-3.0/
-    ~/.config/deadd:        config/deadd
-    ~/.config/picom.conf:   config/picom.conf
-    ~/.icons/default:       icons/default/
-    ~/.gnupg/gpg.conf:      gnupg/gpg.conf
+    ~/.wallpaper:                       .media/wallpaper/Desktop/
+    ~/.config/i3/config:                config/i3/config
+    ~/.config/polybar/config.ini:       config/polybar/config.ini
+    ~/.config/polybar/launch.sh:        config/polybar/launch.sh
+    ~/.config/ranger:                   config/ranger/
+    ~/.config/rofi:                     config/rofi/
+    ~/.config/keepassxc/keepassxc.ini:  config/keepassxc/keepassxc.ini
+    ~/.config/gtk-3.0/settings.ini:     config/gtk-3.0/settings.ini
+    ~/.config/deadd/deadd.conf:         config/deadd/deadd.conf
+    ~/.config/picom.conf:               config/picom.conf
+    ~/.icons/default/index.theme:       icons/default/index.theme
+    ~/.gnupg/gpg.conf:                  gnupg/gpg.conf
 
 - yay:
     # Essentials
