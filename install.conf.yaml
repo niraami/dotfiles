@@ -16,9 +16,9 @@
 
 - link:
     ~/.zshrc:
+    ~/.zlogin:
     ~/.p10k.zsh:
     ~/.oh-my-zsh:
-    ~/.zlogin:
     ~/.Xdefaults:
     ~/.Xresources:
     ~/.xinitrc:
@@ -35,6 +35,8 @@
     ~/.config/gtk-3.0/settings.ini:     config/gtk-3.0/settings.ini
     ~/.config/deadd/deadd.conf:         config/deadd/deadd.conf
     ~/.config/picom.conf:               config/picom.conf
+    ~/.config/flameshot/flameshot.ini:  config/flameshot/flameshot.ini
+    ~/.config/flameshot/capture.sh:     config/flameshot/capture.sh
     ~/.icons/default/index.theme:       icons/default/index.theme
     ~/.gnupg/gpg.conf:                  gnupg/gpg.conf
 
@@ -45,7 +47,7 @@
     - udevil                        # mostly for devmon
     # Terminal/ZSH
     - zsh
-    - oh-my-zsh-git
+    - --removemake oh-my-zsh-git
     - zsh-completions
     - trash-cli
     # Interface
@@ -59,7 +61,8 @@
     - i3-gaps
     - rxvt-unicode
     - rofi
-    - polybar
+    - --removemake polybar
+    - flameshot                     # screen capture utility, bindings in i3
     # Fonts
     - ttf-dejavu                    # default font for urxvt & some gui apps
     - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
