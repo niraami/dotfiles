@@ -13,6 +13,9 @@
     'oh-my-zsh/custom/plugins/auto-notify':
       url: 'https://github.com/MichaelAquilina/zsh-auto-notify'
       description: 'auto-notify plugin into oh-my-zsh/custom/plugins'
+    'oh-my-zsh/custom/plugins/autoupdate':
+      url: 'https://github.com/TamCore/autoupdate-oh-my-zsh-plugins'
+      description: 'autoupdate plugin into oh-my-zsh/custom/plugins'
 
 - link:
     ~/.zshrc:
