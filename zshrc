@@ -12,8 +12,9 @@ export VISUAL=/usr/bin/vim
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
-  archlinux
   git
+  archlinux
+  autoupdate
   auto-notify
 )
 
