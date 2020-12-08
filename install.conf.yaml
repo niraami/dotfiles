@@ -4,7 +4,11 @@
       relink: true
       force: true
 
-- clean: ['~']
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      recursive: true
 
 - git:
     'oh-my-zsh/custom/themes/powerlevel10k':
