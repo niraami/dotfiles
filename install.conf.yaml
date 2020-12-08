@@ -28,25 +28,28 @@
     ~/.gtkrc-2.0:
     ~/.vimrc:
     ~/.vim:
-    ~/.wallpaper:                       .media/wallpaper/Desktop/
-    ~/.config/i3/config:                config/i3/config
-    ~/.config/polybar/config.ini:       config/polybar/config.ini
-    ~/.config/polybar/launch.sh:        config/polybar/launch.sh
-    ~/.config/ranger:                   config/ranger/
-    ~/.config/rofi:                     config/rofi/
-    ~/.config/keepassxc/keepassxc.ini:  config/keepassxc/keepassxc.ini
-    ~/.config/gtk-3.0/settings.ini:     config/gtk-3.0/settings.ini
-    ~/.config/deadd/deadd.conf:         config/deadd/deadd.conf
-    ~/.config/picom.conf:               config/picom.conf
-    ~/.config/flameshot/flameshot.ini:  config/flameshot/flameshot.ini
-    ~/.config/flameshot/capture.sh:     config/flameshot/capture.sh
-    ~/.icons/default/index.theme:       icons/default/index.theme
-    ~/.gnupg/gpg.conf:                  gnupg/gpg.conf
+    ~/.pam_environment:
+    ~/.wallpaper:                             .media/wallpaper/Desktop/
+    ~/.config/i3/config:                      config/i3/config
+    ~/.config/polybar/config.ini:             config/polybar/config.ini
+    ~/.config/polybar/launch.sh:              config/polybar/launch.sh
+    ~/.config/ranger:                         config/ranger/
+    ~/.config/rofi:                           config/rofi/
+    ~/.config/keepassxc/keepassxc.ini:        config/keepassxc/keepassxc.ini
+    ~/.config/gtk-3.0/settings.ini:           config/gtk-3.0/settings.ini
+    ~/.config/deadd/deadd.conf:               config/deadd/deadd.conf
+    ~/.config/picom.conf:                     config/picom.conf
+    ~/.config/flameshot/flameshot.ini:        config/flameshot/flameshot.ini
+    ~/.config/flameshot/capture.sh:           config/flameshot/capture.sh
+    ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
+    ~/.icons/default/index.theme:             icons/default/index.theme
+    ~/.gnupg/gpg.conf:                        gnupg/gpg.conf
 
 - yay:
     # Essentials
     - vim                           # ;)
     - man-db                        # for some reason arch doesn't install this by default..?
+    - openssh                       # no installation is complete without ssh...
     - udevil                        # mostly for devmon
     # Terminal/ZSH
     - zsh
