@@ -20,6 +20,7 @@
 - link:
     ~/.zshrc:
     ~/.zlogin:
+    ~/.zprofile:
     ~/.p10k.zsh:
     ~/.oh-my-zsh:
     ~/.Xdefaults:
