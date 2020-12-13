@@ -21,6 +21,9 @@
       url: 'https://github.com/TamCore/autoupdate-oh-my-zsh-plugins'
       description: 'autoupdate plugin into oh-my-zsh/custom/plugins'
 
+- create:
+    - ~/.config/polybar/modules
+
 - link:
     ~/.zshrc:
     ~/.zlogin:

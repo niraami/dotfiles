@@ -9,8 +9,10 @@ archlinux:
   packages:
     - python
     - git
-  before_install:
+  before_script:
     - sudo pacman -Syy
+    - mkdir -p ~/dotfiles-target
+    - yay --needed --noconfirm -S zsh ttf-unifont pulseaudio-bluetooth pavucontrol-qt
   script:
     - HOME=~/dotfiles-target ./install
 
@@ -21,9 +23,6 @@ python:
   - "nightly"
 
 sudo: false
-
-before_script:
-  - mkdir -p ~/dotfiles-target
 
 script:
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
