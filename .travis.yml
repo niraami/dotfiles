@@ -15,12 +15,12 @@ archlinux:
   script:
     - HOME=~/dotfiles-target ./install
 
-
 language: python
 python:
   - "3.9"
+  - "nightly"
 
-sudo: false
+sudo: true
 
 script:
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
