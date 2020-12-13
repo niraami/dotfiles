@@ -21,6 +21,9 @@
       url: 'https://github.com/TamCore/autoupdate-oh-my-zsh-plugins'
       description: 'autoupdate plugin into oh-my-zsh/custom/plugins'
 
+- create:
+    - ~/.config/polybar/modules
+
 - link:
     ~/.zshrc:
     ~/.zlogin:
@@ -101,12 +104,7 @@
     # Dotbot-sudo dependency
     - python-yaml
 
-- shell:
-  # Install Plug plugins into vim
-  - 
-    command: vim --not-a-term +PlugInstall +qall
-    description: Install all vim plugins via Plug
-    
+- shell:    
   # Enable ssh-agent
   - systemctl --user enable ssh-agent
 
@@ -118,4 +116,7 @@
         /etc/X11/xorg.conf.d/00-keyboard.conf:  system/etc/X11/xorg.conf.d/00-keyboard.conf
         /usr/share/themes/Midnight-GrayNight:   system/usr/share/themes/Midnight-GrayNight
         /etc/udevil/udevil.conf:                system/etc/udevil/udevil.conf
-        /etc/resolv.conf:                       system/etc/resolv.conf
+        /etc/resolv.conf:
+          path: system/etc/resolv.conf
+          relink: true
+          force: true

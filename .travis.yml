@@ -1,0 +1,25 @@
+os: linux
+dist: xenial
+
+services:
+  - docker
+
+archlinux:
+  repos:
+    - archlinuxfr=http://repo.archlinux.fr/$arch
+  packages:
+    - python
+    - git
+  before_install:
+    - sudo pacman -Syy
+    - mkdir -p ~/dotfiles-target
+  script:
+    - HOME=~/dotfiles-target ./install --only yay
+    - HOME=~/dotfiles-target ./install --except yay
+
+language: python
+python:
+  - "3.9"
+
+script:
+  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"

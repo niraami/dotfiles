@@ -1,4 +1,4 @@
-# Dotfiles
+# Dotfiles [![Build Status](https://travis-ci.com/niraami/dotfiles.svg?branch=master)](https://travis-ci.com/niraami/dotfiles)
 Dotfiles - synonym for: *I'm never using linux again If I lose these files*.
 
 
