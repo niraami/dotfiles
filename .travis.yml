@@ -14,7 +14,8 @@ archlinux:
     - sudo pacman -Syy
     - mkdir -p ~/dotfiles-target
   script:
-    - HOME=~/dotfiles-target ./install
+    - HOME=~/dotfiles-target ./install --only yay
+    - HOME=~/dotfiles-target ./install --except yay
 
 language: python
 python:
