@@ -18,7 +18,6 @@ archlinux:
 language: python
 python:
   - "3.9"
-  - "nightly"
 
 sudo: true
 
