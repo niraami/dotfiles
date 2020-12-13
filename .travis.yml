@@ -1,4 +1,5 @@
 os: linux
+dist: dist
 
 services:
   - docker
@@ -18,8 +19,6 @@ archlinux:
 language: python
 python:
   - "3.9"
-
-sudo: true
 
 script:
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
