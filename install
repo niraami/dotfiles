@@ -14,6 +14,8 @@ DOTBOT_SUDO="${BASEDIR}/dotbot-sudo/sudo.py"
 DOTBOT_GIT="${BASEDIR}/dotbot-git/git.py"
 
 cd "${BASEDIR}"
+git submodule update --init
+
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
