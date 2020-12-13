@@ -11,10 +11,10 @@ archlinux:
     - git
   before_install:
     - sudo pacman -Syy
+  script:
     - mkdir -p ~/dotfiles-target
     - yay --needed --noconfirm -S zsh ttf-unifont pulseaudio-bluetooth pavucontrol-qt
     - vim --not-a-term +PlugInstall +qall
-  script:
     - HOME=~/dotfiles-target ./install
 
 

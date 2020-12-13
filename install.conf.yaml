@@ -121,4 +121,7 @@
         /etc/X11/xorg.conf.d/00-keyboard.conf:  system/etc/X11/xorg.conf.d/00-keyboard.conf
         /usr/share/themes/Midnight-GrayNight:   system/usr/share/themes/Midnight-GrayNight
         /etc/udevil/udevil.conf:                system/etc/udevil/udevil.conf
-        /etc/resolv.conf:                       system/etc/resolv.conf
+        /etc/resolv.conf:
+          path: system/etc/resolv.conf
+          relink: true
+          force: true
