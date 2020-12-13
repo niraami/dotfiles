@@ -9,10 +9,11 @@ archlinux:
   packages:
     - python
     - git
-  before_script:
+  before_install:
     - sudo pacman -Syy
     - mkdir -p ~/dotfiles-target
     - yay --needed --noconfirm -S zsh ttf-unifont pulseaudio-bluetooth pavucontrol-qt
+    - vim --not-a-term +PlugInstall +qall
   script:
     - HOME=~/dotfiles-target ./install
 
@@ -20,7 +21,6 @@ archlinux:
 language: python
 python:
   - "3.9"
-  - "nightly"
 
 sudo: false
 
