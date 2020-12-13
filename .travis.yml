@@ -16,4 +16,4 @@ before_script:
   - mkdir -p ~/dotfiles-target
 
 script:
-  - HOME=~/dotfiles-target ./install
+  - HOME=~/dotfiles-target ./install --except yay sudo
