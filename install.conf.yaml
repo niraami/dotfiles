@@ -50,6 +50,7 @@
     ~/.config/flameshot/flameshot.ini:        config/flameshot/flameshot.ini
     ~/.config/flameshot/capture.sh:           config/flameshot/capture.sh
     ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
+    ~/.config/spicetify/Themes/Dribbblish:    config/spicetify/Themes/spicetify-themes/Dribbblish
     ~/.icons/default/index.theme:             icons/default/index.theme
     ~/.gnupg/gpg.conf:                        gnupg/gpg.conf
 
@@ -92,11 +93,20 @@
     - pulseaudio-alsa
     - pulseaudio-bluetooth
     - pavucontrol-qt
-    # Tools
+    # Tools/Apps
     - rsync
     - playerctl
     - feh
     - dex
+    - chromium
+    - keepassxc
+    - syncthing
+    - syncthingtray
+    - discord
+    - telegram-desktop
+    - ttf-opensans                  # telegram-desktop dependency
+    - spotify
+    - spocetify-cli
     # Filesystem support
     - exfat-utils-nofuse
     - cifs-utils
@@ -107,6 +117,16 @@
 - shell:    
   # Enable ssh-agent
   - systemctl --user enable ssh-agent
+  - systemctl --user enable syncthing
+ 
+  # Spiceify
+  - spicetify 
+  - spicetify backup enable-devtool
+  - cp "$(dirname "$(spicetify -c)")/Themes/Dribbblish/dribbblish.js" "$(dirname "$(spicetify -c)")/Extensions"
+  - spicetify config extensions dribbblish.js 
+  - spicetify config current_theme Dribbblish color_scheme dracula
+  - spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+  - spicetify apply
 
 - sudo:
     - link:
@@ -120,3 +140,7 @@
           path: system/etc/resolv.conf
           relink: true
           force: true
+    - shell:
+      - systemctl enable systemd-networkd
+      - systemctl enable systemd-resolved
+
