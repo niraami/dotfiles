@@ -10,7 +10,7 @@ archlinux:
     - python
     - git
   before_install:
-    - pacman -Syy
+    - sudo pacman -Syy
   script:
     - HOME=~/dotfiles-target ./install
 
