@@ -104,12 +104,7 @@
     # Dotbot-sudo dependency
     - python-yaml
 
-- shell:
-  # Install Plug plugins into vim
-  - 
-    command: vim --not-a-term +PlugInstall +qall
-    description: Install all vim plugins via Plug
-    
+- shell:    
   # Enable ssh-agent
   - systemctl --user enable ssh-agent
 

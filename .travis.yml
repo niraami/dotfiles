@@ -9,12 +9,10 @@ archlinux:
   packages:
     - python
     - git
-    - vim
   before_install:
     - sudo pacman -Syy
     - mkdir -p ~/dotfiles-target
   script:
-    - vim --not-a-term +PlugInstall +qall
     - HOME=~/dotfiles-target ./install
 
 
