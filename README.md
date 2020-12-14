@@ -1,4 +1,4 @@
-# Dotfiles
+# Dotfiles [![Build Status](https://travis-ci.com/niraami/dotfiles.svg?branch=master)](https://travis-ci.com/niraami/dotfiles)
 Dotfiles - synonym for: *I'm never using linux again If I lose these files*.
 
 
@@ -25,4 +25,4 @@ Coming soon™
 *Please backup any of your previous configuration, the installation will* ***not*** *ask your permission to replace/delete any of your local files*.
 
 After cloning, just run the `install` script. It's quite possible that it may ask for sudo permissions if there are any packages being installed, or links created outside of the `home` path.
-These dotfiles use [Dotbot](https://github.com/anishathalye/dotbot "github.com/anishathalye/dotbot") to manage the installation.
+These dotfiles use [Dotbot](https://github.com/anishathalye/dotbot "github.com/anishathalye/dotbot") to manage the installation & [Travis-Arch](https://github.com/mikkeloscar/arch-travis "github.com/mikkeloscar/arch-travis") to make CI via Travis possible.

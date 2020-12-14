@@ -127,3 +127,7 @@ exec        --no-startup-id  deadd-notification-center
 exec        --no-startup-id  picom --config ~/.config/picom.conf
 exec        --no-startup-id  flameshot
 exec        --no-startup-id  unclutter
+exec        --no-startup-id  syncthingtray
+exec        --no-startup-id  spofity-tray
+exec        --no-startup-id  discord --start-minimized
+

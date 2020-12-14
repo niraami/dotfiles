@@ -21,6 +21,9 @@
       url: 'https://github.com/TamCore/autoupdate-oh-my-zsh-plugins'
       description: 'autoupdate plugin into oh-my-zsh/custom/plugins'
 
+- create:
+    - ~/.config/polybar/modules
+
 - link:
     ~/.zshrc:
     ~/.zlogin:
@@ -53,6 +56,7 @@
       glob: true
       path: config/flameshot/*
     ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
+    ~/.config/spicetify/Themes/Dribbblish:    config/spicetify/Themes/spicetify-themes/Dribbblish
     ~/.icons/default/index.theme:             icons/default/index.theme
     ~/.gnupg/gpg.conf:                        gnupg/gpg.conf
 
@@ -71,7 +75,7 @@
     - udevil                        # mostly for devmon
     # Terminal/ZSH
     - zsh
-    - --removemake oh-my-zsh-git
+    - oh-my-zsh-git
     - zsh-completions
     - tldr                          # I've always wanted this to exist.. but never actually checked if it does
     - trash-cli
@@ -85,8 +89,11 @@
     - deadd-notification-center-bin # notification daemon
     - i3-gaps
     - rxvt-unicode
+    - ranger
+    - mpv                           # minimalistic, but fully featured video player
+    - w3m                           # powerful utility, I'm using it mainly for image preview in ranger
     - rofi
-    - --removemake polybar
+    - polybar
     - flameshot                     # screen capture utility, bindings in i3
     - unclutter-xfixes-git          # mouse hiding daemon - hides mouse when it is still for a while
     # Fonts
@@ -101,21 +108,55 @@
     - pulseaudio-alsa
     - pulseaudio-modules-bt
     - pavucontrol-qt
-    # Tools
+    # Tools/Apps
+    - rsync
     - playerctl
     - feh
     - dex
+    - chromium
+    - keepassxc
+    - syncthing
+    - syncthingtray
+    - discord
+    - telegram-desktop
+    - ttf-opensans                  # telegram-desktop dependency
+    - spotify
+    - spotify-tray-git
+    - spocetify-cli
+    # Filesystem support
+    - exfat-utils-nofuse
+    - cifs-utils
+    - smbclient
+    # Dotbot-sudo dependency
+    - python-yaml
 
-- shell:
-  # Install Plug plugins into vim
-  - vim +PlugInstall +qall 
+- shell:    
+  # Enable ssh-agent
+  - systemctl --user enable ssh-agent
+  - systemctl --user enable syncthing
+ 
+  # Spiceify
+  - spicetify 
+  - spicetify backup enable-devtool
+  - cp "$(dirname "$(spicetify -c)")/Themes/Dribbblish/dribbblish.js" "$(dirname "$(spicetify -c)")/Extensions"
+  - spicetify config extensions dribbblish.js 
+  - spicetify config current_theme Dribbblish color_scheme dracula
+  - spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+  - spicetify apply
 
 - sudo:
     - link:
         /etc/vconsole.conf:
           path: system/etc/vconsole.conf
           force: true
-        /etc/X11/xorg.conf.d/00-keyboard.conf:
-          path: system/etc/X11/xorg.conf.d/00-keyboard.conf
-        /usr/share/themes/Midnight-GrayNight:
-          path: system/usr/share/themes/Midnight-GrayNight
+        /etc/X11/xorg.conf.d/00-keyboard.conf:  system/etc/X11/xorg.conf.d/00-keyboard.conf
+        /usr/share/themes/Midnight-GrayNight:   system/usr/share/themes/Midnight-GrayNight
+        /etc/udevil/udevil.conf:                system/etc/udevil/udevil.conf
+        /etc/resolv.conf:
+          path: system/etc/resolv.conf
+          relink: true
+          force: true
+    - shell:
+      - systemctl enable systemd-networkd
+      - systemctl enable systemd-resolved
+
