@@ -14,8 +14,8 @@ archlinux:
     - sudo pacman -Syy
     - mkdir -p ~/dotfiles-target
   script:
-    - travis_wait 20 HOME=~/dotfiles-target ./install --only yay
-    - travis_wait 20 HOME=~/dotfiles-target ./install --except yay
+    - HOME=~/dotfiles-target ./install --only yay
+    - HOME=~/dotfiles-target ./install --except yay
 
 language: python
 python:
