@@ -62,7 +62,7 @@
 
 - shell:
     -
-      command: yay
+      command: yay --noconfirm
       description: Performing system upgrade using yay
       stdin: true
       stdout: true
@@ -122,13 +122,18 @@
     - ttf-opensans                  # telegram-desktop dependency
     - spotify
     - spotify-tray-git
-    - spocetify-cli
+    - spicetify-cli
     # Filesystem support
     - exfat-utils-nofuse
     - cifs-utils
     - smbclient
     # Dotbot-sudo dependency
     - python-yaml
+
+- sudo:
+    - shell:
+      - sudo chmod a+wr /opt/spotify
+      - sudo chmod a+wr /opt/spotify/Apps -R
 
 - shell:    
   # Enable ssh-agent
@@ -159,4 +164,3 @@
     - shell:
       - systemctl enable systemd-networkd
       - systemctl enable systemd-resolved
-
