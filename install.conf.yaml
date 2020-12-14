@@ -106,6 +106,7 @@
     - telegram-desktop
     - ttf-opensans                  # telegram-desktop dependency
     - spotify
+    - spotify-tray-git
     - spocetify-cli
     # Filesystem support
     - exfat-utils-nofuse
