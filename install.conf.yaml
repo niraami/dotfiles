@@ -36,19 +36,32 @@
     ~/.pam_environment:
     ~/.wallpaper:                             .media/wallpaper/Desktop/
     ~/.config/i3/config:                      config/i3/config
-    ~/.config/polybar/config.ini:             config/polybar/config.ini
-    ~/.config/polybar/launch.sh:              config/polybar/launch.sh
-    ~/.config/ranger:                         config/ranger/
-    ~/.config/rofi:                           config/rofi/
+    ~/.config/polybar:
+      glob: true
+      path: config/polybar/*
+    ~/.config/ranger:
+      glob: true
+      path: config/ranger/*
+    ~/.config/rofi:
+      glob: true
+      path: config/rofi/*
     ~/.config/keepassxc/keepassxc.ini:        config/keepassxc/keepassxc.ini
     ~/.config/gtk-3.0/settings.ini:           config/gtk-3.0/settings.ini
     ~/.config/deadd/deadd.conf:               config/deadd/deadd.conf
     ~/.config/picom.conf:                     config/picom.conf
-    ~/.config/flameshot/flameshot.ini:        config/flameshot/flameshot.ini
-    ~/.config/flameshot/capture.sh:           config/flameshot/capture.sh
+    ~/.config/flameshot:
+      glob: true
+      path: config/flameshot/*
     ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
     ~/.icons/default/index.theme:             icons/default/index.theme
     ~/.gnupg/gpg.conf:                        gnupg/gpg.conf
+
+- shell:
+    -
+      command: yay
+      description: Performing system upgrade using yay
+      stdin: true
+      stdout: true
 
 - yay:
     # Essentials
@@ -60,6 +73,7 @@
     - zsh
     - --removemake oh-my-zsh-git
     - zsh-completions
+    - tldr                          # I've always wanted this to exist.. but never actually checked if it does
     - trash-cli
     # Interface
     - xorg-server
@@ -74,6 +88,7 @@
     - rofi
     - --removemake polybar
     - flameshot                     # screen capture utility, bindings in i3
+    - unclutter-xfixes-git          # mouse hiding daemon - hides mouse when it is still for a while
     # Fonts
     - ttf-dejavu                    # default font for urxvt & some gui apps
     - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
@@ -84,14 +99,12 @@
     # Audio
     - pulseaudio
     - pulseaudio-alsa
-    - pulseaudio-bluetooth
+    - pulseaudio-modules-bt
     - pavucontrol-qt
     # Tools
     - playerctl
     - feh
     - dex
-    # Dotbot dependencies
-    - python-yaml
 
 - shell:
   # Install Plug plugins into vim

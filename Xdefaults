@@ -11,6 +11,6 @@ URxvt.highlightColor:     rgba:ffff/0000/0000/ffff
 URxvt.transparent:        true
 URxvt.shading:            14
 URxvt.fade:               20
-URxvt*scrollTtyOutput:    false
-URxvt*scrollWithBuffer:   true
-URxvt*scrollTtyKeypress:  true
+URxvt.scrollTtyOutput:    false
+URxvt.scrollWithBuffer:   true
+URxvt.scrollTtyKeypress:  true
