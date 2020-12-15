@@ -23,7 +23,11 @@
       - sudo chmod a+wr /opt/spotify
       - sudo chmod a+wr /opt/spotify/Apps -R
 
+- create:
+    ~/.config/spotify
+
 - shell:
+  - touch ~/.config/spotify/prefs
   - spicetify -n
   - spicetify -n backup enable-devtool
   - cp "$(dirname "$(spicetify -c)")/Themes/Dribbblish/dribbblish.js" "$(dirname "$(spicetify -c)")/Extensions"
