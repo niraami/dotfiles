@@ -16,6 +16,8 @@ archlinux:
   script:
     - HOME=~/dotfiles-target ./install --only yay
     - HOME=~/dotfiles-target ./install --except yay
+    - HOME=~/dotfiles-target ./install -c opt.conf.yaml
+    - HOME=~/dotfiles-target ./install -c spotify.conf.yaml
 
 language: python
 python:

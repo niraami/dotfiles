@@ -3,6 +3,8 @@
       create: true
       relink: true
       force: true
+    shell:
+      stdout: true
 
 - clean:
     ~/:
@@ -37,126 +39,33 @@
     ~/.vimrc:
     ~/.vim:
     ~/.pam_environment:
-    ~/.wallpaper:                             .media/wallpaper/Desktop/
-    ~/.config/i3/config:                      config/i3/config
+    ~/.wallpaper: .media/wallpaper/Desktop/
+    ~/.config/i3/config: config/i3/config
     ~/.config/polybar:
       glob: true
       path: config/polybar/*
-    ~/.config/ranger:
-      glob: true
-      path: config/ranger/*
     ~/.config/rofi:
       glob: true
       path: config/rofi/*
-    ~/.config/keepassxc/keepassxc.ini:        config/keepassxc/keepassxc.ini
-    ~/.config/gtk-3.0/settings.ini:           config/gtk-3.0/settings.ini
-    ~/.config/deadd/deadd.conf:               config/deadd/deadd.conf
-    ~/.config/picom.conf:                     config/picom.conf
-    ~/.config/flameshot:
-      glob: true
-      path: config/flameshot/*
-    ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
-    ~/.config/spicetify/Themes/Dribbblish:    config/spicetify/Themes/spicetify-themes/Dribbblish
-    ~/.icons/default/index.theme:             icons/default/index.theme
-    ~/.gnupg/gpg.conf:                        gnupg/gpg.conf
+    ~/.config/gtk-3.0/settings.ini: config/gtk-3.0/settings.ini
+    ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
+    ~/.config/picom.conf: config/picom.conf
+    ~/.icons/default/index.theme: icons/default/index.theme
+    ~/.gnupg/gpg.conf: gnupg/gpg.conf
 
 - shell:
     -
       command: yay --noconfirm
       description: Performing system upgrade using yay
       stdin: true
-      stdout: true
-
-- yay:
-    # Essentials
-    - vim                           # ;)
-    - man-db                        # for some reason arch doesn't install this by default..?
-    - openssh                       # no installation is complete without ssh...
-    - udevil                        # mostly for devmon
-    # Terminal/ZSH
-    - zsh
-    - oh-my-zsh-git
-    - zsh-completions
-    - tldr                          # I've always wanted this to exist.. but never actually checked if it does
-    - trash-cli
-    # Interface
-    - xorg-server
-    - xorg-apps
-    - xorg-xinit
-    - xorg-xrdb
-    - picom                         # composition manager (for transparency, blur, etc)
-    - libnotify                     # notifications
-    - deadd-notification-center-bin # notification daemon
-    - i3-gaps
-    - rxvt-unicode
-    - ranger
-    - mpv                           # minimalistic, but fully featured video player
-    - w3m                           # powerful utility, I'm using it mainly for image preview in ranger
-    - rofi
-    - polybar
-    - flameshot                     # screen capture utility, bindings in i3
-    - unclutter-xfixes-git          # mouse hiding daemon - hides mouse when it is still for a while
-    # Fonts
-    - ttf-dejavu                    # default font for urxvt & some gui apps
-    - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
-    - terminus-font                 # non-gui terminal font (vconsole.conf)
-    - ttf-roboto                    # general purpose font (popular on web)
-    - ttf-fantasque-sans-mono       # polybar
-    - ttf-material-icons-git        # polybar
-    # Audio
-    - pulseaudio
-    - pulseaudio-alsa
-    - pulseaudio-modules-bt
-    - pavucontrol-qt
-    # Tools/Apps
-    - rsync
-    - playerctl
-    - feh
-    - dex
-    - chromium
-    - keepassxc
-    - syncthing
-    - syncthingtray
-    - discord
-    - telegram-desktop
-    - ttf-opensans                  # telegram-desktop dependency
-    - spotify
-    - spotify-tray-git
-    - spicetify-cli
-    # Filesystem support
-    - exfat-utils-nofuse
-    - cifs-utils
-    - smbclient
-    # Dotbot-sudo dependency
-    - python-yaml
-
-- sudo:
-    - shell:
-      - sudo chmod a+wr /opt/spotify
-      - sudo chmod a+wr /opt/spotify/Apps -R
-
-- shell:    
-  # Enable ssh-agent
-  - systemctl --user enable ssh-agent
-  - systemctl --user enable syncthing
- 
-  # Spiceify
-  - spicetify 
-  - spicetify backup enable-devtool
-  - cp "$(dirname "$(spicetify -c)")/Themes/Dribbblish/dribbblish.js" "$(dirname "$(spicetify -c)")/Extensions"
-  - spicetify config extensions dribbblish.js 
-  - spicetify config current_theme Dribbblish color_scheme dracula
-  - spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
-  - spicetify apply
 
 - sudo:
     - link:
         /etc/vconsole.conf:
           path: system/etc/vconsole.conf
           force: true
-        /etc/X11/xorg.conf.d/00-keyboard.conf:  system/etc/X11/xorg.conf.d/00-keyboard.conf
-        /usr/share/themes/Midnight-GrayNight:   system/usr/share/themes/Midnight-GrayNight
-        /etc/udevil/udevil.conf:                system/etc/udevil/udevil.conf
+        /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
+        /usr/share/themes/Midnight-GrayNight: system/usr/share/themes/Midnight-GrayNight
         /etc/resolv.conf:
           path: system/etc/resolv.conf
           relink: true
@@ -164,3 +73,30 @@
     - shell:
       - systemctl enable systemd-networkd
       - systemctl enable systemd-resolved
+
+- yay:
+    - zsh
+    - oh-my-zsh-git
+ 
+    - xorg-server
+    - xorg-apps
+    - xorg-xinit
+    - xorg-xrdb
+    - i3-gaps
+    - rxvt-unicode
+    - rofi
+    - polybar
+
+    - ttf-dejavu                    # default font for urxvt & some gui apps
+    - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
+    - terminus-font                 # non-gui terminal font (vconsole.conf)
+    - ttf-roboto                    # general purpose font (popular on web)
+    - ttf-fantasque-sans-mono       # polybar
+    - ttf-material-icons-git        # polybar
+
+    - picom                         # composition manager (for transparency, blur, etc)
+    - dex                           # desktop entry launcher (also generator)
+    - libnotify                     # notifications
+    - deadd-notification-center-bin # notification daemon
+
+    - python-yaml

@@ -1,0 +1,25 @@
+- link:
+    ~/.config/spicetify/Themes/Dribbblish: 
+      path: config/spicetify/Themes/spicetify-themes/Dribbblish
+      create: true
+      relink: true
+      force:  true
+
+- yay:
+    - spotify
+    - spotify-tray-git
+    - spicetify-cli
+
+- sudo:
+    - shell:
+      - sudo chmod a+wr /opt/spotify
+      - sudo chmod a+wr /opt/spotify/Apps -R
+
+- shell:
+  - spicetify
+  - spicetify backup enable-devtool
+  - cp "$(dirname "$(spicetify -c)")/Themes/Dribbblish/dribbblish.js" "$(dirname "$(spicetify -c)")/Extensions"
+  - spicetify config extensions dribbblish.js
+  - spicetify config current_theme Dribbblish color_scheme dracula
+  - spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+  - spicetify apply
