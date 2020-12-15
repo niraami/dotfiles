@@ -128,6 +128,6 @@ exec        --no-startup-id  picom --config ~/.config/picom.conf
 exec        --no-startup-id  flameshot
 exec        --no-startup-id  unclutter
 exec        --no-startup-id  syncthingtray --wait
-exec        --no-startup-id  spofity-tray --minimized
+exec        --no-startup-id  spotify-tray --minimized
 exec        --no-startup-id  discord --start-minimized
 
