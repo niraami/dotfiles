@@ -12,12 +12,11 @@ archlinux:
     - git
   before_install:
     - sudo pacman -Syy
-    - mkdir -p ~/dotfiles-target
   script:
-    - HOME=~/dotfiles-target ./install --only yay
-    - HOME=~/dotfiles-target ./install --except yay
-    - HOME=~/dotfiles-target ./install -c opt.conf.yaml
-    - HOME=~/dotfiles-target ./install -c spotify.conf.yaml
+    - ./install --only yay
+    - ./install --except yay
+    - ./install -c opt.conf.yaml
+    - ./install -c spotify.conf.yaml
 
 language: python
 python:

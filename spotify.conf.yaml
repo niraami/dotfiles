@@ -24,7 +24,7 @@
       - sudo chmod a+wr /opt/spotify/Apps -R
 
 - create:
-    ~/.config/spotify
+    - ~/.config/spotify
 
 - shell:
   - touch ~/.config/spotify/prefs
