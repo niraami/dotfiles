@@ -1,0 +1,61 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+    shell:
+      stdout: true
+
+- link:
+    ~/.config/ranger:
+      glob: true
+      path: config/ranger/*
+    ~/.config/keepassxc/keepassxc.ini:        config/keepassxc/keepassxc.ini
+    ~/.config/flameshot:
+      glob: true
+      path: config/flameshot/*
+    ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
+
+- yay:
+    - gvim                  # ;)
+    - man-db                # for some reason arch doesn't install this by default..?
+    - openssh               # no installation is complete without ssh...
+    - udevil                # mostly for devmon
+
+    - zsh-completions
+    - tldr                  # I've always wanted this to exist.. but never actually checked if it does
+    - trash-cli
+
+    - ranger
+    - mpv                   # minimalistic, but fully featured video player
+    - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
+    - flameshot             # screen capture utility, bindings in i3
+    - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
+    
+    - pulseaudio
+    - pulseaudio-alsa
+    - pulseaudio-modules-bt
+    - pavucontrol-qt
+
+    - rsync
+    - playerctl
+    - feh
+    - chromium
+    - keepassxc
+    - syncthing
+    - syncthingtray
+    - discord
+    - telegram-desktop
+    - ttf-opensans          # telegram-desktop dependency
+
+    - exfat-utils-nofuse
+    - cifs-utils
+    - smbclient
+
+- shell:
+    - systemctl --user enable ssh-agent
+    - systemctl --user enable syncthing
+
+- sudo:
+    - link:
+        /etc/udevil/udevil.conf:  system/etc/udevil/udevil.conf
