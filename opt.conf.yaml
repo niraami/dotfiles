@@ -14,7 +14,6 @@
     ~/.config/flameshot:
       glob: true
       path: config/flameshot/*
-    ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
 
 - yay:
     - gvim                  # ;)

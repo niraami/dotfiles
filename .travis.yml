@@ -9,6 +9,7 @@ archlinux:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
     - python
+    - python-yaml
     - git
   before_install:
     - sudo pacman -Syy
