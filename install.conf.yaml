@@ -12,6 +12,13 @@
     ~/.config:
       recursive: true
 
+# Setup correct nameserver configuration - gnugp has issues without explicit DNS servers (sometimes)
+- sudo:
+    - shell:
+      - cp system/etc/resolv.conf /etc/resolv.conf
+      - systemctl enable systemd-networkd
+      - systemctl enable systemd-resolved
+
 - git:
     'oh-my-zsh/custom/themes/powerlevel10k':
       url: 'https://github.com/romkatv/powerlevel10k'
@@ -102,7 +109,3 @@
           force: true
         /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
         /usr/share/themes/Midnight-GrayNight: system/usr/share/themes/Midnight-GrayNight
-    - shell:
-      - cp system/etc/resolv.conf /etc/resolv.conf
-      - systemctl enable systemd-networkd
-      - systemctl enable systemd-resolved
