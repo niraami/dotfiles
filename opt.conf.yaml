@@ -56,7 +56,6 @@
     - smbclient
 
 - shell:
-    - systemctl --user enable ssh-agent
     - systemctl --user enable syncthing
 
 - sudo:
