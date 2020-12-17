@@ -14,7 +14,6 @@
     ~/.config/flameshot:
       glob: true
       path: config/flameshot/*
-    ~/.config/systemd/user/ssh-agent.service: config/systemd/user/ssh-agent.service
 
 - yay:
     - gvim                  # ;)
@@ -56,7 +55,6 @@
     - smbclient
 
 - shell:
-    - systemctl --user enable ssh-agent
     - systemctl --user enable syncthing
 
 - sudo:
