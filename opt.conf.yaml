@@ -47,6 +47,9 @@
     - discord
     - telegram-desktop
     - ttf-opensans          # telegram-desktop dependency
+    - seahorse              # gnome-keyring GUI
+    - mailspring            # better email client than thunderbird, fight me
+    - libappindicator-gtk3  # tray support for mailspring
 
     - exfat-utils-nofuse
     - cifs-utils

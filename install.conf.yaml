@@ -53,27 +53,6 @@
     ~/.icons/default/index.theme: icons/default/index.theme
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
 
-- shell:
-    -
-      command: yay --noconfirm
-      description: Performing system upgrade using yay
-      stdin: true
-
-- sudo:
-    - link:
-        /etc/vconsole.conf:
-          path: system/etc/vconsole.conf
-          force: true
-        /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
-        /usr/share/themes/Midnight-GrayNight: system/usr/share/themes/Midnight-GrayNight
-        /etc/resolv.conf:
-          path: system/etc/resolv.conf
-          relink: true
-          force: true
-    - shell:
-      - systemctl enable systemd-networkd
-      - systemctl enable systemd-resolved
-
 - yay:
     - zsh
     - oh-my-zsh-git
@@ -99,4 +78,31 @@
     - libnotify                     # notifications
     - deadd-notification-center-bin # notification daemon
 
+    - gnome-keyring
+    - libsecret
+
     - python-yaml
+
+- shell:
+    -
+      command: yay --noconfirm
+      description: Performing system upgrade using yay
+      stdin: true
+    -
+      command: git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
+      description: Setting Git's credential helper to libsecret
+
+- sudo:
+    - link:
+        /etc/vconsole.conf:
+          path: system/etc/vconsole.conf
+          force: true
+        /etc/pam.d/login:
+          path: system/etc/pam.d/login
+          force: true
+        /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
+        /usr/share/themes/Midnight-GrayNight: system/usr/share/themes/Midnight-GrayNight
+    - shell:
+      - cp system/etc/resolv.conf /etc/resolv.conf
+      - systemctl enable systemd-networkd
+      - systemctl enable systemd-resolved
