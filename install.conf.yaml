@@ -88,8 +88,6 @@
     - gnome-keyring
     - libsecret
 
-    - python-yaml
-
 - shell:
     -
       command: yay --noconfirm
