@@ -15,7 +15,7 @@
 # Setup correct nameserver configuration - gnugp has issues without explicit DNS servers (sometimes)
 - sudo:
     - shell:
-      - cp system/etc/resolv.conf /etc/resolv.conf
+      - cp -f system/etc/resolv.conf /etc/resolv.conf
       - systemctl enable systemd-networkd
       - systemctl enable systemd-resolved
 
