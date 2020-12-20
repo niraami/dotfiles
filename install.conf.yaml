@@ -99,6 +99,9 @@
     -
       command: git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
       description: Setting Git's credential helper to libsecret
+    - command: cd .packages/ttf-ms-win10 && makepkg -si --noconfirm
+      description: Installing ttf-ms-win10 package
+      stdout: false
 
 - sudo:
     - link:
