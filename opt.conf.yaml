@@ -7,6 +7,9 @@
       stdout: true
 
 - link:
+    ~/.config/autostart:
+      glob: true
+      path: config/autostart/opt/*
     ~/.config/ranger:
       glob: true
       path: config/ranger/*

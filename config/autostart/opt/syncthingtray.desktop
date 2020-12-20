@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=sh -c "/usr/bin/syncthingtray --wait"
+Name=syncthingtray
+Comment=Tray application for Syncthing
+Type=Application

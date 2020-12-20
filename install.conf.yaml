@@ -48,6 +48,9 @@
     ~/.pam_environment:
     ~/.wallpaper: .media/wallpaper/Desktop/
     ~/.config/i3/config: config/i3/config
+    ~/.config/autostart:
+      glob: true
+      path: config/autostart/*
     ~/.config/polybar:
       glob: true
       path: config/polybar/*

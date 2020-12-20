@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/unclutter
+Name=unclutter
+Comment=A small program for hiding the mouse cursor
+Type=Application
