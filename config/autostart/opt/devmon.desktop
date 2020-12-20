@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=sh -c "/usr/bin/devmon --sync"
+Name=devmon
+Comment=Daemon that manages runtime mounting of attached storage
+Type=Application

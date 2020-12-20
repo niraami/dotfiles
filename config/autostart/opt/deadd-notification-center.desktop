@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/deadd-notification-center
+Name=deadd-notification-center
+Comment=Notification daemon & tray-icon notification center
+Type=Application

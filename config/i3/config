@@ -115,19 +115,12 @@ client.focused            $color-br               $color-bg                   $c
 client.unfocused          $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
 client.focused_inactive   $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
 client.urgent             $color-br-urgent        $color-bg-urgent            $color-fg             $color-ic
-  
+
 # Startup actions  
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 exec_always --no-startup-id  /usr/bin/feh --randomize --bg-fill $HOME/.wallpaper
 
-# Background daemons
+# Launch picom (X11 compositor) 
+exec        --no-startup-id  picom
+# Launch dex - this will in turn start all programs & applications
 exec        --no-startup-id  dex -a
-exec        --no-startup-id  devmon --sync
-exec        --no-startup-id  deadd-notification-center
-exec        --no-startup-id  picom --config ~/.config/picom.conf
-exec        --no-startup-id  flameshot
-exec        --no-startup-id  unclutter
-exec        --no-startup-id  syncthingtray --wait
-exec        --no-startup-id  spotify-tray --minimized
-exec        --no-startup-id  discord --start-minimized
-
