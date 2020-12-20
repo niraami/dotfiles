@@ -51,6 +51,7 @@
     - libappindicator-gtk3  # tray support for mailspring
 
     - exfat-utils-nofuse
+    - ntfs-3g
     - cifs-utils
     - smbclient
 
