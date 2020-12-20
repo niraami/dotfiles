@@ -5,3 +5,7 @@ ranger/tmp
 ranger/commands_full.py
 
 vim/.netrwhist
+
+.packages/ttf-ms-win10/pkg
+.packages/ttf-ms-win10/src
+.packages/ttf-ms-win10/*.pkg.tar.zst
