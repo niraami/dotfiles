@@ -5,8 +5,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
         unset f
 fi
 
-# Start ssh module of gnome-keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# Start gnome-keyring daemon with extra components
+eval $(/usr/bin/gnome-keyring-daemon --start -c pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 xset -dpms
