@@ -14,3 +14,7 @@ URxvt.fade:               20
 URxvt.scrollTtyOutput:    false
 URxvt.scrollWithBuffer:   true
 URxvt.scrollTtyKeypress:  true
+
+#Bugfix for coredump on exit (FS#67691)
+URxvt.perl-ext:
+URxvt.perl-ext-common:
