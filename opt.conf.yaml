@@ -33,6 +33,7 @@
     - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
     - flameshot             # screen capture utility, bindings in i3
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
+    - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc
     
     - pulseaudio
     - pulseaudio-alsa
@@ -60,6 +61,7 @@
 
 - shell:
     - systemctl --user enable syncthing
+    - systemctl --user enable udev-block-notify
 
 - sudo:
     - link:
