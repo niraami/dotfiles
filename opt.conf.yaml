@@ -35,9 +35,8 @@
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
     - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc
     
-    - pulseaudio
-    - pulseaudio-alsa
-    - pulseaudio-modules-bt
+    - pipewire
+    - pipewire-pulse
     - pavucontrol-qt
 
     - rsync
