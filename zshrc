@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source $HOME/.alias
+
 export ZSH="${HOME}/.oh-my-zsh"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
@@ -22,11 +24,10 @@ source $ZSH/oh-my-zsh.sh
 
 # zsh-auto-notify
 AUTO_NOTIFY_IGNORE+=("ranger")
-export AUTO_NOTIFY_THRESHOLD=8
-export AUTO_NOTIFY_EXPIRE_TIME=10000
+export AUTO_NOTIFY_THRESHOLD=16
+export AUTO_NOTIFY_EXPIRE_TIME=7000
 
-alias feh='feh -Zdr.'
-alias ls='ls -la --color=auto'
+zstyle ':completion:*' rehash true
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
