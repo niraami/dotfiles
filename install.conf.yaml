@@ -29,6 +29,9 @@
     'oh-my-zsh/custom/plugins/autoupdate':
       url: 'https://github.com/TamCore/autoupdate-oh-my-zsh-plugins'
       description: 'autoupdate plugin into oh-my-zsh/custom/plugins'
+    'oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
+      url: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+      description: 'syntax-highlighting plugin into oh-my-zsh/custom/plugins'
 
 - create:
     - ~/.config/polybar/modules

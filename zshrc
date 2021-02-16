@@ -18,6 +18,7 @@ plugins=(
   archlinux
   autoupdate
   auto-notify
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -26,6 +27,13 @@ source $ZSH/oh-my-zsh.sh
 AUTO_NOTIFY_IGNORE+=("ranger")
 export AUTO_NOTIFY_THRESHOLD=16
 export AUTO_NOTIFY_EXPIRE_TIME=7000
+
+# zsh-syntax-highlighter
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+#ZSH_HIGHLIGHT_STYLES[command]='fg=cyan'
+#ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
+#ZSH_HIGHLIGHT_STYLES[path]='fg=gray'
 
 zstyle ':completion:*' rehash true
 
