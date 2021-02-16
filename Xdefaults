@@ -15,6 +15,11 @@ URxvt.scrollTtyOutput:    false
 URxvt.scrollWithBuffer:   true
 URxvt.scrollTtyKeypress:  true
 
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+
 #Bugfix for coredump on exit (FS#67691)
 URxvt.perl-ext:
 URxvt.perl-ext-common:

@@ -1,0 +1,4 @@
+alias feh='feh -Zdr.'
+alias ls='ls -la --color=auto'
+alias -g menuconfig='menuconfig --style monochrome'
+
