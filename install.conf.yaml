@@ -38,6 +38,7 @@
 
 - link:
     ~/.zshrc:
+    ~/.alias:
     ~/.zlogin:
     ~/.zprofile:
     ~/.p10k.zsh:
