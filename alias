@@ -1,4 +1,5 @@
-alias feh='feh -Zdr.'
+alias feh='feh -Zr. --auto-reload'
 alias ls='ls -la --color=auto'
+alias lsblkf='lsblk -f'
 alias -g menuconfig='menuconfig --style monochrome'
 
