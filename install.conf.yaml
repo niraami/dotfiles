@@ -66,6 +66,9 @@
     ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
     ~/.config/ulauncher: config/ulauncher/
+    ~/.local/share/ulauncher/extensions:
+      glob: true
+      path: local/share/ulauncehr/extensions/*
     ~/.icons/default/index.theme: icons/default/index.theme
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
 

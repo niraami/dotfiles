@@ -29,6 +29,7 @@ set $color-ic             #606060
 
 # Global rules
 for_window [class="^.*"] border pixel 4
+for_window [title="Ulauncher Preferences"] floating enable
 
 gaps inner 6
 gaps outer -1

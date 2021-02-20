@@ -1,1 +1,23 @@
-{}
+{
+    "com.github.the-lay.ulauncher-spotify-api": {
+        "id": "com.github.the-lay.ulauncher-spotify-api",
+        "url": "https://github.com/the-lay/ulauncher-spotify-api",
+        "updated_at": "2021-02-20T19:07:36.244454",
+        "last_commit": "71fc9fa22c593b9ca3f52e38465918149547b304",
+        "last_commit_time": "2021-02-01T16:15:35"
+    },
+    "com.github.lexicon9.ulauncher-aur-plugin": {
+        "id": "com.github.lexicon9.ulauncher-aur-plugin",
+        "url": "https://github.com/Lexicon9/ulauncher-aur-plugin",
+        "updated_at": "2021-02-20T19:27:19.972307",
+        "last_commit": "e649fc34019d132d3675c3a43327f69894bfa790",
+        "last_commit_time": "2020-11-23T10:58:46"
+    },
+    "com.github.melianmiko.ulauncher-bluetoothd": {
+        "id": "com.github.melianmiko.ulauncher-bluetoothd",
+        "url": "https://github.com/melianmiko/ulauncher-bluetoothd",
+        "updated_at": "2021-02-20T19:43:54.439314",
+        "last_commit": "2e55095c0c2bc7e57143811ed45b5e0731648acf",
+        "last_commit_time": "2021-01-29T11:43:45"
+    }
+}
