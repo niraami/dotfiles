@@ -23,9 +23,6 @@
 [submodule "vim/plugged/snow"]
 	path = vim/plugged/snow
 	url = https://github.com/nightsense/snow
-[submodule "dotbot-git"]
-	path = dotbot-git
-	url = https://github.com/DrDynamic/dotbot-git.git
 [submodule "config/spicetify/Themes/spicetify-themes"]
 	path = config/spicetify/Themes/spicetify-themes
 	url = https://github.com/morpheusthewhite/spicetify-themes
@@ -41,3 +38,15 @@
 [submodule "local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin"]
 	path = local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin
 	url = https://github.com/Lexicon9/ulauncher-aur-plugin
+[submodule ".oh-my-zsh/custom/plugins/zsh-auto-notify"]
+	path = .oh-my-zsh/custom/plugins/zsh-auto-notify
+	url = https://github.com/MichaelAquilina/zsh-auto-notify
+[submodule ".oh-my-zsh/custom/plugins/autoupdate"]
+	path = .oh-my-zsh/custom/plugins/autoupdate
+	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+[submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
+	path = .oh-my-zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
