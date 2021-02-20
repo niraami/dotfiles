@@ -13,6 +13,7 @@ archlinux:
   before_install:
     - sudo pacman -Syy
   script:
+    - git submodule update --init --recursive
     - ./install
     - ./install -c opt.conf.yaml
     - ./install -c spotify.conf.yaml

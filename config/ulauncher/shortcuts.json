@@ -1,0 +1,42 @@
+{
+    "e99a9d04-3a51-4249-9ec8-41ca437436df": {
+        "id": "e99a9d04-3a51-4249-9ec8-41ca437436df",
+        "name": "Google Search",
+        "keyword": "g",
+        "cmd": "https://google.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/google-search-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1613819891.879672
+    },
+    "8f29833d-fc6d-4815-a38b-056815361285": {
+        "id": "8f29833d-fc6d-4815-a38b-056815361285",
+        "name": "Stack Overflow",
+        "keyword": "so",
+        "cmd": "http://stackoverflow.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1613819891.879694
+    },
+    "9f07b287-ace8-4666-9ec5-b223c131ba23": {
+        "id": "9f07b287-ace8-4666-9ec5-b223c131ba23",
+        "name": "Wikipedia",
+        "keyword": "wiki",
+        "cmd": "https://en.wikipedia.org/wiki/%s",
+        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1613819891.879709
+    },
+    "4e1fac67-7fcc-4d9c-bcae-56ecd151eb6f": {
+        "id": "4e1fac67-7fcc-4d9c-bcae-56ecd151eb6f",
+        "name": "ArchLinux Wiki",
+        "keyword": "arch",
+        "cmd": "https://wiki.archlinux.org/index.php?search=%s",
+        "icon": "~/.dotfiles/.media/Archlinux-icon.png",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1613824826.7131886
+    }
+}

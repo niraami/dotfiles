@@ -62,8 +62,10 @@
       glob: true
       path: config/rofi/*
     ~/.config/gtk-3.0/settings.ini: config/gtk-3.0/settings.ini
+    ~/.config/gtk-3.0/bookmarks: config/gtk-3.0/bookmarks
     ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
+    ~/.config/ulauncher: config/ulauncher/
     ~/.icons/default/index.theme: icons/default/index.theme
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
 
@@ -78,7 +80,9 @@
     - i3-gaps
     - rxvt-unicode
     - rofi
+    - ulauncher
     - polybar
+    - sflock
 
     - ttf-dejavu                    # default font for urxvt & some gui apps
     - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
@@ -86,6 +90,9 @@
     - ttf-roboto                    # general purpose font (popular on web)
     - ttf-fantasque-sans-mono       # polybar
     - ttf-material-icons-git        # polybar
+
+    - xsettingsd-git
+    - palenight-gtk-theme
 
     - picom                         # composition manager (for transparency, blur, etc)
     - dex                           # desktop entry launcher (also generator)
@@ -116,4 +123,3 @@
           path: system/etc/pam.d/login
           force: true
         /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
-        /usr/share/themes/Midnight-GrayNight: system/usr/share/themes/Midnight-GrayNight
