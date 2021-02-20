@@ -44,14 +44,15 @@
     - feh
     - chromium
     - keepassxc
+    - visual-studio-code-bin
     - syncthing
     - syncthingtray
     - discord
     - telegram-desktop
     - ttf-opensans          # telegram-desktop dependency
     - seahorse              # gnome-keyring GUI
-    - mailspring            # better email client than thunderbird, fight me
-    - libappindicator-gtk3  # tray support for mailspring
+
+    - lxappearance          # tool for selecting & customizing GTK themes
 
     - exfat-utils-nofuse
     - ntfs-3g
