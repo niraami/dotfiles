@@ -97,7 +97,6 @@ bindsym $mod+r mode "resize"
 
 # Bindings (actions)
 bindsym $mod+Return           exec --no-startup-id urxvt
-bindsym F2                    exec --no-startup-id ~/.config/rofi/rofi.sh &
 bindsym Print                 exec --no-startup-id ~/.config/flameshot/capture.sh
 
 bindsym $mod+Shift+e          exec --no-startup-id ~/.config/rofi/scripts/sysmenu.sh
