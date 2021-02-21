@@ -37,7 +37,6 @@
     ~/.vim:
     ~/.pam_environment:
     ~/.wallpaper: .media/wallpaper/Desktop/
-    ~/.config/i3/config: config/i3/config
     ~/.config/autostart:
       glob: true
       path: config/autostart/*
@@ -47,14 +46,19 @@
     ~/.config/rofi:
       glob: true
       path: config/rofi/*
+    ~/.config/ulauncher: config/ulauncher/
+    ~/.config/i3/config: config/i3/config
     ~/.config/gtk-3.0/settings.ini: config/gtk-3.0/settings.ini
     ~/.config/gtk-3.0/bookmarks: config/gtk-3.0/bookmarks
     ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
-    ~/.config/ulauncher: config/ulauncher/
+    ~/.config/mimeapps.list: config/mimeapps.list
     ~/.local/share/ulauncher/extensions:
       glob: true
       path: local/share/ulauncehr/extensions/*
+    ~/.local/share/applications:
+      glob: true
+      path: local/share/applications/*
     ~/.icons/default/index.theme: icons/default/index.theme
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
     ~/.oh-my-zsh/custom:
