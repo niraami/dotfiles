@@ -53,6 +53,7 @@
     ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
     ~/.config/mimeapps.list: config/mimeapps.list
+    ~/.config/htop/htoprc: config/htop/htoprc
     ~/.local/share/ulauncher/extensions:
       glob: true
       path: local/share/ulauncehr/extensions/*
@@ -75,6 +76,8 @@
     - xorg-xrdb
     - i3-gaps
     - rxvt-unicode
+    - htop
+    - lm_sensors                    # provides libsensors
     - rofi
     - ulauncher
     - polybar
