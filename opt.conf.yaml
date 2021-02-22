@@ -31,6 +31,7 @@
     - ranger
     - mpv                   # minimalistic, but fully featured video player
     - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
+    - evince-no-gnome       # gnome-based PDF viewer, but with less dependencies
     - flameshot             # screen capture utility, bindings in i3
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
     - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc

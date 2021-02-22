@@ -1,3 +1,4 @@
+alias r='ranger'
 alias feh='feh -Zr. --auto-reload'
 alias ls='ls -la --color=auto'
 alias lsblkf='lsblk -f'
