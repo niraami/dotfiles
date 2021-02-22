@@ -38,5 +38,15 @@
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1613824826.7131886
+    },
+    "0b79745f-04bd-4f6d-a577-81a8b913def0": {
+        "id": "0b79745f-04bd-4f6d-a577-81a8b913def0",
+        "name": "Youtube Search",
+        "keyword": "yt",
+        "cmd": "https://www.youtube.com/results?search_query=%s",
+        "icon": "~/.dotfiles/.media/Youtube-icon.png",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1613937800.6528392
     }
 }
