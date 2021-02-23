@@ -56,11 +56,10 @@
     ~/.config/htop/htoprc: config/htop/htoprc
     ~/.local/share/ulauncher/extensions:
       glob: true
-      path: local/share/ulauncehr/extensions/*
+      path: local/share/ulauncher/extensions/*
     ~/.local/share/applications:
       glob: true
       path: local/share/applications/*
-    ~/.icons/default/index.theme: icons/default/index.theme
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
     ~/.oh-my-zsh/custom:
       glob: true
@@ -81,7 +80,7 @@
     - rofi
     - ulauncher
     - polybar
-    - sflock
+    - sflock-git
 
     - ttf-dejavu                    # default font for urxvt & some gui apps
     - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
