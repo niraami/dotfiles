@@ -53,3 +53,9 @@
 [submodule "local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles"]
 	path = local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles
 	url = https://github.com/FloydJohn/ulauncher-chrome-profiles.git
+[submodule "local/share/ulauncher/extensions/com.github.noam09.ulauncher-units"]
+	path = local/share/ulauncher/extensions/com.github.noam09.ulauncher-units
+	url = https://github.com/noam09/ulauncher-units
+[submodule "local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp"]
+	path = local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp
+	url = https://github.com/brpaz/ulauncher-timestamp

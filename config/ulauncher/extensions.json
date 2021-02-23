@@ -26,5 +26,19 @@
         "updated_at": "2021-02-21T11:14:05.138724",
         "last_commit": "e649fc34019d132d3675c3a43327f69894bfa790",
         "last_commit_time": "2020-11-23T10:58:46"
+    },
+    "com.github.brpaz.ulauncher-timestamp": {
+        "id": "com.github.brpaz.ulauncher-timestamp",
+        "url": "https://github.com/brpaz/ulauncher-timestamp",
+        "updated_at": "2021-02-23T15:15:38.715049",
+        "last_commit": "09cbed761d1cd6b02080d204e46b79b29f1eb7e3",
+        "last_commit_time": "2019-12-03T20:06:45"
+    },
+    "com.github.noam09.ulauncher-units": {
+        "id": "com.github.noam09.ulauncher-units",
+        "url": "https://github.com/noam09/ulauncher-units",
+        "updated_at": "2021-02-23T15:18:12.018102",
+        "last_commit": "b7cf2e51dbf23854f116a1e2157563d749bfb63c",
+        "last_commit_time": "2020-10-06T08:38:12"
     }
 }
