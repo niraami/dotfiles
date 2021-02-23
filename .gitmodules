@@ -29,18 +29,6 @@
 [submodule "config/ulauncher/user-themes/palenight"]
 	path = config/ulauncher/user-themes/palenight
 	url = https://github.com/fsrocha-dev/ulauncher-palenight-theme.git
-[submodule "local/share/ulauncher/extensions/com.github.melianmiko.ulauncher-bluetoothd"]
-	path = local/share/ulauncher/extensions/com.github.melianmiko.ulauncher-bluetoothd
-	url = https://github.com/melianmiko/ulauncher-bluetoothd.git
-[submodule "local/share/ulauncher/extensions/com.github.the-lay.ulauncher-spotify-api"]
-	path = local/share/ulauncher/extensions/com.github.the-lay.ulauncher-spotify-api
-	url = https://github.com/the-lay/ulauncher-spotify-api.git
-[submodule "local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin"]
-	path = local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin
-	url = https://github.com/Lexicon9/ulauncher-aur-plugin.git
-[submodule ".oh-my-zsh/custom/plugins/zsh-auto-notify"]
-	path = .oh-my-zsh/custom/plugins/zsh-auto-notify
-	url = https://github.com/MichaelAquilina/zsh-auto-notify.git
 [submodule ".oh-my-zsh/custom/plugins/autoupdate"]
 	path = .oh-my-zsh/custom/plugins/autoupdate
 	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins.git
@@ -50,6 +38,18 @@
 [submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
 	path = .oh-my-zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".oh-my-zsh/custom/plugins/zsh-auto-notify"]
+	path = .oh-my-zsh/custom/plugins/auto-notify
+	url = https://github.com/MichaelAquilina/zsh-auto-notify.git
+[submodule "local/share/ulauncher/extensions/com.github.melianmiko.ulauncher-bluetoothd"]
+	path = local/share/ulauncher/extensions/com.github.melianmiko.ulauncher-bluetoothd
+	url = https://github.com/melianmiko/ulauncher-bluetoothd.git
+[submodule "local/share/ulauncher/extensions/com.github.the-lay.ulauncher-spotify-api"]
+	path = local/share/ulauncher/extensions/com.github.the-lay.ulauncher-spotify-api
+	url = https://github.com/the-lay/ulauncher-spotify-api.git
+[submodule "local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin"]
+	path = local/share/ulauncher/extensions/com.github.lexicon9.ulauncher-aur-plugin
+	url = https://github.com/Lexicon9/ulauncher-aur-plugin.git
 [submodule "local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles"]
 	path = local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles
 	url = https://github.com/FloydJohn/ulauncher-chrome-profiles.git
