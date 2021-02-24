@@ -40,5 +40,19 @@
         "updated_at": "2021-02-23T15:18:12.018102",
         "last_commit": "b7cf2e51dbf23854f116a1e2157563d749bfb63c",
         "last_commit_time": "2020-10-06T08:38:12"
+    },
+    "com.github.ulauncher.ulauncher-kill": {
+        "id": "com.github.ulauncher.ulauncher-kill",
+        "url": "https://github.com/Ulauncher/ulauncher-kill",
+        "updated_at": "2021-02-25T00:12:16.837138",
+        "last_commit": "7ba3f9fb273c4cbbecd26352c88a3156205417db",
+        "last_commit_time": "2020-01-05T13:02:00"
+    },
+    "com.github.nastuzzisamy.ulauncher-youtube-search": {
+        "id": "com.github.nastuzzisamy.ulauncher-youtube-search",
+        "url": "https://github.com/NastuzziSamy/ulauncher-youtube-search",
+        "updated_at": "2021-02-25T00:12:59.908943",
+        "last_commit": "baed8fbca747c53f0dc53d2ff2b993c030b4d6f3",
+        "last_commit_time": "2020-12-14T19:32:54"
     }
 }
