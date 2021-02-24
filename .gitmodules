@@ -59,3 +59,9 @@
 [submodule "local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp"]
 	path = local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp
 	url = https://github.com/brpaz/ulauncher-timestamp
+[submodule "local/share/ulauncher/extensions/com.github.nastuzzisamy.ulauncher-youtube-search"]
+	path = local/share/ulauncher/extensions/com.github.nastuzzisamy.ulauncher-youtube-search
+	url = https://github.com/NastuzziSamy/ulauncher-youtube-search
+[submodule "local/share/ulauncher/extensions/com.github.ulauncher.ulauncher-kill"]
+	path = local/share/ulauncher/extensions/com.github.ulauncher.ulauncher-kill
+	url = https://github.com/Ulauncher/ulauncher-kill
