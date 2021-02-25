@@ -46,10 +46,11 @@
     ~/.config/rofi:
       glob: true
       path: config/rofi/*
+    ~/.config/gtk-3.0:
+      glob: true
+      path: config/gtk-3.0/*
     ~/.config/ulauncher: config/ulauncher/
     ~/.config/i3/config: config/i3/config
-    ~/.config/gtk-3.0/settings.ini: config/gtk-3.0/settings.ini
-    ~/.config/gtk-3.0/bookmarks: config/gtk-3.0/bookmarks
     ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
     ~/.config/mimeapps.list: config/mimeapps.list

@@ -53,7 +53,7 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 <<< "  Lock|  Logout|  Reboot|  Shutdown")"
 case "$MENU" in
-  *Lock) sflock ;;
+  *Lock) sflock -h -b "$(uname -n | cut -d"-" -f1)" -c "0@$%#&.^*5|%@#" ;;
   *Logout) i3-msg exit ;;
   *Reboot) systemctl reboot ;;
   *Shutdown) systemctl -i poweroff

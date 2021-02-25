@@ -24,7 +24,7 @@
     - openssh               # no installation is complete without ssh...
     - udevil                # mostly for devmon
 
-    - zsh-completions
+    - zsh-completions-git   # '-git' cause the release is years behind the master branch
     - tldr                  # I've always wanted this to exist.. but never actually checked if it does
     - trash-cli
 
@@ -32,7 +32,7 @@
     - mpv                   # minimalistic, but fully featured video player
     - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
     - evince-no-gnome       # gnome-based PDF viewer, but with less dependencies
-    - flameshot             # screen capture utility, bindings in i3
+    - flameshot-git         # screen capture utility, bindings in i3. Using '-git' as the release is months behind
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
     - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc
     
