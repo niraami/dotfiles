@@ -88,6 +88,7 @@
     - ttf-roboto                    # general purpose font (popular on web)
     - ttf-fantasque-sans-mono       # polybar
     - ttf-material-icons-git        # polybar
+    - ttf-ms-win10-auto             # various Windows native fonts
 
     - xsettingsd-git
     - palenight-gtk-theme
@@ -108,9 +109,6 @@
     -
       command: git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
       description: Setting Git's credential helper to libsecret
-    - command: cd .packages/ttf-ms-win10 && makepkg -si --noconfirm
-      description: Installing ttf-ms-win10 package
-      stdout: false
 
 - sudo:
     - link:
