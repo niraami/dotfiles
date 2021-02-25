@@ -32,6 +32,7 @@ for_window [class="^.*"] border pixel 4
 for_window [class="Ulauncher"] border none
 for_window [title="Ulauncher Preferences"] floating enable
 for_window [class="Syncthing Tray"] floating enable
+for_window [window_role="pop-up"] floating enable
 
 gaps inner 6
 gaps outer -1
