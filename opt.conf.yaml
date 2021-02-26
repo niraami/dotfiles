@@ -33,6 +33,8 @@
     - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
     - evince-no-gnome       # gnome-based PDF viewer, but with less dependencies
     - flameshot-git         # screen capture utility, bindings in i3. Using '-git' as the release is months behind
+    - peek                  # simple screen recorder, able to create GIF
+    - gifski                # optional dep for peek - for GIF support
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
     - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc
     
