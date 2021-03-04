@@ -13,34 +13,37 @@ set $Ws8  "8"
 set $Ws9  "9"
 
 # Color definitions
-set $color-bg             #202327
+set $color-bg             #7e57c2
 set $color-bg-inactive    #141618
-set $color-bg-urgent      #260A03
+set $color-bg-urgent      #260a03
 set $color-bg-contrast    #525356
 
-set $color-fg             #BAF2F8
-set $color-fg-inactive    #9EB8BB
+set $color-fg             #baf2f8
+set $color-fg-inactive    #9eb8bb
 
-set $color-br             #fdfae7
+set $color-br             #7e57c2
 set $color-br-inactive    #141618
 set $color-br-urgent      #8c0000
 
-set $color-ic             #606060
+set $color-ic             #593696
 
 # Global rules
-for_window [class="^.*"] border pixel 4
-for_window [class="Ulauncher"] border none
-for_window [title="Ulauncher Preferences"] floating enable
-for_window [class="Syncthing Tray"] floating enable
-for_window [window_role="pop-up"] floating enable
 
-gaps inner 6
-gaps outer -1
+gaps inner 8
+gaps outer -2
 
 smart_gaps inverse_outer
 smart_borders on
 
 floating_modifier $mod
+
+default_border pixel 3
+
+# Window rules
+for_window [class="Ulauncher"] border none
+for_window [title="Ulauncher Preferences"] floating enable
+for_window [class="Syncthing Tray"] floating enable
+for_window [window_role="pop-up"] floating enable
 
 # Bindings (windows)
 bindsym $mod+Shift+q                kill
@@ -90,8 +93,15 @@ mode "resize" {
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
 
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -115,10 +125,10 @@ bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Global Colors            BORDER                  BACKGROUND                  TEXT                  INDICATOR
-client.focused            $color-br               $color-bg                   $color-fg             $color-ic
-client.unfocused          $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
-client.focused_inactive   $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
-client.urgent             $color-br-urgent        $color-bg-urgent            $color-fg             $color-ic
+client.focused             $color-br               $color-bg                   $color-fg             $color-ic
+client.unfocused           $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
+client.focused_inactive    $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
+client.urgent              $color-br-urgent        $color-bg-urgent            $color-fg             $color-ic
 
 # Startup actions  
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
