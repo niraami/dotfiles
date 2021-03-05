@@ -21,6 +21,7 @@
 
 - create:
     - ~/.config/polybar/modules
+    - ~/.config/polybar/scripts
 
 - link:
     ~/.zshrc:
@@ -43,6 +44,13 @@
     ~/.config/polybar:
       glob: true
       path: config/polybar/*
+      exclude: [ config/polybar/modules, config/polybar/scripts ]
+    ~/.config/polybar/modules:
+      glob: true
+      path: config/polybar/modules/*
+    ~/.config/polybar/scripts:
+      glob: true
+      path: config/polybar/scripts/*
     ~/.config/rofi:
       glob: true
       path: config/rofi/*
