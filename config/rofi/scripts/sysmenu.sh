@@ -2,36 +2,19 @@
 
 # Rofi script for a minimalistic power/system menu
 
-BORDER="#1F1F1F"
-SEPARATOR="#1F1F1F"
-FOREGROUND="#A9ABB0"
-BACKGROUND="#1F1F1F"
+BACKGROUND="#141618"
 BACKGROUND_ALT="#252525"
-HIGHLIGHT_BACKGROUND="#FF6F00"
-HIGHLIGHT_FOREGROUND="#FFFFFF"
+FOREGROUND="#a9abb0"
 
-BLACK="#000000"
-WHITE="#ffffff"
-RED="#e53935"
-GREEN="#43a047"
+SEPARATOR="$BACKGROUND"
+BORDER="$BACKGROUND"
+
+ACCENT="#7e57c2"
+HIGHLIGHT_BACKGROUND="$ACCENT"
+HIGHLIGHT_FOREGROUND="#ffffff"
+
 YELLOW="#fdd835"
-BLUE="#1e88e5"
 MAGENTA="#00897b"
-CYAN="#00acc1"
-PINK="#d81b60"
-PURPLE="#8e24aa"
-INDIGO="#3949ab"
-TEAL="#00897b"
-LIME="#c0ca33"
-AMBER="#ffb300"
-ORANGE="#fb8c00"
-BROWN="#6d4c41"
-GREY="#757575"
-BLUE_GREY="#546e7a"
-DEEP_PURPLE="#5e35b1"
-DEEP_ORANGE="#f4511e"
-LIGHT_BLUE="#039be5"
-LIGHT_GREEN="#7cb342"
 
 # Launch Rofi
 MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
@@ -44,14 +27,14 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -xoffset -27 -yoffset 60 \
 -location 3 \
 -columns 1 \
--show-icons -icon-theme "Papirus" \
+-show-icons \
 -font "Fantasque Sans Mono 10" \
 -color-enabled true \
 -color-window "$BACKGROUND,$BORDER,$SEPARATOR" \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
--color-active "$BACKGROUND,$MAGENTA,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
--color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< "  Lock|  Logout|  Reboot|  Shutdown")"
+-color-active "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
+-color-urgent "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
+<<< "  Lock|  Logout|  Reboot|  Shutdown")"
 case "$MENU" in
   *Lock) sflock -h -b "$(uname -n | cut -d"-" -f1)" -c "0@$%#&.^*5|%@#" ;;
   *Logout) i3-msg exit ;;

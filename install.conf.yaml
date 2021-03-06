@@ -99,7 +99,7 @@
     - terminus-font                 # non-gui terminal font (vconsole.conf)
     - ttf-roboto                    # general purpose font (popular on web)
     - ttf-fantasque-sans-mono       # polybar
-    - ttf-material-icons-git        # polybar
+    - awesome-terminal-fonts        # random icon fonts (font awesome, devicons, octicons, pomicons)
     - ttf-ms-win10-auto             # various Windows native fonts
 
     - xsettingsd-git
