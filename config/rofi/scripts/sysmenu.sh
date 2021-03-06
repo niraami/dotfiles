@@ -2,19 +2,18 @@
 
 # Rofi script for a minimalistic power/system menu
 
+ACCENT="#7e57c2"
+
 BACKGROUND="#141618"
 BACKGROUND_ALT="#252525"
+
 FOREGROUND="#a9abb0"
+
+HIGHLIGHT_FOREGROUND="#ffffff"
+HIGHLIGHT_BACKGROUND="$ACCENT"
 
 SEPARATOR="$BACKGROUND"
 BORDER="$BACKGROUND"
-
-ACCENT="#7e57c2"
-HIGHLIGHT_BACKGROUND="$ACCENT"
-HIGHLIGHT_FOREGROUND="#ffffff"
-
-YELLOW="#fdd835"
-MAGENTA="#00897b"
 
 # Launch Rofi
 MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
@@ -34,16 +33,13 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< "  Lock|  Logout|  Reboot|  Shutdown")"
+<<< "Lock|Logout|Reboot|Shutdown")"
 case "$MENU" in
   *Lock) sflock -h -b "$(uname -n | cut -d"-" -f1)" -c "0@$%#&.^*5|%@#" ;;
   *Logout) i3-msg exit ;;
   *Reboot) systemctl reboot ;;
   *Shutdown) systemctl -i poweroff
 esac
-
-# More Options
-# -fullscreen \
 
 # Theming help
 # color window = background, border, separator
