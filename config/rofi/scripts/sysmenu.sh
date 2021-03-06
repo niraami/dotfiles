@@ -26,14 +26,12 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -xoffset -27 -yoffset 60 \
 -location 3 \
 -columns 1 \
--show-icons \
--font "Fantasque Sans Mono 10" \
--color-enabled true \
+-font "Material Design Icons 10, Fantasque Sans Mono 10" \
 -color-window "$BACKGROUND,$BORDER,$SEPARATOR" \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$ACCENT,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< "Lock|Logout|Reboot|Shutdown")"
+<<< "󰍁 Lock|󰍃 Logout|󰜉 Reboot|󰐥 Shutdown")"
 case "$MENU" in
   *Lock) sflock -h -b "$(uname -n | cut -d"-" -f1)" -c "0@$%#&.^*5|%@#" ;;
   *Logout) i3-msg exit ;;
