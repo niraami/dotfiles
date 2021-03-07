@@ -57,9 +57,11 @@
     ~/.config/gtk-3.0:
       glob: true
       path: config/gtk-3.0/*
+    ~/.config/deadd:
+      glob: true
+      path: config/deadd/*
     ~/.config/ulauncher: config/ulauncher/
     ~/.config/i3/config: config/i3/config
-    ~/.config/deadd/deadd.conf: config/deadd/deadd.conf
     ~/.config/picom.conf: config/picom.conf
     ~/.config/mimeapps.list: config/mimeapps.list
     ~/.config/htop/htoprc: config/htop/htoprc
