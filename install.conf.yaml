@@ -41,6 +41,7 @@
     ~/.config/autostart:
       glob: true
       path: config/autostart/*
+      exclude: [ config/autostart/opt ]
     ~/.config/polybar:
       glob: true
       path: config/polybar/*
@@ -112,6 +113,7 @@
     - dex                           # desktop entry launcher (also generator)
     - libnotify                     # notifications
     - deadd-notification-center-bin # notification daemon
+    - mailnag                       # notifications for my email accounts
 
     - gnome-keyring
     - libsecret
