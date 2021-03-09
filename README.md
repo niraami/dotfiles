@@ -10,7 +10,7 @@ This might be a bit of a strange dotfiles setup, but I'm doing everything in a w
 **distro**: [Arch Linux](https://www.archlinux.org/)  
 **wm**: [i3-gaps](https://github.com/Airblader/i3)  
 **shell**: [zsh](https://www.zsh.org/) + [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) + [p10k](https://github.com/romkatv/powerlevel10k) + plugins  
-**terminal**: [urxvt](https://github.com/exg/rxvt-unicode) (rxvt-unicode)  
+**terminal**: [alacritty](https://github.com/alacritty/alacritty)
 **editor**: [vim](https://github.com/vim/vim) (via gvim package)  
 **file manager**: [ranger](https://github.com/ranger/ranger) + [w3m](https://github.com/tats/w3m)  
 **status bar**: [polybar](https://github.com/polybar/polybar) + [material-design-icons](https://github.com/google/material-design-icons) + [fantasque-sans-mono](https://github.com/belluzj/fantasque-sans)  
