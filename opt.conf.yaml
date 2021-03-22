@@ -30,7 +30,7 @@
 
     - ranger
     - mpv                   # minimalistic, but fully featured video player
-    - w3m                   # powerful utility, I'm using it mainly for image preview in ranger
+    - ueberzug              # for image previews in ranger - replacement for buggy w3m
     - evince-no-gnome       # gnome-based PDF viewer, but with less dependencies
     - flameshot-git         # screen capture utility, bindings in i3. Using '-git' as the release is months behind
     - peek                  # simple screen recorder, able to create GIF

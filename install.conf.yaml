@@ -61,6 +61,7 @@
     ~/.config/deadd:
       glob: true
       path: config/deadd/*
+    ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
     ~/.config/ulauncher: config/ulauncher/
     ~/.config/i3/config: config/i3/config
     ~/.config/picom.conf: config/picom.conf
@@ -89,7 +90,7 @@
     - xorg-xinit
     - xorg-xrdb
     - i3-gaps
-    - rxvt-unicode
+    - alacritty
     - htop
     - lm_sensors                    # provides libsensors
     - rofi
@@ -97,7 +98,7 @@
     - polybar
     - sflock-git
 
-    - ttf-dejavu                    # default font for urxvt & some gui apps
+    - ttf-dejavu                    # default font for alacritty & some gui apps
     - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
     - terminus-font                 # non-gui terminal font (vconsole.conf)
     - ttf-roboto                    # general purpose font (popular on web)
