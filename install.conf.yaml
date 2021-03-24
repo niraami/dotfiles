@@ -144,6 +144,6 @@
           force: true
     - shell:
         -
-          command: systemctl enable reflector.service
-          description: Enable reflector service on boot
+          command: systemctl enable reflector.timer
+          description: Enable reflector timer on boot
 
