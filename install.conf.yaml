@@ -118,6 +118,7 @@
 
     - gnome-keyring
     - libsecret
+    - reflector                     # simplifies keeping mirrors up to date
 
 - shell:
     -
@@ -136,4 +137,13 @@
         /etc/pam.d/login:
           path: system/etc/pam.d/login
           force: true
-        /etc/X11/xorg.conf.d/00-keyboard.conf: system/etc/X11/xorg.conf.d/00-keyboard.conf
+        /etc/X11/xorg.conf.d/00-keyboard.conf:
+          path: system/etc/X11/xorg.conf.d/00-keyboard.conf
+        /etc/xdg/reflector/reflector.conf:
+          path: system/etc/xdg/reflector/reflector.conf
+          force: true
+    - shell:
+        -
+          command: systemctl enable reflector.service
+          description: Enable reflector service on boot
+
