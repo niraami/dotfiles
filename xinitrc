@@ -6,7 +6,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Start gnome-keyring daemon with extra components
-eval $(/usr/bin/gnome-keyring-daemon --start -c pkcs11,secrets,ssh)
+eval $(/usr/bin/gnome-keyring-daemon --start -dl -c pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 xset -dpms

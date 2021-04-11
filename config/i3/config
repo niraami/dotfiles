@@ -41,7 +41,7 @@ default_border pixel 3
 
 # Enable automatic floating for certain windows
 for_window [title="Ulauncher Preferences"] floating enable
-for_window [class="Syncthing Tray"] floating enable
+for_window [title="Syncthing Tray"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 # Removes title bar from floating windows
@@ -117,6 +117,7 @@ bindsym $mod+r mode "resize"
 # Bindings (actions)
 bindsym $mod+Return           exec --no-startup-id alacritty
 bindsym Print                 exec --no-startup-id ~/.config/flameshot/capture.sh
+bindsym Control+Print         exec --no-startup-id ~/.config/flameshot/fullscreen.sh
 bindsym Shift+Print           exec --no-startup-id peek
 bindsym $mod+comma            exec --no-startup-id ~/.config/deadd/toggle-center.sh
 
