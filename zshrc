@@ -28,9 +28,13 @@ AUTO_NOTIFY_IGNORE+=("ranger")
 export AUTO_NOTIFY_THRESHOLD=16
 export AUTO_NOTIFY_EXPIRE_TIME=7000
 
-# zsh-syntax-highlighter
+# zsh-syntax-highlighting
+#typeset -A ZSH_HIGHLIGHT_HIGHLIGHTERS
 typeset -A ZSH_HIGHLIGHT_STYLES
 
+#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
+
+#ZSH_HIGHLIGHT_STYLES[cursor]='fg=purple'
 #ZSH_HIGHLIGHT_STYLES[command]='fg=cyan'
 #ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
 #ZSH_HIGHLIGHT_STYLES[path]='fg=gray'

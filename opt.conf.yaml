@@ -19,7 +19,7 @@
       path: config/flameshot/*
 
 - yay:
-    - gvim                  # ;)
+    - vim
     - man-db                # for some reason arch doesn't install this by default..?
     - openssh               # no installation is complete without ssh...
     - udevil                # mostly for devmon
@@ -38,8 +38,8 @@
     - unclutter-xfixes-git  # mouse hiding daemon - hides mouse when it is still for a while
     - udev-block-notify     # notification daemon for udev block devices - USB notifications, etc
     
-    - pipewire
-    - pipewire-pulse
+    - pipewire-git
+    - pipewire-pulse-git
     - pavucontrol-qt
 
     - rsync

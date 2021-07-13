@@ -3,4 +3,4 @@ alias feh='feh -Zr. --auto-reload'
 alias ls='ls -la --color=auto'
 alias lsblkf='lsblk -f'
 alias -g menuconfig='menuconfig --style monochrome'
-
+alias -g ssh='TERM=xterm-256color ssh'
