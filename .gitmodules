@@ -68,3 +68,6 @@
 [submodule "local/share/ulauncher/extensions/com.github.zensoup.ulauncher-unicode"]
 	path = local/share/ulauncher/extensions/com.github.zensoup.ulauncher-unicode
 	url = https://github.com/zensoup/ulauncher-unicode.git
+[submodule "config/mpv/mpv-cheatsheet"]
+	path = config/mpv/mpv-cheatsheet
+	url = https://github.com/ento/mpv-cheatsheet

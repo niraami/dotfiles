@@ -1,0 +1,1 @@
+/home/niraami/.config/mpv/mpv-cheatsheet/dist/cheatsheet.js

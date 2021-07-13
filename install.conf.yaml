@@ -38,6 +38,9 @@
     ~/.vim:
     ~/.pam_environment:
     ~/.wallpaper: .media/wallpaper/Desktop/
+    ~/.scripts:
+      glob: true
+      path: .scripts/*
     ~/.config/autostart:
       glob: true
       path: config/autostart/*
