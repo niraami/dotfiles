@@ -141,11 +141,13 @@ client.unfocused           $color-br-inactive      $color-bg-inactive          $
 client.focused_inactive    $color-br-inactive      $color-bg-inactive          $color-fg-inactive    $color-ic
 client.urgent              $color-br-urgent        $color-bg-urgent            $color-fg             $color-ic
 
-# Startup actions  
+# Startup actions
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 exec_always --no-startup-id  /usr/bin/feh --randomize --bg-fill $HOME/.wallpaper
 
+# Start Gnome polkit daemon
+exec        --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Launch picom (X11 compositor) 
-exec        --no-startup-id  picom
+exec        --no-startup-id picom
 # Launch dex - this will in turn start all programs & applications
-exec        --no-startup-id  dex -a
+exec        --no-startup-id dex -a

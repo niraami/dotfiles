@@ -120,6 +120,7 @@
     - mailnag                       # notifications for my email accounts
 
     - gnome-keyring
+    - polkit-gnome                  # GUI for the polkit daemon
     - libsecret
     - reflector                     # simplifies keeping mirrors up to date
 
