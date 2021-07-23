@@ -117,6 +117,7 @@
     - dex                           # desktop entry launcher (also generator)
     - libnotify                     # notifications
     - deadd-notification-center-bin # notification daemon
+    - udiskie                       # udisks2 daemon for automounting & other management
     - mailnag                       # notifications for my email accounts
 
     - gnome-keyring

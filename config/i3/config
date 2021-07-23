@@ -146,8 +146,10 @@ exec_always --no-startup-id  ~/.config/polybar/launch.sh
 exec_always --no-startup-id  /usr/bin/feh --randomize --bg-fill $HOME/.wallpaper
 
 # Start Gnome polkit daemon
-exec        --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Launch picom (X11 compositor) 
-exec        --no-startup-id picom
+exec --no-startup-id picom
 # Launch dex - this will in turn start all programs & applications
-exec        --no-startup-id dex -a
+exec --no-startup-id dex -a
+# Start udiskie /w automount
+exec --no-startup-id udiskie -anT
