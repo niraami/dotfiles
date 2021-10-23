@@ -1,4 +1,4 @@
-path="${HOME}/Screenshots/$(date '+%Y-%m')"
-mkdir -p "${path}"
+src_path="${HOME}/Screenshots/$(date '+%Y-%m')"
+mkdir -p "${scr_path}"
 
-flameshot gui -p "${path}"
+flameshot gui -p "${scr_path}"

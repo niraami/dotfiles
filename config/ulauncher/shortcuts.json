@@ -9,16 +9,6 @@
         "run_without_argument": false,
         "added": 1613819891.879672
     },
-    "8f29833d-fc6d-4815-a38b-056815361285": {
-        "id": "8f29833d-fc6d-4815-a38b-056815361285",
-        "name": "Stack Overflow",
-        "keyword": "so",
-        "cmd": "http://stackoverflow.com/search?q=%s",
-        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
-        "is_default_search": true,
-        "run_without_argument": false,
-        "added": 1613819891.879694
-    },
     "9f07b287-ace8-4666-9ec5-b223c131ba23": {
         "id": "9f07b287-ace8-4666-9ec5-b223c131ba23",
         "name": "Wikipedia",

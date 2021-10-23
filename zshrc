@@ -39,7 +39,5 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 #ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
 #ZSH_HIGHLIGHT_STYLES[path]='fg=gray'
 
-zstyle ':completion:*' rehash true
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
