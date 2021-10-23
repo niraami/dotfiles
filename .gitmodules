@@ -65,3 +65,6 @@
 [submodule "config/mpv/mpv-cheatsheet"]
 	path = config/mpv/mpv-cheatsheet
 	url = https://github.com/ento/mpv-cheatsheet
+[submodule ".media/wallpaper"]
+	path = .media/wallpaper
+	url = https://github.com/niraami/dotfiles-wallpapers
