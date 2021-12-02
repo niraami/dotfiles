@@ -1,0 +1,10 @@
+configuration {  
+  sidebar-mode: false;
+  cycle: true;
+  case-sensitive: false;
+  hover-select: true;
+
+  disable-history: true;
+  sort: false;
+}
+@theme "sysmenu"

@@ -1,0 +1,107 @@
+* {
+   accent: #7e57c2;
+
+   bg: #141618;
+   bg-light: #252525;
+
+   fg: #a9abb0;
+   fg-light: #ffffff;
+
+   font: "Fantasque Sans Mono 11";
+}
+
+window {
+   background-color: @bg;
+   border-color: @bg;
+
+   anchor: north east;
+   location: north east;
+  
+   // Polybar height: 30px, inner gap: 8px, outer gap: -2px, window border: 3px
+   // Extra padding: 15px
+  
+   y-offset: 51;
+   x-offset: -21;
+
+   width: 300px;
+}
+
+mainbox {
+   background-color: @bg;
+
+   spacing: 0px;
+   children: [inputbar, listview];
+}
+
+inputbar {
+   background-color: @bg;
+   text-color: @fg;
+
+   spacing: 0px;
+   expand: false;
+   children: [prompt, entry];
+}
+
+prompt {
+   background-color: inherit;
+   text-color: @accent;
+
+   padding: 10px 5px;
+}
+
+entry {
+   background-color: inherit;
+   text-color: @fg;
+
+   padding: 10px 5px;
+}
+
+listview {
+   background-color: @bg;
+
+   columns: 1;
+   // Automatic height
+   fixed-height: false;
+   lines: 4;
+   
+   // Disable size change when filtering
+   dynamic: false;
+   // Disable scrollbar
+   scrollbar: false;
+
+   spacing: 0px;
+   padding: 0px 0px 0px 0px;
+   margin: 0px 0px 0px 0px;
+}
+
+element {
+   background-color: @bg;
+   text-color: @fg;
+
+   padding: 10px 10px;
+}
+
+element-text {
+   background-color: inherit;
+   text-color: inherit;
+}
+
+
+element normal.urgent,
+element alternate.urgent {
+   background-color: @bg;
+   text-color: @fg;
+}
+
+element normal.active,
+element alternate.active {
+   background-color: @bg;
+   text-color: @fg;
+}
+
+element selected,
+element selected.urgent,
+element selected.active {
+   background-color: @bg-light;
+   text-color:       @accent;
+}
