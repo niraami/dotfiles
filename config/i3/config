@@ -143,7 +143,7 @@ client.urgent              $color-br-urgent        $color-bg-urgent            $
 
 # Startup actions
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
-exec_always --no-startup-id  /usr/bin/feh --randomize --bg-fill $HOME/.wallpaper
+exec_always --no-startup-id  ~/.scripts/feh-bg.sh
 
 # Start Gnome polkit daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
