@@ -13,11 +13,6 @@
       relink: true
       force:  true
 
-- sudo:
-    - shell:
-      - sudo chmod a+wr /opt/spotify
-      - sudo chmod a+wr /opt/spotify/Apps -R
-
 - create:
     - ~/.config/spotify
 

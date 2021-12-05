@@ -21,7 +21,3 @@
 - shell:
     - systemctl --user enable syncthing
     - systemctl --user enable udev-block-notify
-
-- sudo:
-    - link:
-        /etc/udevil/udevil.conf:  system/etc/udevil/udevil.conf

@@ -12,13 +12,6 @@
     ~/.config:
       recursive: true
 
-# Setup correct nameserver configuration - gnugp has issues without explicit DNS servers (sometimes)
-- sudo:
-    - shell:
-      - cp -f system/etc/resolv.conf /etc/resolv.conf
-      - systemctl enable systemd-networkd
-      - systemctl enable systemd-resolved
-
 - create:
     - ~/.config/polybar/modules
     - ~/.config/polybar/scripts
@@ -92,22 +85,4 @@
     -
       command: git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
       description: Setting Git's credential helper to libsecret
-
-- sudo:
-    - link:
-        /etc/vconsole.conf:
-          path: system/etc/vconsole.conf
-          force: true
-        /etc/pam.d/login:
-          path: system/etc/pam.d/login
-          force: true
-        /etc/X11/xorg.conf.d/00-keyboard.conf:
-          path: system/etc/X11/xorg.conf.d/00-keyboard.conf
-        /etc/xdg/reflector/reflector.conf:
-          path: system/etc/xdg/reflector/reflector.conf
-          force: true
-    - shell:
-        -
-          command: systemctl enable reflector.timer
-          description: Enable reflector timer on boot
 

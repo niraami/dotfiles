@@ -60,6 +60,3 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "wallpapers"]
 	path = wallpapers
 	url = https://github.com/niraami/dotfiles-wallpapers
-[submodule ".dotbot-sudo"]
-	path = .dotbot-sudo
-	url = https://github.com/DrDynamic/dotbot-sudo.git
