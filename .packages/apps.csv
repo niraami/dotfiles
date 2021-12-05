@@ -8,3 +8,20 @@ a,visual-studio-code-bin,Text editor/IDE (official binary version)
 a,spotify,Music streaming service
 a,spotify-tray-git,Tray icon for the Spotify Linux client application
 a,spicetify-cli,Command-line tool to customize Spotify client
+,blueberry,Bluetooth configuration tool
+,remmina,Universal remote desktop client written in GTK
+,piper,GTK application that allows configuration of various gaming mice (mostly focuses on Logitech)
+
+a,pamac-aur,A GTK3 frontend for pacman with AUR compatibility
+a,czkawka-git,Graphical tool for finding duplicate images;files;folders... etc
+a,szyszka-bin,Graphical tool for bulk renaming
+,wireshark-qt,Network traffic and protocol analyzer - Qt GUI
+
+a,blender-git,The scariest program known to man
+,gimp,Graphical tool for image manipulation and processing
+,intellij-idea-community-edition,IDE designed for Java
+a,mailspring,Cross-platform mail client
+,obs-studio,Free, open source software for live streaming and recording
+
+a,multimc-bin,Free, open source Minecraft launcher & instance manager
+,steam,Steam launcher; requires multilib!

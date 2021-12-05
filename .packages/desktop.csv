@@ -31,6 +31,7 @@ a,deadd-notification-center-bin,Notification daemon & centre for past notificati
 a,udev-block-notify,Notification daemon for udev block events (partition changes;new block devices... etc)
 ,network-manager-applet,Applet for managing network connections
 ,nm-connection-editor,NetworkManager GUI connection editor and widgets
+,networkmanager-openvpn,NetworkManager VPN plugin for OpenVPN
 ,playerctl,CLI media player controller and library for i3 bindings & other programs
 a,unclutter-xfixes-git,A daemon that hides the mouse after a specified period - with xfixes applied
 

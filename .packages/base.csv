@@ -11,6 +11,7 @@ tag,package name or git url,purpose
 
 ,reflector,Daemon utility the simplifies keeping package mirrors up-to-date
 ,networkmanager,Yeah sure you could smash your hand with a hammer, but why would you?
+,ntp,Provides a network time protocol daemon service
 ,udisks2,Disk management service & tools; version 2
 ,lvm2,Logical Volume Manager 2 utilities
 

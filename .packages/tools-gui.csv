@@ -9,4 +9,5 @@ a,evince-no-gnome,PDF document viewer; no gnome dependencies
 ,gifski,Adds high quality GIF animation support to peek
 a,syncthingtray-lite,Tray applet for syncthing; without KDE integrations
 ,seahorse,GNOME application for managing encryption keys and passwords in the GNOME keyring
-
+,rofi-greenclip,Clipboard manager to use with rofi - Image support and blacklist
+,scrcpy,Allows display passthrough and control of an Android device

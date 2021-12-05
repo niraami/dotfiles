@@ -1,4 +1,5 @@
 tag,package name or git url,purpose
+,neofetch,Mandatory tool for any linux installation
 ,openssh,Allows connections through the SSH protocol
 ,tldr,CLI client for TLDR; a collection of simplified man pages
 ,ranger,Simple CLI vim-like file manager
@@ -7,8 +8,21 @@ tag,package name or git url,purpose
 ,syncthing,Continuous sync tool
 ,dex,Program to generate and execute DesktopEntry files of type Application
 ,trash-cli,CLI tool for trash management (FreeDesktop.org Trash)
+,youtube-dl,CLI tool for downloading videos from YouTube & some other sites
 
-a,exfat-utils-nofuse,Utilities for the exFAT file system without fuse
+,bind,DNS utils replacement; provides various DNS related tools like dig;host;nslookup... etc
+,gnu-netcat,Better version of the native netcat
+,sshfs,FUSE client based on the SSH FTP
+,htop,Tool for viewing current system status & running processes
+,btop,Tool for monitoring system resources similar to htop
+,smartmontools,Tools for monitoring S.M.A.R.T. enabled ATA and SCSI drives
+
+,zip,CLI tool for creating and modifying zipfiles
+,unzip,CLI tool for extracting and viewing files in .zip archives
+,unrar,CLI tool for uncompressing rar files
+,p7zip,CLI file archiver with high compression ratio
+
+,exfat-utils,Utilities for the exFAT file system
 ,ntfs-3g,Utilities for the NTFS file system
 ,cifs-utils,Utilities for the CIFS filesystem
 ,smbclient,Samba file sharing client
