@@ -28,14 +28,17 @@
 	path = config/ulauncher/user-themes/palenight
 	url = https://github.com/fsrocha-dev/ulauncher-palenight-theme.git
 [submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	path = config/oh-my-zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
-	path = .oh-my-zsh/custom/themes/powerlevel10k
+	path = config/oh-my-zsh/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".oh-my-zsh/custom/plugins/zsh-auto-notify"]
-	path = .oh-my-zsh/custom/plugins/auto-notify
+	path = config/oh-my-zsh/plugins/auto-notify
 	url = https://github.com/MichaelAquilina/zsh-auto-notify.git
+[submodule ".oh-my-zsh/custom/plugins/autoupdate"]
+	path = config/oh-my-zsh/plugins/autoupdate
+url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles"]
 	path = local/share/ulauncher/extensions/com.github.floydjohn.ulauncher-chrome-profiles
 	url = https://github.com/FloydJohn/ulauncher-chrome-profiles.git
@@ -48,9 +51,6 @@
 [submodule "config/mpv/mpv-cheatsheet"]
 	path = config/mpv/mpv-cheatsheet
 	url = https://github.com/ento/mpv-cheatsheet
-[submodule ".oh-my-zsh/custom/plugins/autoupdate"]
-	path = .oh-my-zsh/custom/plugins/autoupdate
-	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr"]
 	path = local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr
 	url = https://github.com/dhelmr/ulauncher-tldr

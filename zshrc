@@ -11,6 +11,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 
+export ZSH_CUSTOM="${HOME}/.config/oh-my-zsh"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
