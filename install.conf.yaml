@@ -84,47 +84,6 @@
       glob: true
       path: .oh-my-zsh/custom/themes/*
    
-- yay:
-    - zsh
-    - oh-my-zsh-git
- 
-    - xorg-server
-    - xorg-apps
-    - xorg-xinit
-    - xorg-xrdb
-    - i3-gaps
-    - alacritty
-    - htop
-    - lm_sensors                    # provides libsensors
-    - rofi
-    - ulauncher
-    - polybar
-    - sflock-git
-
-    - ttf-dejavu                    # default font for alacritty & some gui apps
-    - ttf-unifont                   # unicode characters (especially chinese & cyrilic)
-    - terminus-font                 # non-gui terminal font (vconsole.conf)
-    - ttf-roboto                    # general purpose font (popular on web)
-    - ttf-fantasque-sans-mono       # polybar
-    # the only icon font that actually has everything, and works without conflicts
-    - ttf-material-design-icons-extended
-    - ttf-ms-win10-auto             # various Windows native fonts
-
-    - xsettingsd-git
-    - palenight-gtk-theme
-
-    - picom                         # composition manager (for transparency, blur, etc)
-    - dex                           # desktop entry launcher (also generator)
-    - libnotify                     # notifications
-    - deadd-notification-center-bin # notification daemon
-    - udiskie                       # udisks2 daemon for automounting & other management
-    - mailnag                       # notifications for my email accounts
-
-    - gnome-keyring
-    - polkit-gnome                  # GUI for the polkit daemon
-    - libsecret
-    - reflector                     # simplifies keeping mirrors up to date
-
 - shell:
     -
       command: yay --noconfirm

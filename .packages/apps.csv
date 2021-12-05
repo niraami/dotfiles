@@ -1,0 +1,10 @@
+tag,package name or git url,purpose
+a,google-chrome,Get the pitchforks
+,keepassxc,A C++ port of the Keepass password manager
+a,visual-studio-code-bin,Text editor/IDE (official binary version)
+,discord,Voice & text chat
+,telegram-desktop,Telegram desktop client (a moderately secure messaging app)
+,ttf-opensans,Optional telegram-desktop dependency that should really not be optional (text is inconsistent otherwise)
+a,spotify,Music streaming service
+a,spotify-tray-git,Tray icon for the Spotify Linux client application
+a,spicetify-cli,Command-line tool to customize Spotify client

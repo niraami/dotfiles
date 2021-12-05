@@ -1,0 +1,16 @@
+tag,package name or git url,purpose
+,base,Minimal package set to define a basic Arch Linux installation
+,base-devel,Minimal group of developement oriented packages (make;sudo;gcc;sed... etc)
+,linux,The Linux kernel and modules
+,linux-firmware,Firmware files for Linux
+,linux-headers,Headers and scripts for building modules for the Linux kernel
+,vim,Distros that come without vim are a plauge and should be exterminated
+,git,Needed to pull various files & packages not available in the repos
+,wget,Network utility to retrieve files from the Web
+,man-db,Utility for reading man pages
+
+,reflector,Daemon utility the simplifies keeping package mirrors up-to-date
+,networkmanager,Yeah sure you could smash your hand with a hammer, but why would you?
+,udisks2,Disk management service & tools; version 2
+,lvm2,Logical Volume Manager 2 utilities
+

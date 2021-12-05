@@ -1,0 +1,5 @@
+tag,package name or git url,purpose
+,gnome-keyring,System keyring
+,libsecret,Library for storing and retrieving passwords and other secrets
+,polkit-gnome,GUI for the polkit daemon
+

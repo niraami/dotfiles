@@ -1,13 +1,11 @@
 [submodule "dotbot"]
-	path = dotbot
+	path = .dotbot
 	url = https://github.com/anishathalye/dotbot.git
-	ignore = dirty
-[submodule "dotbot-yay"]
-	path = dotbot-yay
-	url = https://github.com/oxson/dotbot-yay.git
+  ignore = dirty
 [submodule "dotbot-sudo"]
-	path = dotbot-sudo
+	path = .dotbot-sudo
 	url = https://github.com/DrDynamic/dotbot-sudo.git
+	ignore = dirty
 [submodule "vim/plugged/vim-airline"]
 	path = vim/plugged/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
@@ -62,3 +60,6 @@
 [submodule "wallpapers"]
 	path = wallpapers
 	url = https://github.com/niraami/dotfiles-wallpapers
+[submodule ".dotbot-sudo"]
+	path = .dotbot-sudo
+	url = https://github.com/DrDynamic/dotbot-sudo.git

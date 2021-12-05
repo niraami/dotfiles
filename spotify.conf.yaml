@@ -13,11 +13,6 @@
       relink: true
       force:  true
 
-- yay:
-    - spotify
-    - spotify-tray-git
-    - spicetify-cli
-
 - sudo:
     - shell:
       - sudo chmod a+wr /opt/spotify

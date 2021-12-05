@@ -1,0 +1,15 @@
+tag,package name or git url,purpose
+,openssh,Allows connections through the SSH protocol
+,tldr,CLI client for TLDR; a collection of simplified man pages
+,ranger,Simple CLI vim-like file manager
+,ueberzug,Allows various image previous in ranger; replacement for the buggy w3m
+,rsync,Fast file sync tool
+,syncthing,Continuous sync tool
+,dex,Program to generate and execute DesktopEntry files of type Application
+,trash-cli,CLI tool for trash management (FreeDesktop.org Trash)
+
+a,exfat-utils-nofuse,Utilities for the exFAT file system without fuse
+,ntfs-3g,Utilities for the NTFS file system
+,cifs-utils,Utilities for the CIFS filesystem
+,smbclient,Samba file sharing client
+

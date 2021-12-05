@@ -1,0 +1,12 @@
+tag,package name or git url,purpose
+,mpv,The best choice in media players
+,pavucontrol-qt,Pulseaudio mixer written in QT
+,feh,Fast and light imlib2-base image viewer
+,imv,Image viewer for Wayland and X11; mostly for SVG and other more exotic image format support
+a,evince-no-gnome,PDF document viewer; no gnome dependencies
+,flameshot,Screen capture utility (images only)
+,peek,A very simple but capable screen capture utility (MP4;gif;webm... etc)
+,gifski,Adds high quality GIF animation support to peek
+a,syncthingtray-lite,Tray applet for syncthing; without KDE integrations
+,seahorse,GNOME application for managing encryption keys and passwords in the GNOME keyring
+
