@@ -40,7 +40,6 @@
     ~/.wallpapers:
     ~/.scripts:
       glob: true
-      path: .scripts/*
     ~/.config/autostart:
       glob: true
       path: config/autostart/*
