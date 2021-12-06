@@ -16,7 +16,8 @@ export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 
-
+# Disable the `less` history file
+export LESSHISTFILE=-
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
