@@ -16,6 +16,9 @@
     - ~/.config/polybar/modules
     - ~/.config/polybar/scripts
 
+    # Make sure a cache file for zcompdumps exists
+    - ~/.cache/zsh
+
 - link:
   # Link contents to $HOME
     ~/.zshrc:

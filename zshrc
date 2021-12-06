@@ -8,10 +8,15 @@ fi
 source $HOME/.alias
 
 export ZSH="${HOME}/.oh-my-zsh"
+# Move custom files to ~/.config instead of inside the oh-my-zsh repository
+export ZSH_CUSTOM="${HOME}/.config/oh-my-zsh"
+# Move zcompdump files to ~/.cache instead of the home folder
+export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
+
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 
-export ZSH_CUSTOM="${HOME}/.config/oh-my-zsh"
+
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
