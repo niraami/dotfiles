@@ -60,3 +60,6 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "wallpapers"]
 	path = wallpapers
 	url = https://github.com/niraami/dotfiles-wallpapers
+[submodule "dotfiles-etc"]
+	path = system/etc
+	url = https://github.com/niraami/dotfiles-etc
