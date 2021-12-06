@@ -51,6 +51,9 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 
+# trap USR1 signal - this signal is called via a pacman hook to rehash completion across all ZSH instances
+TRAPUSR1() { rehash }
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
