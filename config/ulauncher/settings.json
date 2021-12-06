@@ -6,6 +6,6 @@
     "render-on-screen": "mouse-pointer-monitor",
     "show-indicator-icon": false,
     "show-recent-apps": "10",
-    "terminal-command": "alacritty -e ",
+    "terminal-command": "kitty -e ",
     "theme-name": "Palenight Theme - By Frank Rocha"
 }
