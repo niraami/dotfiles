@@ -16,6 +16,7 @@ a,pamac-aur,A GTK3 frontend for pacman with AUR compatibility
 a,czkawka-git,Graphical tool for finding duplicate images;files;folders... etc
 a,szyszka-bin,Graphical tool for bulk renaming
 ,wireshark-qt,Network traffic and protocol analyzer - Qt GUI
+,qbittorrent,Relatively robust looking and feature packed torrent client /w server-client capabilities
 
 a,blender-git,The scariest program known to man
 ,gimp,Graphical tool for image manipulation and processing

@@ -62,6 +62,9 @@
     ~/.config/deadd:
       glob: true
       path: config/deadd/*
+    ~/.config/qBittorrent:
+      glob: true
+      path: config/qBittorrent/*
 
     ~/.config/oh-my-zsh: config/oh-my-zsh/
     ~/.config/ulauncher: config/ulauncher/

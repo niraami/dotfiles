@@ -63,3 +63,6 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "dotfiles-etc"]
 	path = system/etc
 	url = https://github.com/niraami/dotfiles-etc
+[submodule "config/qBittorrent/themes"]
+	path = config/qBittorrent/themes
+	url = https://github.com/jagannatharjun/qbt-theme
