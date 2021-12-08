@@ -5,6 +5,7 @@ tag,package name or git url,purpose
 a,i3-gaps,Tiling window manager
 ,picom,Composition manager (for transparency;blur... etc)
 a,polybar,Status bar
+,feh,Fast and light imlib2-base image viewer; also used as the tool to set the desktop background
 ,kitty,Terminal emulator
 a,ulauncher,Default application launcher
 ,rofi,Power menu run dialog
