@@ -1,8 +1,4 @@
-# A comprehensive guide to Arch
-
----
-
-  
+<center> <h1>A comprehensive guide to Arch Linux installation</h1> </center>
 
 # Installation
 
@@ -451,6 +447,19 @@ Okay, so `syslinux-install_update` is not very smart… it often uses the wrong 
 ```bash
 vim /boot/syslinux/syslinux.cfg
 ```
+
+# Sources
+I've already mentioned a pretty much all of these, but here they are in one place.
+- [Arch Wiki](https://wiki.archlinux.org/) especially the [Installation guide](https://wiki.archlinux.org/title/installation_guide)
+- [Installing Arch Linux with Btrfs, systemd-boot and LUKS](https://nerdstuff.org/posts/2020/2020-004_arch_linux_luks_btrfs_systemd-boot/)
+- [Btrfs Wiki](https://btrfs.wiki.kernel.org/)
+- [SUSE - Overview of File Systems in Linux](https://documentation.suse.com/sles/15-SP2/html/SLES-all/cha-filesystems.html#sec-filesystems-major-btrfs)
+- [Reddit - Filesystem layout](https://www.reddit.com/r/btrfs/comments/k47es8/filesystem_layout/)
+- [How To Linux Hard Disk Encryption With LUKS](https://www.cyberciti.biz/security/howto-linux-hard-disk-encryption-with-luks-cryptsetup-command/)
+
+I gotta mention some tools as well, cause I love them:
+- [Markdown tables generator](https://www.tablesgenerator.com/markdown_tables)
+- [Online markdown editor](https://stackedit.io/app#)
 
 # Todos
 As all good projects, this one also has a bunch of todos I currently don't have the time/mental health to document right now.
