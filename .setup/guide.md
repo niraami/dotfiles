@@ -78,7 +78,7 @@ You could do this manually, guesstimating by their names and locations, but of c
 
 #### Updating mirrorlist /w reflector
 You can check your mirrorlist in `/etc/pacman.d/mirrorlist`, if the names and server locations (go by the top level domain) sound sane to you, `reflector.timer` has likely already run, benchmarked a bunch of servers and chosen the best.  
-If not, or you just want to make sure anyways, you can trigger it by starting it's service. This might take a few minutes.
+If not, or you just want to make sure anyways, you can trigger it by starting its service. This might take a few minutes.
 ```bash
 systemctl start reflector.service
 ```
@@ -92,10 +92,10 @@ pacman -Syy
 I'm going to go over a few types of partitioning schemes, but all of them *require* you to at least create a few basic partitions. The go-to tools for this are [`cfdisk`](https://man.archlinux.org/man/cfdisk.8.en) or its less GUI counterpart [`fdisk`](https://wiki.archlinux.org/index.php/Fdisk).  
 They are pretty intuitive and only require a few minutes of tinkering to figure out.
 
-In the olden days, you just set up primary partitions on your drive & setup a filesystem on each. Now, there are more, and more importantly *better* ways of doing this. The list goes from the most bleeding-edge and feature right option, to the least.
+In the olden days, you just set up primary partitions on your drive & setup a filesystem on each. Now, there are more, and more importantly *better* ways of doing this. The list goes from the most bleeding-edge and feature rich option, to the least.
 
 ### Btrfs
-*More information on this system [here](https://wiki.archlinux.org/title/btrfs) & [here](https://btrfs.wiki.kernel.org/index.php/Main_Page).*
+*More information on this system [here](https://wiki.archlinux.org/title/btrfs) & [here](https://btrfs.wiki.kernel.org/index.php/Main_Page).*  
 *There is also a great LUKS + Btrfs setup guide (which I essentially copied) [here](https://nerdstuff.org/posts/2020/2020-004_arch_linux_luks_btrfs_systemd-boot/)*
 
 Btrfs has recently (in the last 3-4 years) gotten some good traction - although it's been in the Kernel for a while now, only some recent 5.x releases have added much needed stability & features.
@@ -112,33 +112,38 @@ You'll want to perform a few steps:
 - we're done, write to disk by selecting write and typing `yes`
 
 #### Setup encryption
-*See [wiki](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption) for more information*
-You can skip this step if you want, but physical access to your machine will allow access to all of your data.
+*See the [wiki](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption) for more information*
 
-Create an encrypted container for the root file system (you need to define a passphrase):
+Here we'll setup a encryption on our root partition - this could essentially be called full-disk encryption, as all that's left unencrypted is `/boot` and `/tmp`, neither of which have many security implications for normal usage.  
+With LUKS encryption, you'll have to enter a password on every system boot, just after you select your boot option in the boot manager.
+
+You can skip this step if you want, but physical access to your machine would allow anyone access to all of your data.
+
+Create an encrypted container for the root file system (you need to define a passphrase). Store it in a password manager, write it down or store it in any other way as best you can, because there **is no recovery process**. If you forget it, it's gone.  
+Though it is possible to change it as root. This is because LUKS uses a [master-key scheme](https://wiki.archlinux.org/title/dm-crypt/Device_encryption#Cryptsetup_passphrases_and_keys) and doesn't use the passphrase directly to store the data.
 ```bash
 cryptsetup luksFormat /dev/sda2
 ```
 
-Open the container ("luks" is just a placeholder, you can use a name of your choice, but remember to adopt the subsequent steps of the guide accordingly):
+Create & open the container - here I use the name `luks`, this is the standard name for it, but you can use any other name. If you use a different name, also use it instead of `luks` in the later steps.
 ```bash
 cryptsetup open /dev/sda2 luks
 ```
 
 #### Format the partitions
-Format the EFI partition with FAT32 and give it the label EFI - you can choose any other label name:
+Format the EFI partition with FAT32 and give it the label EFI - you can choose any other label, it's informational only.
 ```bash
 mkfs.vfat -F32 -n EFI /dev/sda1
 ```
 
-Format the root partition with Btrfs and give it the label *root* - you can choose any other label name.
+Format the root partition with Btrfs and give it the label *root* - you can choose any other label, it's informational only.
 
-**With encrpytion**
-*note: adjust the name *luks* according to your choice when using `cryptsetup open`*
+**With encrpytion**  
+*note: adjust the name `luks` according to your choice when using `cryptsetup open`*
 ```bash
 mkfs.btrfs -L root /dev/mapper/luks
 ```
-**Without encryption**
+**Without encryption**  
 ```bash
 mkfs.btrfs -L root /dev/sda2
 ```
@@ -157,39 +162,40 @@ btrfs sub create /mnt/@snapshots
 unmount /mnt
 ```
 
-Now we want to start creating the hierarchy which our system will actually run on - which means mounting the root partition properly, creating folders for our subvolumes & mounting them properly. If you're interested in what all of these options do, and what others there are, check out the [Btrfs mount options section](https://man.archlinux.org/man/btrfs.5#MOUNT_OPTIONS).
+Now we want to start creating the hierarchy which our system will actually run on - which means mounting the root partition, creating folders for our subvolumes & mounting everything with the proper [options](https://man.archlinux.org/man/mount.8.en#FILESYSTEM-INDEPENDENT_MOUNT_OPTIONS).  
+We'll be focusing on the Btrfs related options here. If you're interested in what each of them does, and what others there are, check out the [Btrfs mount options section](https://man.archlinux.org/man/btrfs.5#MOUNT_OPTIONS).
 
 Again, replace the `/dev/mapper/luks` with `/dev/sda2` if installing without encryption.
 ``` bash
 mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@ /dev/mapper/luks /mnt
 ```
-All the guides I've seen use the `space_cache` option in this step, but I've always gotten an error by using it - if you're encountering the same issue, just leave it out, for some reason it's going to use it anyways, as it will appear in our `fstab` when generating it later.
+*note: all the guides I've seen use the `space_cache` option in this step, but I've always gotten an error by using it - if you're encountering the same issue, just leave it out, for some reason it's going to use it anyways, as it will appear in our `fstab` when generating it later.*
 
-Create folder for the subvolumes.
+Create folders for the subvolumes.
 ```bash
 mkdir -p /mnt/{boot,home,opt,srv,var,.snapshots,btrfs}
 ```
-Notice the dot in `.snapshots` this is important, as is the `btrfs` folder. This is going to act as our "root" mountpoint for managing subvolumes. Excerpt from the [Btrfs wiki](https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Description):
+Notice the dot in `.snapshots`, this is important, as is the `btrfs` folder. This is going to act as our "root" mountpoint for managing subvolumes. Excerpt from the [Btrfs wiki](https://btrfs.wiki.kernel.org/index.php/SysadminGuide#Description):
 > The top-level subvolume (with Btrfs id 5) (which one can think of as the root of the volume) can be mounted, and the full filesystem structure will be seen at the mount point; alternatively any other subvolume can be mounted (with the mount options subvol or subvolid, for example subvol=subvol_a) and only anything below that subvolume (in the above example the subvolume subvol_b, its contents, and file file_4) will be visible at the mount point.
 
-For example, when deleting a subvolume, you'd do `btrfs sub delete /btrfs/@<subvol>`.
+For example, when deleting a subvolume, you'd do `btrfs sub delete /btrfs/@<subvol>`.  
+Though you can name that folder whatever you want, `btrfs` just makes sense to me.
 
 After this, we can continue mounting the rest of our subvolumes.
-*note: tabs added for readability*
-```bash
-mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@home		/dev/mapper/luks /mnt/home
-mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@opt		/dev/mapper/luks /mnt/opt
-mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@srv		/dev/mapper/luks /mnt/srv
-mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@var		/dev/mapper/luks /mnt/var
+```
+mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@home /dev/mapper/luks /mnt/home
+mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@opt /dev/mapper/luks /mnt/opt
+mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@srv /dev/mapper/luks /mnt/srv
+mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@var /dev/mapper/luks /mnt/var
 mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@snapshots /dev/mapper/luks /mnt/.snapshots
-mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvolid=5		/dev/mapper/luks /mnt/btrfs
+mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvolid=5 /dev/mapper/luks /mnt/btrfs
 
 mount /dev/sda1 /mnt/boot
 ```
 
-### LVM/EXT4
+### LVM
 
-### Raw partitions + EXT4
+### Raw partitions
 
 ## System installation
 ### Pacstrap
@@ -198,7 +204,7 @@ Description from the [Arch man pages for `pacstrap`](https://man.archlinux.org/m
 > If no packages are specified to be installed, the  _base_  metapackage will be installed.
 
 This is the moment your installation... well.. actually becomes an installation.  
-You can essentially install any and all packages from the [official repositories](https://wiki.archlinux.org/title/official_repositories) that you want now, but I'd recommend sticking to the most important ones for now. Here is the basic set of packages *that I think* most people will need:
+You can essentially install any and all packages from the [official repositories](https://wiki.archlinux.org/title/official_repositories) that you want now, but I'd recommend sticking to the most important ones. Here is the basic set of packages *that I think* most people will need:
 |        Name        |                                   Purpose                                  |
 |--------------------|----------------------------------------------------------------------------|
 | **base**           | Minimal package set to define a basic Arch Linux installation              |
@@ -206,7 +212,7 @@ You can essentially install any and all packages from the [official repositories
 | **linux**          | The Linux kernel and modules                                               |
 | **linux-firmware** | Firmware files for Linux                                                   |
 
-For more useful "base" packages, check out [base.csv](./setup/packages/base.csv).
+For more useful "base" packages, check out [base.csv](/.setup/packages/base.csv).
 
 ***Let's goooo***
 ```bash
@@ -214,7 +220,7 @@ pacstrap /mnt base base-devel linux linux-firmware
 ```
 
 ### Generating an fstab file
-The [fstab](https://wiki.archlinux.org/title/fstab) file, is used to define how system partitions, volumes, remote partitions or other block devices should be mounted into the file system.
+The [fstab](https://wiki.archlinux.org/title/fstab) file, is used to define how system partitions, volumes, remote partitions or other block devices should be mounted into your system.
 
 Example (*comment with headers added for clarity*):
 ```fstab
@@ -238,13 +244,13 @@ vim /mnt/etc/fstab
 ```
 
 ## System configuration
-Essentially all steps except for the [user account setup](#User_account_setup), [package installation](#Package_installation) & [boot manager setup](#Boot_manager_setup) are optional, but probably should be performed in one way or another.  
-*note: all of these steps have to be performed in a chroot*
+Essentially all steps except for [chrooting](#chrooting), [user account setup](#user-account-setup), [package installation](#sackage-installation) & [boot manager setup](#boot-manager-setup) are optional, but probably should be performed in one way or another.
 
 ### Chrooting
-[Chroot](https://wiki.archlinux.org/index.php/chroot) is used to essentially access a separate system on a disk as if you were booted into it. It has its limitations, the daemons, services, kernel modules are not loaded - you can imagine it as if you were accessing a system that is turned off. Cause that’s what you are doing. It is also used for jailing, but that is out of the scope for now.
+[Chroot](https://wiki.archlinux.org/index.php/chroot) is used to essentially access a separate linux system on a disk as if you were booted into it. It has its limitations, the daemons, services, kernel modules, etc are not loaded - you can think of it as if you were accessing a system that is turned off. Cause that’s what you are doing. It is also used for jailing, but that is out of the scope for now.  
+We need to use it to setup some parts of our new system. If you'd perform the next steps without it, you'd just be changing the live (temporary) system.
 
-Arch has its own chroot tool, called arch-chroot, you can use it for the next steps to finish the installation before rebooting - it is actually necessary to install a boot manager using chroot before rebooting, so I guess you *must use it for a few installation steps before rebooting*.
+Arch has its own `chroot` tool, called `arch-chroot`, you can use it for the next steps to finish the installation before rebooting - it is actually necessary to install a boot manager using chroot before rebooting, so I guess you *must use it for a few installation steps before rebooting*.
 
 ```bash
 arch-chroot /mnt
@@ -253,7 +259,7 @@ arch-chroot /mnt
 *note: type `exit` to exit from chroot*
 
 ### Setup pacman databases
-As at the beginning of this guide, you should check your package `mirrorlist`, update it using `reflector` and run pacman to synchronize your databases - it's not *really* necessary after a fresh pacstrap, but you learn to expect the unexpected when daily driving Linux.
+Same way as in the beginning of this guide, you should check your package `mirrorlist`, update it using `reflector` and run pacman to synchronize your databases - it's not *really* necessary after a fresh pacstrap, but you learn to expect the unexpected when daily driving Linux.
 ```bash
 pacman -Syy
 ```
@@ -277,9 +283,9 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
 ### Time zone
-As we are currently in chroot, setting the [time zone](https://wiki.archlinux.org/index.php/System_time#Time_zone) cannot be done through timedatectl, but you have two other options.
+As we are currently in chroot, setting the [time zone](https://wiki.archlinux.org/index.php/System_time#Time_zone) cannot be done through `timedatectl`, but you have two other options.
 
-Manually symlink the desired time zone from /usr/share/zoneinfo into /etc/localtime, example:
+Manually *symlink* the desired time zone from /usr/share/zoneinfo into /etc/localtime, example:
 ```bash
 ln -s /usr/share/zoneinfo/Europe/Bratislava /etc/localtime
 ```
@@ -297,19 +303,20 @@ echo  "hostname" > /etc/hostname
 It is also recommended, but not necessary to add matching entries to `/etc/hosts`. If the system has a permanent (static) IP address, it should be used instead of 127.0.1.1.
 ```
 127.0.0.1	localhost  
-::1			localhost  
+::1		localhost  
 127.0.1.1	hostname.localdomain	hostname
 ```
 
 ### User account setup
-Before you reboot, you must set up your user account - by default, root doesn’t have a password set, so it’s impossible to log into it. Setting the root password is still recommended, so that you can recover your user account if anything happened to it (lost `sudo` access, made your home directory inaccessible, etc).
+Before you reboot, you must set up your user account - by default, `root` doesn’t even have a password set, so it’s impossible to log into it. Setting the root password is still recommended, so that you can recover your user account if anything happened to it (lost `sudo` access, made your home directory inaccessible, etc).
 
-So, assign root a password. I recommend generating a 6-8 random word password and storing it in a password manager, or any other encrypted or in-other-way secured file - you really won't need it unless something's gone very wrong.
+So, assign root a password. I recommend generating a 6-8 random word password and storing it in a [password manager](https://keepassxc.org/), or any other encrypted or in-other-way secured file - you really won't need it unless something's gone very wrong.
 ```bash
 passwd root
 ```
 
-When adding your user, you can directly assign him some essential groups that are going to make your life easier in the long run.
+When adding your user, you can directly assign him some essential groups that are going to make your life easier later - though if you want a minimalistic & secure setup, adding them later as you learn what you need is also a good option.  
+Here's jus a few of the most common ones.
 
 |             Name             |                               Purpose                               |
 |------------------------------|---------------------------------------------------------------------|
@@ -324,10 +331,12 @@ useradd -m -G wheel,disk,... -s /usr/bin/bash username
 passwd username
 ```
 
-After you’ve got your user set up, don’t forget to either set the wheel group to have sudo access, or just add your username directly to the list, right under root with any permissions you like.
+After you’ve got your user set up, don’t forget to either setup the `/etc/sudoers` file, so you've got access to the `sudo` command.  
+Most common ways are uncommenting the wheel group, or just adding your username directly to the list, right under root with any permissions you like.
 ```bash
 visudo
 ```
+*note: you can find a more thorough explanation of the `sudoers` file on the [Arch wiki](https://wiki.archlinux.org/title/sudo#Using_visudo)
 
 For easy access, and if you’ve not worried that other people might get into your computer (like a notebook or a public server), I recommend adding yourself to the end of the file as follows:
 ```
@@ -335,7 +344,7 @@ username ALL=(ALL) NOPASSWD:ALL
 ```
 
 ### Custom dotfiles/configs
-At this point, you should be able to `su` to your user and pull any dotfiles/configs you want from the internet. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
+At this point, you should be able to `su` to your user and pull any dotfiles/configs you want from the internet to your home folder. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
 
 Or you can just clone this repository and use the `./install` script <3
 
@@ -352,7 +361,7 @@ If you don't want to go through that right now, you should at least install the 
 
 ### Boot manager setup
 
-You'll need to add extra hooks before the creation of your [initramfs](https://wiki.archlinux.org/title/Arch_boot_process#initramfs) by editing `/etc/mkinitcpio.conf` and adding one or more of these hooks depending on the setup you've chosen to go with in the [partitioning](#Partitioning) step.
+You'll need to add extra hooks before the creation of your [initramfs](https://wiki.archlinux.org/title/Arch_boot_process#initramfs) by editing `/etc/mkinitcpio.conf` and adding one or more of these hooks depending on the setup you've chosen to go with in the [partitioning](#Partitioning) step. Or maybe none if you're working with raw partitions.
 
 |     Name    |              Purpose                  |
 |-------------|---------------------------------------|
@@ -360,7 +369,7 @@ You'll need to add extra hooks before the creation of your [initramfs](https://w
 | **btrfs**   | For btrfs as the root filesystem      |
 | **lvm2**    | For root setup on top of LVM          |
 
-After that, you have to recreate the initramfs files.
+After that, you have to recreate the `/boot/initramfs-*` files.
 ```bash
 mkinitcpio -p linux
 ```
@@ -368,7 +377,7 @@ mkinitcpio -p linux
 #### systemd-boot
 If you're going for a minimalistic but still quite capable setup, [`systemd-boot`](https://wiki.archlinux.org/title/systemd-boot) is essentially the best option. No extra dependencies, no rebuilding, no massive configuration files.
 
-Install systemd-boot:
+Install the systemd-boot files to `/boot`:
 ```bash
 bootctl --path=/boot install
 ```
@@ -382,11 +391,11 @@ initrd /initramfs-linux.img
 options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:luks:allow-discards root=/dev/mapper/luks rootflags=subvol=@ rd.luks.options=discard rw
 ```
 
-The options I've used above are for the LUKS + Btrfs setup - the order here is also important. Where the UUID of the partition can be obtained using
+The options I've used above are for the [LUKS + Btrfs setup](#btrfs) - the order here is also important. Where the UUID of the partition can be obtained using
 ```bash
 blkid -s UUID -o value /dev/sda2
 ```
-and even directly forwarded to the loader file using (useful when you can't copy & paste
+and even directly forwarded to the loader file using (useful when you can't copy & paste)
 ```bash
 blkid -s UUID -o value /dev/sda2 >> /boot/loader/entries/arch.conf
 ```
@@ -405,10 +414,10 @@ options root=/dev/volume/root quiet rw
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options cryptdevice=UUID={UUID}:cryptlvm root=/dev/volume/root quiet rw
+options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:cryptlvm root=/dev/volume/root quiet rw
 ```
 
-Also don't forget to add another line for the Intel [microcode](https://wiki.archlinux.org/title/Microcode) (under *linux*) if you're running an Intel CPU.
+Also, if you're running an Intel CPU don't forget to install `intel-ucode` add another line for the Intel [microcode](https://wiki.archlinux.org/title/Microcode) (under *linux*).
 ```
 initrd  /intel-ucode.img
 ```
@@ -418,7 +427,7 @@ As the final step, edit the `/boot/loader/loader.conf` and reference your newly 
 default				arch.conf
 timeout				4
 console-mode	max
-editor					no
+editor				no
 ```
 
 #### grub
