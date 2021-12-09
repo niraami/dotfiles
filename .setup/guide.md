@@ -302,9 +302,9 @@ echo  "hostname" > /etc/hostname
 
 It is also recommended, but not necessary to add matching entries to `/etc/hosts`. If the system has a permanent (static) IP address, it should be used instead of 127.0.1.1.
 ```
-127.0.0.1	localhost  
-::1		localhost  
-127.0.1.1	hostname.localdomain	hostname
+127.0.0.1 localhost  
+::1       localhost  
+127.0.1.1 hostname.localdomain	hostname
 ```
 
 ### User account setup
@@ -384,10 +384,10 @@ bootctl --path=/boot install
 
 Create a boot configuration file at `/boot/loader/entries/arch.conf` - customize the file name however you want to. You should read the [adding loaders](https://wiki.archlinux.org/title/systemd-boot#Adding_loaders) section in the Arch wiki if you're unfamiliar with systemd loader files & kernel options.
 ```
-title Arch Linux
-linux /vmlinuz-linux
-initrd /intel-ucode.img
-initrd /initramfs-linux.img
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
 options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:luks:allow-discards root=/dev/mapper/luks rootflags=subvol=@ rd.luks.options=discard rw
 ```
 
@@ -411,10 +411,10 @@ options root=/dev/volume/root quiet rw
 
 ##### LVM on LUKS setup
 ```
-title Arch Linux
-linux /vmlinuz-linux
-initrd /initramfs-linux.img
-options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:cryptlvm root=/dev/volume/root quiet rw
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options cryptdevice=UUID={UUID}:cryptlvm root=/dev/volume/root quiet rw
 ```
 
 Also, if you're running an Intel CPU don't forget to install `intel-ucode` add another line for the Intel [microcode](https://wiki.archlinux.org/title/Microcode) (under *linux*).
@@ -424,14 +424,16 @@ initrd  /intel-ucode.img
 
 As the final step, edit the `/boot/loader/loader.conf` and reference your newly created loader configuration.
 ```
-default				arch.conf
-timeout				4
-console-mode	max
-editor				no
+default       arch.conf
+timeout       4
+console-mode  max
+editor        no
 ```
 
 #### grub
-[Grub](https://wiki.archlinux.org/index.php/GRUB) is the standard [bootloader](https://wiki.archlinux.org/index.php/Arch_boot_process) due to its flexibility, customizability and [feature set](https://wiki.archlinux.org/index.php/Arch_boot_process#Boot_loader). It can’t be as pretty as [syslinux](https://wiki.archlinux.org/index.php/Syslinux), but sadly that one still [doesn’t support UEFI](https://bugzilla.syslinux.org/show_bug.cgi?id=17).  
+[Grub](https://wiki.archlinux.org/index.php/GRUB) has, over time, evolved pretty much into the industry standard boot manager due to its flexibility, customizability and [feature set](https://wiki.archlinux.org/index.php/Arch_boot_process#Boot_loader). It can’t be as pretty as [syslinux](https://wiki.archlinux.org/index.php/Syslinux), but sadly that one still [doesn’t support UEFI](https://bugzilla.syslinux.org/show_bug.cgi?id=17).  
+It was originally made with the goal of not having to "recompile" your settings after every modification, this has over time dissapeared and thus is quite a bit harder to work with manually - which is why I recommend [systemd-boot](#systemd-boot) over it.
+
 You’ll first need to fetch it using `pacman`, along with `efibootmgr` to enable GRUBs support for EFI.
 
 ```bash
@@ -476,3 +478,4 @@ As all good projects, this one also has a bunch of todos I currently don't have 
 - [ ] How to install AUR helpers (yay/paru) + small explanation section for AUR in general
 - [ ] Add partitioning sections for raw partitions, LVM, LVM on LUKS, etc
 - [ ] Mention how to automate systemd updates via **[systemd-boot-pacman-hook](https://aur.archlinux.org/packages/systemd-boot-pacman-hook/)**
+- [ ] Extend boot manager section with more info about modifying GRUB to work with LVM, LUKS, BTRFS & add a syslinux section
