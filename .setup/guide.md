@@ -193,6 +193,23 @@ mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvolid=5 /dev/mapper
 mount /dev/sda1 /mnt/boot
 ```
 
+One of the options I've used above, and is totally optional, is `compress=zstd. Here is what the Arch man page on Btrfs mount options says about it:
+> **compress**, **compress**=type[:level], **compress-force**, **compress-force**=type[:level]
+>
+> (default: off, level support since: 5.1)
+>
+> Control BTRFS file data compression. Type may be specified as zlib, lzo, zstd or no (for no compression, used for remounting). If no type is specified, zlib is used. If compress-force is specified, then compression will always be attempted, but the data may end up uncompressed if the compression would make them larger.
+>
+> Both zlib and zstd (since version 5.1) expose the compression level as a tunable knob with higher levels trading speed and memory (zstd) for higher compression ratios. This can be set by appending a colon and the desired level. Zlib accepts the range [1, 9] and zstd accepts [1, 15]. If no level is set, both currently use a default level of 3. The value 0 is an alias for the default level.
+>
+> Otherwise some simple heuristics are applied to detect an incompressible file. If the first blocks written to a file are not compressible, the whole file is permanently marked to skip compression. As this is too simple, the compress-force is a workaround that will compress most of the files at the cost of some wasted CPU cycles on failed attempts. Since kernel 4.15, a set of heuristic algorithms have been improved by using frequency sampling, repeated pattern detection and Shannon entropy calculation to avoid that.
+>
+> **Note**  
+> If compression is enabled, nodatacow and nodatasum are disabled.
+
+I'm mentioning this, because it has some performance implications for slow CPUs or really fast (like PCIe 4 NVMe fast) drives, where you might not want to use it. Here is a [cool post](https://www.reddit.com/r/linux/comments/bppk9g/my_benchmarks_of_btrfs_new_zstd_levels_in_linux_51/) I've found where [u/Atemu12](https://www.reddit.com/user/Atemu12/) ran some basic performance tests with various levels of compression.  
+TL;DR: The most bang-for-your-buck compression level seems to be 2 instead of the default of 3. So you might want to change that for your installation.
+
 ### LVM
 
 ### Raw partitions
