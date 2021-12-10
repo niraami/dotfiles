@@ -204,7 +204,7 @@ btrfs sub create /mnt/@opt
 btrfs sub create /mnt/@srv
 btrfs sub create /mnt/@var
 btrfs sub create /mnt/@snapshots
-unmount /mnt
+umount /mnt
 ```
 
 Now we want to start creating the hierarchy which our system will actually run on - which means mounting the root partition, creating folders for our subvolumes & mounting everything with the proper [options](https://man.archlinux.org/man/mount.8.en#FILESYSTEM-INDEPENDENT_MOUNT_OPTIONS).  
@@ -583,3 +583,4 @@ As all good projects, this one also has a bunch of todos I currently don't have 
 - [ ] Add partitioning sections for raw partitions, LVM, LVM on LUKS, etc
 - [ ] Mention how to automate systemd updates via **[systemd-boot-pacman-hook](https://aur.archlinux.org/packages/systemd-boot-pacman-hook/)**
 - [ ] Extend boot manager section with more info about modifying GRUB to work with LVM, LUKS, BTRFS & add a syslinux section
+- [ ] Add a section on [etckeeper](https://wiki.archlinux.org/title/etckeeper) - somewhere right after [pacstrap](#system-installation)
