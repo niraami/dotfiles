@@ -28,14 +28,15 @@
   - [Time zone](#time-zone)
   - [Hostname](#hostname)
   - [User account setup](#user-account-setup)
-  - [Custom dotfiles/configs](#custom-dotfilesconfigs)
+  - [AUR (Arch User Repository)](#aur-arch-user-repository)
   - [Package installation](#package-installation)
-  - [Boot manager setup](#boot-manager-setup)
-    - [systemd-boot](#systemd-boot)
-      - [LVM setup](#lvm-setup)
-      - [LVM on LUKS setup](#lvm-on-luks-setup)
-    - [grub](#grub)
-    - [syslinux](#syslinux)
+  - [Custom dotfiles/configs](#custom-dotfilesconfigs)
+- [Boot manager setup](#boot-manager-setup)
+  - [systemd-boot](#systemd-boot)
+    - [LVM setup](#lvm-setup)
+    - [LVM on LUKS setup](#lvm-on-luks-setup)
+  - [grub](#grub)
+  - [syslinux](#syslinux)
 - [Sources](#sources)
 - [Todos](#todos)
 
@@ -349,7 +350,7 @@ vim /mnt/etc/fstab
 ```
 
 # System configuration
-Essentially all steps except for [chrooting](#chrooting), [user account setup](#user-account-setup), [package installation](#sackage-installation) & [boot manager setup](#boot-manager-setup) are optional, but probably should be performed in one way or another.
+Essentially all steps except for [chrooting](#chrooting), [user account setup](#user-account-setup) & [package installation](#sackage-installation) are optional, but probably should be performed in one way or another.
 
 ## Chrooting
 [Chroot](https://wiki.archlinux.org/index.php/chroot) is used to essentially access a separate linux system on a disk as if you were booted into it. It has its limitations, the daemons, services, kernel modules, etc are not loaded - you can think of it as if you were accessing a system that is turned off. Cause that’s what you are doing. It is also used for jailing, but that is out of the scope for now.  
@@ -448,10 +449,30 @@ For easy access, and if you’ve not worried that other people might get into yo
 username ALL=(ALL) NOPASSWD:ALL
 ```
 
-## Custom dotfiles/configs
-At this point, you should be able to `su` to your user and pull any dotfiles/configs you want from the internet to your home folder. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
+## AUR (Arch User Repository)
+[AUR](https://wiki.archlinux.org/title/Arch_User_Repository) is, in many ways, what differentiates it apart from other distributions. This repository is fully community driven - this means, all packages are provided by users for users. This is why their installation is not officially supported by `pacman`, and you are often disouraged to just blindy use AUR helper tools like `yay` or `paru` (the only still actively developer and feature-rich helpers) without first understanding the build & installation process - which is not actually that complicated.  
+One has to be aware of the fact that AUR packages are often not pre-built, their build process can be imperfect, and sometimes it just won't work at all due to upstream issues or a bad "package build".
 
-Or you can just clone this repository and use the `./install` script <3
+Here, I'll just go over the installation of `yay` (same would work for `paru`) without much in depth information. For that, look no further than the [Arch wiki](https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages).
+
+First I'd suggest going into the `/tmp` directory, which is automatically cleared on reboot, so that we don't have old build files all over our system.  Some would disagree with that, and tell you to instead use a `cache` directory of some sort (like `~/.cache`), but for small packages I still prefer `/tmp` as it is a [temporary filesystem](https://wiki.archlinux.org/title/tmpfs) that's entirely stored in RAM.
+```bash
+cd /tmp
+```
+
+Clone the git repository of the [yay](https://aur.archlinux.org/packages/yay/) package.
+```bash
+git clone https://aur.archlinux.org/yay
+```
+
+Open that directory, and run the build + install command.
+```bash
+cd yay
+makepkg -s -i
+```
+
+The `-s` tells `makepkg` (and in turn `pacman`) to download all necessary dependencies on its own.  
+The `-i` tells `makepkg` to install that package in the proper folders (likely `/usr/bin`) after the build succeeds.
 
 ## Package installation
 You might want to install some packages in advance while you still have access to the internet through the installation image - especially packages related to [networking](https://wiki.archlinux.org/index.php/Network_configuration) - be it wifi or ethernet, you'll need some tools.  
@@ -464,7 +485,14 @@ yay -S $(tail -n +2 *.csv | awk -F "\"*,\"*" 'NF {print $2}')
 
 If you don't want to go through that right now, you should at least install the [`NetworkManager`](https://wiki.archlinux.org/title/NetworkManager) package to handle your networking - it should handle and automate pretty much everything.
 
-## Boot manager setup
+## Custom dotfiles/configs
+At this point, you should be able to `su` to your user and pull any dotfiles/configs you want from the internet to your home folder. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
+
+Or you can just clone this repository and use the `./install` script <3
+
+# Boot manager setup
+
+If you've switched over to your user using `su`, I recommend switching back to root for these final steps.
 
 You'll need to add extra hooks before the creation of your [initramfs](https://wiki.archlinux.org/title/Arch_boot_process#initramfs) by editing `/etc/mkinitcpio.conf` and adding one or more of these hooks depending on the setup you've chosen to go with in the [partitioning](#Partitioning) step. Or maybe none if you're working with raw partitions.
 
@@ -476,10 +504,11 @@ You'll need to add extra hooks before the creation of your [initramfs](https://w
 
 After that, you have to recreate the `/boot/initramfs-*` files.
 ```bash
+vim /etc/mkinitcpio.conf
 mkinitcpio -p linux
 ```
 
-### systemd-boot
+## systemd-boot
 If you're going for a minimalistic but still quite capable setup, [`systemd-boot`](https://wiki.archlinux.org/title/systemd-boot) is essentially the best option. No extra dependencies, no rebuilding, no massive configuration files.
 
 Install the systemd-boot files to `/boot`:
@@ -492,7 +521,7 @@ Create a boot configuration file at `/boot/loader/entries/arch.conf` - customize
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:<LUKS-CONTAINER-NAME>:allow-discards root=/dev/mapper/luks rootflags=subvol=@ rd.luks.options=discard=async rw
+options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:<LUKS-CONTAINER-NAME>:allow-discards root=/dev/mapper/<LUKS-CONTAINER-NAME> rootflags=subvol=@ rd.luks.options=discard=async rw
 ```
 
 The options I've used above are for the [LUKS + Btrfs setup](#btrfs) - the order here is also important. Where the UUID of the partition can be obtained using
@@ -505,7 +534,7 @@ blkid -s UUID -o value /dev/sda2 >> /boot/loader/entries/arch.conf
 ```
 
 Here are a few other example setups:
-#### LVM setup
+### LVM setup
 ```
 title   Arch Linux
 linux   /vmlinuz-linux
@@ -513,7 +542,7 @@ initrd  /initramfs-linux.img
 options root=<root> quiet rw
 ```
 
-#### LVM on LUKS setup
+### LVM on LUKS setup
 ```
 title   Arch Linux
 linux   /vmlinuz-linux
@@ -534,7 +563,7 @@ console-mode  max
 editor        no
 ```
 
-### grub
+## grub
 [Grub](https://wiki.archlinux.org/index.php/GRUB) has, over time, evolved pretty much into the industry standard boot manager due to its flexibility, customizability and [feature set](https://wiki.archlinux.org/index.php/Arch_boot_process#Boot_loader). It can’t be as pretty as [syslinux](https://wiki.archlinux.org/index.php/Syslinux), but sadly that one still [doesn’t support UEFI](https://bugzilla.syslinux.org/show_bug.cgi?id=17).  
 It was originally made with the goal of not having to "recompile" your settings after every modification, this has over time dissapeared and thus is quite a bit harder to work with manually - which is why I recommend [systemd-boot](#systemd-boot) over it.
 
@@ -551,7 +580,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### syslinux
+## syslinux
 As mentioned in the previous section, the [Syslinux](https://wiki.archlinux.org/index.php/Syslinux) bootloader can be a lot more visually pleasing, and in some cases actually faster than grub (and a lot easier to configure due to the [limited feature set](https://wiki.archlinux.org/index.php/Arch_boot_process#Boot_loader)), but it falls short in some specific cases such as UEFI. Luckily for BIOS, it is one of the best options.
 ```bash
 pacman -S syslinux gptfdisk
@@ -579,8 +608,8 @@ I gotta mention some tools as well, cause I love them:
 # Todos
 As all good projects, this one also has a bunch of todos I currently don't have the time/mental health to document right now.
 - [ ] Time adjustments for dual booting (hwclock --systohc, etc)
-- [ ] How to install AUR helpers (yay/paru) + small explanation section for AUR in general
-- [ ] Add partitioning sections for raw partitions, LVM, LVM on LUKS, etc
+- [ ] Add partitioning sections for raw partitions, LVM, LVM on LUKS, etc)
 - [ ] Mention how to automate systemd updates via **[systemd-boot-pacman-hook](https://aur.archlinux.org/packages/systemd-boot-pacman-hook/)**
 - [ ] Extend boot manager section with more info about modifying GRUB to work with LVM, LUKS, BTRFS & add a syslinux section
 - [ ] Add a section on [etckeeper](https://wiki.archlinux.org/title/etckeeper) - somewhere right after [pacstrap](#system-installation)
+- [ ] Reminder to enable services like NetworkManager

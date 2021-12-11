@@ -13,5 +13,6 @@ tag,package name or git url,purpose
 ,networkmanager,Yeah sure you could smash your hand with a hammer, but why would you?
 ,ntp,Provides a network time protocol daemon service
 ,udisks2,Disk management service & tools; version 2
+,btrfs-progs,Utilities for managing Btrfs filesystems
 ,lvm2,Logical Volume Manager 2 utilities
 
