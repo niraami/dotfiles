@@ -23,11 +23,12 @@
   - [Generating an fstab file](#generating-an-fstab-file)
 - [System configuration](#system-configuration)
   - [Chrooting](#chrooting)
-  - [Setup pacman databases](#setup-pacman-databases)
+  - [Pacman databases](#pacman-databases)
   - [Localization](#localization)
   - [Time zone](#time-zone)
   - [Hostname](#hostname)
-  - [User account setup](#user-account-setup)
+  - [Managing /etc with etckeeper](#managing-etc-with-etckeeper)
+  - [User account](#user-account)
   - [AUR (Arch User Repository)](#aur-arch-user-repository)
   - [Package installation](#package-installation)
   - [Custom dotfiles/configs](#custom-dotfilesconfigs)
@@ -350,7 +351,7 @@ vim /mnt/etc/fstab
 ```
 
 # System configuration
-Essentially all steps except for [chrooting](#chrooting), [user account setup](#user-account-setup) & [package installation](#sackage-installation) are optional, but probably should be performed in one way or another.
+Essentially all steps except for [chrooting](#chrooting), [user account setup](#user-account) & [package installation](#package-installation) are optional, but probably should be performed in one way or another.
 
 ## Chrooting
 [Chroot](https://wiki.archlinux.org/index.php/chroot) is used to essentially access a separate linux system on a disk as if you were booted into it. It has its limitations, the daemons, services, kernel modules, etc are not loaded - you can think of it as if you were accessing a system that is turned off. Cause that’s what you are doing. It is also used for jailing, but that is out of the scope for now.  
@@ -364,7 +365,7 @@ arch-chroot /mnt
 
 *note: type `exit` to exit from chroot*
 
-## Setup pacman databases
+## Pacman databases
 Same way as in the beginning of this guide, you should check your package `mirrorlist`, update it using `reflector` and run pacman to synchronize your databases - it's not *really* necessary after a fresh pacstrap, but you learn to expect the unexpected when daily driving Linux.
 ```bash
 pacman -Syy
@@ -413,7 +414,46 @@ It is also recommended, but not necessary to add matching entries to `/etc/hosts
 127.0.1.1 hostname.localdomain	hostname
 ```
 
-## User account setup
+## Managing /etc with etckeeper
+Over time, I've become a fan of managing my configuration files in one place, notably my dotfiles, which are a collection of all of the user files (mostly in `$HOME`) that I've modified to suit my needs.  
+But to manage `/etc` in this same way, you don't have to, and probably shouldn't use your own solutions, and leave most of the work to [etckeeper](https://wiki.archlinux.org/title/etckeeper). I see it as a pretty simple tool that helps and partly automates version control of all of the files in your `/etc` - via Git, Mercurial or a few other VCS options.  
+
+Here are some of its notable features:
+- commits changes before & after installing packages (if you want to)
+- commits changes in a daily interval (if you want to, also configureable)
+- makes sure your `git` is setup correctly to track the file & directory attributes & permissions
+
+See the [Arch wiki](https://wiki.archlinux.org/title/etckeeper#Usage) for more information about the usage.  
+Though there is one thing I can mention that literally everyone ignores to tell you. `etckeeper vcs` will pipe anything after that command to the underlying VCS - thus allowing you to easily perform `status`, `log` & `push` without `cd`'ing into `/etc` as root and calling `git` (or other VCS) directly. Took me like 3 hours to figure out...
+
+Since this is a new system, `git` will scream at us to manually setup a name of the default branch it always creates on initialization.  
+*note: you can use `master`, `main` or anything else that suits your conventions here.*
+```bash
+git config --global init.defaultBranch master
+```
+
+So, to start, you want to install and setup `etckeeper`.
+```bash
+pacman -Sy etckeeper
+etckeeper init
+```
+
+Before we continue, `etckeeper` *allows* you to push your `/etc` to a public repository - this is not as simple as it seems. When I've done it, I went over every folder & every file in `/etc` before either commiting it, or adding it to the `.gitignore` - it tooks like 3 hours.  
+So it's possible, but be extremely careful with it. If you want to get a good starting point, see my [`dotfiles-etc`](https://github.com/niraami/dotfiles-etc) epository, though it's only setup for my setup, and you'll likely have to expand on the `.gitignore`.
+
+Before creating any commits, you'll also have to tell git your desired name & email that will be visible on the commits.
+```bash
+git config --global user.name "John Doe"
+git config --global user.email "john.doe@example.com"
+```
+
+
+Create the initial commit - revise your changes to the `/etc/.gitignore` before this step so you don't have to edit the history later.
+```bash
+etckeeper commit -m "Initial commit"
+```
+
+## User account
 Before you reboot, you must set up your user account - by default, `root` doesn’t even have a password set, so it’s impossible to log into it. Setting the root password is still recommended though, at least so that you can recover your user account if anything happened to it (lost `sudo` access, made your home directory inaccessible, etc).
 
 So, assign `root` a password. I recommend generating a 6-8 words long [passphrase](https://en.wikipedia.org/wiki/Passphrase) and storing it in a [password manager](https://keepassxc.org/), or any other encrypted or in-other-way secured file - you really won't need it unless something's gone very wrong.
@@ -611,5 +651,7 @@ As all good projects, this one also has a bunch of todos I currently don't have 
 - [ ] Add partitioning sections for raw partitions, LVM, LVM on LUKS, etc)
 - [ ] Mention how to automate systemd updates via **[systemd-boot-pacman-hook](https://aur.archlinux.org/packages/systemd-boot-pacman-hook/)**
 - [ ] Extend boot manager section with more info about modifying GRUB to work with LVM, LUKS, BTRFS & add a syslinux section
-- [ ] Add a section on [etckeeper](https://wiki.archlinux.org/title/etckeeper) - somewhere right after [pacstrap](#system-installation)
-- [ ] Reminder to enable services like NetworkManager
+- [ ] Reminder to enable services like `NetworkManager`, `btrfs-scrub@.timer` for Btrfs, `reflector.timer` for reflector, etc
+- [ ] Mention increasing the font size via `setfont` & something like `ter-512b` or `ter-132n` if you're on a hidpi or low dpi screen
+- [ ] Multilib support for pacman
+- [ ] Mention using SSH for easier setup
