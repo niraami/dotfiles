@@ -4,7 +4,7 @@ tag,package name or git url,purpose
 ,linux,The Linux kernel and modules
 ,linux-firmware,Firmware files for Linux
 ,linux-headers,Headers and scripts for building modules for the Linux kernel
-,vim,Distros that come without vim are a plauge and should be exterminated
+,nvim,Distros that come without vim are a plauge and should be exterminated
 ,git,Needed to pull various files & packages not available in the repos
 ,wget,Network utility to retrieve files from the Web
 ,man-db,Utility for reading man pages

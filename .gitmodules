@@ -66,3 +66,6 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "config/qBittorrent/themes"]
 	path = config/qBittorrent/themes
 	url = https://github.com/jagannatharjun/qbt-theme
+[submodule "config/oh-my-zsh/plugins/zsh-autosuggestions"]
+	path = config/oh-my-zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

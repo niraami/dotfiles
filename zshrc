@@ -13,8 +13,8 @@ export ZSH_CUSTOM="${HOME}/.config/oh-my-zsh"
 # Move zcompdump files to ~/.cache instead of the home folder
 export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
 
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 
 # Disable the `less` history file
 export LESSHISTFILE=-
@@ -27,6 +27,7 @@ plugins=(
   autoupdate
   auto-notify
   zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -39,6 +40,9 @@ export AUTO_NOTIFY_EXPIRE_TIME=7000
 # zsh-syntax-highlighting
 #typeset -A ZSH_HIGHLIGHT_HIGHLIGHTERS
 typeset -A ZSH_HIGHLIGHT_STYLES
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525356,italic"
 
 #ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
 
