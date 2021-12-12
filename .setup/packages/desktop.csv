@@ -30,6 +30,7 @@ a,palenight-gtk-theme,GTK GUI theme
 a,deadd-notification-center-bin,Notification daemon & centre for past notifications
 ,udiskie,udisks2 daemon for automounting & other useful features (notifications;rootless mounting... etc)
 a,udev-block-notify,Notification daemon for udev block events (partition changes;new block devices... etc)
+,polkit-gnome,GUI for the polkit daemon
 ,network-manager-applet,Applet for managing network connections
 ,nm-connection-editor,NetworkManager GUI connection editor and widgets
 ,networkmanager-openvpn,NetworkManager VPN plugin for OpenVPN

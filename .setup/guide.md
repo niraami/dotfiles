@@ -6,8 +6,10 @@
   - [Determining boot type](#determining-boot-type)
   - [Connecting to a network (internet)](#connecting-to-a-network-internet)
     - [Setting up a wifi connection](#setting-up-a-wifi-connection)
+  - [Time sync](#time-sync)
   - [Pacman databases & mirrors](#pacman-databases--mirrors)
-    - [Updating mirrorlist /w reflector](#updating-mirrorlist-w-reflector)
+  - [Updating mirrorlist /w reflector](#updating-mirrorlist-w-reflector)
+  - [Connecting over SSH](#connecting-over-ssh)
 - [Partitioning](#partitioning)
   - [Swap file](#swap-file)
   - [Btrfs](#btrfs)
@@ -30,8 +32,9 @@
   - [Managing /etc with etckeeper](#managing-etc-with-etckeeper)
   - [User account](#user-account)
   - [AUR (Arch User Repository)](#aur-arch-user-repository)
+  - [Dotfiles](#dotfiles)
   - [Package installation](#package-installation)
-  - [Custom dotfiles/configs](#custom-dotfilesconfigs)
+  - [Services](#services)
 - [Boot manager setup](#boot-manager-setup)
   - [systemd-boot](#systemd-boot)
     - [LVM setup](#lvm-setup)
@@ -107,6 +110,25 @@ wpa_passphrase <ssid> >> /etc/wpa_supplicant.conf
 wpa_supplicant -B -D wext -i <interface> -c /etc/wpa_supplicant.conf
 ```
 
+*note: ignore the ioctl errors if any show up and check `iw` for connection status*
+
+## Time sync
+Check your local time
+```bash
+date
+```
+
+Certain services are going to be very angry at you if you local machine time is way off, so I suggest installing and running an `NTP` sync before proceeding unless you're running from a VM (it takes your host machines time and provides it via the hardware clock *AFAIK*).
+
+Arch wiki mentions this
+> The package has a default client-mode configuration and its own user and group to drop root privileges after starting. If you start it from the console, you should always do so with the -u option
+```bash
+pacman -Syu ntp
+ntpd -u ntp:ntp
+```
+
+You can also input a specific SNTP server after `-u` like this `-u pool.ntp.org`.
+
 ## Pacman databases & mirrors
 When you'll be installing packages to your new system, you'll be pulling them from the internet via what is called [mirrors](https://wiki.archlinux.org/itle/mirrors).
 
@@ -115,7 +137,7 @@ These are essentially package repositories that are *copies* of the master Arch 
 Each Arch system has a local list of mirrors that it uses to pull packages from - it has multiples as backups. It is important to pick mirrors which are reliable & fast - where the speed likely depends on how close they are to you.  
 You could do this manually, guesstimating by their names and locations, but of course, there are tools for that - [reflector](https://wiki.archlinux.org/title/reflector).
 
-### Updating mirrorlist /w reflector
+## Updating mirrorlist /w reflector
 You can check your mirrorlist in `/etc/pacman.d/mirrorlist`, if the names and server locations (go by the top level domain) sound sane to you, `reflector.timer` has likely already run, benchmarked a bunch of servers and chosen the best.  
 If not, or you just want to make sure anyways, you can trigger it by starting its service. This might take a few minutes.
 ```bash
@@ -125,6 +147,22 @@ systemctl start reflector.service
 Depending on when you've downloaded the ISO, you might want to now also update your local databases.
 ```bash
 pacman -Syy
+```
+
+## Connecting over SSH
+As a manual installation can be sped up by copy-pasting most of the commands from a guide like this, I recommend setting up an SSH connection from another machine to perform all of the next steps.
+
+To do this, you'll first need to setup a root password, as you currently have none (check `/etc/shadow` if you don't believe me). You can set it to whatever you want, it's only temporary.
+```bash
+passwd
+```
+
+Now you can fire up a terminal, or whatever your tool-of-choice is for connecting to machines via SSH is, and connect to this live installation environment.
+
+You can check the IP of your live environment via `ip`.
+```bash
+ip a
+# note: a is just a shorthand for 'address'
 ```
 
 # Partitioning
@@ -156,8 +194,8 @@ cfdisk
 ```
 You'll want to perform a few steps:
 - setup a GTP partition table
-- create a partition of size `500M` of type `EFI System`, we'll call this `sda1`
-- create a partition that will use the rest of the space on the disk, leave type as `Linux filesystem`, we'll call this `sda2`
+- create a partition of size `500M` of type `EFI System`, we'll call this `<boot>`
+- create a partition that will use the rest of the space on the disk, leave type as `Linux filesystem`, we'll call this `<root>`
 - we're done, write to disk by selecting write and typing `yes`
 
 *note: as I'm focusing on setups with encryption, I'll be advocating the usage of a swap file. If you're installing with encryption though, it might make more sense (and your life easier) if you also create a 2G swap partition in advance. If you do, adjust the next steps accordingly.*
@@ -173,20 +211,20 @@ With LUKS encryption, you'll have to enter a password on every system boot, just
 Create an encrypted container for the root file system (you need to define a passphrase). Store it in a password manager, write it down or store it in any other way as best you can, because there **is no recovery process**. If you forget it, it's gone.  
 Though it is possible to change it as root. This is because LUKS uses a [master-key scheme](https://wiki.archlinux.org/title/dm-crypt/Device_encryption#Cryptsetup_passphrases_and_keys) and doesn't use the passphrase directly to store the data.
 ```bash
-cryptsetup luksFormat /dev/sda2
+cryptsetup luksFormat <root>
 ```
 
 Create & open the container - here I create a container named `luks`, this is the standard name for it, but you can use any other name.
 ```bash
-cryptsetup open /dev/sda2 luks
+cryptsetup open <root> luks
 ```
 
-***From now on you'll have to replace `<root>` with either `/dev/mapper/luks` if you've chosen to encrypt the root partition, or just `/dev/sda2` if not.***
-
 ### Format the partitions
+***From now on you'll have to replace `<root>` with either `/dev/mapper/luks` if you've chosen to encrypt the root partition, or just `/dev/{sda,vda.nvme,...}` if not.***
+
 Format the EFI partition with FAT32 and give it the label EFI - you can choose any other label, it's informational only.
 ```bash
-mkfs.vfat -F32 -n EFI /dev/sda1
+mkfs.vfat -F32 -n EFI <boot>
 ```
 
 Format the root partition with Btrfs and give it the label *root* - you can choose any other label, it's informational only.
@@ -239,7 +277,7 @@ mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@var <root> /mn
 mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvol=@snapshots <root> /mnt/.snapshots
 mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvolid=5 <root> /mnt/btrfs
 
-mount /dev/sda1 /mnt/boot
+mount <boot> /mnt/boot
 ```
 
 One of the options I've used above, and is totally optional, is `compress=zstd. Here is what the Arch man page on Btrfs mount options says about it:
@@ -402,16 +440,16 @@ tzselect
 ```
 
 ## Hostname
-Just like on pretty much any system, you can set a custom the [hostname](https://wiki.archlinux.org/index.php/Network_configuration#Set_the_hostname) - it will get used across the whole system to refer to your device (ex.: dhcp, bluetooth, syncthing & even online services)
+Just like on pretty much any system, you can set a custom [hostname](https://wiki.archlinux.org/index.php/Network_configuration#Set_the_hostname) - it will get used across the whole system to refer to your device (ex.: dhcp, bluetooth, syncthing & even online services)
 ```bash
-echo  "hostname" > /etc/hostname
+echo  "<hostname>" > /etc/hostname
 ```
 
-It is also recommended, but not necessary to add matching entries to `/etc/hosts`. If the system has a permanent (static) IP address, it should be used instead of 127.0.1.1.
+It is also recommended to add matching entries to `/etc/hosts`. If the system has a permanent (static) IP address, it should be used instead of 127.0.1.1.
 ```
 127.0.0.1 localhost
 ::1       localhost
-127.0.1.1 hostname.localdomain	hostname
+127.0.1.1 <hostname>.localdomain	<hostname>
 ```
 
 ## Managing /etc with etckeeper
@@ -473,8 +511,8 @@ Here's just a few of the most common ones.
 | **audio**                    | Required to make ALSA and OSS work in remote sessions               |
 
 ```bash
-useradd -m -G wheel,disk,... -s /usr/bin/bash username  
-passwd username
+useradd -m -G wheel,disk,... -s /usr/bin/bash <username>
+passwd <username>
 ```
 
 After you’ve got your user set up, don’t forget to setup the `/etc/sudoers` file, so you've got access to the `sudo` command.  
@@ -486,7 +524,12 @@ visudo
 
 For easy access, and if you’ve not worried that other people might get into your computer (like a notebook or a public server), I recommend adding yourself to the end of the file as follows:
 ```
-username ALL=(ALL) NOPASSWD:ALL
+<username> ALL=(ALL) NOPASSWD:ALL
+```
+
+You can and **should** [`su`](https://wiki.archlinux.org/title/su) into your user now, as some of the next steps cannot (or are harder) to perform as root - or might lead to a lot of permission hassle.
+```bash
+su <username>
 ```
 
 ## AUR (Arch User Repository)
@@ -514,39 +557,52 @@ makepkg -s -i
 The `-s` tells `makepkg` (and in turn `pacman`) to download all necessary dependencies on its own.  
 The `-i` tells `makepkg` to install that package in the proper folders (likely `/usr/bin`) after the build succeeds.
 
+## Dotfiles
+At this point, you should be able to pull any dotfiles/configs you want from the internet to your home folder. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
+
+Or you can just clone this repository and use the `./install` script <3
+```bash
+git clone https://github.com/niraami/dotfiles ~/.dotfiles
+~/.dotfiles/install
+```
+
 ## Package installation
 You might want to install some packages in advance while you still have access to the internet through the installation image - especially packages related to [networking](https://wiki.archlinux.org/index.php/Network_configuration) - be it wifi or ethernet, you'll need some tools.  
 These packages can range anywhere from tools like vim, git or ranger, all the way to different shells (zsh, fish) & window managers/desktop environments (xorg, i3, kde).
 
-I recommend taking a look at my [categorized list of packages](./setup/packages) and installing at least [`tools.csv`](./setup/packages/tools.csv). As I currently still don't have a setup script written for these, you can use this one liner to install whatever package list you desire, or just install them one by one manually
+I recommend taking a look at my [categorized list of packages](/.setup/packages) and installing at least [`tools.csv`](/.setup/packages/tools.csv). As I currently still don't have a setup script written for these, you can use this one liner to install whatever package list you desire, or just install them one by one manually
 ```bash
 yay -S $(tail -n +2 *.csv | awk -F "\"*,\"*" 'NF {print $2}')
 ```
 
 If you don't want to go through that right now, you should at least install the [`NetworkManager`](https://wiki.archlinux.org/title/NetworkManager) package to handle your networking - it should handle and automate pretty much everything.
 
-## Custom dotfiles/configs
-At this point, you should be able to `su` to your user and pull any dotfiles/configs you want from the internet to your home folder. I’d mostly focus on things that you can alter right now (without systemd or other services running), such as configuration files for `xorg` (`.xinitrc`, `.Xdefaults`, etc) and your `shell` (`.*rc`).
-
-Or you can just clone this repository and use the `./install` script <3
+## Services
 
 # Boot manager setup
 
-If you've switched over to your user using `su`, I recommend switching back to root for these final steps.
+If you've switched over to your user using `su`, I recommend switching back to `root` for these final steps.
+```bash
+exit
+```
 
-You'll need to add extra hooks before the creation of your [initramfs](https://wiki.archlinux.org/title/Arch_boot_process#initramfs) by editing `/etc/mkinitcpio.conf` and adding one or more of these hooks depending on the setup you've chosen to go with in the [partitioning](#Partitioning) step. Or maybe none if you're working with raw partitions.
+You'll need to add extra [hooks](https://wiki.archlinux.org/title/Mkinitcpio#HOOKS) before the creation of your [initramfs](https://wiki.archlinux.org/title/Arch_boot_process#initramfs) by editing `/etc/mkinitcpio.conf` and adding one or more of these hooks depending on the setup you've chosen to go with in the [partitioning](#Partitioning) step. Or maybe none if you're working with raw partitions.
 
 |     Name    |              Purpose                  |
 |-------------|---------------------------------------|
 | **encrypt** | Root encryption using dm-crypt/LUKS   |
-| **btrfs**   | For btrfs as the root filesystem      |
+| **btrfs**   | For btrfs usage across multiple disks |
 | **lvm2**    | For root setup on top of LVM          |
+
+*note: The **btrfs** hook is not required for using Btrfs on a single device.*
 
 After that, you have to recreate the `/boot/initramfs-*` files.
 ```bash
 vim /etc/mkinitcpio.conf
 mkinitcpio -p linux
 ```
+
+*note: you can also look into switching purely to [systemd hooks (right side of the first column)](https://wiki.archlinux.org/title/mkinitcpio#Common_hooks) - which might yield you a [faster startup](https://www.reddit.com/r/archlinux/comments/6a8ixk/why_is_systemd_based_initramfs_resulting_in_so/)*
 
 ## systemd-boot
 If you're going for a minimalistic but still quite capable setup, [`systemd-boot`](https://wiki.archlinux.org/title/systemd-boot) is essentially the best option. No extra dependencies, no rebuilding, no massive configuration files.
@@ -655,3 +711,4 @@ As all good projects, this one also has a bunch of todos I currently don't have 
 - [ ] Mention increasing the font size via `setfont` & something like `ter-512b` or `ter-132n` if you're on a hidpi or low dpi screen
 - [ ] Multilib support for pacman
 - [ ] Mention using SSH for easier setup
+- [ ] Also mention `amd-ucode`
