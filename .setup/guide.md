@@ -37,8 +37,6 @@
   - [Services](#services)
 - [Boot manager setup](#boot-manager-setup)
   - [systemd-boot](#systemd-boot)
-    - [LVM setup](#lvm-setup)
-    - [LVM on LUKS setup](#lvm-on-luks-setup)
   - [grub](#grub)
   - [syslinux](#syslinux)
 - [Sources](#sources)
@@ -280,7 +278,7 @@ mount -o noatime,nodiratime,compress=zstd,space_cache,ssd,subvolid=5 <root> /mnt
 mount <boot> /mnt/boot
 ```
 
-One of the options I've used above, and is totally optional, is `compress=zstd. Here is what the Arch man page on Btrfs mount options says about it:
+One of the options I've used above, and is totally optional, is `compress=zstd`. Here is what the Arch man page on Btrfs mount options says about it:
 > **compress**, **compress**=type[:level], **compress-force**, **compress-force**=type[:level]
 >
 > (default: off, level support since: 5.1)
@@ -357,7 +355,7 @@ You can essentially install any and all packages from the [official repositories
 | **linux**          | The Linux kernel and modules                                               |
 | **linux-firmware** | Firmware files for Linux                                                   |
 
-For more useful "base" packages, check out [base.csv](/.setup/packages/base.csv).
+For more useful "base" packages, check out [`base.csv`](/.setup/packages/base.csv).
 
 ***Let's goooo***
 ```bash
@@ -367,7 +365,8 @@ pacstrap /mnt base base-devel linux linux-firmware
 ## Generating an fstab file
 The [fstab](https://wiki.archlinux.org/title/fstab) file, is used to define how system partitions, volumes, remote partitions or other block devices should be mounted into your system.
 
-Example (*comment with headers added for clarity*):
+Example  
+*note: comment with headers added for clarity, please don't use this as an actual template, kernel name descriptors are not [persistent](https://wiki.archlinux.org/title/Persistent_block_device_naming "Persistent block device naming") and can change each boot, they should not be used in configuration files.*
 ```fstab
 # <device>        <dir>        <type>        <options>        <dump> <fsck>
 /dev/sda1         /boot        vfat          defaults         0      2
@@ -375,8 +374,6 @@ Example (*comment with headers added for clarity*):
 /dev/sda3         /home        ext4          defaults         0      2
 /dev/sda4         none         swap          defaults         0      0
 ```
-
-***Warning: Kernel name descriptors are not [persistent](https://wiki.archlinux.org/title/Persistent_block_device_naming "Persistent block device naming") and can change each boot, they should not be used in configuration files.***
 
 To create this file, we're going to use the filesystem structure we've mounted at `/mnt` in the [partitioning](#Partitioning) step & use a handy tool called [`genfstab`](https://man.archlinux.org/man/genfstab.8).
 ```bash
@@ -476,8 +473,8 @@ pacman -Sy etckeeper
 etckeeper init
 ```
 
-Before we continue, `etckeeper` *allows* you to push your `/etc` to a public repository - this is not as simple as it seems. When I've done it, I went over every folder & every file in `/etc` before either commiting it, or adding it to the `.gitignore` - it tooks like 3 hours.  
-So it's possible, but be extremely careful with it. If you want to get a good starting point, see my [`dotfiles-etc`](https://github.com/niraami/dotfiles-etc) epository, though it's only setup for my setup, and you'll likely have to expand on the `.gitignore`.
+Before we continue, `etckeeper` *allows* you to push your `/etc` to a public repository - this is not as simple as it seems. When I've done it, I went over every folder & every file in `/etc` before either commiting it, or adding it to the `.gitignore` - it took like 3 hours.  
+So it's possible, but be extremely careful with it. If you want to get a good starting point, see my [`dotfiles-etc`](https://github.com/niraami/dotfiles-etc) epository, though it's only configured for my setup, and you'll likely have to expand on the `.gitignore`.
 
 Before creating any commits, you'll also have to tell git your desired name & email that will be visible on the commits.
 ```bash
@@ -604,6 +601,8 @@ mkinitcpio -p linux
 
 *note: you can also look into switching purely to [systemd hooks (right side of the first column)](https://wiki.archlinux.org/title/mkinitcpio#Common_hooks) - which might yield you a [faster startup](https://www.reddit.com/r/archlinux/comments/6a8ixk/why_is_systemd_based_initramfs_resulting_in_so/)*
 
+Install a [microcode](https://wiki.archlinux.org/title/Microcode) package that is relevant for your cpu ([`intel-ucode`](https://archlinux.org/packages/extra/any/intel-ucode/) or [`amd-ucode`](https://archlinux.org/packages/core/any/amd-ucode/)). *You'll need this later.*
+
 ## systemd-boot
 If you're going for a minimalistic but still quite capable setup, [`systemd-boot`](https://wiki.archlinux.org/title/systemd-boot) is essentially the best option. No extra dependencies, no rebuilding, no massive configuration files.
 
@@ -617,46 +616,40 @@ Create a boot configuration file at `/boot/loader/entries/arch.conf` - customize
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options cryptdevice=UUID=<UUID-OF-ROOT-PARTITION>:<LUKS-CONTAINER-NAME>:allow-discards root=/dev/mapper/<LUKS-CONTAINER-NAME> rootflags=subvol=@ rd.luks.options=discard=async rw
+initrd  </intel-ucode.img OR /amd-ucode.img>
+options ...
 ```
 
-The options I've used above are for the [LUKS + Btrfs setup](#btrfs) - the order here is also important. Where the UUID of the partition can be obtained using
-```bash
-blkid -s UUID -o value /dev/sda2
+The options field above will heavily depend on you system setup (/w or without encryption, LVM, Btrfs, etc), the order in which they are is important, go down the table and choose which ones you need.
+
+| When applicable | Option | Notes |
+|---|---|---|
+| dm-crypt/LUKS | `cryptdevice=UUID=<UUID>:<LUKS>:allow-discards rd.luks.options=discard=async` | where *<UUID>* is the UUID of the root partition, *<LUKS>* is the name of the encrypted container, allow-discards is used to turn on TRIM for SSDs & discards=async, which essentially does the same as the last one, but gets read by [`mount` & `systemd-cryptsetup-generator` which ignores `cryptdevice` options](https://unix.stackexchange.com/questions/341442/luks-discard-trim-conflicting-kernel-command-line-options/570936) |
+| Always | `root=<root>` | where *<root>* is `/dev/...` identifier of the root partition, this would be `/dev/mapper/<LUKS>` for a LUKS container, `/dev/mapper/<LVM>` for a LVM volume or just `/dev/{sda,vda.nvme,...}` for a raw partition |
+| Btrfs | `rootflags=subvol=@` | specifies the `root` subvolumes name |
+| Always | `rw` | mount root device read-write on boot |
+| Optional | `quiet` | [tells the kernel to not produce any output](https://wiki.archlinux.org/title/silent_boot#Kernel_parameters) |
+| Optional | `splash` | show splash screen if available, [might have to be combined with `bootsplash.bootfile`](https://forum.manjaro.org/t/how-to-enable-bootsplash-with-systemd-boot/68830/3) |
+
+See the [Arch wiki](https://wiki.archlinux.org/title/Kernel_parameters#Parameter_list) for more info about kernel parameters or [systemd loader examples](https://wiki.archlinux.org/title/systemd-boot#Adding_loaders).
+
+To obtain the UUID of a partition, as required in some places above, you can use the `blkid` command
 ```
-and even directly forwarded to the loader file using (useful when you can't copy & paste)
-```bash
-blkid -s UUID -o value /dev/sda2 >> /boot/loader/entries/arch.conf
+blkid -s UUID -o value <root>
+```
+and even directly forwarded to the loader file using `>>` (useful when you can't copy & paste)
+```
+blkid -s UUID -o value <root> >> /boot/loader/entries/arch.conf
 ```
 
-Here are a few other example setups:
-### LVM setup
-```
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /initramfs-linux.img
-options root=<root> quiet rw
-```
-
-### LVM on LUKS setup
-```
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /initramfs-linux.img
-options cryptdevice=UUID={UUID}:cryptlvm root=<root> quiet rw
-```
-
-Also, if you're running an Intel CPU don't forget to install `intel-ucode` add another line for the Intel [microcode](https://wiki.archlinux.org/title/Microcode) (under *linux*).
-```
-initrd  /intel-ucode.img
-```
+Where `<root>` is using the original name of the block device that other layers were put on (so, without LVM, LUKS, etc). This could have any of these formats: `/dev/{sda,vda.nvme,...}`. Do **not** use the `/dev/mapper/*` partition IDs for this, they will not work.
 
 As the final step, edit the `/boot/loader/loader.conf` and reference your newly created loader configuration.
 ```
 default       arch.conf
 timeout       4
-console-mode  max
-editor        no
+console-mode  auto
+editor        yes
 ```
 
 ## grub

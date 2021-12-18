@@ -4,13 +4,13 @@ tag,package name or git url,purpose
 ,linux,The Linux kernel and modules
 ,linux-firmware,Firmware files for Linux
 ,linux-headers,Headers and scripts for building modules for the Linux kernel
-,nvim,Distros that come without vim are a plauge and should be exterminated
+,neovim,Distros that come without vim are a plauge and should be exterminated
 ,git,Needed to pull various files & packages not available in the repos
 ,wget,Network utility to retrieve files from the Web
 ,man-db,Utility for reading man pages
 
 ,reflector,Daemon utility the simplifies keeping package mirrors up-to-date
-,networkmanager,Yeah sure you could smash your hand with a hammer, but why would you?
+,networkmanager,Yeah sure you could smash your hand with a hammer... but why would you?
 ,ntp,Provides a network time protocol daemon service
 ,udisks2,Disk management service & tools; version 2
 ,btrfs-progs,Utilities for managing Btrfs filesystems

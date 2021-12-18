@@ -9,7 +9,7 @@ a,polybar,Status bar
 ,kitty,Terminal emulator
 a,ulauncher,Default application launcher
 ,rofi,Power menu run dialog
-a,sflock-git,Simple screen locker
+a,lightdm-webkit-theme-litarvan-git,Lightdm theme I like
 
 ,pipewire,Next generation audio/video router system
 ,pipewire-pulse,For pulse compatibility
