@@ -69,3 +69,6 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "config/oh-my-zsh/plugins/zsh-autosuggestions"]
 	path = config/oh-my-zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "vim/plugged/vim-visual-multi"]
+	path = vim/plugged/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi
