@@ -72,3 +72,6 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "vim/plugged/vim-visual-multi"]
 	path = vim/plugged/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi
+[submodule "scripts/NVIDIA-vBIOS-VFIO-Patcher"]
+	path = scripts/NVIDIA-vBIOS-VFIO-Patcher
+	url = https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher

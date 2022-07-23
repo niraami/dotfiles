@@ -1,28 +1,23 @@
 tag,package name or git url,purpose
-a,google-chrome,Get the pitchforks
+a,brave,A better Chromium browser
 ,keepassxc,A C++ port of the Keepass password manager
 a,visual-studio-code-bin,Text editor/IDE (official binary version)
 ,discord,Voice & text chat
 ,telegram-desktop,Telegram desktop client (a moderately secure messaging app)
 ,ttf-opensans,Optional telegram-desktop dependency that should really not be optional (text is inconsistent otherwise)
-a,spotify,Music streaming service
-a,spotify-tray-git,Tray icon for the Spotify Linux client application
-a,spicetify-cli,Command-line tool to customize Spotify client
+,youtube-music-bin,I mean.. it's cheaper than spotify..
 ,blueberry,Bluetooth configuration tool
 ,remmina,Universal remote desktop client written in GTK
 ,piper,GTK application that allows configuration of various gaming mice (mostly focuses on Logitech)
 
-a,pamac-aur,A GTK3 frontend for pacman with AUR compatibility
 a,czkawka-git,Graphical tool for finding duplicate images;files;folders... etc
 a,szyszka-bin,Graphical tool for bulk renaming
 ,wireshark-qt,Network traffic and protocol analyzer - Qt GUI
 ,qbittorrent,Relatively robust looking and feature packed torrent client /w server-client capabilities
 
-a,blender-git,The scariest program known to man
-,gimp,Graphical tool for image manipulation and processing
+a,blender,The scariest program known to man
+,krita,Graphical tool for drawing and image manipulation. Much easier to learn than Gimp
 ,intellij-idea-community-edition,IDE designed for Java
-a,mailspring,Cross-platform mail client
-,obs-studio,Free; open source software for live streaming and recording
 
 a,multimc-bin,Free; open source Minecraft launcher & instance manager
 ,steam,Steam launcher; requires multilib!

@@ -1,3 +1,8 @@
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -7,14 +12,16 @@ fi
 
 source $HOME/.alias
 
-export ZSH="${HOME}/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # Move custom files to ~/.config instead of inside the oh-my-zsh repository
-export ZSH_CUSTOM="${HOME}/.config/oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
 # Move zcompdump files to ~/.cache instead of the home folder
 export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
 
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
+export SYSTEMD_EDITOR="$EDITOR"
+export SUDO_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
 
 # Disable the `less` history file
 export LESSHISTFILE=-
@@ -23,6 +30,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
+  git-lfs
   archlinux
   autoupdate
   auto-notify
@@ -54,6 +62,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525356,italic"
 # fix for ZelliJ that's for some reason not playing nicely with Home & End keys
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
+
+# Enable ZSH corrections
+setopt correct
 
 # trap USR1 signal - this signal is called via a pacman hook to rehash completion across all ZSH instances
 TRAPUSR1() { rehash }

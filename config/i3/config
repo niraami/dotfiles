@@ -153,3 +153,5 @@ exec --no-startup-id picom
 exec --no-startup-id dex -a
 # Start udiskie /w automount
 exec --no-startup-id udiskie -anT
+# Start autotiling manager
+exec --no-startup-id autotiling

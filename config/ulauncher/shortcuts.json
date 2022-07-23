@@ -28,5 +28,15 @@
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1613824826.7131886
+    },
+    "3a419bc4-2be1-40ba-bc49-e13493e36a4f": {
+        "id": "3a419bc4-2be1-40ba-bc49-e13493e36a4f",
+        "name": "ProtonDB",
+        "keyword": "pdb",
+        "cmd": "https://www.protondb.com/search?q=%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1656192325.8532162
     }
 }

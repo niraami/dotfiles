@@ -1,0 +1,11 @@
+libvirt
+virt-manager
+edk2-ovmf
+dnsmasq
+ebtables
+qemu
+
+# create libvirt group if necessary
+# add user to group
+# enable group in /etc/libvirt/libvirtd.conf (unix_sock_group, unix_sock_rw_perms)
+# systemctl enable --now libvirtd

@@ -3,12 +3,14 @@ tag,package name or git url,purpose
 ,xorg-xinit,Starts the graphical server
 ,xorg-xprop,Property displayer for X
 a,i3-gaps,Tiling window manager
+a,autotiling,Tiling helper
 ,picom,Composition manager (for transparency;blur... etc)
 a,polybar,Status bar
 ,feh,Fast and light imlib2-base image viewer; also used as the tool to set the desktop background
 ,kitty,Terminal emulator
 a,ulauncher,Default application launcher
 ,rofi,Power menu run dialog
+,lightdm
 a,lightdm-webkit-theme-litarvan-git,Lightdm theme I like
 
 ,pipewire,Next generation audio/video router system
@@ -21,7 +23,6 @@ a,lightdm-webkit-theme-litarvan-git,Lightdm theme I like
 ,terminus-font,Font for tty (set via vconsole.conf)
 ,ttf-fantasque-sans-mono,Font for Polybar;Rofi... custom GUIs in general
 a,ttf-material-design-icons-extended,Only font that actually works properly in all programs (Polybar;Rofi... etc)
-a,ttf-ms-win10-auto,Various native Windows fonts; Warning installation of this package is extremely long
 
 a,palenight-gtk-theme,GTK GUI theme
 ,gtk-engines,GTK2 support for themes
@@ -29,8 +30,6 @@ a,palenight-gtk-theme,GTK GUI theme
 ,libnotify,Library for seding desktop notifications
 a,deadd-notification-center-bin,Notification daemon & centre for past notifications
 ,udiskie,udisks2 daemon for automounting & other useful features (notifications;rootless mounting... etc)
-a,udev-block-notify,Notification daemon for udev block events (partition changes;new block devices... etc)
-,polkit-gnome,GUI for the polkit daemon
 ,network-manager-applet,Applet for managing network connections
 ,nm-connection-editor,NetworkManager GUI connection editor and widgets
 ,networkmanager-openvpn,NetworkManager VPN plugin for OpenVPN

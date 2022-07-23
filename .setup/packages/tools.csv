@@ -4,11 +4,12 @@ tag,package name or git url,purpose
 ,tldr,CLI client for TLDR; a collection of simplified man pages
 ,ranger,Simple CLI vim-like file manager
 ,ueberzug,Allows various image previous in ranger; replacement for the buggy w3m
+,dragon-drop,Optional dependency for drag-and-drop support in ranger
 ,rsync,Fast file sync tool
 ,syncthing,Continuous sync tool
 ,dex,Program to generate and execute DesktopEntry files of type Application
 ,trash-cli,CLI tool for trash management (FreeDesktop.org Trash)
-,youtube-dl,CLI tool for downloading videos from YouTube & some other sites
+,yt-dlp,CLI tool for downloading videos from YouTube & some other sites
 
 ,bind,DNS utils replacement; provides various DNS related tools like dig;host;nslookup... etc
 ,gnu-netcat,Better version of the native netcat

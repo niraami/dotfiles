@@ -4,10 +4,11 @@
 
 MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System ::' \
   -config ~/.config/rofi/sysmenu.rasi \
-  <<< "󰍁 Lock|󰍃 Logout|󰜉 Reboot|󰐥 Shutdown")"
+  <<< "󰍁 Lock|󰍃 Logout|󰖳 Windows|󰜉 Reboot|󰐥 Shutdown")"
 case "$MENU" in
-  *Lock) sflock -h -b "$(uname -n | cut -d"-" -f1)" -c "$(head -3 /dev/urandom | tr -cd '[:alnum:]' | cut -c -16)" ;;
+  *Lock) dm-tool lock ;;
   *Logout) i3-msg exit ;;
+  *Windows) virsh -c qemu:///system start Win11-passthrough ;;
   *Reboot) systemctl reboot ;;
   *Shutdown) systemctl -i poweroff
 esac

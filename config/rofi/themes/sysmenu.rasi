@@ -62,7 +62,7 @@ listview {
    columns: 1;
    // Automatic height
    fixed-height: false;
-   lines: 4;
+   lines: 5;
    
    // Disable size change when filtering
    dynamic: false;

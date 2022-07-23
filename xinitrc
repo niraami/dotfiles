@@ -9,7 +9,7 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start -dl -c pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-xset -dpms
-xset s off
+# Disable screen blanking & DPMS
+xset dpms 0 0 0
 
 exec i3

@@ -705,3 +705,12 @@ As all good projects, this one also has a bunch of todos I currently don't have 
 - [ ] Multilib support for pacman
 - [ ] Mention using SSH for easier setup
 - [ ] Also mention `amd-ucode`
+- [ ] Add `-c` option user `useradd`
+- [ ] Perform an actual test of compression algorithms on one of my NVMe drives
+- [ ] Test, fix & extend the grub & syslinux sections
+- [ ] Revisit the wifi section - on bare metal (can it be done without wpa_passphrase?)
+- [ ] Revisit the NTP section - it could use some work
+- [ ] Mention `timedatectl set-ntp on` somewhere
+- [ ] First run section? (maybe group all systemctl calls, etc there?)
+- [ ] Mention [this](https://ostechnix.com/adjust-size-root-partition-live-arch-linux/) is troubleshooting section?
+- [ ] https://wiki.archlinux.org/title/PC_speaker

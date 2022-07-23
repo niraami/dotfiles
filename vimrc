@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'nightsense/snow'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mg979/vim-visual-multi'
 call plug#end()
 
 " Airline config
