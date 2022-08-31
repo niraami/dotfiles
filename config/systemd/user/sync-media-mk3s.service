@@ -1,0 +1,10 @@
+[Unit]
+Description=MK3S sync script
+Requires=media-MK3S.mount
+After=media-MK3S.mount
+
+[Service]
+ExecStart=/home/istokm/.scripts/sync-media-mk3s.sh
+
+[Install]
+WantedBy=media-MK3S.mount

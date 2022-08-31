@@ -1,0 +1,9 @@
+[Unit]
+Description=A2LN server
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/a2ln 8888
+
+[Install]
+WantedBy=default.target
