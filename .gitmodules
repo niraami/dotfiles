@@ -21,9 +21,6 @@
 [submodule "vim/plugged/snow"]
 	path = vim/plugged/snow
 	url = https://github.com/nightsense/snow.git
-[submodule "config/spicetify/Themes/spicetify-themes"]
-	path = config/spicetify/Themes/spicetify-themes
-	url = https://github.com/morpheusthewhite/spicetify-themes.git
 [submodule "config/ulauncher/user-themes/palenight"]
 	path = config/ulauncher/user-themes/palenight
 	url = https://github.com/fsrocha-dev/ulauncher-palenight-theme.git
