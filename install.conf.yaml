@@ -15,15 +15,15 @@
 - create:
     - ~/.config/polybar/modules
     - ~/.config/polybar/scripts
+    - ~/.config/{python,nvidia,git,zsh}
+    - ~/.local/state/zsh
 
     # Make sure a cache file for zcompdumps exists
     - ~/.cache/zsh
 
 - link:
   # Link contents to $HOME
-    ~/.zshrc:
     ~/.alias:
-    ~/.zlogin:
     ~/.zprofile:
     ~/.p10k.zsh:
     ~/.oh-my-zsh:
@@ -39,6 +39,9 @@
     ~/.scripts:
       glob: true
   # Link contents to $HOME/.config
+    ~/.config/zsh:
+      glob: true
+      path: config/zsh/*
     ~/.config/autostart:
       glob: true
       path: config/autostart/*
@@ -73,6 +76,8 @@
     ~/.config/picom.conf: config/picom.conf
     ~/.config/mimeapps.list: config/mimeapps.list
     ~/.config/htop/htoprc: config/htop/htoprc
+    ~/.config/git/config: config/git/config
+    ~/.config/python/pythonrc: config/python/pythonrc
   # Link contents to other paths in $HOME
     ~/.local/share/ulauncher/extensions:
       glob: true
@@ -81,7 +86,7 @@
       glob: true
       path: local/share/applications/*
 
-    ~/.gnupg/gpg.conf: gnupg/gpg.conf
+    ~/.local/share/gnupg/gpg.conf: gnupg/gpg.conf
 
 - shell:
     -
