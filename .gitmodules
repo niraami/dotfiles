@@ -20,7 +20,7 @@
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 [submodule "vim/plugged/snow"]
 	path = vim/plugged/snow
-	url = https://github.com/nightsense/snow.git
+	url = https://github.com/niraami/snow
 [submodule "config/ulauncher/user-themes/palenight"]
 	path = config/ulauncher/user-themes/palenight
 	url = https://github.com/fsrocha-dev/ulauncher-palenight-theme.git
@@ -72,3 +72,5 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 [submodule "scripts/colors"]
 	path = scripts/colors
 	url = https://gist.github.com/jmatthewturner/2aeee120aa112fd51b000e13579c2654
+[submodule "https://github.com/niraami/snow"]
+	url = vim/plugged/snow
