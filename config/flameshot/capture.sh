@@ -1,4 +1,3 @@
-src_path="${HOME}/Screenshots/$(date '+%Y-%m')"
-mkdir -p "${src_path}"
+!#/usr/bin/env bash
 
-flameshot gui -p "${scr_path}"
+flameshot gui

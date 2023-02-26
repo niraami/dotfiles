@@ -74,3 +74,9 @@ url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
 	url = https://gist.github.com/jmatthewturner/2aeee120aa112fd51b000e13579c2654
 [submodule "https://github.com/niraami/snow"]
 	url = vim/plugged/snow
+[submodule "local/share/color-schemes/catppuccin-kde"]
+	path = local/share/color-schemes/catppuccin-kde
+	url = https://github.com/catppuccin/kde
+[submodule "system/usr/share/sddm/themes/swish"]
+	path = system/usr/share/sddm/themes/swish
+	url = https://github.com/icaho/Swish

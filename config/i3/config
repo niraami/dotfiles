@@ -36,12 +36,14 @@ smart_gaps inverse_outer
 smart_borders on
 
 floating_modifier $mod
+tiling_drag off
 
 default_border pixel 3
 
 # Enable automatic floating for certain windows
 for_window [title="Ulauncher Preferences"] floating enable
 for_window [title="Syncthing Tray"] floating enable
+for_window [title="Open With"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 # Removes title bar from floating windows
@@ -91,8 +93,6 @@ bindsym $mod+Shift+7                move container to workspace $Ws7; workspace 
 bindsym $mod+Shift+8                move container to workspace $Ws8; workspace $Ws8
 bindsym $mod+Shift+9                move container to workspace $Ws9; workspace $Ws9
 
-bindsym $mod+Shift+minus            move scratchpad
-bindsym $mod+minus                  scratchpad show
 bindsym $mod+Shift+r                restart
 
 mode "resize" {
@@ -117,7 +117,7 @@ bindsym $mod+r mode "resize"
 # Bindings (actions)
 bindsym $mod+Return           exec --no-startup-id kitty
 bindsym Print                 exec --no-startup-id ~/.config/flameshot/capture.sh
-bindsym Control+Print         exec --no-startup-id ~/.config/flameshot/fullscreen.sh
+bindsym Control+Print         exec --no-startup-id ~/.config/flameshot/screen.sh
 bindsym Shift+Print           exec --no-startup-id peek
 bindsym $mod+comma            exec --no-startup-id ~/.config/deadd/toggle-center.sh
 bindsym $mod+c                exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
