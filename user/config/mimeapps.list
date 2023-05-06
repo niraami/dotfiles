@@ -1,0 +1,8 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-NY24V0.desktop;
+inode/directory=ranger.desktop
+x-scheme-handler/prusaslicer=PrusaSlicerURLProtocol-alpha.desktop
+
+[Added Associations]
+image/jpeg=imv-dir.desktop;imv.desktop;krita_jpeg.desktop;
+image/png=imv-dir.desktop;

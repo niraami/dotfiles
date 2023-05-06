@@ -1,0 +1,50 @@
+config:
+  backup: true
+  banner: false
+  create: true
+  dotpath: system
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  showdiff: true
+dotfiles:
+  f_pacman.conf:
+    src: etc/pacman.conf
+    dst: /etc/pacman.conf
+  f_makepkg.conf:
+    src: etc/makepkg.conf
+    dst: /etc/makepkg.conf
+  f_sshd_config:
+    src: etc/ssh/sshd_config
+    dst: /etc/ssh/sshd_config
+  f_ssh-agent.sh:
+    src: etc/profile.d/ssh-agent.sh
+    dst: /etc/profile.d/ssh-agent.sh
+  f_90-override.conf:
+    src: etc/sysctl.d/90-override.conf
+    dst: /etc/sysctl.d/90-override.conf
+  f_00-keyboard.conf:
+    src: etc/X11/xorg.conf.d/00-keyboard.conf
+    dst: /etc/X11/xorg.conf.d/00-keyboard.conf
+  f_vconsole.conf:
+    src: etc/vconsole.conf
+    dst: /etc/vconsole.conf
+  f_nvidia.conf:
+    src: etc/modprobe.d/nvidia.conf
+    dst: /etc/modprobe.d/nvidia.conf
+  f_reflector.conf:
+    src: etc/xdg/reflector/reflector.conf
+    dst: /etc/xdg/reflector/reflector.conf
+profiles:
+  mia:
+    dotfiles:
+    - f_pacman.conf
+    - f_makepkg.conf
+    - f_sshd_config
+    - f_ssh-agent.sh
+    - f_90-override.conf
+    - f_00-keyboard.conf
+    - f_vconsole.conf
+    - f_nvidia.conf
+    - f_reflector.conf

@@ -1,5 +1,0 @@
-[Desktop Entry]
-Exec=sh -c "/usr/bin/spotify-tray --minimized"
-Name=spotify-tray
-Comment=Launches a minimized instance of Spotify
-Type=Application

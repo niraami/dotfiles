@@ -1,38 +1,49 @@
-# Dotfiles [![Build Status](https://travis-ci.com/niraami/dotfiles.svg?branch=master)](https://travis-ci.com/niraami/dotfiles)
-Dotfiles - synonym for: *I'm never using linux again If I lose these files*.
-
-This might be a bit of a strange dotfiles setup, but I'm doing everything in a way, that If I wanted to reinstall, I could do it in < 1 hour. Though this means, that these dotfiles install pretty much all of my essential apps, dependencies & their respective configs.
-
-
-## Specs (deps)
-*these need a bit of a cleanup*
-
-**distro**: [Arch Linux](https://www.archlinux.org/)  
-**wm**: [i3-gaps](https://github.com/Airblader/i3)  
-**shell**: [zsh](https://www.zsh.org/) + [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) + [p10k](https://github.com/romkatv/powerlevel10k) + plugins  
-**terminal**: [alacritty](https://github.com/alacritty/alacritty)
-**editor**: [vim](https://github.com/vim/vim) (via gvim package)  
-**file manager**: [ranger](https://github.com/ranger/ranger) + [w3m](https://github.com/tats/w3m)  
-**status bar**: [polybar](https://github.com/polybar/polybar) + [material-design-icons](https://github.com/google/material-design-icons) + [fantasque-sans-mono](https://github.com/belluzj/fantasque-sans)  
-**compositor**: [picom](https://github.com/ibhagwan/picom)  
-**launcher**: [rofi](https://github.com/davatorium/rofi)  
-**notification daemon**: [deadd notification center ](https://github.com/phuhl/linux_notification_center)(linux-notification-center)  
-**automount daemon**: [udevil](https://github.com/IgnorantGuru/udevil) ([devmon](https://github.com/bonomani/devmon))  
-**screenshot utility**: [flameshot](https://github.com/flameshot-org/flameshot)  
-**spotify skin**: [dribbblish](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Dribbblish) (*dracula* color-scheme)  
-**keyring manager**: [gnome-keyring](https://wiki.gnome.org/Projects/GnomeKeyring) + [seahorse](https://wiki.gnome.org/Apps/Seahorse)  
-**mail client**: [mailspring](https://getmailspring.com/)  
-
-*All of these dependencies (and more) are automatically installed, see the [installation section](#Installation)*  
+# Personal dotfiles
+Dotfiles - also known as: *I'm never using linux again If I lose these files*.
 
 ## Screenshots
 Coming soon™
 
-## Installation
-*Please backup any of your previous configuration, the installation will* ***not*** *ask your permission to replace/delete any of your local files*.
+## Environment
+- Distribution: [Arch Linux](https://www.archlinux.org/)
+- Compositor: [hyprland](https://hyprland.org/) (Wayland)
+- Bar: [waybar](https://github.com/Alexays/Waybar)
+- Notification daemon: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
+- Wallpaper daemon: [swww](https://github.com/Horus645/swww)
+- Color scheme: [colloid](https://github.com/vinceliuice/Colloid-gtk-theme) (purple dark compact)
+- Fonts: [Roboto](https://fonts.google.com/specimen/Roboto), [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
 
-After cloning, just run the `install` script. It's quite possible that it may ask for sudo permissions if there are any packages being installed, or links created outside of the `home` path.  
-If you also want to install all of the optional dependencies (mostly apps), run `install -c opt.conf.yaml`.   
-Same goes for spotify & it's skin, run `install -c spotify.conf.yaml`.
+## Applications
+- Shell: [zsh](https://www.zsh.org/)
+- Terminal: [kitty](https://sw.kovidgoyal.net/kitty/index.html)
+- Text editors: [vim](http://www.vim.org/), [vscode](https://code.visualstudio.com/)
+- File managers: [ranger](https://github.com/ranger/ranger), [thunar](https://docs.xfce.org/xfce/thunar/start)
+- Media player: [mpv](https://mpv.io/)
+- Music: [tidal-hifi](https://github.com/Mastermindzh/tidal-hifi)
+- Browsers: [brave](https://brave.com/), [firefox](https://www.mozilla.org/en-US/firefox/)
+- Screenshot tool: [hyprshot](https://github.com/Gustash/Hyprshot)
+- AUR helper: [yay](https://github.com/Jguer/yay)
 
-These dotfiles use [Dotbot](https://github.com/anishathalye/dotbot "github.com/anishathalye/dotbot") to manage the installation & [Travis-Arch](https://github.com/mikkeloscar/arch-travis "github.com/mikkeloscar/arch-travis") to make CI via Travis possible.
+# Dotfiles manager
+To manage both my user and system level dotfiles, I use [Dotdrop by deadc0de6](https://github.com/deadc0de6/dotdrop).
+
+To install these dotfiles, use the following commands from within the root of the repo.  
+For more information, consult the excellent [documentation](https://dotdrop.readthedocs.io/en/latest/usage/#install-dotfiles).
+```bash
+git submodule update --init --recursive
+
+dotdrop --cfg="config-user.yaml" install
+sudo dotdrop --cfg="config-system.yaml" install
+```
+
+To install dotdrop, either use the submodule in this repo, and then use `dotdrop.sh`.
+```bash
+python3 -m pip install --user -r dotdrop/requirements.txt
+./dotdrop/bootstrap.sh
+
+# Use dotdrop
+./dotdrop.sh --cfg="config-user.yaml" compare
+```
+
+Or you could install the [AUR dotdrop package](https://aur.archlinux.org/packages/dotdrop), and just use `dotdrop` like in the examples above.
+

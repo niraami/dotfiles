@@ -1,82 +1,39 @@
-[submodule "dotbot"]
-	path = .dotbot
-	url = https://github.com/anishathalye/dotbot.git
-  ignore = dirty
-[submodule "dotbot-sudo"]
-	path = .dotbot-sudo
-	url = https://github.com/DrDynamic/dotbot-sudo.git
-	ignore = dirty
-[submodule "vim/plugged/vim-airline"]
-	path = vim/plugged/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
-[submodule "vim/plugged/vim-airline-themes"]
-	path = vim/plugged/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule "vim/plugged/vim-bufferline"]
-	path = vim/plugged/vim-bufferline
-	url = https://github.com/bling/vim-bufferline.git
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
+[submodule "dotdrop"]
+	path = dotdrop
+	url = https://github.com/deadc0de6/dotdrop.git
+[submodule "user/oh-my-zsh"]
+	path = user/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "vim/plugged/snow"]
-	path = vim/plugged/snow
-	url = https://github.com/niraami/snow
-[submodule "config/ulauncher/user-themes/palenight"]
-	path = config/ulauncher/user-themes/palenight
-	url = https://github.com/fsrocha-dev/ulauncher-palenight-theme.git
-[submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = config/oh-my-zsh/plugins/zsh-syntax-highlighting
+[submodule "user/vim/plugged/vim-airline"]
+	path = user/vim/plugged/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "user/vim/plugged/vim-airline-themes"]
+	path = user/vim/plugged/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "user/vim/plugged/vim-bufferline"]
+	path = user/vim/plugged/vim-bufferline
+	url = https://github.com/bling/vim-bufferline.git
+[submodule "user/vim/plugged/snow"]
+	path = user/vim/plugged/snow
+	url = https://github.com/niraami/snow.git
+[submodule "user/config/oh-my-zsh/plugins/zsh-syntax-highlighting"]
+	path = user/config/oh-my-zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
-	path = config/oh-my-zsh/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
-[submodule ".oh-my-zsh/custom/plugins/zsh-auto-notify"]
-	path = config/oh-my-zsh/plugins/auto-notify
+[submodule "user/config/oh-my-zsh/plugins/zsh-autosuggestions"]
+	path = user/config/oh-my-zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "user/config/oh-my-zsh/plugins/autoupdate"]
+	path = user/config/oh-my-zsh/plugins/autoupdate
+	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins.git
+[submodule "user/config/oh-my-zsh/plugins/auto-notify"]
+	path = user/config/oh-my-zsh/plugins/auto-notify
 	url = https://github.com/MichaelAquilina/zsh-auto-notify.git
-[submodule ".oh-my-zsh/custom/plugins/autoupdate"]
-	path = config/oh-my-zsh/plugins/autoupdate
-url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
-[submodule "local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp"]
-	path = local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp
+[submodule "user/config/oh-my-zsh/themes/powerlevel10k"]
+	path = user/config/oh-my-zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "user/local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr"]
+	path = user/local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr
+	url = https://github.com/dhelmr/ulauncher-tldr.git
+[submodule "user/local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp"]
+	path = user/local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp
 	url = https://github.com/brpaz/ulauncher-timestamp.git
-[submodule "config/mpv/mpv-cheatsheet"]
-	path = config/mpv/mpv-cheatsheet
-	url = https://github.com/ento/mpv-cheatsheet
-[submodule "local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr"]
-	path = local/share/ulauncher/extensions/com.github.dhelmr.ulauncher-tldr
-	url = https://github.com/dhelmr/ulauncher-tldr
-[submodule "local/share/ulauncher/extensions/com.github.fajtak.ulauncher-weather"]
-	path = local/share/ulauncher/extensions/com.github.fajtak.ulauncher-weather
-	url = https://github.com/fajtak/ulauncher-weather
-[submodule "wallpapers"]
-	path = wallpapers
-	url = https://github.com/niraami/dotfiles-wallpapers
-[submodule "dotfiles-etc"]
-	path = system/etc
-	url = https://github.com/niraami/dotfiles-etc
-[submodule "config/qBittorrent/themes"]
-	path = config/qBittorrent/themes
-	url = https://github.com/jagannatharjun/qbt-theme
-[submodule "config/oh-my-zsh/plugins/zsh-autosuggestions"]
-	path = config/oh-my-zsh/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "vim/plugged/vim-visual-multi"]
-	path = vim/plugged/vim-visual-multi
-	url = https://github.com/mg979/vim-visual-multi
-[submodule "scripts/NVIDIA-vBIOS-VFIO-Patcher"]
-	path = scripts/NVIDIA-vBIOS-VFIO-Patcher
-	url = https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher
-[submodule "scripts/compsize"]
-	path = scripts/compsize
-	url = https://github.com/kilobyte/compsize
-[submodule "scripts/colors"]
-	path = scripts/colors
-	url = https://gist.github.com/jmatthewturner/2aeee120aa112fd51b000e13579c2654
-[submodule "https://github.com/niraami/snow"]
-	url = vim/plugged/snow
-[submodule "local/share/color-schemes/catppuccin-kde"]
-	path = local/share/color-schemes/catppuccin-kde
-	url = https://github.com/catppuccin/kde
-[submodule "system/usr/share/sddm/themes/swish"]
-	path = system/usr/share/sddm/themes/swish
-	url = https://github.com/icaho/Swish

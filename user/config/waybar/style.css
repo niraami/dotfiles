@@ -1,0 +1,127 @@
+* {
+    border: none;
+    border-radius: 0;
+
+    font-family: "Fantasque Sans Mono";
+    font-size: 16px;
+
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    /* Disable background for the bar itself */
+    background: transparent;
+
+    /* Set font color */
+    color: @theme_fg_color;
+}
+
+tooltip, tooltip * {
+    background: transparent;
+}
+
+tooltip label {
+    font-size: 15px;
+
+    background: @theme_base_color;
+
+    margin-top: 2px;
+    padding: 12px;
+
+    border: 2px solid @borders;
+    border-radius: 10px;
+}
+
+#workspaces,
+#cpu,
+#memory,
+#network,
+#clock,
+#language,
+#pulseaudio,
+#custom-weather,
+#custom-updates,
+#tray,
+#custom-notifications
+{
+    background: @theme_base_color;
+
+    /* Padding from adjacent modules */
+    padding: 0px 8px;
+
+    /* Set top margin from the edge of waybar/screen */
+    margin: 5px 0 0 0;
+}
+
+/* Modules that have no more adjacent modules on the _right_ side */
+#workspaces, #network, #clock, #custom-updates, #tray, #custom-notifications {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    margin-right: 10px;
+}
+
+/* Modules that have no more adjacent modules on the _left_ side */
+#workspaces, #cpu, #clock, #language, #tray, #custom-notifications {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    margin-left: 10px;
+}
+
+/* Module at the _left_ side of the screen */
+#workspaces {
+    /* Same as top margin for all modules */
+    margin-left: 5px;
+}
+
+/* Module at the _right_ side of the screen */
+#custom-notifications {
+    /* Same as top margin for all modules */
+    margin-right: 5px;
+}
+
+#cpu {
+    /* Set minimum module size, so that it doesn't bounce around */
+    min-width: 2em;
+    
+}
+
+#memory {
+    /* Set minimum module size, so that it doesn't bounce around */
+    min-width: 5em;
+}
+
+#network {
+    /* Match padding of cpu module */
+    padding-right: 15px;
+}
+
+#workspaces button {
+    padding: 5px;
+    border-radius: 10px;
+
+    color: @insensitive_fg_color;
+}
+
+#workspaces button.focused, #workspaces button.active {
+    color: @theme_selected_fg_color;
+    background: @theme_unfocused_bg_color;
+}
+
+#workspaces button.urgent {
+    color: @theme_base_color;
+    background: @warning_color;
+}
+
+#workspaces button:hover {
+    color: @theme_selected_fg_color;
+    background: @theme_selected_bg_color;
+}
+
+#pulseaudio {
+    /* Static width regardless of the volume level */
+    min-width: 4em;
+}

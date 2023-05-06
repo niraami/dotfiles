@@ -1,9 +1,0 @@
-tag,package name or git url,purpose
-,gnome-keyring,System keyring
-,polkit-gnome,Authorization popup dialog
-,libsecret,Library for storing and retrieving passwords and other secrets
-
-# Add gnome keyring & keyring autostart to /etc/pam.d/login
-# Might need to add the same to /etc/pam.d/lightdm
-# Enable ssh-agent service
-# Use .pam_environment

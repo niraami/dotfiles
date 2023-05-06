@@ -1,0 +1,251 @@
+config:
+  backup: true
+  banner: false
+  create: true
+  dotpath: ~/.dotfiles/user
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  showdiff: true
+dotfiles:
+  f_zshrc:
+    src: zshrc
+    dst: ~/.zshrc
+  d_oh-my-zsh:
+    src: oh-my-zsh
+    dst: ~/.oh-my-zsh
+    link: absolute
+  f_p10k.zsh:
+    src: p10k.zsh
+    dst: ~/.p10k.zsh
+  f_gitconfig:
+    src: gitconfig
+    dst: ~/.gitconfig
+  f_alias:
+    src: alias
+    dst: ~/.alias
+  f_dmrc:
+    src: dmrc
+    dst: ~/.dmrc
+  d_btop:
+    src: config/btop
+    dst: ~/.config/btop
+    upignore:
+    - btop.log
+    cmpignore:
+    - btop.log
+  d_gtk-2.0:
+    src: config/gtk-2.0
+    dst: ~/.config/gtk-2.0
+    chmod: '700'
+  d_gtk-3.0:
+    src: config/gtk-3.0
+    dst: ~/.config/gtk-3.0
+    chmod: '700'
+  f_htoprc:
+    src: config/htop/htoprc
+    dst: ~/.config/htop/htoprc
+  d_hypr:
+    src: config/hypr
+    dst: ~/.config/hypr
+  f_keepassxc.ini:
+    src: config/keepassxc/keepassxc.ini
+    dst: ~/.config/keepassxc/keepassxc.ini
+  f_kitty.conf:
+    src: config/kitty/kitty.conf
+    dst: ~/.config/kitty/kitty.conf
+  f_kvantum.kvconfig:
+    src: config/Kvantum/kvantum.kvconfig
+    dst: ~/.config/Kvantum/kvantum.kvconfig
+  f_lutris.conf:
+    src: config/lutris/lutris.conf
+    dst: ~/.config/lutris/lutris.conf
+  f_config.conf:
+    src: config/neofetch/config.conf
+    dst: ~/.config/neofetch/config.conf
+  d_config_oh-my-zsh_plugins:
+    src: config/oh-my-zsh/plugins
+    dst: ~/.config/oh-my-zsh/plugins
+    link: link_children
+  d_config_oh-my-zsh_themes:
+    src: config/oh-my-zsh/themes
+    dst: ~/.config/oh-my-zsh/themes
+    link: link_children
+  d_local_share_ulauncher_extensions:
+    src: local/share/ulauncher/extensions
+    dst: ~/.local/share/ulauncher/extensions
+    link: link_children
+  f_prusaslicer.ini:
+    src: config/PrusaSlicer/PrusaSlicer.ini
+    dst: ~/.config/PrusaSlicer/PrusaSlicer.ini
+  f_prusaslicergcodeviewer.ini:
+    src: config/PrusaSlicer/PrusaSlicerGcodeViewer.ini
+    dst: ~/.config/PrusaSlicer/PrusaSlicerGcodeViewer.ini
+  f_pythonrc:
+    src: config/python/pythonrc
+    dst: ~/.config/python/pythonrc
+  d_qt5ct:
+    src: config/qt5ct
+    dst: ~/.config/qt5ct
+  d_ranger:
+    src: config/ranger
+    dst: ~/.config/ranger
+  f_config:
+    src: config/swayidle/config
+    dst: ~/.config/swayidle/config
+  f_config.json:
+    src: config/swaync/config.json
+    dst: ~/.config/swaync/config.json
+  f_uca.xml:
+    src: config/Thunar/uca.xml
+    dst: ~/.config/Thunar/uca.xml
+    chmod: '600'
+  d_waybar:
+    src: config/waybar
+    dst: ~/.config/waybar
+  d_xfce4:
+    src: config/xfce4
+    dst: ~/.config/xfce4
+    chmod: '700'
+  f_code-flags.conf:
+    src: config/code-flags.conf
+    dst: ~/.config/code-flags.conf
+  f_electron-flags.conf:
+    src: config/electron-flags.conf
+    dst: ~/.config/electron-flags.conf
+  f_electron13-flags.conf:
+    src: config/electron13-flags.conf
+    dst: ~/.config/electron13-flags.conf
+  f_mimeapps.list:
+    src: config/mimeapps.list
+    dst: ~/.config/mimeapps.list
+    chmod: '644'
+  f_pavucontrol.ini:
+    src: config/pavucontrol.ini
+    dst: ~/.config/pavucontrol.ini
+  f_index.theme:
+    src: icons/default/index.theme
+    dst: ~/.icons/default/index.theme
+  d_openrgb:
+    src: config/OpenRGB
+    dst: ~/.config/OpenRGB
+    upignore:
+    - logs
+    cmpignore:
+    - logs
+  d_rofi:
+    src: config/rofi
+    dst: ~/.config/rofi
+  d_systemd:
+    src: config/systemd
+    dst: ~/.config/systemd
+    upignore:
+    - '*.wants'
+    cmpignore:
+    - '*.wants'
+  d_ulauncher:
+    src: config/ulauncher
+    dst: ~/.config/ulauncher
+    upignore:
+    - user-themes/*
+    cmpignore:
+    - user-themes/*
+  d_ulauncher_themes:
+    src: config/ulauncher/user-themes
+    dst: ~/.config/ulauncher/user-themes
+    link: link_children
+  f_vimrc:
+    src: vimrc
+    dst: ~/.vimrc
+  f_plug.vim:
+    src: vim/autoload/plug.vim
+    dst: ~/.vim/autoload/plug.vim
+  d_plugged:
+    src: vim/plugged
+    dst: ~/.vim/plugged
+    link: link_children
+  d_blender:
+    src: config/blender
+    dst: ~/.config/blender
+    upignore:
+    - '*/config/bookmarks.txt'
+    - '*/config/platform_support.txt'
+    - '*/config/recent-files.txt'
+    - '*/scripts/addons'
+    - '*/scripts/sketchfab_cache'
+    cmpignore:
+    - '*/config/bookmarks.txt'
+    - '*/config/platform_support.txt'
+    - '*/config/recent-files.txt'
+    - '*/scripts/addons'
+    - '*/scripts/sketchfab_cache'
+  d_blender_addons:
+    src: config/blender
+    dst: ~/.config/blender
+    upignore:
+    - '*'
+    - '!*/addons/**'
+    cmpignore:
+    - '*'
+    - '!*/addons/**'
+  d_mpv:
+    src: config/mpv
+    dst: ~/.config/mpv
+  f_qbittorrent.conf:
+    src: config/qBittorrent/qBittorrent.conf
+    dst: ~/.config/qBittorrent/qBittorrent.conf
+  f_xsettingsd.conf:
+    src: config/xsettingsd/xsettingsd.conf
+    dst: ~/.config/xsettingsd/xsettingsd.conf
+profiles:
+  mia:
+    dotfiles:
+    - f_zshrc
+    - d_oh-my-zsh
+    - f_p10k.zsh
+    - f_gitconfig
+    - f_alias
+    - f_dmrc
+    - d_btop
+    - d_gtk-2.0
+    - d_gtk-3.0
+    - f_htoprc
+    - d_hypr
+    - f_keepassxc.ini
+    - f_kitty.conf
+    - f_kvantum.kvconfig
+    - f_lutris.conf
+    - f_config.conf
+    - d_config_oh-my-zsh_plugins
+    - d_config_oh-my-zsh_themes
+    - d_local_share_ulauncher_extensions
+    - f_prusaslicer.ini
+    - f_prusaslicergcodeviewer.ini
+    - f_pythonrc
+    - d_qt5ct
+    - d_ranger
+    - f_config
+    - f_config.json
+    - f_uca.xml
+    - d_waybar
+    - d_xfce4
+    - f_code-flags.conf
+    - f_electron-flags.conf
+    - f_electron13-flags.conf
+    - f_mimeapps.list
+    - f_pavucontrol.ini
+    - f_index.theme
+    - d_openrgb
+    - d_rofi
+    - d_systemd
+    - d_ulauncher
+    - d_ulauncher_themes
+    - f_vimrc
+    - f_plug.vim
+    - d_plugged
+    - d_blender
+    - d_blender_addons
+    - d_mpv
+    - f_qbittorrent.conf
+    - f_xsettingsd.conf

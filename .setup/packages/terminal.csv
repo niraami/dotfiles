@@ -1,4 +1,0 @@
-tag,package name or git url,purpose
-,zsh,An alternative to the Bash shell interpreter
-a,oh-my-zsh-git,Framework for managing Zsh configuration;plugins... etc
-a,zsh-completions-git,Additional completion definitions for Zsh

@@ -1,0 +1,182 @@
+// Source for the icon height fix:
+// https://old.reddit.com/r/swaywm/comments/qt2l1x/waybar_how_to_change_the_alignment_of_the_icon/hkitsux/
+
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": [
+        "wlr/workspaces",
+        "cpu",
+        "memory",
+        "network"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "hyprland/language",
+        "pulseaudio",
+        "custom/weather",
+        "custom/updates",
+        "tray",
+        "custom/notifications"
+    ],
+    "wlr/workspaces": {
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": false,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+
+            "11": "1",
+            "12": "2",
+            "13": "3",
+            "14": "4",
+            "15": "5",
+            "16": "6",
+            "17": "7",
+            "18": "8",
+            "19": "9",
+
+            "21": "1",
+            "22": "2",
+            "23": "3",
+            "24": "4",
+            "25": "5",
+            "26": "6",
+            "27": "7",
+            "28": "8",
+            "29": "9"
+        }
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "{usage}%"
+    },
+    "memory": {
+        "interval": 1,
+        "format": "{used:0.2f} GiB"
+    },
+    "network": {
+        "interval": 2,
+        "format": "{ipaddr}",
+        "format-ethernet": "{ipaddr}",
+        "format-wifi": "{icon} {ipaddr}",
+        "format-linked": "󰲜",
+        "format-disconnected": "󰌙",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+
+        "tooltip": true,
+        "tootip-format": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
+        "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
+        "tooltip-format-wifi": "{ifname} {ipaddr}/{cidr} -> {gwaddr}@{essid} (signaldBm}dBm"
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A : Week %V : %H:%M:%S : %d.%m (%B) %Y}",
+        "interval": 1,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "month",
+            "weeks-pos"     : "right",
+            "mode-mon-col"  : 2,
+            "on-scroll"     : 1,
+            "on-click-right": "mode",
+            "format": {
+                "months":     "<span color='#ffffff'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "hyprland/language": {
+        "format": "<span rise='-1200'>󰌌</span> {}",
+        "format-en": "us",
+        "format-sk": "sk",
+        "keyboard-name": "logitech-usb-receiver-keyboard"
+    },
+    "pulseaudio": {
+        "format": "<span rise='-1200'>{icon}</span> {volume}%",
+        "tooltip": false,
+        "format-bluetooth": "<span rise='-1200'>󰂰</span> {volume}%",
+        "format-muted": "<span rise='-1200'>󰖁</span> {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	    "on-click-right": "sleep 0.2; pavucontrol",
+        // "on-scroll-up": "pactl set-sink-mute @DEFAULT_SINK@ 0 & pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        // "on-scroll-down": "pactl set-sink-mute @DEFAULT_SINK@ 0 & pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "scroll-step": 5,
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"],
+            "speaker": "󰓃",
+            "hdmi": "󱮸",
+            "headset": "󰋎",
+            "portable": "󰦢",
+            "car": "󰄍",
+            "hifi": "󰐵",
+            "phone": "󰏲"
+        }
+    },
+    "custom/weather" : {
+        "tooltip" : true,
+        "format" : "{}",
+        "restart-interval" : 300,
+        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+    "custom/updates": {
+        "exec": "~/.config/waybar/scripts/waybar-updates.py",
+        "interval": 1800,
+        "return-type": "json",
+        "format": "<span rise='-1200'>󰇚</span> {}"
+    },
+    "custom/notifications": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "notification": "󱥁",
+          "none": "󰍥",
+          "dnd-notification": "󱙍",
+          "dnd-none": "󱙎",
+          "inhibited-notification": "󱥂",
+          "inhibited-none": "󰍥",
+          "dnd-inhibited-notification": "󱥂",
+          "dnd-inhibited-none": "󱙎"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client --subscribe-waybar",
+        "on-click": "sleep 0.2; swaync-client --toggle-panel --skip-wait",
+        "on-click-right": "swaync-client --toggle-dnd --skip-wait",
+        "on-click-middle": "swaync-client --close-all",
+        "escape": true
+    },
+    "tray": {
+        "icon-size": 18,
+        "tooltip": false,
+        "spacing": 10
+    }
+}

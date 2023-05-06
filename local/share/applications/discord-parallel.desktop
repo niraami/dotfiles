@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Discord (parallel)
-StartupWMClass=discord
-Comment=Launches a parallel discord instance
-GenericName=Internet Messenger
-Exec=sh -c "~/.scripts/discord-parallel.sh"
-Icon=discord
-Type=Application
-Categories=Network;InstantMessaging;
