@@ -2,7 +2,7 @@
 Dotfiles - also known as: *I'm never using linux again If I lose these files*.
 
 ## Screenshots
-Coming soon™
+![](https://user-images.githubusercontent.com/24532624/236953589-bc75e335-02dc-4cb8-9985-32a8da21e0f8.png)
 
 ## Environment
 - Distribution: [Arch Linux](https://www.archlinux.org/)
@@ -10,7 +10,10 @@ Coming soon™
 - Bar: [waybar](https://github.com/Alexays/Waybar)
 - Notification daemon: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
 - Wallpaper daemon: [swww](https://github.com/Horus645/swww)
-- Color scheme: [colloid](https://github.com/vinceliuice/Colloid-gtk-theme) (purple dark compact)
+- Color scheme:
+  - [colloid-gtk](https://github.com/vinceliuice/Colloid-gtk-theme) (purple dark compact)
+  - [colloid-kde](https://github.com/vinceliuice/Colloid-kde) (dark + [kvantum](https://github.com/tsujan/Kvantum))
+  - [papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) (dark)
 - Fonts: [Roboto](https://fonts.google.com/specimen/Roboto), [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
 
 ## Applications
