@@ -84,7 +84,7 @@
         "tooltip": true,
         "tootip-format": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
         "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
-        "tooltip-format-wifi": "{ifname} {ipaddr}/{cidr} -> {gwaddr}@{essid} (signaldBm}dBm"
+        "tooltip-format-wifi": "{ifname} {ipaddr}/{cidr} -> {gwaddr}@{essid} {signaldBm}dBm"
     },
     "clock": {
         "format": "{:%H:%M}",
@@ -148,8 +148,8 @@
         "return-type" : "json"
     },
     "custom/updates": {
-        "exec": "~/.config/waybar/scripts/waybar-updates.py",
-        "interval": 1800,
+        "exec": "cat /tmp/waybar-updates.json",
+        "interval": 10,
         "return-type": "json",
         "format": "<span rise='-1200'>󰇚</span> {}"
     },

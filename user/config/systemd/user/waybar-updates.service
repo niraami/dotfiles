@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh list of package updates
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/.config/waybar/scripts/waybar-updates.py
+
+[Install]
+WantedBy=multi-user.target
