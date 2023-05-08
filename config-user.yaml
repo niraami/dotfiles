@@ -120,7 +120,7 @@ dotfiles:
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
-    chmod: '644'
+    chmod: '600'
   f_pavucontrol.ini:
     src: config/pavucontrol.ini
     dst: ~/.config/pavucontrol.ini

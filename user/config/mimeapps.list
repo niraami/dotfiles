@@ -2,7 +2,9 @@
 x-scheme-handler/tg=userapp-Telegram Desktop-NY24V0.desktop;
 inode/directory=ranger.desktop
 x-scheme-handler/prusaslicer=PrusaSlicerURLProtocol-alpha.desktop
+image/png=imv-dir.desktop
 
 [Added Associations]
-image/jpeg=imv-dir.desktop;imv.desktop;krita_jpeg.desktop;
-image/png=imv-dir.desktop;
+image/jpeg=imv-dir.desktop;krita_jpeg.desktop;
+image/png=imv-dir.desktop
+application/pdf=masterpdfeditor4.desktop;
