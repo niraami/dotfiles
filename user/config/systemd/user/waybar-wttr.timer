@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh weather information used by waybar every 20 minutes
+
+[Timer]
+OnCalendar=*:0/20
+AccuracySec=1m
+Unit=waybar-wttr.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

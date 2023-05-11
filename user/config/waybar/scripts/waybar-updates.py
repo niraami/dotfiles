@@ -46,9 +46,6 @@ def get_updates():
   # Get the number of available updates
   num_updates = len(updates)
 
-  # Limit the number of updates shown in the tooltip to 20
-  tooltip_updates = updates[:20]
-
   # Create a string that Waybar can understand
   data = {
       'text': num_updates,
@@ -65,6 +62,9 @@ def get_updates():
       tuple(update.split()[i] for i in (1, 3)) for update in updates
     ]
     update_types = categorize_updates(package_versions)
+
+    # Limit the number of updates shown in the tooltip to 20
+    tooltip_updates = updates[:20]
 
     # Get length of the longest update string
     max_update_length = len(max(tooltip_updates, key=len))

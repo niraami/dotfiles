@@ -141,17 +141,20 @@
         }
     },
     "custom/weather" : {
-        "tooltip" : true,
+        "exec": "cat /tmp/waybar-wttr.json",
         "format" : "{}",
-        "restart-interval" : 300,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
+        "return-type" : "json",
+
+        "interval" : 10,
+        "tooltip" : true
     },
     "custom/updates": {
         "exec": "cat /tmp/waybar-updates.json",
-        "interval": 10,
+        "format": "<span rise='-1200'>󰇚</span> {}",
         "return-type": "json",
-        "format": "<span rise='-1200'>󰇚</span> {}"
+
+        "interval": 10,
+        "tooltip" : true
     },
     "custom/notifications": {
         "tooltip": false,
@@ -167,8 +170,9 @@
           "dnd-inhibited-none": "󱙎"
         },
         "return-type": "json",
-        "exec-if": "which swaync-client",
         "exec": "swaync-client --subscribe-waybar",
+        "exec-if": "which swaync-client",
+        "restart-interval": 30,
         "on-click": "sleep 0.2; swaync-client --toggle-panel --skip-wait",
         "on-click-right": "swaync-client --toggle-dnd --skip-wait",
         "on-click-middle": "swaync-client --close-all",

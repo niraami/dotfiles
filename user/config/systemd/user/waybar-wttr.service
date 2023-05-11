@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh package update information used by waybar
+Description=Refresh weather information used by waybar
 After=graphical-session.target
 
 StartLimitBurst=2
@@ -7,7 +7,7 @@ StartLimitIntervalSec=60
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 %h/.config/waybar/scripts/waybar-updates.py
+ExecStart=/usr/bin/python3 %h/.config/waybar/scripts/waybar-wttr.py
 
 Restart=on-failure
 RestartSec=2s
