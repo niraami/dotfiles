@@ -170,9 +170,8 @@
           "dnd-inhibited-none": "󱙎"
         },
         "return-type": "json",
-        "exec": "swaync-client --subscribe-waybar",
         "exec-if": "which swaync-client",
-        "restart-interval": 30,
+        "exec": "swaync-client --subscribe-waybar",
         "on-click": "sleep 0.2; swaync-client --toggle-panel --skip-wait",
         "on-click-right": "swaync-client --toggle-dnd --skip-wait",
         "on-click-middle": "swaync-client --close-all",

@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh weather information used by waybar
+Description=Refresh weather information for waybar
 After=graphical-session.target
 
 StartLimitBurst=2

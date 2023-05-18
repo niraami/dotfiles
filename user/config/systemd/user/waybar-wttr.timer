@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh weather information used by waybar every 20 minutes
+Description=Refresh weather information for waybar every 20 minutes
 
 [Timer]
 OnCalendar=*:0/20

@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh package update information used by waybar
+Description=Refresh list of package updates
 After=graphical-session.target
 
 StartLimitBurst=2

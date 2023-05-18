@@ -152,6 +152,9 @@ def parse_version(version):
   # with two zeros to handle missing parts
   version_parts = re.split("\D", version_number) + ["0", "0"]
 
+  # Remove empty entries
+  version_parts = [x for x in version_parts if len(x)]
+
   # Assign the first two components to major and minor
   major, minor = version_parts[:2]
   # Sum up all remaining elements (in case of more than 3 labels)

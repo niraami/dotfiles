@@ -1,5 +1,5 @@
 [Unit]
-Description=Refresh package update information used by waybar hourly
+Description=Refresh list of package updates hourly
 
 [Timer]
 OnCalendar=hourly
