@@ -36,6 +36,9 @@ dotfiles:
   f_reflector.conf:
     src: etc/xdg/reflector/reflector.conf
     dst: /etc/xdg/reflector/reflector.conf
+  f_zfs.conf:
+    src: etc/modprobe.d/zfs.conf
+    dst: /etc/modprobe.d/zfs.conf
 profiles:
   mia:
     dotfiles:
@@ -48,3 +51,4 @@ profiles:
     - f_vconsole.conf
     - f_nvidia.conf
     - f_reflector.conf
+    - f_zfs.conf
