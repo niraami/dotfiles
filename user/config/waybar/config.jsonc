@@ -10,7 +10,7 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
-        "wlr/workspaces",
+        "hyprland/workspaces",
         "cpu",
         "memory",
         "network"
@@ -26,7 +26,7 @@
         "tray",
         "custom/notifications"
     ],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
         "all-outputs": false,
