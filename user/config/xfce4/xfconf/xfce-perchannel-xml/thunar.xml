@@ -19,24 +19,25 @@
   <property name="last-toolbar-item-order" type="string" value="0,1,2,3,4,5,6,7,8,9,13,14,15,11,10,12,16,17"/>
   <property name="last-toolbar-visible-buttons" type="string" value="0,1,1,1,0,0,0,0,0,0,0,1,1,1,1,0,1,1"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,111,50,50,78,63,147,394,65,101,70,100,371"/>
+  <property name="last-details-view-column-widths" type="string" value="50,50,166,163,75,78,63,147,394,65,101,70,100,372"/>
   <property name="last-details-view-visible-columns" type="string" value="THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_GROUP,THUNAR_COLUMN_NAME,THUNAR_COLUMN_OWNER,THUNAR_COLUMN_PERMISSIONS,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE"/>
   <property name="last-details-view-column-order" type="string" value="THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_SIZE_IN_BYTES,THUNAR_COLUMN_TYPE,THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_LOCATION,THUNAR_COLUMN_MIME_TYPE,THUNAR_COLUMN_DATE_CREATED,THUNAR_COLUMN_OWNER,THUNAR_COLUMN_GROUP,THUNAR_COLUMN_PERMISSIONS,THUNAR_COLUMN_DATE_ACCESSED,THUNAR_COLUMN_RECENCY,THUNAR_COLUMN_DATE_DELETED"/>
   <property name="misc-folder-item-count" type="string" value="THUNAR_FOLDER_ITEM_COUNT_ALWAYS"/>
-  <property name="last-separator-position" type="int" value="170"/>
-  <property name="last-splitview-separator-position" type="int" value="868"/>
+  <property name="last-separator-position" type="int" value="172"/>
+  <property name="last-splitview-separator-position" type="int" value="740"/>
   <property name="last-side-pane" type="string" value="ThunarShortcutsPane"/>
   <property name="hidden-bookmarks" type="array">
     <value type="string" value="recent:///"/>
     <value type="string" value="file:///home/niraami/Desktop"/>
-    <value type="string" value="trash:///"/>
     <value type="string" value="file:///"/>
   </property>
   <property name="hidden-devices" type="array">
     <value type="string" value="10140236676237343984"/>
   </property>
   <property name="misc-show-delete-action" type="bool" value="true"/>
-  <property name="last-sort-column" type="string" value="THUNAR_COLUMN_DATE_MODIFIED"/>
+  <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME"/>
   <property name="last-sort-order" type="string" value="GTK_SORT_ASCENDING"/>
   <property name="misc-text-beside-icons" type="bool" value="false"/>
+  <property name="misc-directory-specific-settings" type="bool" value="true"/>
+  <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_SHORT"/>
 </channel>
