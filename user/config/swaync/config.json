@@ -30,7 +30,13 @@
   "hide-on-action": true,
   "script-fail-notify": true,
   "scripts": {},
-  "notification-visibility": {},
+  "notification-visibility": {
+    "flameshot-wlroots-warning": {
+      "state": "ignored",
+      "app-name": "flameshot",
+      "summary": "Flameshot Warning"
+    }
+  },
   "widgets": [
     "inhibitors",
     "title",

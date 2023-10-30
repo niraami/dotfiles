@@ -4,7 +4,7 @@
 {
     "layer": "top",
     "position": "top",
-    "mod": "dock",
+    // "mode": "dock",
     "exclusive": true,
     "passtrough": false,
     "gtk-layer-shell": true,
@@ -83,7 +83,7 @@
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
 
         "tooltip": true,
-        "tootip-format": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
+        "tooltip-format": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
         "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr} -> {gwaddr}",
         "tooltip-format-wifi": "{ifname} {ipaddr}/{cidr} -> {gwaddr}@{essid} {signaldBm}dBm"
     },
@@ -162,7 +162,7 @@
             "on": "󱩌",
             "off": "󱩍"
         },
-        "tooltip": false,
+        "tooltip": true,
 
         "exec": "$XDG_CONFIG_HOME/hypr/scripts/night_light_toggle.sh -a get_state",
         "exec-if": "sleep 0.1", // Give enough time for the on-click script to run
@@ -178,9 +178,9 @@
             "activated": "󰒳",
             "deactivated": "󰒲"
         },
-        "tooltip-format-activated": "Idle inhibited",
-        "tooltip-format-deactivated": "Idle not inhibited",
-        "timeout": 60
+        "tooltip-format-activated": "Idle off",
+        "tooltip-format-deactivated": "Idle auto",
+        "timeout": 90
     },
     "custom/notifications": {
         "tooltip": false,

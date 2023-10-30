@@ -134,4 +134,8 @@ tooltip label {
     color: @theme_selected_bg_color;
 }
 
+#custom-night_light_toggle.on {
+    color: @theme_selected_bg_color;
+}
+
 

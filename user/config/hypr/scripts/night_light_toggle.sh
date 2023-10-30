@@ -41,15 +41,15 @@ fi
 status=$(hyprctl getoption decoration:screen_shader | awk -F': ' '/str:/{print ($2 == "\"[[EMPTY]]\"") ? "off" : "on"}')
 
 if [ "$action" == "get_state" ]; then
-    echo "{\"alt\": \"$status\"}"
+    echo "{\"alt\": \"$status\", \"tooltip\": \"Night light $status\", \"class\": \"$status\"}"
     exit 0
 elif [ "$action" == "toggle" ]; then
     if [ "$status" == "off" ]; then
         hyprctl keyword decoration:screen_shader "${shader_dir}/blue_light_filter.glsl" > /dev/null
-        echo "{\"alt\": \"on\"}"
+        echo "{\"alt\": \"on\", \"tooltip\": \"Night light on\", \"class\": \"on\"}"
     else
         hyprctl keyword decoration:screen_shader "[[EMPTY]]" > /dev/null
-        echo "{\"alt\": \"off\"}"
+        echo "{\"alt\": \"off\", \"tooltip\": \"Night light off\", \"class\": \"off\"}"
     fi
 else
     echo "Unknown action '$action'!" >&2
