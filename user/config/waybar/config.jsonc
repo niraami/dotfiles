@@ -164,13 +164,13 @@
         },
         "tooltip": true,
 
-        "exec": "$XDG_CONFIG_HOME/hypr/scripts/night_light_toggle.sh -a get_state",
+        "exec": "$XDG_CONFIG_HOME/hypr/scripts/night_light.sh -a get_state",
         "exec-if": "sleep 0.1", // Give enough time for the on-click script to run
         "exec-on-event": true,
         "return-type": "json",
         "interval": 1,
 
-        "on-click": "$XDG_CONFIG_HOME/hypr/scripts/night_light_toggle.sh -a toggle"
+        "on-click": "$XDG_CONFIG_HOME/hypr/scripts/night_light.sh -a toggle"
     },
     "idle_inhibitor": {
         "format": "{icon} ",
