@@ -21,9 +21,10 @@
     "modules-right": [
         "hyprland/language",
         "pulseaudio",
-        "custom/weather",
         "custom/updates",
         "tray",
+        "idle_inhibitor",
+        "custom/night_light_toggle",
         "custom/notifications"
     ],
     "hyprland/workspaces": {
@@ -116,8 +117,7 @@
     "hyprland/language": {
         "format": "<span rise='-1200'>󰌌</span> {}",
         "format-en": "us",
-        "format-sk": "sk",
-        "keyboard-name": "logitech-usb-receiver-keyboard"
+        "format-sk": "sk"
     },
     "pulseaudio": {
         "format": "<span rise='-1200'>{icon}</span> {volume}%",
@@ -125,7 +125,7 @@
         "format-bluetooth": "<span rise='-1200'>󰂰</span> {volume}%",
         "format-muted": "<span rise='-1200'>󰖁</span> {volume}%",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-	    "on-click-right": "sleep 0.2; pavucontrol",
+	      "on-click-right": "sleep 0.2; pavucontrol",
         // "on-scroll-up": "pactl set-sink-mute @DEFAULT_SINK@ 0 & pactl set-sink-volume @DEFAULT_SINK@ +5%",
         // "on-scroll-down": "pactl set-sink-mute @DEFAULT_SINK@ 0 & pactl set-sink-volume @DEFAULT_SINK@ -5%",
         "scroll-step": 5,
@@ -155,6 +155,32 @@
 
         "interval": 10,
         "tooltip" : true
+    },
+    "custom/night_light_toggle": {
+        "format": "{icon}",
+        "format-icons": {
+            "on": "󱩌",
+            "off": "󱩍"
+        },
+        "tooltip": false,
+
+        "exec": "$XDG_CONFIG_HOME/hypr/scripts/night_light_toggle.sh -a get_state",
+        "exec-if": "sleep 0.1", // Give enough time for the on-click script to run
+        "exec-on-event": true,
+        "return-type": "json",
+        "interval": 1,
+
+        "on-click": "$XDG_CONFIG_HOME/hypr/scripts/night_light_toggle.sh -a toggle"
+    },
+    "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons":{
+            "activated": "󰒳",
+            "deactivated": "󰒲"
+        },
+        "tooltip-format-activated": "Idle inhibited",
+        "tooltip-format-deactivated": "Idle not inhibited",
+        "timeout": 60
     },
     "custom/notifications": {
         "tooltip": false,

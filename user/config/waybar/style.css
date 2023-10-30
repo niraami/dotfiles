@@ -44,12 +44,14 @@ tooltip label {
 #custom-weather,
 #custom-updates,
 #tray,
+#idle_inhibitor,
+#custom-night_light_toggle,
 #custom-notifications
 {
     background: @theme_base_color;
 
     /* Padding from adjacent modules */
-    padding: 0px 8px;
+    padding: 0px 5px;
 
     /* Set top margin from the edge of waybar/screen */
     margin: 5px 0 0 0;
@@ -61,14 +63,16 @@ tooltip label {
     border-bottom-right-radius: 10px;
 
     margin-right: 10px;
+    padding-right: 8px;
 }
 
 /* Modules that have no more adjacent modules on the _left_ side */
-#workspaces, #cpu, #clock, #language, #tray, #custom-notifications {
+#workspaces, #cpu, #clock, #language, #tray, #idle_inhibitor {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 
     margin-left: 10px;
+    padding-left: 8px;
 }
 
 /* Module at the _left_ side of the screen */
@@ -125,3 +129,9 @@ tooltip label {
     /* Static width regardless of the volume level */
     min-width: 4em;
 }
+
+#idle_inhibitor.activated {
+    color: @theme_selected_bg_color;
+}
+
+
