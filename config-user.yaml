@@ -198,6 +198,9 @@ dotfiles:
   f_xsettingsd.conf:
     src: config/xsettingsd/xsettingsd.conf
     dst: ~/.config/xsettingsd/xsettingsd.conf
+  f_flameshot.ini:
+    src: config/flameshot/flameshot.ini
+    dst: ~/.config/flameshot/flameshot.ini
 profiles:
   mia:
     dotfiles:
@@ -249,3 +252,4 @@ profiles:
     - d_mpv
     - f_qbittorrent.conf
     - f_xsettingsd.conf
+    - f_flameshot.ini
