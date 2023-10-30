@@ -1,0 +1,12 @@
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = usr/lib/modules/*/vmlinuz
+Target = usr/lib/initcpio/*
+
+[Action]
+Description = Synchronizing initcpios across mirrors...
+When = PostTransaction
+Exec = /etc/pacman.d/hooks.bin/mkinitcpio-mirror
+NeedsTargets

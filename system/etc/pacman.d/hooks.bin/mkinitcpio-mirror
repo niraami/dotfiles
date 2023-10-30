@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Source: chat.openai.com
+MIRRORS="$(mount | grep "/boot/" | sed -n -e '/ vfat /s/.* on \(.*\) type vfat.*/\1/p' | sort -df)"
+
+# Explanation:
+# The -n option tells sed not to print anything by default.
+# The / vfat / expression searches for the string " vfat " (with spaces) in the input line.
+# The s/ command only applies to lines that match the search expression (i.e., contain " vfat ").
+# The regular expression .* on \(.*\) type vfat.* matches the whole input string, but captures the path between "on" and "type" as a group (denoted by the parentheses).
+# The replacement string \1 replaces the whole input string with just the captured group (i.e., the path).
+# The p flag at the end of the s/ command tells sed to print the modified line.
+
+
+# Copy generated files to the first partition
+BOOT_PATH="$(head -n 1 <<< "$MIRRORS")"
+
+echo "  -> Removing old kernels and images from $BOOT_PATH"
+
+# Remove any current kernel or initramfs images present on the partition
+rm -f "$BOOT_PATH"/vmlinuz-linux*
+rm -f "$BOOT_PATH"/*.img
+
+echo "  -> Copying kernel to $BOOT_PATH"
+# Copy the linux kernel to the partition
+cp -f /boot/vmlinuz-linux* "$BOOT_PATH/"
+
+echo "  -> Copying initramfs images to $BOOT_PATH"
+# Copy all initramfs images to the partition
+cp -f /boot/*.img "$BOOT_PATH/"
+
+
+# Synchronize all boot partitions using rsync
+MIRRORS_STR="$(sed '$!N; s/\n/\/ /g' <<< "$MIRRORS")"
+
+echo "  -> Synchronizing boot partitions ($MIRRORS_STR)"
+rsync -avh --quiet --delete --update --times $MIRRORS_STR
