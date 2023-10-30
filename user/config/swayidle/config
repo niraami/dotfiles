@@ -1,2 +1,5 @@
-timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-timeout 1800 'systemctl suspend'
+timeout 600   'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+timeout 1800  'systemctl suspend'
+after-resume  'hyprctl dispatch dpms on'
+lock          'waylock -init-color 0x000000 -input-color 0x000000'
+idlehint 10
