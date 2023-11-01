@@ -34,8 +34,6 @@ export __NV_PRIME_RENDER_OFFLOAD=1
 export __VK_LAYER_NV_optimus=NVIDIA_only
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
-export HYPRSHOT_DIR="$HOME/Pictures/Screenshots"
-
 export EDITOR=/usr/bin/vim
 export SYSTEMD_EDITOR="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
