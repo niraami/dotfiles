@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 shader_dir="$XDG_CONFIG_HOME/hypr/shaders"
 action=""
 
