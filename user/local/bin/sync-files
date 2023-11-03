@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+set -x
+
+usage() {
+  cat << EOF
+Usage: $(basename "$0") [options] <source_directory> <target_directory>
+
+Syncs files from source_directory to target_directory using rsync.
+
+Options:
+  -u, --unmount    Unmount target_directory after syncing
+  -h, --help       Show this help message and exit
+
+EOF
+}
+
+UNMOUNT=false
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    -u|--unmount)
+      UNMOUNT=true
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+if [[ "$#" -ne 2 ]]; then
+  echo "Error: Invalid number of arguments"
+  usage
+  exit 1
+fi
+
+SOURCE_DIR="$1"
+TARGET_DIR="$2"
+
+CHANGE="$(rsync --recursive --times --dry-run --itemize-changes --modify-window=1 --delete "$SOURCE_DIR" "$TARGET_DIR")"
+
+if [[ ! -z "$CHANGE" ]]; then
+  # Send notification
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Started Media sync sync for $TARGET_DIR"
+
+  # Sync files
+  rsync --recursive --times --modify-window=1 --delete "$SOURCE_DIR" "$TARGET_DIR"
+  # Finish transfers (flush cache)
+  sync --file-system "$TARGET_DIR"
+
+  # Send completion notification
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Media sync sync for $TARGET_DIR finished"
+else
+  # Send skip notification
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Media sync is synchronized"
+fi
+
+# Sync to avoid race conditions
+sync --file-system "$TARGET_DIR"
+
+if [ "$UNMOUNT" = true ]; then
+  # Check if the target is a mount point
+  if mountpoint --quiet "$TARGET_DIR"; then
+    # Unmount
+    umount "$TARGET_DIR"
+  else
+    # Send error notification
+    notify-send --urgency=critical --app-name="media-sync" "media-sync" "Error: The target directory ($TARGET_DIR) is not a mount point. Skipping unmount."
+  fi
+fi

@@ -90,3 +90,8 @@ TRAPUSR1() { rehash }
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Customize PATH
+path+=("$HOME/.local/bin")
+
+# Prevent PATH from containing duplicate entries
+typeset -U path

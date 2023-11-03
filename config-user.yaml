@@ -204,6 +204,22 @@ dotfiles:
   f_swappy_config:
     src: config/swappy/config
     dst: ~/.config/swappy/config
+  f_get-iommu-groups:
+    src: local/bin/get-iommu-groups
+    dst: ~/.local/bin/get-iommu-groups
+    chmod: '755'
+  f_setup-pipewire-nodes:
+    src: local/bin/setup-pipewire-nodes
+    dst: ~/.local/bin/setup-pipewire-nodes
+    chmod: '755'
+  f_sync-files:
+    src: local/bin/sync-files
+    dst: ~/.local/bin/sync-files
+    chmod: '755'
+  f_extract-audio-streams:
+    src: local/bin/extract-audio-streams
+    dst: ~/.local/bin/extract-audio-streams
+    chmod: '755'
 profiles:
   mia:
     dotfiles:
@@ -257,3 +273,7 @@ profiles:
     - f_xsettingsd.conf
     - f_flameshot_config
     - f_swappy_config
+    - f_get-iommu-groups
+    - f_setup-pipewire-nodes
+    - f_sync-files
+    - f_extract-audio-streams
