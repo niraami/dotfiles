@@ -1,0 +1,27 @@
+window {
+  background-color: #000000;
+}
+
+window#DP-3 {
+	background-image: url("background.png");
+  background-size: cover;
+}
+
+#input-label {
+	font-size: 0em;
+}
+
+#input-field {
+  background-color: @theme_base_color;
+}
+
+#clock-label {
+  color: @theme_fg_color;
+	font-size: 10em;
+}
+
+#error-label {
+	color: @theme_fg_color;
+	font-size: 1.2em;
+	font-weight: bold;
+}

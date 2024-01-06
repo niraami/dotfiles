@@ -220,6 +220,9 @@ dotfiles:
     src: local/bin/extract-audio-streams
     dst: ~/.local/bin/extract-audio-streams
     chmod: '755'
+  d_gtklock:
+    src: config/gtklock
+    dst: ~/.config/gtklock
 profiles:
   mia:
     dotfiles:
@@ -273,6 +276,7 @@ profiles:
     - f_xsettingsd.conf
     - f_flameshot_config
     - f_swappy_config
+    - d_gtklock
     - f_get-iommu-groups
     - f_setup-pipewire-nodes
     - f_sync-files
