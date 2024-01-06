@@ -60,6 +60,8 @@ source $ZSH/oh-my-zsh.sh
 AUTO_NOTIFY_IGNORE+=("ranger")
 export AUTO_NOTIFY_THRESHOLD=16
 export AUTO_NOTIFY_EXPIRE_TIME=7000
+export AUTO_NOTIFY_URGENCY_ON_SUCCESS="low"
+export AUTO_NOTIFY_URGENCY_ON_ERROR="normal"
 
 # zsh-syntax-highlighting
 #typeset -A ZSH_HIGHLIGHT_HIGHLIGHTERS

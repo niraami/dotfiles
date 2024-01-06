@@ -27,7 +27,7 @@
 	url = https://github.com/TamCore/autoupdate-oh-my-zsh-plugins.git
 [submodule "user/config/oh-my-zsh/plugins/auto-notify"]
 	path = user/config/oh-my-zsh/plugins/auto-notify
-	url = https://github.com/MichaelAquilina/zsh-auto-notify.git
+	url = https://github.com/niraami/zsh-auto-notify
 [submodule "user/config/oh-my-zsh/themes/powerlevel10k"]
 	path = user/config/oh-my-zsh/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
