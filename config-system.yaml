@@ -49,6 +49,9 @@ dotfiles:
     src: etc/pacman.d/hooks.bin/mkinitcpio-mirror
     dst: /etc/pacman.d/hooks.bin/mkinitcpio-mirror
     chmod: '744'
+  f_rc.local:
+    src: etc/rc.local
+    dst: /etc/rc.local
 profiles:
   mia:
     dotfiles:
@@ -65,3 +68,4 @@ profiles:
     - f_zramd
     - f_95-mkinitcpio-mirror.hook
     - f_mkinitcpio-mirror
+    - f_rc.local
