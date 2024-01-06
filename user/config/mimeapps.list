@@ -20,6 +20,13 @@ audio/x-wav=mpv.desktop
 video/webm=mpv.desktop
 image/jpeg=imv-dir.desktop
 video/3gpp=mpv.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-66L6D2.desktop
+message/rfc822=userapp-Thunderbird-66L6D2.desktop
+x-scheme-handler/mid=userapp-Thunderbird-66L6D2.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-GQA4D2.desktop
+text/calendar=userapp-Thunderbird-GQA4D2.desktop
+application/x-extension-ics=userapp-Thunderbird-GQA4D2.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-GQA4D2.desktop
 
 [Added Associations]
 image/jpeg=krita_jpeg.desktop;imv-dir.desktop;brave-browser.desktop;
@@ -43,3 +50,7 @@ image/x-canon-cr2=imv-dir.desktop;
 audio/x-wav=mpv.desktop;
 video/webm=mpv.desktop;
 video/3gpp=mpv.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-66L6D2.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-66L6D2.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-GQA4D2.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-GQA4D2.desktop;
