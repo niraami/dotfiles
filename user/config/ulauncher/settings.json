@@ -8,5 +8,5 @@
     "show-indicator-icon": false,
     "show-recent-apps": "10",
     "terminal-command": "kitty -e ",
-    "theme-name": "Palenight Theme - By Frank Rocha"
+    "theme-name": "dark"
 }

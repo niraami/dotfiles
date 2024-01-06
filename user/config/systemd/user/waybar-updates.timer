@@ -5,7 +5,7 @@ Description=Refresh list of package updates hourly
 OnCalendar=hourly
 AccuracySec=1h
 Unit=waybar-updates.service
-Persistent=true
+Persistent=false
 
 [Install]
 WantedBy=timers.target

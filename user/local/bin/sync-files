@@ -46,7 +46,7 @@ CHANGE="$(rsync --recursive --times --dry-run --itemize-changes --modify-window=
 
 if [[ ! -z "$CHANGE" ]]; then
   # Send notification
-  notify-send --urgency=normal --app-name=systemd "media-sync" "Started Media sync sync for $TARGET_DIR"
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Started file sync for $TARGET_DIR"
 
   # Sync files
   rsync --recursive --times --modify-window=1 --delete "$SOURCE_DIR" "$TARGET_DIR"
@@ -54,10 +54,10 @@ if [[ ! -z "$CHANGE" ]]; then
   sync --file-system "$TARGET_DIR"
 
   # Send completion notification
-  notify-send --urgency=normal --app-name=systemd "media-sync" "Media sync sync for $TARGET_DIR finished"
+  notify-send --urgency=normal --app-name=systemd "media-sync" "File sync for $TARGET_DIR finished"
 else
   # Send skip notification
-  notify-send --urgency=normal --app-name=systemd "media-sync" "Media sync is synchronized"
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Locations are already in sync"
 fi
 
 # Sync to avoid race conditions
