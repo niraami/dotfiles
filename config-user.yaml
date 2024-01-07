@@ -9,22 +9,28 @@ config:
   longkey: false
   showdiff: true
 dotfiles:
-  f_zshrc:
-    src: zshrc
-    dst: ~/.zshrc
+  f_shell:
+    src: shell
+    dst: ~/.shell
+  f_bashrc:
+    src: bashrc
+    dst: ~/.bashrc
+  d_zsh:
+    src: config/zsh
+    dst: ~/.config/zsh
+  f_zshenv:
+    src: zshenv
+    dst: ~/.zshenv
   d_oh-my-zsh:
     src: oh-my-zsh
-    dst: ~/.oh-my-zsh
+    dst: ~/.local/share/oh-my-zsh
     link: absolute
   f_p10k.zsh:
     src: p10k.zsh
     dst: ~/.p10k.zsh
   f_gitconfig:
-    src: gitconfig
-    dst: ~/.gitconfig
-  f_alias:
-    src: alias
-    dst: ~/.alias
+    src: config/git/config
+    dst: ~/.config/git/config
   f_dmrc:
     src: dmrc
     dst: ~/.dmrc
@@ -229,11 +235,13 @@ dotfiles:
 profiles:
   mia:
     dotfiles:
-    - f_zshrc
+    - f_shell
+    - f_bashrc
+    - d_zsh
+    - f_zshenv
     - d_oh-my-zsh
     - f_p10k.zsh
     - f_gitconfig
-    - f_alias
     - f_dmrc
     - d_btop
     - d_gtk-2.0

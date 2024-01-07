@@ -12,7 +12,8 @@ export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh"
 # Move zcompdump files to ~/.cache instead of the home folder
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST-$ZSH_VERSION"
-compinit -d "$ZSH_COMPDUMP"
+# Move zlogin file to ~/.config instead
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
