@@ -1,0 +1,1 @@
+Object ▸ Set Origin ▸ Origin to Geometry

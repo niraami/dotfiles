@@ -178,23 +178,12 @@ dotfiles:
     - '*/config/bookmarks.txt'
     - '*/config/platform_support.txt'
     - '*/config/recent-files.txt'
-    - '*/scripts/addons'
-    - '*/scripts/sketchfab_cache'
+    - '**/scripts/*'
     cmpignore:
     - '*/config/bookmarks.txt'
     - '*/config/platform_support.txt'
     - '*/config/recent-files.txt'
-    - '*/scripts/addons'
-    - '*/scripts/sketchfab_cache'
-  d_blender_addons:
-    src: config/blender
-    dst: ~/.config/blender
-    upignore:
-    - '*'
-    - '!*/addons/**'
-    cmpignore:
-    - '*'
-    - '!*/addons/**'
+    - '**/scripts/*'
   d_mpv:
     src: config/mpv
     dst: ~/.config/mpv
@@ -281,7 +270,6 @@ profiles:
     - f_plug.vim
     - d_plugged
     - d_blender
-    - d_blender_addons
     - d_mpv
     - f_qbittorrent.conf
     - f_xsettingsd.conf
