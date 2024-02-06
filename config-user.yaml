@@ -18,6 +18,10 @@ dotfiles:
   d_zsh:
     src: config/zsh
     dst: ~/.config/zsh
+    upignore:
+      - '.zcompdump'
+    cmpignore:
+      - '.zcompdump'
   f_zshenv:
     src: zshenv
     dst: ~/.zshenv
@@ -137,9 +141,9 @@ dotfiles:
     src: config/OpenRGB
     dst: ~/.config/OpenRGB
     upignore:
-    - logs
+    - 'logs/*'
     cmpignore:
-    - logs
+    - 'logs/*'
   d_rofi:
     src: config/rofi
     dst: ~/.config/rofi
@@ -154,9 +158,9 @@ dotfiles:
     src: config/ulauncher
     dst: ~/.config/ulauncher
     upignore:
-    - user-themes/*
+    - 'user-themes/*'
     cmpignore:
-    - user-themes/*
+    - 'user-themes/*'
   d_ulauncher_themes:
     src: config/ulauncher/user-themes
     dst: ~/.config/ulauncher/user-themes
