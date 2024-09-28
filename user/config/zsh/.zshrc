@@ -14,6 +14,16 @@ export ZSH_CUSTOM="$XDG_CONFIG_HOME/oh-my-zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST-$ZSH_VERSION"
 # Move zlogin file to ~/.config instead
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# Configure history
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -49,6 +59,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525356,italic"
 #ZSH_HIGHLIGHT_STYLES[command]='fg=cyan'
 #ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
 #ZSH_HIGHLIGHT_STYLES[path]='fg=gray'
+
+eval "$(zoxide init zsh)"
 
 # Fix for ZelliJ that's for some reason not playing nicely with Home & End keys
 bindkey  "^[[H"   beginning-of-line

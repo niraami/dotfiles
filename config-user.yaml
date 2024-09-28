@@ -19,9 +19,9 @@ dotfiles:
     src: config/zsh
     dst: ~/.config/zsh
     upignore:
-      - '.zcompdump'
+    - .zcompdump
     cmpignore:
-      - '.zcompdump'
+    - .zcompdump
   f_zshenv:
     src: zshenv
     dst: ~/.zshenv
@@ -130,7 +130,7 @@ dotfiles:
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
-    chmod: '600'
+    chmod: '644'
   f_pavucontrol.ini:
     src: config/pavucontrol.ini
     dst: ~/.config/pavucontrol.ini
@@ -141,9 +141,9 @@ dotfiles:
     src: config/OpenRGB
     dst: ~/.config/OpenRGB
     upignore:
-    - 'logs/*'
+    - logs/*
     cmpignore:
-    - 'logs/*'
+    - logs/*
   d_rofi:
     src: config/rofi
     dst: ~/.config/rofi
@@ -158,9 +158,9 @@ dotfiles:
     src: config/ulauncher
     dst: ~/.config/ulauncher
     upignore:
-    - 'user-themes/*'
+    - user-themes/*
     cmpignore:
-    - 'user-themes/*'
+    - user-themes/*
   d_ulauncher_themes:
     src: config/ulauncher/user-themes
     dst: ~/.config/ulauncher/user-themes
@@ -178,16 +178,14 @@ dotfiles:
   d_blender:
     src: config/blender
     dst: ~/.config/blender
-    upignore:
-    - '*/config/bookmarks.txt'
-    - '*/config/platform_support.txt'
-    - '*/config/recent-files.txt'
-    - '**/scripts/*'
     cmpignore:
-    - '*/config/bookmarks.txt'
-    - '*/config/platform_support.txt'
-    - '*/config/recent-files.txt'
-    - '**/scripts/*'
+    - '*'
+    - '!*.blend'
+    - '*/scripts/**'
+    upignore:
+    - '*'
+    - '!*.blend'
+    - '*/scripts/**'
   d_mpv:
     src: config/mpv
     dst: ~/.config/mpv
@@ -211,10 +209,6 @@ dotfiles:
     src: local/bin/setup-pipewire-nodes
     dst: ~/.local/bin/setup-pipewire-nodes
     chmod: '755'
-  f_sync-files:
-    src: local/bin/sync-files
-    dst: ~/.local/bin/sync-files
-    chmod: '755'
   f_extract-audio-streams:
     src: local/bin/extract-audio-streams
     dst: ~/.local/bin/extract-audio-streams
@@ -225,6 +219,17 @@ dotfiles:
   d_gtklock:
     src: config/gtklock
     dst: ~/.config/gtklock
+  f_hypr-monitorctl:
+    src: local/bin/hypr-monitorctl
+    dst: ~/.local/bin/hypr-monitorctl
+    chmod: '744'
+  f_hypr-fixworkspaces:
+    src: local/bin/hypr-fixworkspaces
+    dst: ~/.local/bin/hypr-fixworkspaces
+    chmod: '744'
+  f_kanshi_config:
+    src: config/kanshi/config
+    dst: ~/.config/kanshi/config
 profiles:
   mia:
     dotfiles:
@@ -282,6 +287,8 @@ profiles:
     - d_gtklock
     - f_get-iommu-groups
     - f_setup-pipewire-nodes
-    - f_sync-files
     - f_extract-audio-streams
     - d_wofi
+    - f_hypr-monitorctl
+    - f_hypr-fixworkspaces
+    - f_kanshi_config

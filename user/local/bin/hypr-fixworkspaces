@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import json
+import typing
+import subprocess
+
+from subprocess import CalledProcessError
+
+def main():
+  try:
+    workspaces = json.loads(
+      subprocess.check_output('hyprctl workspaces -j', shell=True)
+    )
+
+    for workspace in workspaces:
+      wid = workspace['id']
+      mid = workspace['monitorID']
+      # Calculate correct monitor id
+      cmid = wid // 10
+
+      if cmid != mid:
+        subprocess.check_call(
+          f"hyprctl dispatch moveworkspacetomonitor {wid} {cmid}", shell=True
+        )
+        print(f"Moved workspace {wid} to the correct monitor {cmid}")
+
+  except CalledProcessError as e:
+    raise RuntimeError(f"Error executing hyprctl command: {e}")
+
+if __name__ == '__main__':
+  main()

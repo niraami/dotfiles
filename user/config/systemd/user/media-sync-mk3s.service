@@ -5,7 +5,7 @@ After=run-media-niraami-MK3S.mount
 
 [Service]
 Type=oneshot
-ExecStart=sync-files %h/Media/GCODE/MK3S /media/MK3S --unmount
+ExecStart=sync-files --unmount %h/Media/GCODE/MK3S/ /run/media/niraami/MK3S
 
 [Install]
 WantedBy=run-media-niraami-MK3S.mount

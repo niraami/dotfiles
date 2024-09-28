@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+set -xe
+
+# Define options
+declare -A opt_map=(
+    ["blank"]="Blank screens"
+    ["lock"]="Lock"
+    ["logout"]="Logout"
+    ["suspend"]="Suspend"
+    ["shutdown"]="Shutdown"
+    ["reboot"]="Reboot"
+)
+
+# Create an ordered list of option labels
+IFS=$'\n' options=($(sort <<<"${opt_map[*]}")); unset IFS
+
+# Overridable variables
+action=""
+
+show_help() {
+    cat <<EOF
+Usage: $0 -a ACTION
+
+Options:
+  -a, --action    Specify action: image, video
+  -h, --help      Display this help and exit
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -a|--action)
+            action="$2"
+            shift 2
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "Invalid option: $1" >&2
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
+fuzzel_prompt() {
+    local args=("$@")
+    local options=$(printf "%s\n" "${args[@]}")
+    fuzzel \
+      --dmenu \
+      --prompt "󰄀 " \
+      --width 25 \
+      --lines 6 \
+      --log-level=none \
+      <<< "${options}"
+}
+
+get_user_action() {
+    action="$(fuzzel_prompt "${options[@]}")"
+}
+
+if [ -z "${action}" ]; then
+    get_user_action
+fi
+
+case "${action}" in
+    "${opt_map[blank]}")
+
+        ;;
+    "${opt_map[lock]}")
+        
+        ;;
+    "${opt_map[logout]}")
+        
+        ;;
+    "${opt_map[suspend]}")
+        
+        ;;
+    "${opt_map[shutdown]}")
+        
+        ;;
+    "${opt_map[reboot]}")
+        
+        ;;
+    *)
+        echo "Invalid action: ${action}" >&2
+        show_help
+        exit 1
+        ;;
+esac

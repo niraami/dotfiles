@@ -1,0 +1,20 @@
+profile default {
+  output DP-1 enable
+  output DP-2 enable
+  output DP-3 enable
+  output HDMI-A-1 disable
+}
+
+profile all {
+  output DP-1 enable
+  output DP-2 enable
+  output DP-3 enable
+  output HDMI-A-1 enable
+}
+
+profile tv {
+  output HDMI-A-1 enable
+  output DP-1 disable
+  output DP-2 disable
+  output DP-3 disable
+}

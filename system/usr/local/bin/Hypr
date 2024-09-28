@@ -33,6 +33,7 @@ export GBM_BACKEND=nvidia-drm
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __VK_LAYER_NV_optimus=NVIDIA_only
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __GL_VRR_ALLOWED=1
 
 export EDITOR=/usr/bin/vim
 export SYSTEMD_EDITOR="$EDITOR"
@@ -42,5 +43,9 @@ export VISUAL="$EDITOR"
 # Export SSH agent socket path
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+# Use logind
+export LIBSEAT_BACKEND=logind
+
 # exec Hyprland
-exec Hyprland &> /tmp/hyprland-$(date +%Y%m%d%H%M%S).log
+#exec Hyprland 2&>1 /tmp/hyprland-$(date +%Y%m%d%H%M%S).log
+Hyprland

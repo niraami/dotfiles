@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable PCI rescan
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/enable-pci-rescan
+
+[Install]
+WantedBy=multi-user.target

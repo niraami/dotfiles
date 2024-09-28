@@ -53,9 +53,20 @@ dotfiles:
     src: usr/local/bin/Hypr
     dst: /usr/local/bin/Hypr
     chmod: '755'
-  f_rc.local:
-    src: etc/rc.local
-    dst: /etc/rc.local
+  f_enable-pci-rescan.service:
+    src: etc/systemd/system/enable-pci-rescan.service
+    dst: /etc/systemd/system/enable-pci-rescan.service
+  f_enable-pci-rescan:
+    src: usr/local/bin/enable-pci-rescan
+    dst: /usr/local/bin/enable-pci-rescan
+    chmod: '755'
+  f_hid_apple.conf:
+    src: etc/modprobe.d/hid_apple.conf
+    dst: /etc/modprobe.d/hid_apple.conf
+  f_sync-files:
+    src: usr/local/bin/sync-files
+    dst: /usr/local/bin/sync-files
+    chmod: '755'
 profiles:
   mia:
     dotfiles:
@@ -73,4 +84,7 @@ profiles:
     - f_95-mkinitcpio-mirror.hook
     - f_mkinitcpio-mirror
     - f_hypr
-    - f_rc.local
+    - f_enable-pci-rescan.service
+    - f_enable-pci-rescan
+    - f_hid_apple.conf
+    - f_sync-files

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 usage() {
   cat << EOF
 Usage: $(basename "$0") [options] <source_directory> <target_directory>

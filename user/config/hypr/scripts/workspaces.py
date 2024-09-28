@@ -16,7 +16,7 @@ def main(mode: str, wn: typing.Optional[int]):
 
   try:
     subprocess.check_call(
-      f'hyprctl dispatch {dispatcher} {workspace_id}', shell=True)
+      f"hyprctl dispatch {dispatcher} {workspace_id}", shell=True)
   except CalledProcessError as e:
     raise RuntimeError(f"Error executing hyprctl command: {e}")
 
@@ -34,10 +34,9 @@ def get_focused_monitor_id() -> int:
   except CalledProcessError as e:
     raise RuntimeError(f"Error executing hyprctl command: {e}")
 
-
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
-    description='Expands your Hyprland workspace needs.')
+    description="Expands your Hyprland workspace needs.")
 
   parser_mode = parser.add_subparsers(dest="mode", required=True)
 

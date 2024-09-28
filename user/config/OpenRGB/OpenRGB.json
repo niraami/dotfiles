@@ -5,11 +5,11 @@
         "enabled": true,
         "host": "0.0.0.0",
         "port": "6742",
-        "profile": "Purple",
+        "profile": "",
         "setclient": false,
         "setcustom": false,
         "setminimized": true,
-        "setprofile": true,
+        "setprofile": false,
         "setserver": false,
         "setserverhost": false,
         "setserverport": false
@@ -1273,8 +1273,13 @@
             "Z370 AORUS Gaming 5-CF"
         ]
     },
+    "LogManager": {
+        "dialog_no_show_hashes": [
+            14306703760882907409
+        ]
+    },
     "Theme": {
-        "theme": "auto"
+        "theme": "dark"
     },
     "UserInterface": {
         "RunZoneChecks": false,

@@ -4,3 +4,12 @@ source $HOME/.shell
 [[ $- != *i* ]] && return
 
 PS1='[\u@\h \W]\$ '
+export http_proxy=''
+export https_proxy=''
+export ftp_proxy=''
+export socks_proxy=''
+
+# Configure history size
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
+

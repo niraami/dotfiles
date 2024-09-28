@@ -40,7 +40,7 @@ if [ -z "$action" ]; then
 fi
 
 # Get the status of decoration:screen_shader
-status=$(hyprctl getoption decoration:screen_shader | awk -F': ' '/str:/{print ($2 == "\"[[EMPTY]]\"") ? "off" : "on"}')
+status=$(hyprctl getoption decoration:screen_shader | awk -F': ' '/str:/{print ($2 == "[[EMPTY]]") ? "off" : "on"}')
 
 if [ "$action" == "get_state" ]; then
     echo "{\"alt\": \"$status\", \"tooltip\": \"Night light $status\", \"class\": \"$status\"}"
