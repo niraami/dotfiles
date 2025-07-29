@@ -35,8 +35,8 @@ For more information, consult the excellent [documentation](https://dotdrop.read
 ```bash
 git submodule update --init --recursive
 
-dotdrop --cfg="config-user.yaml" install
-sudo dotdrop --cfg="config-system.yaml" install
+dotdrop --cfg="config-user.yml" install
+sudo dotdrop --cfg="config-system.yml" install
 ```
 
 To install dotdrop, either use the submodule in this repo, and then use `dotdrop.sh`.
@@ -45,7 +45,7 @@ python3 -m pip install --user -r dotdrop/requirements.txt
 ./dotdrop/bootstrap.sh
 
 # Use dotdrop
-./dotdrop.sh --cfg="config-user.yaml" compare
+./dotdrop.sh --cfg="config-user.yml" compare
 ```
 
 Or you could install the [AUR dotdrop package](https://aur.archlinux.org/packages/dotdrop), and just use `dotdrop` like in the examples above.

@@ -36,7 +36,7 @@ export VISUAL="$EDITOR"
 # Aliases
 alias r='ranger'
 alias dt='dotdrop'
-alias dts='dotdrop --cfg="$DOTFILE_PATH/config-system.yaml"'
+alias dts='dotdrop --cfg="$DOTFILE_PATH/config-system.yml"'
 alias feh='feh -Zr. --auto-reload'
 alias grep='grep --color=auto'
 alias ls='ls -la --group-directories-first --color=auto'

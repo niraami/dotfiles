@@ -1,0 +1,90 @@
+config:
+  backup: true
+  banner: false
+  create: true
+  dotpath: system
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+  showdiff: true
+dotfiles:
+  f_bin-hypr:
+    src: usr/local/bin/Hypr
+    dst: /usr/local/bin/Hypr
+    chmod: '755'
+  f_bin-sync-files:
+    src: usr/local/bin/sync-files
+    dst: /usr/local/bin/sync-files
+    chmod: '755'
+  f_enable-pci-rescan:
+    src: usr/local/bin/enable-pci-rescan
+    dst: /usr/local/bin/enable-pci-rescan
+    chmod: '755'
+  f_enable-pci-rescan.service:
+    src: etc/systemd/system/enable-pci-rescan.service
+    dst: /etc/systemd/system/enable-pci-rescan.service
+  f_makepkg.conf:
+    src: etc/makepkg.conf
+    dst: /etc/makepkg.conf
+  f_modprobe-hid_apple.conf:
+    src: etc/modprobe.d/hid_apple.conf
+    dst: /etc/modprobe.d/hid_apple.conf
+  f_modprobe-nvidia.conf:
+    src: etc/modprobe.d/nvidia.conf
+    dst: /etc/modprobe.d/nvidia.conf
+  f_modprobe-zfs.conf:
+    src: etc/modprobe.d/zfs.conf
+    dst: /etc/modprobe.d/zfs.conf
+  f_pacman-95-mkinitcpio-mirror.hook:
+    src: etc/pacman.d/hooks/95-mkinitcpio-mirror.hook
+    dst: /etc/pacman.d/hooks/95-mkinitcpio-mirror.hook
+  f_pacman-mkinitcpio-mirror:
+    src: etc/pacman.d/hooks.bin/mkinitcpio-mirror
+    dst: /etc/pacman.d/hooks.bin/mkinitcpio-mirror
+    chmod: '744'
+  f_pacman.conf:
+    src: etc/pacman.conf
+    dst: /etc/pacman.conf
+  f_reflector.conf:
+    src: etc/xdg/reflector/reflector.conf
+    dst: /etc/xdg/reflector/reflector.conf
+  f_ssh-agent.sh:
+    src: etc/profile.d/ssh-agent.sh
+    dst: /etc/profile.d/ssh-agent.sh
+  f_sshd_config:
+    src: etc/ssh/sshd_config
+    dst: /etc/ssh/sshd_config
+  f_sysctl-90-override.conf:
+    src: etc/sysctl.d/90-override.conf
+    dst: /etc/sysctl.d/90-override.conf
+  f_vconsole.conf:
+    src: etc/vconsole.conf
+    dst: /etc/vconsole.conf
+  f_xorg-00-keyboard.conf:
+    src: etc/X11/xorg.conf.d/00-keyboard.conf
+    dst: /etc/X11/xorg.conf.d/00-keyboard.conf
+  f_zramd-config:
+    src: etc/default/zramd
+    dst: /etc/default/zramd
+profiles:
+  mia:
+    dotfiles:
+      - f_bin-hypr
+      - f_bin-sync-files
+      - f_enable-pci-rescan
+      - f_enable-pci-rescan.service
+      - f_makepkg.conf
+      - f_modprobe-hid_apple.conf
+      - f_modprobe-nvidia.conf
+      - f_modprobe-zfs.conf
+      - f_pacman-95-mkinitcpio-mirror.hook
+      - f_pacman-mkinitcpio-mirror
+      - f_pacman.conf
+      - f_reflector.conf
+      - f_ssh-agent.sh
+      - f_sshd_config
+      - f_sysctl-90-override.conf
+      - f_vconsole.conf
+      - f_xorg-00-keyboard.conf
+      - f_zramd-config

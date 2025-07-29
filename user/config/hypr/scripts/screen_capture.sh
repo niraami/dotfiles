@@ -6,32 +6,34 @@ set -xe
 image_output_dir="$(xdg-user-dir PICTURES)/Screenshots"
 video_output_dir="$(xdg-user-dir VIDEOS)/Recordings"
 
-time_format="%Y-%m-%d_%H-%m-%S"
+time_format="%Y-%m-%d_%H-%M-%S"
 
 image_name_postfix=""
 video_name_postfix=""
 
 declare -A image_options=(
-    ["region"]="Capture region"
-    ["screen"]="Capture screen"
-    ["window"]="Capture window"
+    ["Capture region"]="region"
+    ["Capture screen"]="screen"
+    ["Capture window"]="window"
 )
 
 declare -A video_options=(
-    ["region"]="Record region"
-    ["screen"]="Record screen"
-    ["window"]="Record window"
+    ["Record region"]="region"
+    ["Record screen"]="screen"
+    ["Record window"]="window"
 )
 
 # Overridable variables
 action=""
+mode=""
 
 show_help() {
     cat <<EOF
 Usage: $0 -a ACTION
 
 Options:
-  -a, --action    Specify action: image, video
+  -a, --action    Specify action (image, video)
+  -m, --mode      Specify capture mode (region, window, output)
   -h, --help      Display this help and exit
 EOF
 }
@@ -46,6 +48,10 @@ while [[ $# -gt 0 ]]; do
             show_help
             exit 0
             ;;
+        -m|--mode)
+            mode="$2"
+            shift 2
+            ;;
         *)
             echo "Invalid option: $1" >&2
             show_help
@@ -57,46 +63,15 @@ done
 fuzzel_prompt() {
     local args=("$@")
     local options=$(printf "%s\n" "${args[@]}")
-    fuzzel \
+    local choice="$(fuzzel \
       --dmenu \
       --prompt "󰄀 " \
       --width 25 \
       --lines 6 \
       --log-level=none \
-      <<< "${options}"
-}
+      <<< "${options}")"
 
-get_region() {
-    slurp
-}
-
-get_screen() {
-    slurp -o
-}
-
-get_window() {
-    # Get current window and monitor layouts
-    windows=$(hyprctl clients -j)
-    monitors=$(hyprctl monitors -j)
-
-    # Filter out visible windows
-    # TODO: this currently keeps windows that are under other fullscreen windows
-    # TODO: fix selection geometry when two windows overlap (use client order)
-    visible_windows=$(
-        echo $windows | jq --argjson monitors "$monitors" '
-            map(select(
-                .workspace.id as $wid | $monitors | map(.activeWorkspace.id) | index($wid)
-            ))'
-    )
-
-    # Format window positions for slurp
-    window_regions=$(
-        jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' <<< $visible_windows
-    )
-
-    geometry=$(slurp -r <<< $window_regions)
-
-    echo $geometry
+    echo "${image_options["${choice}"]}"
 }
 
 notify_dialog() {
@@ -108,10 +83,9 @@ notify_dialog() {
         dunstify \
             --appname="Screen Capture" \
             --urgency="low" \
-            --icon="${2023-11-01_11-11-10.png}" \
+            --icon="${file_path}" \
             --action="open,Open file location" \
             --action="edit,Edit with swappy" \
-            --action="copy,Copy to clipboard" \
             "${summary}" "${body}"
     )"
 
@@ -123,9 +97,6 @@ notify_dialog() {
             swappy_file="${file_path%.*}_edit.${file_path##*.}"
             swappy --file "${file_path}"
             ;;
-        "copy")
-            wl-copy < "${file_path}"
-            ;;
         *)
             echo "how? ($notify_action)" >&2
             exit 1
@@ -134,32 +105,14 @@ notify_dialog() {
 }
 
 capture_image() {
-    choice="$(fuzzel_prompt "${image_options[@]}")"
+    if [ -z "$mode" ]; then
+        mode="$(fuzzel_prompt "${!image_options[@]}")"
 
-    geometry=""
-
-    case "${choice}" in
-        "${image_options[region]}")
-            geometry=$(get_region)
-            ;;
-        "${image_options[screen]}")
-            geometry=$(get_screen)
-            ;;
-        "${image_options[window]}")
-            geometry=$(get_window)
-            ;;
-        *)
-            echo "Invalid option: $choice" >&2
-            exit 1
-            ;;
-    esac
-
-    if [[ -z $geometry ]]; then
-        echo "Unable to get capture geometry" >&2
-        exit 1
+        # Wait for fuzzel to close
+        sleep 0.9
     fi
 
-    file_name=""
+    local file_name=""
 
     if [ -n "$image_name_postfix" ]; then
         file_name="$(date "+$time_format")_${image_name_postfix}"
@@ -167,17 +120,18 @@ capture_image() {
         file_name="$(date "+$time_format")"
     fi
 
-    output_path="${image_output_dir}/${file_name}.png"
+    local output_path="${image_output_dir}/${file_name}.png"
+    response="$(hyprshot --silent --freeze --mode "${mode}" --filename "Screenshots/${file_name}.png")"
 
-    grim -c -t png -g "${geometry}" "${output_path}"
-
-    if [[ $? == 0 ]]; then
+    # Prevent notification if user cancelled the capture
+    if [ -z "${response}" ]; then
+        sleep 0.2
         notify_dialog "Screen capture" "Capture saved to ${output_path}" "${output_path}" &
     fi
 }
 
 capture_video() {
-    choice="$(fuzzel_prompt "${video_options[@]}")"
+    choice="$(fuzzel_prompt "${!video_options[@]}")"
 }
 
 case "${action}" in

@@ -1,7 +1,11 @@
 profile default {
-  output DP-1 enable
-  output DP-2 enable
-  output DP-3 enable
+  # DP1
+  output "Dell Inc. DELL S2721DGF 7QPBP83" mode 2560x1440@165.08 position 1920,540
+  # DP2
+  output "Ancor Communications Inc ASUS VW247 C2LMTF038083" mode 1920x1080@60 position 4480,670
+  # DP3
+  output "Ancor Communications Inc ASUS VW247 C2LMTF053775" mode 1920x1080@60 position 0,670
+
   output HDMI-A-1 disable
 }
 
