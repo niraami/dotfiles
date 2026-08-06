@@ -83,6 +83,8 @@ dotfiles:
   d_systemd:
     src: config/systemd
     dst: ~/.config/systemd
+    instignore:
+      - '*.wants'
     upignore:
       - '*.wants'
     cmpignore:
@@ -188,7 +190,7 @@ dotfiles:
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
-    chmod: '600'
+    chmod: '644'
   f_p10k.zsh:
     src: p10k.zsh
     dst: ~/.p10k.zsh
@@ -207,6 +209,10 @@ dotfiles:
   f_pythonrc:
     src: config/python/pythonrc
     dst: ~/.config/python/pythonrc
+  f_qbittorrent-natpmp:
+    src: local/bin/qbittorrent-natpmp
+    dst: ~/.local/bin/qbittorrent-natpmp
+    chmod: '755'
   f_qbittorrent.conf:
     src: config/qBittorrent/qBittorrent.conf
     dst: ~/.config/qBittorrent/qBittorrent.conf
@@ -291,6 +297,7 @@ profiles:
       - d_blender
       - d_mpv
       - f_qbittorrent.conf
+      - f_qbittorrent-natpmp
       - f_xsettingsd.conf
       - f_flameshot_config
       - f_swappy_config
