@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-COLOR="$(hyprpicker --autocopy --no-fancy --render-inactive)"
+set -eu -o pipefail
 
+COLOR="$(hyprpicker --autocopy --no-fancy --render-inactive)"
 notify-send "Color Picker" "$COLOR"

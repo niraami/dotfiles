@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -xe
+set -xe -o pipefail
 
 # Static variables
 image_output_dir="$(xdg-user-dir PICTURES)/Screenshots"
