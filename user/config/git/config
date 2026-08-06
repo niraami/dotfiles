@@ -9,3 +9,9 @@
 	email = istok.public@gmail.com
 	name = niraami
 	signingkey = 77E80D784123CCED
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[credential]
+	helper = libsecret
