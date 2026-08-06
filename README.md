@@ -9,7 +9,7 @@ Dotfiles - also known as: *I'm never using linux again If I lose these files*.
 - Compositor: [hyprland](https://hyprland.org/) (Wayland)
 - Bar: [waybar](https://github.com/Alexays/Waybar)
 - Notification daemon: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
-- Wallpaper daemon: [swww](https://github.com/Horus645/swww)
+- Wallpaper daemon: [awww](https://codeberg.org/LGFae/awww)
 - Color scheme:
   - [colloid-gtk](https://github.com/vinceliuice/Colloid-gtk-theme) (purple dark compact)
   - [colloid-kde](https://github.com/vinceliuice/Colloid-kde) (dark + [kvantum](https://github.com/tsujan/Kvantum))

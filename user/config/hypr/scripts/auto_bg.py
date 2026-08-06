@@ -21,10 +21,10 @@ def main(args):
     if (args.per_output):
       for output in get_outputs():
         image_path: str = random.choice(images)
-        subprocess.run(['swww', 'img', '--outputs', output, image_path], check=True)
+        subprocess.run(['awww', 'img', '--outputs', output, image_path], check=True)
     else:
       image_path: str = random.choice(images)
-      subprocess.run(['swww', 'img', image_path], check=True)
+      subprocess.run(['awww', 'img', image_path], check=True)
 
     if not args.cycle:
       return

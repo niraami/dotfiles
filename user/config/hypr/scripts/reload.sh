@@ -2,6 +2,8 @@
 
 set -eu -o pipefail
 
+script_dir="$HOME/.config/hypr/scripts"
+
 # Hyprland
 hyprctl reload
 
@@ -9,7 +11,10 @@ hyprctl reload
 if [[ $(pgrep waybar) ]]; then
   killall waybar
 fi
-hyprctl dispatch exec waybar
+hyprctl dispatch exec "waybar"
 
 # Sunsetr
 hyprctl dispatch exec "sunsetr --reload"
+
+# Wallpaper
+"${script_dir}/auto_bg.py" --per-output ~/.wallpapers/Landscape
