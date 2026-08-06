@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh NAT-PMP port mapping and update qBittorrent
+BindsTo=sys-subsystem-net-devices-tun10.device
+After=sys-subsystem-net-devices-tun10.device
+
+[Service]
+ExecStart=%h/.local/bin/qbittorrent-natpmp
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=sys-subsystem-net-devices-tun10.device

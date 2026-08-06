@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Keep a ProtonVPN NAT-PMP port mapping alive while tun10 is up and
+# propagate the mapped port to qBittorrent: live via the WebUI API when
+# qBittorrent is running, or via qBittorrent.conf when it isn't.
+
+set -u
+
+readonly IFACE=tun10
+readonly GATEWAY=10.96.0.1
+readonly LIFETIME=60
+readonly INTERVAL=45
+readonly QBIT_API=http://127.0.0.1:8080/api/v2
+readonly QBIT_CONF="$HOME/.config/qBittorrent/qBittorrent.conf"
+
+map_port() {
+    natpmpc -a 1 0 "$1" "$LIFETIME" -g "$GATEWAY" 2>/dev/null |
+        grep -oP 'Mapped public port \K[0-9]+'
+}
+
+apply_port() {
+    local port=$1
+    if curl -fsS -H "Referer: http://127.0.0.1:8080" \
+            -d "json={\"listen_port\":$port}" \
+            "$QBIT_API/app/setPreferences" >/dev/null; then
+        echo "listen_port updated to $port via WebUI API (live, no restart)"
+    elif sed -i 's|^Session\\Port=.*|Session\\Port='"$port"'|' "$QBIT_CONF"; then
+        echo "qBittorrent not running; Session\\Port=$port written to qBittorrent.conf"
+    else
+        echo "Failed to apply port $port" >&2
+        return 1
+    fi
+}
+
+last_port=
+while ip link show dev "$IFACE" &>/dev/null; do
+    port=$(map_port udp)
+    if [[ -n $port ]]; then
+        tcp_port=$(map_port tcp)
+        if [[ -n $tcp_port && $tcp_port != "$port" ]]; then
+            echo "Warning: UDP port $port differs from TCP port $tcp_port" >&2
+        fi
+        if [[ $port != "$last_port" ]]; then
+            apply_port "$port" && last_port=$port
+        fi
+    else
+        echo "natpmpc failed; retrying in ${INTERVAL}s" >&2
+    fi
+    sleep "$INTERVAL"
+done
