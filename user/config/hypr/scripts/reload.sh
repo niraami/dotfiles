@@ -12,4 +12,4 @@ fi
 hyprctl dispatch exec waybar
 
 # Sunsetr
-hyprctl dispatch sunsetr --reload
+hyprctl dispatch exec "sunsetr --reload"

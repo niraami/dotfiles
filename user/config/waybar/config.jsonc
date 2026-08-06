@@ -24,7 +24,6 @@
         "custom/updates",
         "tray",
         "idle_inhibitor",
-        "custom/night_light_toggle",
         "custom/notifications"
     ],
     "hyprland/workspaces": {
@@ -171,22 +170,6 @@
         "tooltip" : true,
 
         "on-click": "$XDG_CONFIG_HOME/waybar/scripts/waybar-updates.py"
-    },
-    "custom/night_light_toggle": {
-        "format": "{icon}",
-        "format-icons": {
-            "on": "󱩌",
-            "off": "󱩍"
-        },
-        "tooltip": true,
-
-        "exec": "$XDG_CONFIG_HOME/hypr/scripts/night_light.sh -a get_state",
-        "exec-if": "sleep 0.1", // Give enough time for the on-click script to run
-        "exec-on-event": true,
-        "return-type": "json",
-        "interval": 1,
-
-        "on-click": "$XDG_CONFIG_HOME/hypr/scripts/night_light.sh -a toggle"
     },
     "idle_inhibitor": {
         "format": "{icon} ",
