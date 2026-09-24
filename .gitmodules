@@ -37,3 +37,6 @@
 [submodule "user/local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp"]
 	path = user/local/share/ulauncher/extensions/com.github.brpaz.ulauncher-timestamp
 	url = https://github.com/brpaz/ulauncher-timestamp.git
+[submodule "user/config/hypr/plugins/split-monitor-workspaces"]
+	path = user/config/hypr/plugins/split-monitor-workspaces
+	url = https://github.com/zjeffer/split-monitor-workspaces

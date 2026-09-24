@@ -47,5 +47,4 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export LIBSEAT_BACKEND=logind
 
 # exec Hyprland
-#exec Hyprland 2&>1 /tmp/hyprland-$(date +%Y%m%d%H%M%S).log
-Hyprland
+start-hyprland
