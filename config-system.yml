@@ -30,9 +30,6 @@ dotfiles:
   f_modprobe-hid_apple.conf:
     src: etc/modprobe.d/hid_apple.conf
     dst: /etc/modprobe.d/hid_apple.conf
-  f_modprobe-nvidia.conf:
-    src: etc/modprobe.d/nvidia.conf
-    dst: /etc/modprobe.d/nvidia.conf
   f_modprobe-zfs.conf:
     src: etc/modprobe.d/zfs.conf
     dst: /etc/modprobe.d/zfs.conf
@@ -76,7 +73,6 @@ profiles:
       - f_enable-pci-rescan.service
       - f_makepkg.conf
       - f_modprobe-hid_apple.conf
-      - f_modprobe-nvidia.conf
       - f_modprobe-zfs.conf
       - f_pacman-95-mkinitcpio-mirror.hook
       - f_pacman-mkinitcpio-mirror
