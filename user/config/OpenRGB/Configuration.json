@@ -1,0 +1,2886 @@
+{
+    "controllers": [
+        {
+            "active_mode": 0,
+            "colors": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "description": "Corsair Lighting Node Device",
+            "display_name": "",
+            "flags": 0,
+            "leds": [
+                {
+                    "name": "Corsair Channel 1, LED 1"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 2"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 3"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 4"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 5"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 6"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 7"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 8"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 9"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 10"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 11"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 12"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 13"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 14"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 15"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 16"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 17"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 18"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 19"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 20"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 21"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 22"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 23"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 24"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 25"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 26"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 27"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 28"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 29"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 30"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 31"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 32"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 33"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 34"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 35"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 36"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 37"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 38"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 39"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 40"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 41"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 42"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 43"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 44"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 45"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 46"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 47"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 48"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 49"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 50"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 51"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 52"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 53"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 54"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 55"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 56"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 57"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 58"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 59"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 60"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 61"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 62"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 63"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 64"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 65"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 66"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 67"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 68"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 69"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 70"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 71"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 72"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 73"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 74"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 75"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 76"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 77"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 78"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 79"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 80"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 81"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 82"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 83"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 84"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 85"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 86"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 87"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 88"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 89"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 90"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 91"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 92"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 93"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 94"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 95"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 96"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 97"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 98"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 99"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 100"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 101"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 102"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 103"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 104"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 105"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 106"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 107"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 108"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 109"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 110"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 111"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 112"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 113"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 114"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 115"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 116"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 117"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 118"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 119"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 120"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 121"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 122"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 123"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 124"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 125"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 126"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 127"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 128"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 129"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 130"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 131"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 132"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 133"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 134"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 135"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 136"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 137"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 138"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 139"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 140"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 141"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 142"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 143"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 144"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 145"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 146"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 147"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 148"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 149"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 150"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 151"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 152"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 153"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 154"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 155"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 156"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 157"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 158"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 159"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 160"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 161"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 162"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 163"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 164"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 165"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 166"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 167"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 168"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 169"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 170"
+                }
+            ],
+            "location": "HID: /dev/hidraw4",
+            "modes": [
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 32,
+                    "name": "Direct",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 1,
+                    "flags": 531,
+                    "name": "Rainbow Wave",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Color Shift",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Color Pulse",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Color Wave",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 592,
+                    "name": "Static",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "colors_max": 3,
+                    "colors_min": 3,
+                    "direction": 0,
+                    "flags": 592,
+                    "name": "Temperature",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Visor",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Marquee",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Blink",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Sequential",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 529,
+                    "name": "Rainbow",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                }
+            ],
+            "name": "Corsair Lighting Node Core",
+            "serial": "3B40020AA7247EAFE72BD55F051C00F5",
+            "type": 4,
+            "vendor": "Corsair",
+            "version": "0.9.16",
+            "zones": [
+                {
+                    "display_name": "",
+                    "flags": 4098,
+                    "leds_count": 170,
+                    "leds_max": 204,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Corsair Channel 1",
+                    "type": 1
+                },
+                {
+                    "display_name": "",
+                    "flags": 2,
+                    "leds_count": 0,
+                    "leds_max": 204,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Corsair Channel 2",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "active_mode": 0,
+            "colors": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "description": "Corsair Lighting Node Device",
+            "display_name": "",
+            "flags": 0,
+            "leds": [
+                {
+                    "name": "Corsair Channel 1, LED 1"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 2"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 3"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 4"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 5"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 6"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 7"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 8"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 9"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 10"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 11"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 12"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 13"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 14"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 15"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 16"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 17"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 18"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 19"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 20"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 21"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 22"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 23"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 24"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 25"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 26"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 27"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 28"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 29"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 30"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 31"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 32"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 33"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 34"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 35"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 36"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 37"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 38"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 39"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 40"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 41"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 42"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 43"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 44"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 45"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 46"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 47"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 48"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 49"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 50"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 51"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 52"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 53"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 54"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 55"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 56"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 57"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 58"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 59"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 60"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 61"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 62"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 63"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 64"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 65"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 66"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 67"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 68"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 69"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 70"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 71"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 72"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 73"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 74"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 75"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 76"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 77"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 78"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 79"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 80"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 81"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 82"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 83"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 84"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 85"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 86"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 87"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 88"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 89"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 90"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 91"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 92"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 93"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 94"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 95"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 96"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 97"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 98"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 99"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 100"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 101"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 102"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 103"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 104"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 105"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 106"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 107"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 108"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 109"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 110"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 111"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 112"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 113"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 114"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 115"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 116"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 117"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 118"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 119"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 120"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 121"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 122"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 123"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 124"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 125"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 126"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 127"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 128"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 129"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 130"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 131"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 132"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 133"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 134"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 135"
+                },
+                {
+                    "name": "Corsair Channel 1, LED 136"
+                }
+            ],
+            "location": "HID: /dev/hidraw9",
+            "modes": [
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 32,
+                    "name": "Direct",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 1,
+                    "flags": 531,
+                    "name": "Rainbow Wave",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Color Shift",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Color Pulse",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Color Wave",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 592,
+                    "name": "Static",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "colors_max": 3,
+                    "colors_min": 3,
+                    "direction": 0,
+                    "flags": 592,
+                    "name": "Temperature",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Visor",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Marquee",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0,
+                        0
+                    ],
+                    "colors_max": 2,
+                    "colors_min": 2,
+                    "direction": 0,
+                    "flags": 721,
+                    "name": "Blink",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 1,
+                    "flags": 723,
+                    "name": "Sequential",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 529,
+                    "name": "Rainbow",
+                    "speed": 1,
+                    "speed_max": 0,
+                    "speed_min": 2
+                }
+            ],
+            "name": "Corsair Lighting Node Core",
+            "serial": "3380020A44807DAF03E6C75F041C00F5",
+            "type": 4,
+            "vendor": "Corsair",
+            "version": "0.9.16",
+            "zones": [
+                {
+                    "display_name": "",
+                    "flags": 4098,
+                    "leds_count": 136,
+                    "leds_max": 204,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Corsair Channel 1",
+                    "type": 1
+                },
+                {
+                    "display_name": "",
+                    "flags": 2,
+                    "leds_count": 0,
+                    "leds_max": 204,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Corsair Channel 2",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "active_mode": 0,
+            "colors": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "description": "ASUS Aura USB Device",
+            "display_name": "",
+            "flags": 0,
+            "leds": [
+                {
+                    "name": "Aura Mainboard, LED 1"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 1"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 2"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 3"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 4"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 5"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 6"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 7"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 8"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 9"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 10"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 11"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 12"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 13"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 14"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 15"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 16"
+                },
+                {
+                    "name": "Aura Addressable 1, LED 17"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 1"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 2"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 3"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 4"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 5"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 6"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 7"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 8"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 9"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 10"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 11"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 12"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 13"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 14"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 15"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 16"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 17"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 18"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 19"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 20"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 21"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 22"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 23"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 24"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 25"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 26"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 27"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 28"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 29"
+                },
+                {
+                    "name": "Aura Addressable 2, LED 30"
+                }
+            ],
+            "location": "HID: /dev/hidraw8",
+            "modes": [
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 32,
+                    "name": "Direct",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 0,
+                    "name": "Off",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Static",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Breathing",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Flashing",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 0,
+                    "name": "Spectrum Cycle",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 0,
+                    "name": "Rainbow",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Chase Fade",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Chase",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                }
+            ],
+            "name": "ASUS ProArt X570-CREATOR WIFI",
+            "serial": "9876543210",
+            "type": 0,
+            "vendor": "ASUS",
+            "version": "AULA3-AR32-0207",
+            "zones": [
+                {
+                    "display_name": "",
+                    "flags": 4096,
+                    "leds_count": 1,
+                    "leds_max": 1,
+                    "leds_min": 1,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Aura Mainboard",
+                    "type": 1
+                },
+                {
+                    "display_name": "",
+                    "flags": 4098,
+                    "leds_count": 17,
+                    "leds_max": 120,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Aura Addressable 1",
+                    "type": 1
+                },
+                {
+                    "display_name": "",
+                    "flags": 4098,
+                    "leds_count": 30,
+                    "leds_max": 120,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Aura Addressable 2",
+                    "type": 1
+                },
+                {
+                    "display_name": "",
+                    "flags": 2,
+                    "leds_count": 0,
+                    "leds_max": 120,
+                    "leds_min": 0,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Aura Addressable 3",
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "active_mode": 1,
+            "colors": [
+                0,
+                0
+            ],
+            "description": "Logitech Wireless Lightspeed Device",
+            "display_name": "",
+            "flags": 0,
+            "leds": [
+                {
+                    "name": "Primary LED"
+                },
+                {
+                    "name": "Logo LED"
+                }
+            ],
+            "location": "HID: /dev/hidraw3 (Receiver) \r\nWireless Index: 255",
+            "modes": [
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 0,
+                    "name": "Off",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 32,
+                    "name": "Direct",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 1,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 48,
+                    "name": "Static",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 1,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 17,
+                    "name": "Spectrum Cycle",
+                    "speed": 50,
+                    "speed_max": 10,
+                    "speed_min": 200
+                },
+                {
+                    "brightness": 100,
+                    "brightness_max": 100,
+                    "brightness_min": 1,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 49,
+                    "name": "Breathing",
+                    "speed": 50,
+                    "speed_max": 10,
+                    "speed_min": 200
+                }
+            ],
+            "name": "G Pro Wireless Gaming Mouse",
+            "serial": "",
+            "type": 6,
+            "vendor": "Logitech",
+            "version": "",
+            "zones": [
+                {
+                    "display_name": "",
+                    "flags": 4096,
+                    "leds_count": 1,
+                    "leds_max": 1,
+                    "leds_min": 1,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Primary Zone",
+                    "type": 0
+                },
+                {
+                    "display_name": "",
+                    "flags": 4096,
+                    "leds_count": 1,
+                    "leds_max": 1,
+                    "leds_min": 1,
+                    "matrix_map": {
+                        "height": 0,
+                        "width": 0
+                    },
+                    "name": "Logo Zone",
+                    "type": 0
+                }
+            ]
+        },
+        {
+            "active_mode": 0,
+            "colors": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "description": "Logitech G915TKL Keyboard Device",
+            "display_name": "",
+            "flags": 0,
+            "leds": [
+                {
+                    "name": "Key: A"
+                },
+                {
+                    "name": "Key: B"
+                },
+                {
+                    "name": "Key: C"
+                },
+                {
+                    "name": "Key: D"
+                },
+                {
+                    "name": "Key: E"
+                },
+                {
+                    "name": "Key: F"
+                },
+                {
+                    "name": "Key: G"
+                },
+                {
+                    "name": "Key: H"
+                },
+                {
+                    "name": "Key: I"
+                },
+                {
+                    "name": "Key: J"
+                },
+                {
+                    "name": "Key: K"
+                },
+                {
+                    "name": "Key: L"
+                },
+                {
+                    "name": "Key: M"
+                },
+                {
+                    "name": "Key: N"
+                },
+                {
+                    "name": "Key: O"
+                },
+                {
+                    "name": "Key: P"
+                },
+                {
+                    "name": "Key: Q"
+                },
+                {
+                    "name": "Key: R"
+                },
+                {
+                    "name": "Key: S"
+                },
+                {
+                    "name": "Key: T"
+                },
+                {
+                    "name": "Key: U"
+                },
+                {
+                    "name": "Key: V"
+                },
+                {
+                    "name": "Key: W"
+                },
+                {
+                    "name": "Key: X"
+                },
+                {
+                    "name": "Key: Y"
+                },
+                {
+                    "name": "Key: Z"
+                },
+                {
+                    "name": "Key: 1"
+                },
+                {
+                    "name": "Key: 2"
+                },
+                {
+                    "name": "Key: 3"
+                },
+                {
+                    "name": "Key: 4"
+                },
+                {
+                    "name": "Key: 5"
+                },
+                {
+                    "name": "Key: 6"
+                },
+                {
+                    "name": "Key: 7"
+                },
+                {
+                    "name": "Key: 8"
+                },
+                {
+                    "name": "Key: 9"
+                },
+                {
+                    "name": "Key: 0"
+                },
+                {
+                    "name": "Key: Enter"
+                },
+                {
+                    "name": "Key: Escape"
+                },
+                {
+                    "name": "Key: Backspace"
+                },
+                {
+                    "name": "Key: Tab"
+                },
+                {
+                    "name": "Key: Space"
+                },
+                {
+                    "name": "Key: -"
+                },
+                {
+                    "name": "Key: ="
+                },
+                {
+                    "name": "Key: ["
+                },
+                {
+                    "name": "Key: ]"
+                },
+                {
+                    "name": "Key: \\ (ANSI)"
+                },
+                {
+                    "name": "Key: #"
+                },
+                {
+                    "name": "Key: ;"
+                },
+                {
+                    "name": "Key: '"
+                },
+                {
+                    "name": "Key: `"
+                },
+                {
+                    "name": "Key: ,"
+                },
+                {
+                    "name": "Key: ."
+                },
+                {
+                    "name": "Key: /"
+                },
+                {
+                    "name": "Key: Caps Lock"
+                },
+                {
+                    "name": "Key: F1"
+                },
+                {
+                    "name": "Key: F2"
+                },
+                {
+                    "name": "Key: F3"
+                },
+                {
+                    "name": "Key: F4"
+                },
+                {
+                    "name": "Key: F5"
+                },
+                {
+                    "name": "Key: F6"
+                },
+                {
+                    "name": "Key: F7"
+                },
+                {
+                    "name": "Key: F8"
+                },
+                {
+                    "name": "Key: F9"
+                },
+                {
+                    "name": "Key: F10"
+                },
+                {
+                    "name": "Key: F11"
+                },
+                {
+                    "name": "Key: F12"
+                },
+                {
+                    "name": "Key: Print Screen"
+                },
+                {
+                    "name": "Key: Scroll Lock"
+                },
+                {
+                    "name": "Key: Pause/Break"
+                },
+                {
+                    "name": "Key: Insert"
+                },
+                {
+                    "name": "Key: Home"
+                },
+                {
+                    "name": "Key: Page Up"
+                },
+                {
+                    "name": "Key: Delete"
+                },
+                {
+                    "name": "Key: End"
+                },
+                {
+                    "name": "Key: Page Down"
+                },
+                {
+                    "name": "Key: Right Arrow"
+                },
+                {
+                    "name": "Key: Left Arrow"
+                },
+                {
+                    "name": "Key: Down Arrow"
+                },
+                {
+                    "name": "Key: Up Arrow"
+                },
+                {
+                    "name": "Key: \\ (ISO)"
+                },
+                {
+                    "name": "Key: Menu"
+                },
+                {
+                    "name": "Key: Left Control"
+                },
+                {
+                    "name": "Key: Left Shift"
+                },
+                {
+                    "name": "Key: Left Alt"
+                },
+                {
+                    "name": "Key: Left Windows"
+                },
+                {
+                    "name": "Key: Right Control"
+                },
+                {
+                    "name": "Key: Right Shift"
+                },
+                {
+                    "name": "Key: Right Alt"
+                },
+                {
+                    "name": "Key: Right Windows"
+                },
+                {
+                    "name": "Key: Media Previous"
+                },
+                {
+                    "name": "Key: Media Play/Pause"
+                },
+                {
+                    "name": "Key: Media Next"
+                },
+                {
+                    "name": "Key: Media Mute"
+                },
+                {
+                    "name": "Logo"
+                },
+                {
+                    "name": "Key: Brightness"
+                }
+            ],
+            "location": "",
+            "modes": [
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 1,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 32,
+                    "name": "Direct",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        16711680
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 64,
+                    "name": "Static",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 0,
+                    "name": "Off",
+                    "speed": 0,
+                    "speed_max": 0,
+                    "speed_min": 0
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 0,
+                    "colors_max": 0,
+                    "colors_min": 0,
+                    "direction": 0,
+                    "flags": 1,
+                    "name": "Cycle",
+                    "speed": 50,
+                    "speed_max": 10,
+                    "speed_min": 200
+                },
+                {
+                    "brightness": 0,
+                    "brightness_max": 0,
+                    "brightness_min": 0,
+                    "color_mode": 2,
+                    "colors": [
+                        0
+                    ],
+                    "colors_max": 1,
+                    "colors_min": 1,
+                    "direction": 0,
+                    "flags": 65,
+                    "name": "Breathing",
+                    "speed": 50,
+                    "speed_max": 10,
+                    "speed_min": 200
+                }
+            ],
+            "name": "Logitech G915TKL Wireless RGB Mechanical Gaming Keyboard",
+            "serial": "",
+            "type": 5,
+            "vendor": "Logitech",
+            "version": "",
+            "zones": [
+                {
+                    "display_name": "",
+                    "flags": 4096,
+                    "leds_count": 95,
+                    "leds_max": 95,
+                    "leds_min": 95,
+                    "matrix_map": {
+                        "height": 7,
+                        "map": [
+                            93,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            94,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            89,
+                            90,
+                            91,
+                            92,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            37,
+                            4294967295,
+                            54,
+                            55,
+                            56,
+                            57,
+                            4294967295,
+                            58,
+                            59,
+                            60,
+                            61,
+                            4294967295,
+                            62,
+                            63,
+                            64,
+                            65,
+                            4294967295,
+                            66,
+                            67,
+                            68,
+                            49,
+                            26,
+                            27,
+                            28,
+                            29,
+                            30,
+                            31,
+                            32,
+                            33,
+                            34,
+                            35,
+                            4294967295,
+                            41,
+                            42,
+                            38,
+                            4294967295,
+                            4294967295,
+                            69,
+                            70,
+                            71,
+                            39,
+                            4294967295,
+                            16,
+                            22,
+                            4,
+                            17,
+                            4294967295,
+                            19,
+                            24,
+                            20,
+                            8,
+                            14,
+                            15,
+                            43,
+                            44,
+                            45,
+                            4294967295,
+                            72,
+                            73,
+                            74,
+                            53,
+                            4294967295,
+                            0,
+                            18,
+                            3,
+                            5,
+                            4294967295,
+                            6,
+                            7,
+                            9,
+                            10,
+                            11,
+                            47,
+                            48,
+                            46,
+                            36,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            82,
+                            79,
+                            25,
+                            23,
+                            2,
+                            21,
+                            4294967295,
+                            1,
+                            4294967295,
+                            13,
+                            12,
+                            50,
+                            51,
+                            52,
+                            86,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            78,
+                            4294967295,
+                            81,
+                            84,
+                            83,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            40,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            4294967295,
+                            87,
+                            88,
+                            80,
+                            85,
+                            4294967295,
+                            76,
+                            77,
+                            75
+                        ],
+                        "width": 20
+                    },
+                    "name": "Keyboard",
+                    "type": 2
+                }
+            ]
+        }
+    ],
+    "profile_name": "Controller Configuration",
+    "profile_version": 6
+}
