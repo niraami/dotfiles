@@ -12,5 +12,5 @@ response=$(yad --title="Confirmation" \
 
 # Check the response and execute the command if necessary
 if [ $? -eq 1 -o $? -eq 70 -o $? -eq 255 ]; then
-    hyprctl dispatch exit 0
+    hyprshutdown
 fi

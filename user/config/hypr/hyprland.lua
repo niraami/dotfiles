@@ -440,6 +440,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("killall -eqw hypridle; hypridle")
     hl.exec_cmd("playerctld daemon")
     hl.exec_cmd("wayvnc --output DP-1")
+    hl.exec_cmd("corectrl --minimize-systray")
     -- hl.exec_cmd("sunsetr")
 
     -- Set background

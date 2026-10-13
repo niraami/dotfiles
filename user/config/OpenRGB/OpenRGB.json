@@ -12,7 +12,8 @@
         "setprofile": false,
         "setserver": false,
         "setserverhost": false,
-        "setserverport": false
+        "setserverport": false,
+        "start_minimized": true
     },
     "CorsairDominatorSettings": {
         "model": "CMT"

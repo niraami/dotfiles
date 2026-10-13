@@ -172,9 +172,6 @@ dotfiles:
   f_index.theme:
     src: icons/default/index.theme
     dst: ~/.icons/default/index.theme
-  f_kanshi_config:
-    src: config/kanshi/config
-    dst: ~/.config/kanshi/config
   f_keepassxc.ini:
     src: config/keepassxc/keepassxc.ini
     dst: ~/.config/keepassxc/keepassxc.ini
@@ -308,7 +305,6 @@ profiles:
       - d_wofi
       - f_hypr-monitorctl
       - f_hypr-fixworkspaces
-      - f_kanshi_config
       - f_hyprsunset.conf
       - f_reload.sh
       - f_sunsetr.toml
