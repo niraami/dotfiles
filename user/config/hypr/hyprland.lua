@@ -368,12 +368,12 @@ hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("xf86-audio-control mute-toggle
 hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("xf86-audio-control mic-toggle"))
 
 -- Screen capture keys
-hl.bind("Print",                hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action image --mode region"))
-hl.bind("CTRL + Print",         hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action image --mode output"))
-hl.bind("ALT + Print",          hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action image --mode window"))
-hl.bind("SHIFT + Print",        hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action video --mode region"))
-hl.bind("SHIFT + CTRL + Print", hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action video --mode output"))
-hl.bind("SHIFT + ALT + Print",  hl.dsp.exec_cmd(scriptDir .. "/screen_capture.sh --action video --mode window"))
+hl.bind("Print",                hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action image --mode region"))
+hl.bind("CTRL + Print",         hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action image --mode output"))
+hl.bind("ALT + Print",          hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action image --mode window"))
+hl.bind("SHIFT + Print",        hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action video --mode region"))
+hl.bind("SHIFT + CTRL + Print", hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action video --mode output"))
+hl.bind("SHIFT + ALT + Print",  hl.dsp.exec_cmd(scriptDir .. "/hypr_capture.py --action video --mode window"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
