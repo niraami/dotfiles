@@ -292,6 +292,11 @@ hl.window_rule({ match = { class = "^(ulauncher)$" }, stay_focused = true })
 -- Fix MEGASync tray popout window
 hl.window_rule({ match = { class = "^(megasync)$" }, float = true })
 
+-- kitty -1 (single-instance): new OS windows inherit the maximized state of an
+-- existing window via remember_window_size -- block client maximize requests.
+-- SUPER+F still works, as it's a compositor-side dispatcher.
+hl.window_rule({ match = { class = "^(kitty|ranger)$" }, suppress_event = "maximize" })
+
 -- Pip rules
 hl.window_rule({ match = { title = "^(Picture in picture)$" }, float = true })
 hl.window_rule({ match = { title = "^(Picture in picture)$" }, max_size = { 800, 450 } })
