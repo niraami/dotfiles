@@ -43,9 +43,6 @@ dotfiles:
     src: config/gtk-3.0
     dst: ~/.config/gtk-3.0
     chmod: '700'
-  d_gtklock:
-    src: config/gtklock
-    dst: ~/.config/gtklock
   d_hypr:
     src: config/hypr
     dst: ~/.config/hypr
@@ -123,9 +120,6 @@ dotfiles:
   f_code-flags.conf:
     src: config/code-flags.conf
     dst: ~/.config/code-flags.conf
-  f_config:
-    src: config/swayidle/config
-    dst: ~/.config/swayidle/config
   f_config.conf:
     src: config/neofetch/config.conf
     dst: ~/.config/neofetch/config.conf
@@ -272,7 +266,6 @@ profiles:
       - f_pythonrc
       - d_qt5ct
       - d_ranger
-      - f_config
       - f_config.json
       - f_uca.xml
       - d_waybar
@@ -298,7 +291,6 @@ profiles:
       - f_xsettingsd.conf
       - f_flameshot_config
       - f_swappy_config
-      - d_gtklock
       - f_get-iommu-groups
       - f_setup-pipewire-nodes
       - f_extract-audio-streams
