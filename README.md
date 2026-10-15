@@ -6,15 +6,18 @@ Dotfiles - also known as: *I'm never using linux again If I lose these files*.
 
 ## Environment
 - Distribution: [Arch Linux](https://www.archlinux.org/)
-- Compositor: [hyprland](https://hyprland.org/) (Wayland)
+- Compositor: [hyprland](https://hypr.land/) (Wayland)
 - Bar: [waybar](https://github.com/Alexays/Waybar)
+- App launcher: [ulauncher](https://ulauncher.io/)
 - Notification daemon: [swaync](https://github.com/ErikReider/SwayNotificationCenter)
 - Wallpaper daemon: [awww](https://codeberg.org/LGFae/awww)
+- Idle daemon: [hypridle](https://github.com/hyprwm/hypridle)
+- Screen lock: [hyprlock](https://github.com/hyprwm/hyprlock)
 - Color scheme:
   - [colloid-gtk](https://github.com/vinceliuice/Colloid-gtk-theme) (purple dark compact)
   - [colloid-kde](https://github.com/vinceliuice/Colloid-kde) (dark + [kvantum](https://github.com/tsujan/Kvantum))
   - [papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) (dark)
-- Fonts: [Roboto](https://fonts.google.com/specimen/Roboto), [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
+- Fonts: [Roboto](https://fonts.google.com/specimen/Roboto), [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans), [DejaVu Sans Mono](https://dejavu-fonts.github.io/) (terminal)
 
 ## Applications
 - Shell: [zsh](https://www.zsh.org/)
@@ -24,7 +27,10 @@ Dotfiles - also known as: *I'm never using linux again If I lose these files*.
 - Media player: [mpv](https://mpv.io/)
 - Music: [tidal-hifi](https://github.com/Mastermindzh/tidal-hifi)
 - Browsers: [brave](https://brave.com/), [firefox](https://www.mozilla.org/en-US/firefox/)
-- Screenshot tool: [hyprshot](https://github.com/Gustash/Hyprshot)
+- Screen capture:
+  - [hyprshot](https://github.com/Gustash/Hyprshot)
+  - [wf-recorder](https://github.com/ammen99/wf-recorder)
+  - wrapped by a custom script ([hypr_capture.py](user/config/hypr/scripts/hypr_capture.py))
 - AUR helper: [yay](https://github.com/Jguer/yay)
 
 # Dotfiles manager
