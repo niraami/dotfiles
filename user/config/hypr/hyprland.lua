@@ -264,8 +264,11 @@ hl.window_rule({ match = { class = "^(Rofi)$" },                  float = true }
 hl.window_rule({ match = { class = "^(file-roller)$" },           float = true })
 hl.window_rule({ match = { class = "^(thunar)$", title = "^(.*Progress.*)$" }, float = true })
 -- PORTING NOTE: original used a non-RE2 negative lookahead (`^(?!qBittorrent).*$`);
--- rewritten with the documented `negative:` prefix.
-hl.window_rule({ match = { class = "^(.*qBittorrent.*)$", title = "negative:^qBittorrent" }, float = true })
+-- rewritten with the documented `negative:` prefix. NOTE: rule props are
+-- full-matched (RE2 FullMatch), so the pattern must consume the whole title --
+-- `negative:^qBittorrent` alone would negate "exactly qBittorrent" and float the
+-- main window ("qBittorrent vX.Y.Z") too.
+hl.window_rule({ match = { class = "^(.*qBittorrent.*)$", title = "negative:^qBittorrent.*" }, float = true })
 
 -- Force thunderbird to tile (systray fix)
 hl.window_rule({ match = { class = "^(thunderbird)$", title = "^(.*Mozilla Thunderbird)$", float = true }, tile = true })
