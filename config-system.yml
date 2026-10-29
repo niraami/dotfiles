@@ -55,6 +55,10 @@ dotfiles:
   f_sysctl-90-override.conf:
     src: etc/sysctl.d/90-override.conf
     dst: /etc/sysctl.d/90-override.conf
+  f_system-sleep-atlantic-reload:
+    src: usr/lib/systemd/system-sleep/atlantic-reload
+    dst: /usr/lib/systemd/system-sleep/atlantic-reload
+    chmod: '755'
   f_vconsole.conf:
     src: etc/vconsole.conf
     dst: /etc/vconsole.conf
@@ -81,6 +85,7 @@ profiles:
       - f_ssh-agent.sh
       - f_sshd_config
       - f_sysctl-90-override.conf
+      - f_system-sleep-atlantic-reload
       - f_vconsole.conf
       - f_xorg-00-keyboard.conf
       - f_zramd-config

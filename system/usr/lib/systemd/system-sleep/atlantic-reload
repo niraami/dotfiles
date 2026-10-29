@@ -1,0 +1,27 @@
+#!/bin/sh
+# Work around the atlantic (Aquantia AQC) driver failing to resume when it can't
+# get contiguous memory for its rings, which leaves rtnl_lock held forever in
+# aq_nic_stop -> napi_disable. Unload it before sleep, compact memory and load
+# it fresh after wake so a failed allocation can only lose the NIC.
+
+MODULE=atlantic
+STATE=/run/atlantic-reload.unloaded
+
+compact() { echo 1 > /proc/sys/vm/compact_memory; }
+
+case "$1" in
+  pre)
+    if [ -d "/sys/module/$MODULE" ]; then
+      modprobe -r "$MODULE" && touch "$STATE" || echo "failed to unload $MODULE" >&2
+    fi
+    compact
+    ;;
+  post)
+    if [ -e "$STATE" ]; then
+      rm -f "$STATE"
+      compact
+      modprobe "$MODULE" || echo "failed to load $MODULE" >&2
+    fi
+    ;;
+esac
+exit 0
