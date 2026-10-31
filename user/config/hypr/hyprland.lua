@@ -36,9 +36,9 @@ hl.monitor({ output = "DP-1", mode = "2560x1440@165", position = "1920x540", sca
 hl.monitor({ output = "DP-2", mode = "1920x1080@60",  position = "4480x670", scale = 1 })
 hl.monitor({ output = "DP-3", mode = "1920x1080@60",  position = "0x670",    scale = 1 })
 
--- TV
-hl.monitor({ output = "HDMI-A-1", mode = "3840x2160@120", position = "2720x-540", scale = 2, vrr = 0, bitdepth = 10 })
--- hl.monitor({ output = "HDMI-A-1", disabled = true })
+-- TV (disabled by default, scripts/tv_mode.sh switches to it at runtime -- keep in sync)
+-- hl.monitor({ output = "HDMI-A-1", mode = "3840x2160@120", position = "0x0", scale = 2, vrr = 0, bitdepth = 10 })
+hl.monitor({ output = "HDMI-A-1", disabled = true })
 
 
 -------------------
@@ -101,6 +101,10 @@ hl.config({
 
 hl.config({
     misc = {
+        -- Runtime monitor changes (scripts/tv_mode.sh) are reverted by a reload, so
+        -- never reload on save; use SUPER + SHIFT + R instead.
+        disable_autoreload = true,
+
         allow_session_lock_restore = true,
 
         disable_hyprland_logo   = true,
@@ -313,6 +317,13 @@ hl.window_rule({ match = { class = "^(xwaylandvideobridge)$" }, no_anim = true }
 hl.window_rule({ match = { class = "^(xwaylandvideobridge)$" }, no_focus = true })
 hl.window_rule({ match = { class = "^(xwaylandvideobridge)$" }, no_initial_focus = true })
 
+-- TV mode confirmation dialog (scripts/tv_mode.sh): pinned so it shows on whichever
+-- workspace ends up active on the TV after the other monitors are disabled
+hl.window_rule({ match = { title = "^(TV mode)$" }, float = true })
+hl.window_rule({ match = { title = "^(TV mode)$" }, pin = true })
+hl.window_rule({ match = { title = "^(TV mode)$" }, monitor = "HDMI-A-1" })
+hl.window_rule({ match = { title = "^(TV mode)$" }, center = true })
+
 -- Flameshot fixes
 -- PORTING NOTE: original had "activate_focus" (with an underscore); the documented
 -- token is "activatefocus" (no underscore) -- looks like a pre-existing typo, kept
@@ -355,6 +366,9 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(colorpicker))
 
 -- Reload all settings
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd(scriptDir .. "/reload.sh"))
+
+-- Toggle TV-only (HDMI) display mode
+hl.bind(mainMod .. " + CTRL + ALT + T", hl.dsp.exec_cmd(scriptDir .. "/tv_mode.sh"))
 
 -- Night mode (blue light filter)
 -- hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(scriptDir .. "/night_light.sh --action toggle"))
