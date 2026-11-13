@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Recover from a crashed hyprlock, run from a spare TTY:
+# switch back to Hyprland's VT, relaunch hyprlock from inside Hyprland
+# (it can't run from a bare TTY), then close this TTY session.
+#
+# usage: hyprlock-recover [delay-seconds]   (default 2)
+set -u
+
+delay=${1:-2}
+log="${XDG_RUNTIME_DIR:-/tmp}/hyprlock-recover.log"
+
+read -r sig pid < <(hyprctl instances -j | jq -r '.[0] | "\(.instance) \(.pid)"')
+if [[ -z ${sig:-} || $sig == null ]]; then
+    echo "No running Hyprland instance found" >&2
+    exit 1
+fi
+
+hypr_session=$(sed -n 's/.*session-\([0-9]*\)\.scope.*/\1/p' "/proc/$pid/cgroup")
+if [[ -z $hypr_session ]]; then
+    echo "Can't find the logind session Hyprland runs in" >&2
+    exit 1
+fi
+
+pkill -9 -u "$UID" -x hyprlock
+
+loginctl activate "$hypr_session" || exit 1
+sleep "$delay"
+
+hyprctl --instance "$sig" dispatch "hl.dsp.exec_cmd(\"hyprlock > $log 2>&1\")"
+sleep 3
+
+if ! pgrep -u "$UID" -x hyprlock >/dev/null; then
+    # Come back here so the failure is visible instead of a dead lockscreen
+    [[ -n ${XDG_SESSION_ID:-} ]] && loginctl activate "$XDG_SESSION_ID"
+    echo "hyprlock didn't stay running, last lines of $log:" >&2
+    tail -20 "$log" >&2
+    exit 1
+fi
+
+# Close this TTY's login, but never Hyprland's own session
+if [[ -n ${XDG_SESSION_ID:-} && $XDG_SESSION_ID != "$hypr_session" ]]; then
+    loginctl terminate-session "$XDG_SESSION_ID"
+fi

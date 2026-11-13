@@ -160,6 +160,10 @@ dotfiles:
     src: local/bin/hypr-monitorctl
     dst: ~/.local/bin/hypr-monitorctl
     chmod: '744'
+  f_hyprlock-recover:
+    src: local/bin/hyprlock-recover
+    dst: ~/.local/bin/hyprlock-recover
+    chmod: '744'
   f_hyprsunset.conf:
     src: config/hypr/hyprsunset.conf
     dst: ~/.config/hypr/hyprsunset.conf
@@ -297,6 +301,7 @@ profiles:
       - d_wofi
       - f_hypr-monitorctl
       - f_hypr-fixworkspaces
+      - f_hyprlock-recover
       - f_hyprsunset.conf
       - f_reload.sh
       - f_sunsetr.toml
