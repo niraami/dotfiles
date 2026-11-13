@@ -468,7 +468,7 @@ hl.on("hyprland.start", function()
 
     -- Set background
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd(scriptDir .. "/auto_bg.py --per-output ~/.wallpapers/Landscape")
+    hl.exec_cmd(scriptDir .. "/auto_bg.py --per-output --watch ~/.wallpapers/Landscape")
 
     -- Start waybar & applet tools
     hl.exec_cmd("waybar")
