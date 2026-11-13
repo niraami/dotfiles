@@ -59,6 +59,9 @@ dotfiles:
     src: usr/lib/systemd/system-sleep/atlantic-reload
     dst: /usr/lib/systemd/system-sleep/atlantic-reload
     chmod: '755'
+  f_udev-60-cifs-writeback.rules:
+    src: etc/udev/rules.d/60-cifs-writeback.rules
+    dst: /etc/udev/rules.d/60-cifs-writeback.rules
   f_vconsole.conf:
     src: etc/vconsole.conf
     dst: /etc/vconsole.conf
@@ -86,6 +89,7 @@ profiles:
       - f_sshd_config
       - f_sysctl-90-override.conf
       - f_system-sleep-atlantic-reload
+      - f_udev-60-cifs-writeback.rules
       - f_vconsole.conf
       - f_xorg-00-keyboard.conf
       - f_zramd-config
