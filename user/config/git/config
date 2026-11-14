@@ -12,3 +12,7 @@
 # the file is missing, e.g. on headless VMs
 [include]
 	path = desktop
+# Machine-local overrides (e.g. a work identity and signing key), never part
+# of the dotfiles; included last so it wins, and skipped when missing
+[include]
+	path = local

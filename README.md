@@ -59,6 +59,14 @@ dotdrop --cfg="config-user.yml" --profile=base install
 Once `~/.shell` is installed, it exports `DOTDROP_CONFIG`, so the `dt` alias works from anywhere.
 The repo is expected at `~/.dotfiles`; set `DOTFILE_PATH` before `~/.shell` is sourced to use another location.
 
+Git settings for a single machine, like a work identity, go in `~/.config/git/local`, which is never part of the dotfiles:
+```ini
+[user]
+	email = me@work.example
+	name = My Name
+	signingkey = <work key id>  # or [commit] gpgsign = false
+```
+
 To install dotdrop, either use the submodule in this repo, and then use `dotdrop.sh`.
 ```bash
 python3 -m pip install --user -r dotdrop/requirements.txt
