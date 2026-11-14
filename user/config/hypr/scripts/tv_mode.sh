@@ -10,14 +10,24 @@
 # To never end up with zero outputs, or with overlapping ones, the TV is parked
 # above the other monitors (like it used to be in the config) while it shares the
 # layout with them.
+#
+# The TV is passed in by the host's Hyprland config (host.lua in the dotfiles):
+# usage: tv_mode.sh OUTPUT WIDTHxHEIGHT@REFRESH [SCALE] [BITDEPTH]
 
 set -eu -o pipefail
 
-tv="HDMI-A-1"
-tv_width=3840
-tv_height=2160
-tv_refresh=120
-tv_scale=2
+if [[ $# -lt 2 ]]; then
+  echo "usage: $(basename "$0") OUTPUT WIDTHxHEIGHT@REFRESH [SCALE] [BITDEPTH]" >&2
+  exit 2
+fi
+
+tv="$1"
+tv_mode="$2"
+tv_scale="${3:-1}"
+tv_bitdepth="${4:-8}"
+tv_width="${tv_mode%%x*}"
+tv_height="${tv_mode#*x}"
+tv_height="${tv_height%%@*}"
 timeout=30
 
 state="${XDG_RUNTIME_DIR:-/tmp}/tv_mode.state"
@@ -35,18 +45,18 @@ tv_rule() {
   if [[ "$1" == "disable" ]]; then
     lua "hl.monitor({ output = \"$tv\", disabled = true })"
   else
-    lua "hl.monitor({ output = \"$tv\", mode = \"${tv_width}x${tv_height}@${tv_refresh}\", position = \"$1\", scale = $tv_scale, vrr = 0, bitdepth = 10, disabled = false })"
+    lua "hl.monitor({ output = \"$tv\", mode = \"$tv_mode\", position = \"$1\", scale = $tv_scale, vrr = 0, bitdepth = $tv_bitdepth, disabled = false })"
   fi
 }
 
 # Position for the TV right above the layout described by a monitors JSON array
 # on stdin, horizontally centered on it
 park_position() {
-  jq -r --argjson w "$((tv_width / tv_scale))" --argjson h "$((tv_height / tv_scale))" '
+  jq -r --argjson w "$tv_width" --argjson h "$tv_height" --argjson s "$tv_scale" '
     (map(.x) | min) as $left
     | (map(.x + (.width / .scale)) | max) as $right
     | (map(.y) | min) as $top
-    | "\((($left + $right) / 2 - $w / 2) | round)x\($top - $h | round)"'
+    | "\((($left + $right) / 2 - $w / $s / 2) | round)x\($top - $h / $s | round)"'
 }
 
 snapshot_rules() {

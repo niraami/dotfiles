@@ -46,6 +46,13 @@ dotfiles:
   d_hypr:
     src: config/hypr
     dst: ~/.config/hypr
+    # Deployed per host, see f_hypr_host_*
+    cmpignore:
+      - host.lua
+      - hyprlock-host.conf
+    upignore:
+      - host.lua
+      - hyprlock-host.conf
   d_local_share_ulauncher_extensions:
     src: local/share/ulauncher/extensions
     dst: ~/.local/share/ulauncher/extensions
@@ -163,6 +170,12 @@ dotfiles:
     src: local/bin/hypr-monitorctl
     dst: ~/.local/bin/hypr-monitorctl
     chmod: '744'
+  f_hypr_host_mia:
+    src: hosts/mia/hypr/host.lua
+    dst: ~/.config/hypr/host.lua
+  f_hypr_host_mia_hyprlock:
+    src: hosts/mia/hypr/hyprlock-host.conf
+    dst: ~/.config/hypr/hyprlock-host.conf
   f_hypr_xkb_reset:
     src: local/bin/hypr_xkb_reset
     dst: ~/.local/bin/hypr_xkb_reset
@@ -310,3 +323,5 @@ profiles:
       - desktop
     dotfiles:
       - d_openrgb
+      - f_hypr_host_mia
+      - f_hypr_host_mia_hyprlock

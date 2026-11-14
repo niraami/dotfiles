@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import time
 import json
 import socket
@@ -19,6 +20,8 @@ def main(args):
   while True:
     # Refresh list of images on each cycle
     images: list[str] = get_images(args.dirs)
+    if not images:
+      sys.exit(f"No images found in: {', '.join(args.dirs)}")
 
     if (args.per_output):
       for output in get_outputs():
@@ -51,7 +54,10 @@ def watch_outputs(dirs: list[str]):
         continue
 
       output = data.split(',')[1]
-      image_path = random.choice(get_images(dirs))
+      images = get_images(dirs)
+      if not images:
+        continue
+      image_path = random.choice(images)
 
       # The event can arrive before awww-daemon knows about the output
       for _ in range(10):

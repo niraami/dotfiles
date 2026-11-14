@@ -25,28 +25,13 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
 
-------------------
----- MONITORS ----
-------------------
-
--- hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
-hl.monitor({ output = "", disabled = true })
--- hl.monitor({ output = "DP-1", mode = "1920x1080@165", position = "0x0", scale = 1, vrr = 0, transform = 0 })
-hl.monitor({ output = "DP-1", mode = "2560x1440@165", position = "1920x540", scale = 1, vrr = 0, bitdepth = 10 })
-hl.monitor({ output = "DP-2", mode = "1920x1080@60",  position = "4480x670", scale = 1 })
-hl.monitor({ output = "DP-3", mode = "1920x1080@60",  position = "0x670",    scale = 1 })
-
--- TV (disabled by default, scripts/tv_mode.sh switches to it at runtime -- keep in sync)
--- hl.monitor({ output = "HDMI-A-1", mode = "3840x2160@120", position = "0x0", scale = 2, vrr = 0, bitdepth = 10 })
-hl.monitor({ output = "HDMI-A-1", disabled = true })
-
-
 -------------------
 ---- VARIABLES ----
 -------------------
 
 local mainMod   = "SUPER"
-local scriptDir = os.getenv("HOME") .. "/.config/hypr/scripts"
+local configDir = os.getenv("HOME") .. "/.config/hypr"
+local scriptDir = configDir .. "/scripts"
 
 local term        = "kitty"
 local menu        = "ulauncher-toggle"
@@ -58,6 +43,32 @@ local colorpicker = scriptDir .. "/colorpicker.sh"
 
 local lock   = "hyprlock"
 local logout = "true" -- archlinux-logout
+
+
+--------------
+---- HOST ----
+--------------
+
+-- Monitors, hardware specific startup and the like live in host.lua, deployed
+-- per host by dotdrop (user/hosts/<host>/hypr/host.lua in the dotfiles). It
+-- is optional; without it every monitor gets its preferred mode.
+local host = {}
+local hostFile = io.open(configDir .. "/host.lua")
+if hostFile then
+    hostFile:close()
+    local loaded = require("host")
+    if type(loaded) == "table" then host = loaded end
+else
+    hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
+end
+
+-- TV mode (scripts/tv_mode.sh): the host's TV stays disabled until switched to
+if host.tv then
+    hl.monitor({ output = host.tv.output, disabled = true })
+end
+
+-- Random wallpaper per monitor, picked by scripts/auto_bg.py
+hl.env("WALLPAPER_DIR", host.wallpaper_dir or os.getenv("HOME") .. "/.wallpapers/Landscape")
 
 
 ---------------
@@ -247,7 +258,7 @@ local smw = require("split-monitor-workspaces")
 smw.setup({
     workspace_count = 10,
 
-    monitor_priority = { "DP-1", "DP-2", "DP-3", "HDMI-A-1" },
+    monitor_priority = host.monitor_priority or {},
 
     keep_focused                 = true,
     enable_notifications         = false,
@@ -319,10 +330,12 @@ hl.window_rule({ match = { class = "^(xwaylandvideobridge)$" }, no_initial_focus
 
 -- TV mode confirmation dialog (scripts/tv_mode.sh): pinned so it shows on whichever
 -- workspace ends up active on the TV after the other monitors are disabled
-hl.window_rule({ match = { title = "^(TV mode)$" }, float = true })
-hl.window_rule({ match = { title = "^(TV mode)$" }, pin = true })
-hl.window_rule({ match = { title = "^(TV mode)$" }, monitor = "HDMI-A-1" })
-hl.window_rule({ match = { title = "^(TV mode)$" }, center = true })
+if host.tv then
+    hl.window_rule({ match = { title = "^(TV mode)$" }, float = true })
+    hl.window_rule({ match = { title = "^(TV mode)$" }, pin = true })
+    hl.window_rule({ match = { title = "^(TV mode)$" }, monitor = host.tv.output })
+    hl.window_rule({ match = { title = "^(TV mode)$" }, center = true })
+end
 
 -- Flameshot fixes
 -- PORTING NOTE: original had "activate_focus" (with an underscore); the documented
@@ -330,7 +343,6 @@ hl.window_rule({ match = { title = "^(TV mode)$" }, center = true })
 -- as-is below but worth double-checking against your intent.
 hl.window_rule({ match = { title = "^flameshot$" }, suppress_event = "fullscreen maximize activate activate_focus" })
 hl.window_rule({ match = { title = "^flameshot$" }, float = true })
-hl.window_rule({ match = { title = "^flameshot$" }, monitor = "DP-3" })
 
 
 -------------------
@@ -367,8 +379,11 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(colorpicker))
 -- Reload all settings
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd(scriptDir .. "/reload.sh"))
 
--- Toggle TV-only (HDMI) display mode
-hl.bind(mainMod .. " + CTRL + ALT + T", hl.dsp.exec_cmd(scriptDir .. "/tv_mode.sh"))
+-- Toggle TV-only display mode
+if host.tv then
+    hl.bind(mainMod .. " + CTRL + ALT + T", hl.dsp.exec_cmd(string.format("%s/tv_mode.sh %s %s %s %s",
+        scriptDir, host.tv.output, host.tv.mode, host.tv.scale or 1, host.tv.bitdepth or 8)))
+end
 
 -- Night mode (blue light filter)
 -- hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(scriptDir .. "/night_light.sh --action toggle"))
@@ -462,13 +477,16 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("swaync")
     hl.exec_cmd("killall -eqw hypridle; hypridle")
     hl.exec_cmd("playerctld daemon")
-    hl.exec_cmd("wayvnc --output DP-1")
-    hl.exec_cmd("corectrl --minimize-systray")
     -- hl.exec_cmd("sunsetr")
+
+    -- Host specific daemons
+    for _, cmd in ipairs(host.autostart or {}) do
+        hl.exec_cmd(cmd)
+    end
 
     -- Set background
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd(scriptDir .. "/auto_bg.py --per-output --watch ~/.wallpapers/Landscape")
+    hl.exec_cmd(scriptDir .. "/auto_bg.py --per-output --watch \"$WALLPAPER_DIR\"")
 
     -- Start waybar & applet tools
     hl.exec_cmd("waybar")

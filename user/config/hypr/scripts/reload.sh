@@ -17,4 +17,4 @@ hyprctl dispatch exec "waybar"
 hyprctl dispatch exec "sunsetr --reload"
 
 # Wallpaper
-"${script_dir}/auto_bg.py" --per-output ~/.wallpapers/Landscape
+"${script_dir}/auto_bg.py" --per-output "${WALLPAPER_DIR:-$HOME/.wallpapers/Landscape}"
