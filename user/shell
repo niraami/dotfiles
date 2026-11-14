@@ -48,9 +48,18 @@ alias lsblkf='lsblk -f'
 #alias -g menuconfig='menuconfig --style monochrome'
 #alias -g ssh='TERM=xterm-256color ssh'
 #alias -g nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
-alias -g wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 # Customize PATH
-path+=("$HOME/.local/bin")
-# Prevent PATH from containing duplicate entries
-typeset -U path
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$PATH:$HOME/.local/bin" ;;
+esac
+
+# Also sourced from .bashrc, keep zsh-only syntax in here
+if [ -n "$ZSH_VERSION" ]; then
+  alias -g wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+  # Prevent PATH from containing duplicate entries
+  typeset -U path
+else
+  alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+fi

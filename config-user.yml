@@ -117,10 +117,13 @@ dotfiles:
   d_zsh:
     src: config/zsh
     dst: ~/.config/zsh
+    # host.zsh is deployed per host, see f_zsh_host_*
     upignore:
       - .zcompdump
+      - host.zsh
     cmpignore:
       - .zcompdump
+      - host.zsh
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
@@ -247,6 +250,9 @@ dotfiles:
   f_xsettingsd.conf:
     src: config/xsettingsd/xsettingsd.conf
     dst: ~/.config/xsettingsd/xsettingsd.conf
+  f_zsh_host_mia:
+    src: hosts/mia/zsh/host.zsh
+    dst: ~/.config/zsh/host.zsh
   f_zshenv:
     src: zshenv
     dst: ~/.zshenv
@@ -325,3 +331,4 @@ profiles:
       - d_openrgb
       - f_hypr_host_mia
       - f_hypr_host_mia_hyprlock
+      - f_zsh_host_mia
