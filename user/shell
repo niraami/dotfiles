@@ -1,6 +1,6 @@
 # Dotfile paths
-export DOTFILE_PATH="$HOME/.dotfiles"
-export DOTDROP_CONFIG_PATH="$DOTFILE_PATH/config.yaml"
+export DOTFILE_PATH="${DOTFILE_PATH:-$HOME/.dotfiles}"
+export DOTDROP_CONFIG="$DOTFILE_PATH/config-user.yml"
 
 # XDG exports
 export XDG_DATA_HOME="$HOME/.local/share"
