@@ -186,10 +186,6 @@ dotfiles:
   f_htoprc:
     src: config/htop/htoprc
     dst: ~/.config/htop/htoprc
-  f_hypr-monitorctl:
-    src: local/bin/hypr-monitorctl
-    dst: ~/.local/bin/hypr-monitorctl
-    chmod: '744'
   f_hypr_host_mia:
     src: hosts/mia/hypr/host.lua
     dst: ~/.config/hypr/host.lua
@@ -312,7 +308,6 @@ profiles:
       - f_gitconfig_desktop
       - f_dmrc
       - d_hypr
-      - f_hypr-monitorctl
       - f_hyprlock-recover
       - f_hypr_xkb_reset
       - f_sunsetr.toml
