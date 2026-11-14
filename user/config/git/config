@@ -8,10 +8,7 @@
 [user]
 	email = istok.public@gmail.com
 	name = niraami
-	signingkey = 77E80D784123CCED
-[commit]
-	gpgsign = true
-[tag]
-	gpgsign = true
-[credential]
-	helper = libsecret
+# Desktop-only settings (GPG signing, libsecret keyring); git skips it when
+# the file is missing, e.g. on headless VMs
+[include]
+	path = desktop

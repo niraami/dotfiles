@@ -45,6 +45,20 @@ dotdrop --cfg="config-user.yml" install
 sudo dotdrop --cfg="config-system.yml" install
 ```
 
+Dotdrop picks the profile named after the hostname, so a new machine needs its own profile.
+Each config is split into layers, which a host profile `include`s:
+- `config-user.yml`: `base` (shell and CLI tools, any distro), `desktop` (Hyprland and GUI apps)
+- `config-system.yml`: `arch` (Arch Linux base), `desktop` (Hyprland session)
+
+Hardware-specific files live in the host profile (`mia`), host-specific Hyprland and zsh config under `user/hosts/<host>/`.
+For a shell-only setup, e.g. on a VM, install just the base layer:
+```bash
+dotdrop --cfg="config-user.yml" --profile=base install
+```
+
+Once `~/.shell` is installed, it exports `DOTDROP_CONFIG`, so the `dt` alias works from anywhere.
+The repo is expected at `~/.dotfiles`; set `DOTFILE_PATH` before `~/.shell` is sourced to use another location.
+
 To install dotdrop, either use the submodule in this repo, and then use `dotdrop.sh`.
 ```bash
 python3 -m pip install --user -r dotdrop/requirements.txt

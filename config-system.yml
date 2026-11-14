@@ -72,24 +72,34 @@ dotfiles:
     src: etc/default/zramd
     dst: /etc/default/zramd
 profiles:
-  mia:
+  # Arch Linux base system, no hardware assumptions
+  arch:
+    dotfiles:
+      - f_makepkg.conf
+      - f_pacman.conf
+      - f_reflector.conf
+      - f_sshd_config
+      - f_udev-60-cifs-writeback.rules
+      - f_vconsole.conf
+      - f_xorg-00-keyboard.conf
+  # Hyprland session, pairs with the user config's desktop profile
+  desktop:
     dotfiles:
       - f_bin-hypr
+      - f_ssh-agent.sh
+  # Personal PC: AQC113 NIC, ZFS, mirrored ESPs, zram, Apple keyboard
+  mia:
+    include:
+      - arch
+      - desktop
+    dotfiles:
       - f_bin-sync-files
       - f_enable-pci-rescan
       - f_enable-pci-rescan.service
-      - f_makepkg.conf
       - f_modprobe-hid_apple.conf
       - f_modprobe-zfs.conf
       - f_pacman-95-mkinitcpio-mirror.hook
       - f_pacman-mkinitcpio-mirror
-      - f_pacman.conf
-      - f_reflector.conf
-      - f_ssh-agent.sh
-      - f_sshd_config
       - f_sysctl-90-override.conf
       - f_system-sleep-atlantic-reload
-      - f_udev-60-cifs-writeback.rules
-      - f_vconsole.conf
-      - f_xorg-00-keyboard.conf
       - f_zramd-config

@@ -149,6 +149,9 @@ dotfiles:
   f_gitconfig:
     src: config/git/config
     dst: ~/.config/git/config
+  f_gitconfig_desktop:
+    src: config/git/desktop
+    dst: ~/.config/git/desktop
   f_htoprc:
     src: config/htop/htoprc
     dst: ~/.config/htop/htoprc
@@ -160,13 +163,14 @@ dotfiles:
     src: local/bin/hypr-monitorctl
     dst: ~/.local/bin/hypr-monitorctl
     chmod: '744'
+  f_hypr_xkb_reset:
+    src: local/bin/hypr_xkb_reset
+    dst: ~/.local/bin/hypr_xkb_reset
+    chmod: '744'
   f_hyprlock-recover:
     src: local/bin/hyprlock-recover
     dst: ~/.local/bin/hyprlock-recover
     chmod: '744'
-  f_hyprsunset.conf:
-    src: config/hypr/hyprsunset.conf
-    dst: ~/.config/hypr/hyprsunset.conf
   f_index.theme:
     src: icons/default/index.theme
     dst: ~/.icons/default/index.theme
@@ -211,10 +215,6 @@ dotfiles:
   f_qbittorrent.conf:
     src: config/qBittorrent/qBittorrent.conf
     dst: ~/.config/qBittorrent/qBittorrent.conf
-  f_reload.sh:
-    src: config/hypr/scripts/reload.sh
-    dst: ~/.config/hypr/scripts/reload.sh
-    chmod: '744'
   f_shell:
     src: shell
     dst: ~/.shell
@@ -238,65 +238,75 @@ dotfiles:
     src: zshenv
     dst: ~/.zshenv
 profiles:
-  mia:
+  # Shell and CLI tools, safe on any distro (headless VMs included)
+  base:
     dotfiles:
       - f_shell
       - f_bashrc
       - d_zsh
       - f_zshenv
       - d_oh-my-zsh
-      - f_p10k.zsh
-      - f_gitconfig
-      - f_dmrc
-      - d_btop
-      - d_gtk-2.0
-      - d_gtk-3.0
-      - f_htoprc
-      - d_hypr
-      - f_keepassxc.ini
-      - f_kitty.conf
-      - f_kvantum.kvconfig
-      - f_lutris.conf
-      - f_config.conf
       - d_config_oh-my-zsh_plugins
       - d_config_oh-my-zsh_themes
-      - d_local_share_ulauncher_extensions
-      - f_prusaslicer.ini
-      - f_prusaslicergcodeviewer.ini
+      - f_p10k.zsh
+      - f_gitconfig
+      - d_btop
+      - f_htoprc
+      - f_config.conf
       - f_pythonrc
-      - d_qt5ct
       - d_ranger
-      - f_config.json
-      - f_uca.xml
-      - d_waybar
-      - d_xfce4
-      - f_code-flags.conf
-      - f_electron-flags.conf
-      - f_electron13-flags.conf
-      - f_mimeapps.list
-      - f_pavucontrol.ini
-      - f_index.theme
-      - d_openrgb
-      - d_rofi
-      - d_systemd
-      - d_ulauncher
-      - d_ulauncher_themes
       - f_vimrc
       - f_plug.vim
       - d_plugged
+      - f_extract-audio-streams
+      - f_get-iommu-groups
+  # Hyprland session and GUI applications, no hardware assumptions
+  desktop:
+    dotfiles:
+      - f_gitconfig_desktop
+      - f_dmrc
+      - d_hypr
+      - f_hypr-monitorctl
+      - f_hypr-fixworkspaces
+      - f_hyprlock-recover
+      - f_hypr_xkb_reset
+      - f_sunsetr.toml
+      - d_waybar
+      - d_rofi
+      - d_wofi
+      - f_config.json
+      - d_ulauncher
+      - d_ulauncher_themes
+      - d_local_share_ulauncher_extensions
+      - d_systemd
+      - d_gtk-2.0
+      - d_gtk-3.0
+      - d_qt5ct
+      - f_kvantum.kvconfig
+      - f_index.theme
+      - f_xsettingsd.conf
+      - d_xfce4
+      - f_uca.xml
+      - f_mimeapps.list
+      - f_kitty.conf
+      - f_keepassxc.ini
+      - f_lutris.conf
+      - f_prusaslicer.ini
+      - f_prusaslicergcodeviewer.ini
+      - f_pavucontrol.ini
+      - f_code-flags.conf
+      - f_electron-flags.conf
+      - f_electron13-flags.conf
       - d_blender
       - d_mpv
       - f_qbittorrent.conf
       - f_qbittorrent-natpmp
-      - f_xsettingsd.conf
       - f_flameshot_config
       - f_swappy_config
-      - f_get-iommu-groups
-      - f_extract-audio-streams
-      - d_wofi
-      - f_hypr-monitorctl
-      - f_hypr-fixworkspaces
-      - f_hyprlock-recover
-      - f_hyprsunset.conf
-      - f_reload.sh
-      - f_sunsetr.toml
+  # Personal PC: hardware and mounts that only exist here
+  mia:
+    include:
+      - base
+      - desktop
+    dotfiles:
+      - d_openrgb

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+set -x
+
+default_kb="us"
+
+# Find devices whose layout is different from the default
+target_devices="$(hyprctl devices -j | jq ".keyboards[] | select(.active_keymap | ascii_downcase | contains(\"${default_kb}\") | not)")"
+
+# Check if there are any target devices
+if [ -z "${target_devices}" ]; then
+  exit 0
+fi
+
+# Iterate over the devices
+echo "${target_devices}" | jq -c '.' | while read -r device; do
+  device_name=$(echo "${device}" | jq -r '.name')
+  layout=$(echo "${device}" | jq -r '.layout')
+
+  # Split the layout string by comma and find the index of the default layout
+  IFS=',' read -ra layouts <<< "${layout}"
+  for i in "${!layouts[@]}"; do
+    if [[ "${layouts[$i]}" == "${default_kb}" ]]; then
+      echo "Switching layout for device ${device_name} to index ${i} (${default_kb})"
+      hyprctl switchxkblayout "${device_name}" "${i}"
+      break
+    fi
+  done
+done
