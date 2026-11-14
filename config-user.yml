@@ -215,10 +215,6 @@ dotfiles:
     src: config/hypr/scripts/reload.sh
     dst: ~/.config/hypr/scripts/reload.sh
     chmod: '744'
-  f_setup-pipewire-nodes:
-    src: local/bin/setup-pipewire-nodes
-    dst: ~/.local/bin/setup-pipewire-nodes
-    chmod: '755'
   f_shell:
     src: shell
     dst: ~/.shell
@@ -296,7 +292,6 @@ profiles:
       - f_flameshot_config
       - f_swappy_config
       - f_get-iommu-groups
-      - f_setup-pipewire-nodes
       - f_extract-audio-streams
       - d_wofi
       - f_hypr-monitorctl
