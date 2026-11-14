@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync media when the MK3S mount is created
+Requires=run-media-%u-MK3S.mount
+After=run-media-%u-MK3S.mount
+
+[Service]
+Type=oneshot
+ExecStart=sync-files --unmount %h/Media/GCODE/MK3S/ /run/media/%u/MK3S
+
+[Install]
+WantedBy=run-media-%u-MK3S.mount

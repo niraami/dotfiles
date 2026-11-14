@@ -40,6 +40,24 @@ fi
 SOURCE_DIR="$1"
 TARGET_DIR="$2"
 
+# First sync on a machine: a missing or empty source would wipe the target, so
+# seed the source from the target instead, the normal sync then has no changes
+if [[ ! -d "$SOURCE_DIR" || -z "$(ls -A "$SOURCE_DIR")" ]]; then
+  # Mirror rsync's trailing slash semantics of the normal sync below
+  if [[ "$SOURCE_DIR" == */ ]]; then
+    SEED_FROM="${TARGET_DIR%/}/"
+  else
+    SEED_FROM="${TARGET_DIR%/}/$(basename "$SOURCE_DIR")/"
+  fi
+
+  notify-send --urgency=normal --app-name=systemd "media-sync" "Seeding $SOURCE_DIR from $TARGET_DIR"
+  mkdir -p "$SOURCE_DIR"
+  if ! rsync --recursive --times --modify-window=1 "$SEED_FROM" "$SOURCE_DIR"; then
+    notify-send --urgency=critical --app-name=systemd "media-sync" "Error: Failed to seed $SOURCE_DIR from $TARGET_DIR"
+    exit 1
+  fi
+fi
+
 CHANGE="$(rsync --recursive --times --dry-run --itemize-changes --modify-window=1 --delete "$SOURCE_DIR" "$TARGET_DIR")"
 
 if [[ ! -z "$CHANGE" ]]; then

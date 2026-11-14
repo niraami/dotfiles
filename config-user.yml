@@ -101,12 +101,15 @@ dotfiles:
   d_systemd:
     src: config/systemd
     dst: ~/.config/systemd
+    # media-sync-mk3s.service is deployed per host, see f_media-sync-mk3s_*
     instignore:
       - '*.wants'
     upignore:
       - '*.wants'
+      - user/media-sync-mk3s.service
     cmpignore:
       - '*.wants'
+      - user/media-sync-mk3s.service
   d_ulauncher:
     src: config/ulauncher
     dst: ~/.config/ulauncher
@@ -221,6 +224,9 @@ dotfiles:
   f_lutris.conf:
     src: config/lutris/lutris.conf
     dst: ~/.config/lutris/lutris.conf
+  f_media-sync-mk3s_mia:
+    src: hosts/mia/systemd/media-sync-mk3s.service
+    dst: ~/.config/systemd/user/media-sync-mk3s.service
   f_mimeapps.list:
     src: config/mimeapps.list
     dst: ~/.config/mimeapps.list
@@ -357,3 +363,4 @@ profiles:
       - f_hypr_host_mia
       - f_hypr_host_mia_hyprlock
       - f_zsh_host_mia
+      - f_media-sync-mk3s_mia
