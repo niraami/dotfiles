@@ -8,6 +8,16 @@ config:
   link_on_import: nolink
   longkey: false
   showdiff: true
+# Configs the applications rewrite themselves: $HOME is stored as @HOME@, and
+# state like recent files or last used folders is dropped on update, so it
+# never reaches the repo (see scripts/dotdrop-trans)
+trans_install:
+  home_in: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" install "{0}" "{1}"'
+trans_update:
+  home_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}"'
+  keepassxc_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop-section KeeShare'
+  prusaslicer_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop last_output_path --drop-section recent --drop-section recent_projects'
+  qbittorrent_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop LastAddPath --drop "Downloads\ScanDirsLastPath" --drop "Session\Port"'
 dotfiles:
   d_blender:
     src: config/blender
@@ -38,10 +48,14 @@ dotfiles:
   d_gtk-2.0:
     src: config/gtk-2.0
     dst: ~/.config/gtk-2.0
+    trans_install: home_in
+    trans_update: home_out
     chmod: '700'
   d_gtk-3.0:
     src: config/gtk-3.0
     dst: ~/.config/gtk-3.0
+    trans_install: home_in
+    trans_update: home_out
     chmod: '700'
   d_hypr:
     src: config/hypr
@@ -113,6 +127,8 @@ dotfiles:
   d_xfce4:
     src: config/xfce4
     dst: ~/.config/xfce4
+    trans_install: home_in
+    trans_update: home_out
     chmod: '700'
   d_zsh:
     src: config/zsh
@@ -152,6 +168,8 @@ dotfiles:
   f_flameshot_config:
     src: config/flameshot/flameshot.ini
     dst: ~/.config/flameshot/flameshot.ini
+    trans_install: home_in
+    trans_update: home_out
   f_get-iommu-groups:
     src: local/bin/get-iommu-groups
     dst: ~/.local/bin/get-iommu-groups
@@ -193,6 +211,7 @@ dotfiles:
   f_keepassxc.ini:
     src: config/keepassxc/keepassxc.ini
     dst: ~/.config/keepassxc/keepassxc.ini
+    trans_update: keepassxc_out
   f_kitty.conf:
     src: config/kitty/kitty.conf
     dst: ~/.config/kitty/kitty.conf
@@ -218,9 +237,13 @@ dotfiles:
   f_prusaslicer.ini:
     src: config/PrusaSlicer/PrusaSlicer.ini
     dst: ~/.config/PrusaSlicer/PrusaSlicer.ini
+    trans_install: home_in
+    trans_update: prusaslicer_out
   f_prusaslicergcodeviewer.ini:
     src: config/PrusaSlicer/PrusaSlicerGcodeViewer.ini
     dst: ~/.config/PrusaSlicer/PrusaSlicerGcodeViewer.ini
+    trans_install: home_in
+    trans_update: prusaslicer_out
   f_pythonrc:
     src: config/python/pythonrc
     dst: ~/.config/python/pythonrc
@@ -231,6 +254,8 @@ dotfiles:
   f_qbittorrent.conf:
     src: config/qBittorrent/qBittorrent.conf
     dst: ~/.config/qBittorrent/qBittorrent.conf
+    trans_install: home_in
+    trans_update: qbittorrent_out
   f_shell:
     src: shell
     dst: ~/.shell

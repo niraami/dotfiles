@@ -27,7 +27,7 @@
   <property name="last-splitview-separator-position" type="int" value="1148"/>
   <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
   <property name="hidden-bookmarks" type="array">
-    <value type="string" value="file:///home/niraami/Desktop"/>
+    <value type="string" value="file://@HOME@/Desktop"/>
     <value type="string" value="file:///"/>
   </property>
   <property name="hidden-devices" type="array">

@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Dotdrop transformations for configs that applications rewrite themselves.
+
+  dotdrop-trans install SRC DST
+      Replace the @HOME@ placeholder with $HOME.
+
+  dotdrop-trans update SRC DST [--drop KEY]... [--drop-section SECTION]...
+      Replace $HOME with @HOME@, and drop INI keys (fnmatch patterns) and
+      whole sections that only hold state like recent files or last used
+      folders, so they never reach the (public) repo.
+
+SRC can be a file or a directory, which is transformed recursively.
+"""
+
+import argparse
+import fnmatch
+import os
+import re
+import shutil
+import sys
+
+PLACEHOLDER = '@HOME@'
+
+
+def home_in(text: str, home: str) -> str:
+  return text.replace(PLACEHOLDER, home)
+
+
+def home_out(text: str, home: str) -> str:
+  # Only whole path components, $HOME=/home/a must not touch /home/ab
+  return re.sub(re.escape(home) + r'(?![\w.-])', PLACEHOLDER, text)
+
+
+def drop_ini(text: str, keys: list[str], sections: list[str]) -> str:
+  out = []
+  skip_section = False
+  for line in text.splitlines(keepends=True):
+    stripped = line.strip()
+    if stripped.startswith('[') and stripped.endswith(']'):
+      skip_section = stripped[1:-1] in sections
+      if skip_section:
+        # Also drop the blank line separating it from the previous section
+        if out and not out[-1].strip():
+          out.pop()
+        continue
+    if skip_section:
+      continue
+    key, sep, _ = stripped.partition('=')
+    if sep and any(fnmatch.fnmatchcase(key.strip(), k) for k in keys):
+      continue
+    out.append(line)
+  return ''.join(out)
+
+
+def transform_file(path: str, func) -> None:
+  try:
+    with open(path, encoding='utf-8', newline='') as f:
+      text = f.read()
+  except UnicodeDecodeError:
+    return  # Binary, leave as is
+  new = func(text)
+  if new != text:
+    with open(path, 'w', encoding='utf-8', newline='') as f:
+      f.write(new)
+
+
+def main() -> None:
+  parser = argparse.ArgumentParser(description=__doc__,
+                                   formatter_class=argparse.RawDescriptionHelpFormatter)
+  parser.add_argument('mode', choices=['install', 'update'])
+  parser.add_argument('src')
+  parser.add_argument('dst')
+  parser.add_argument('--drop', action='append', default=[], metavar='KEY',
+                      help="INI key to drop on update, fnmatch pattern")
+  parser.add_argument('--drop-section', action='append', default=[], metavar='SECTION',
+                      help="INI section to drop on update")
+  args = parser.parse_args()
+
+  home = os.path.expanduser('~').rstrip('/')
+  if not home or home == '/':
+    sys.exit("dotdrop-trans: refusing to run without a usable $HOME")
+
+  if args.mode == 'install':
+    def func(text):
+      return home_in(text, home)
+  else:
+    def func(text):
+      return drop_ini(home_out(text, home), args.drop, args.drop_section)
+
+  if os.path.isdir(args.src):
+    shutil.copytree(args.src, args.dst, symlinks=True)
+    for root, _, files in os.walk(args.dst):
+      for name in files:
+        path = os.path.join(root, name)
+        if os.path.isfile(path) and not os.path.islink(path):
+          transform_file(path, func)
+  else:
+    shutil.copy2(args.src, args.dst)
+    transform_file(args.dst, func)
+
+
+if __name__ == '__main__':
+  main()
