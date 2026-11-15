@@ -164,6 +164,10 @@ dotfiles:
   f_electron13-flags.conf:
     src: config/electron13-flags.conf
     dst: ~/.config/electron13-flags.conf
+  f_aur-audit:
+    src: local/bin/aur-audit
+    dst: ~/.local/bin/aur-audit
+    chmod: '755'
   f_extract-audio-streams:
     src: local/bin/extract-audio-streams
     dst: ~/.local/bin/extract-audio-streams
@@ -302,6 +306,10 @@ profiles:
       - d_plugged
       - f_extract-audio-streams
       - f_get-iommu-groups
+  # Arch Linux only: pacman/AUR tooling
+  arch:
+    dotfiles:
+      - f_aur-audit
   # Hyprland session and GUI applications, no hardware assumptions
   desktop:
     dotfiles:
@@ -347,6 +355,7 @@ profiles:
   mia:
     include:
       - base
+      - arch
       - desktop
     dotfiles:
       - d_openrgb

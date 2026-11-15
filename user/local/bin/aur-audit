@@ -1,0 +1,590 @@
+#!/usr/bin/env python3
+"""Triage AUR package changes before upgrading.
+
+For every installed foreign package, diff the AUR git history from the commit
+you built against the current upstream head and grep the *added* lines for
+things that can execute arbitrary code or persist on the system. Tuned for
+false positives: a hit means "look at this", not "this is malicious".
+
+Nothing from the AUR is ever executed or checked out. Only `git fetch`, `git
+diff` and `git show` run against the clones, and PKGBUILDs are read as text
+(never sourced, never `makepkg --printsrcinfo`).
+
+Baseline for "what did I build":
+  1. newest commit whose PKGBUILD epoch:pkgver-pkgrel equals the installed version
+  2. else (typical for -git packages) the last commit before the package BUILDDATE
+  3. else an empty tree, i.e. the whole PKGBUILD counts as new
+
+Not covered: upstream source tarballs, -bin payloads and -git HEAD contents.
+This audits the packaging, not the software.
+"""
+
+import argparse
+import concurrent.futures
+import datetime
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import urllib.parse
+import urllib.request
+
+from pathlib import Path
+
+EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+AUR_GIT = "https://aur.archlinux.org/{}.git"
+AUR_RPC = "https://aur.archlinux.org/rpc/v5/info"
+YAY_CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "yay"
+AUDIT_HOME = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "aur-audit"
+STATE_FILE = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "aur-audit/state.json"
+VERSION_WALK = 80
+MAX_PER_GROUP = 3
+
+HIGH, MED, LOW = "HIGH", "MED", "LOW"
+WEIGHT = {HIGH: 10, MED: 3, LOW: 1}
+
+# (severity, tag, regex, why). Matched per added line.
+PATTERNS = [
+  # download-and-run, obfuscation, reverse shells
+  (HIGH, "pipe-to-shell", r"(curl|wget|fetch)\b[^\n]*\|\s*(sudo\s+)?(ba|z|da)?sh\b", "download piped into a shell"),
+  (HIGH, "eval", r"(^|[\s;&|(`])eval\b", "eval"),
+  (HIGH, "source-subst", r"(\bsource|^\s*\.)\s+<\(|\$\((curl|wget)|`(curl|wget)", "sources/executes fetched output"),
+  (HIGH, "base64", r"base64\s+(-d|--decode)|\bxxd\s+-r|openssl\s+(enc|base64)\b.*-d|\brev\b\s*\|", "decoding payloads"),
+  (HIGH, "revshell", r"/dev/(tcp|udp)/|\b(nc|ncat|netcat|socat)\b\s+.*(-e|exec)|\bmkfifo\b", "reverse-shell shape"),
+  (HIGH, "hex-escapes", r"(\\x[0-9a-fA-F]{2}){6,}", "long hex-escaped string"),
+  (HIGH, "long-blob", None, "long base64-looking blob"),  # handled in code
+  # privilege and persistence
+  (HIGH, "sudo", r"(^|[\s;&|(`])(sudo|doas|pkexec|su)\s", "privilege escalation tool"),
+  (HIGH, "suid", r"chmod\s+([0-7]?[2-7][0-7]{3}|[ug]\+s)|\bsetcap\b|\bchown\s+root", "suid/capabilities/chown root"),
+  (HIGH, "accounts", r"\b(useradd|usermod|groupadd|gpasswd|chpasswd|passwd)\b", "account changes"),
+  (HIGH, "persistence", r"/etc/(sudoers|cron|crontab|ld\.so|profile|pam\.d|ssh|udev|modprobe|modules-load|environment)|authorized_keys|\.(bashrc|zshrc|profile|zprofile|bash_profile)\b|crontab\s|/etc/xdg/autostart|~/\.config/autostart", "touches a persistence point"),
+  (HIGH, "systemd", r"systemctl\s+(--user\s+)?(enable|start|restart|daemon-reload|link|mask)|\bat\s+now\b", "service management"),
+  (HIGH, "preload", r"LD_PRELOAD|ld\.so\.preload|\bldconfig\b|\binsmod\b|\bmodprobe\b", "library/kernel module injection"),
+  (HIGH, "secrets", r"\.ssh\b|id_(rsa|ed25519|ecdsa)|\.gnupg|\.aws\b|\.kube|\.netrc|Login Data|cookies\.sqlite|wallet|keepass|\.mozilla|\.config/(google-chrome|chromium|BraveSoftware)", "reads like credential/browser data access"),
+  # exfil and C2 style destinations
+  (HIGH, "ip-url", r"(https?|ftp)://(\d{1,3}\.){3}\d{1,3}", "URL with a bare IP"),
+  (HIGH, "paste-host", r"pastebin|paste\.ee|hastebin|ghostbin|transfer\.sh|0x0\.st|termbin|discord(app)?\.com/api/webhooks|cdn\.discordapp|api\.telegram\.org|ngrok|\.onion\b|bit\.ly|tinyurl|t\.co/|is\.gd|gist\.github|ipfs", "paste/shortener/webhook/tunnel host"),
+  # generic execution surface
+  (MED, "interpreter-c", r"\b(bash|sh|zsh|dash)\s+-c\b|\bpython[0-9.]*\s+-c\b|\bperl\s+-e\b|\bruby\s+-e\b|\bnode\s+-e\b|\bphp\s+-r\b", "inline interpreter code"),
+  (MED, "exec", r"(^|[\s;&|(`])exec\s|\bxargs\b[^\n]*\bsh\b|\bfind\b[^\n]*-exec\b", "exec / xargs sh / find -exec"),
+  (MED, "net-tool", r"(^|[\s;&|(`])(curl|wget|aria2c|git\s+(clone|pull|fetch)|rsync|scp|ssh|ftp|tftp)\b", "network fetch in packaging code"),
+  (MED, "pkg-manager", r"\b(npm|npx|yarn|pnpm|bun|deno)\s+(install|i|ci|add|exec|dlx|run|x)\b|\bpip[0-9.]*\s+(install|download)|\bpipx\b|\buv\s+(pip|tool|run)|\bcargo\s+(install|build|fetch)|\bgo\s+(install|get|run|mod|build)|\bgem\s+install|\bcomposer\b|\bnuget\b|\bmvn\b|\bgradle", "language package manager (runs dependency install scripts)"),
+  (MED, "insecure", r"--insecure|\bcurl\b[^\n]*\s-k\b|--no-check-certificate|--no-verify|NODE_TLS_REJECT_UNAUTHORIZED|\bhttp://", "TLS off / plain http"),
+  (MED, "skip-sums", r"(sha\d+|md5|b2|ck)sums[^=]*=.*\bSKIP\b|validpgpkeys", "checksum SKIP or PGP key list touched"),
+  (MED, "tmp-exec", r"/dev/shm|/var/tmp|/tmp/[\w.-]+.*(chmod|\./|sh\b)", "staging in world-writable dirs"),
+  (MED, "install-hook", r"\b(pre|post)_(install|upgrade|remove)\b", "install-script hook (runs as root)"),
+  (MED, "install-var", r"^\s*install=", "PKGBUILD declares an .install script"),
+  (MED, "network-dl", r"\bdownload_file|\burllib|\brequests\.|\bsocket\.|Invoke-WebRequest", "network use in a script"),
+  (LOW, "chmod-x", r"chmod\s+(\+x|[0-7]*[157][0-7]{0,2}\b)|install\s+-[a-zA-Z]*m\s*7[0-9]{2}", "marks something executable"),
+  (LOW, "rm-rf", r"\brm\s+-[a-zA-Z]*r[a-zA-Z]*f?\s+(/|~|\$HOME|\$\{?pkgdir)", "recursive delete outside src"),
+  (LOW, "env-home", r"\$\{?HOME\}?|~/", "touches $HOME"),
+  (LOW, "dd-mkfs", r"\b(dd|mkfs|wipefs|shred|fdisk|parted)\b", "disk-level tools"),
+  (LOW, "unpinned-git", r"git\+https?://[^#\s'\"]+['\"]?\s*$", "VCS source without a pinned commit/tag"),
+]
+COMPILED = [(sev, tag, re.compile(rx) if rx else None, why) for sev, tag, rx, why in PATTERNS]
+
+URL_RE = re.compile(r"(?:git\+)?(?:https?|ftp|ssh|git)://[^\s'\"<>)]+")
+BLOB_RE = re.compile(r"[A-Za-z0-9+/]{80,}={0,2}")
+HEX_RE = re.compile(r"^[0-9a-fA-F]+$")
+PATCH_EXT = (".patch", ".diff")
+SCRIPTY = ("PKGBUILD", ".install", ".sh", ".hook", ".service", ".timer", ".desktop")
+KNOWN_FORGES = {"github.com", "gitlab.com", "codeberg.org", "gitea.com", "sourceforge.net", "bitbucket.org", "archlinux.org", "kernel.org", "gnu.org"}
+SKIP_SUFFIX = (".png", ".jpg", ".svg", ".ico", ".ttf", ".woff", ".woff2")
+
+
+def git(repo, *args, check=True):
+  r = subprocess.run(["git", "-C", str(repo), "-c", "core.fsmonitor=false", *args], capture_output=True, text=True, errors="replace")
+  if check and r.returncode:
+    raise RuntimeError(f"git {' '.join(args)}: {r.stderr.strip()}")
+  return r.stdout
+
+
+def pacman_foreign():
+  """name -> (version, builddate) for installed foreign packages."""
+  names = subprocess.run(["pacman", "-Qm"], capture_output=True, text=True).stdout.split("\n")
+  out = {}
+  for line in names:
+    parts = line.split()
+    if len(parts) == 2:
+      out[parts[0]] = {"version": parts[1], "builddate": None}
+  for d in Path("/var/lib/pacman/local").iterdir():
+    desc = d / "desc"
+    if not desc.is_file():
+      continue
+    text = desc.read_text(errors="replace")
+    m = re.search(r"%NAME%\n(.+)\n", text)
+    b = re.search(r"%BUILDDATE%\n(\d+)\n", text)
+    if m and m.group(1) in out and b:
+      out[m.group(1)]["builddate"] = int(b.group(1))
+  return out
+
+
+def rpc_info(names):
+  info = {}
+  names = list(names)
+  for i in range(0, len(names), 100):
+    qs = "&".join("arg[]=" + urllib.parse.quote(n) for n in names[i:i + 100])
+    req = urllib.request.Request(f"{AUR_RPC}?{qs}", headers={"User-Agent": "aur-audit"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+      for pkg in json.load(r).get("results", []):
+        info[pkg["Name"]] = pkg
+  return info
+
+
+_dep_cache = {"installed": {}, "repos": {}, "aur": {}}
+
+
+def dep_installed(dep):
+  """True if an installed package (or provide) already satisfies dep."""
+  c = _dep_cache["installed"]
+  if dep not in c:
+    c[dep] = subprocess.run(["pacman", "-T", dep], capture_output=True).returncode == 0
+  return c[dep]
+
+
+def dep_in_repos(dep):
+  """True if a sync repo carries dep, by name or as a provide."""
+  c = _dep_cache["repos"]
+  if dep not in c:
+    r = subprocess.run(["pacman", "-Sp", "--print-format", "%n", "--", dep], capture_output=True, stdin=subprocess.DEVNULL)
+    c[dep] = r.returncode == 0
+  return c[dep]
+
+
+def dep_aur_meta(names):
+  """AUR RPC records for the given dependency names (cached across packages)."""
+  c = _dep_cache["aur"]
+  todo = [n for n in names if n not in c]
+  if todo:
+    try:
+      found = rpc_info(todo)
+    except Exception:
+      found = {}
+    for n in todo:
+      c[n] = found.get(n)
+  return {n: c[n] for n in names if c.get(n)}
+
+
+def repo_for(base, clone):
+  for root in (YAY_CACHE, AUDIT_HOME / "repos"):
+    if (root / base / ".git").exists():
+      return root / base
+  if not clone:
+    return None
+  dst = AUDIT_HOME / "repos" / base
+  dst.parent.mkdir(parents=True, exist_ok=True)
+  r = subprocess.run(["git", "clone", "--quiet", AUR_GIT.format(base), str(dst)], capture_output=True, text=True)
+  return dst if r.returncode == 0 else None
+
+
+def fetch(repo):
+  for attempt in range(4):
+    r = subprocess.run(["git", "-C", str(repo), "fetch", "--quiet", "origin"], capture_output=True, text=True)
+    if r.returncode == 0:
+      return True
+    time.sleep(2 * (attempt + 1))  # the AUR rate-limits bursts
+  return False
+
+
+def head_ref(repo):
+  for ref in ("origin/master", "origin/HEAD", "master"):
+    if git(repo, "rev-parse", "--verify", "--quiet", ref, check=False).strip():
+      return ref
+  return None
+
+
+def pkgbuild_version(text):
+  def var(name):
+    m = re.search(rf"^{name}=['\"]?([^'\"\s#]+)", text, re.M)
+    return m.group(1) if m else None
+  ver, rel, epoch = var("pkgver"), var("pkgrel"), var("epoch")
+  if not ver or not rel:
+    return None
+  return f"{epoch}:{ver}-{rel}" if epoch and epoch != "0" else f"{ver}-{rel}"
+
+
+def find_baseline(repo, head, installed, builddate):
+  """Return (commit, how). how in {'version', 'date', 'none', 'current'}."""
+  head_text = git(repo, "show", f"{head}:PKGBUILD", check=False)
+  if pkgbuild_version(head_text) == installed and not re.search(r"^pkgver\(\)", head_text, re.M):
+    return git(repo, "rev-parse", head).strip(), "current"
+  if not re.search(r"^pkgver\(\)", head_text, re.M):
+    commits = git(repo, "log", f"-n{VERSION_WALK}", "--format=%H", head, "--", "PKGBUILD", check=False).split()
+    for c in commits:
+      if pkgbuild_version(git(repo, "show", f"{c}:PKGBUILD", check=False)) == installed:
+        return c, "version"
+  if builddate:
+    c = git(repo, "rev-list", "-1", f"--before={builddate}", head, check=False).strip()
+    if c:
+      return c, "date"
+  return EMPTY_TREE, "none"
+
+
+def parse_diff(diff):
+  """Yield (file, lineno, text) for every added line."""
+  path, lineno = None, 0
+  for line in diff.split("\n"):
+    if line.startswith("+++ "):
+      path = line[6:] if line.startswith("+++ b/") else None
+    elif line.startswith("@@"):
+      m = re.search(r"\+(\d+)", line)
+      lineno = int(m.group(1)) if m else 0
+    elif line.startswith("+") and path:
+      yield path, lineno, line[1:]
+      lineno += 1
+    elif line.startswith(" ") and path:
+      lineno += 1
+
+
+def scan_line(path, text):
+  name = path.rsplit("/", 1)[-1]
+  scripty = name == "PKGBUILD" or name.endswith(SCRIPTY)
+  if path.lower().endswith(SKIP_SUFFIX):
+    return []
+  stripped = text.strip()
+  if scripty and stripped.startswith("#"):
+    return []
+  hits = []
+  for sev, tag, rx, why in COMPILED:
+    if tag == "long-blob":
+      for m in BLOB_RE.finditer(text):
+        if not HEX_RE.match(m.group(0)) and "sums" not in text:
+          hits.append((sev, tag, why))
+          break
+    elif rx.search(text):
+      hits.append((sev, tag, why))
+  return hits
+
+
+def hosts(urls):
+  out = set()
+  for u in urls:
+    h = urllib.parse.urlparse(u.replace("git+", "", 1)).hostname
+    out.add((h or u.split("/")[2] if "//" in u else u).lower())
+  return out
+
+
+def analyse(base, repo, installed, builddate, meta):
+  rep = {"base": base, "installed": installed, "findings": [], "notes": [], "authors_new": [], "score": 0, "state": "ok"}
+  head = head_ref(repo)
+  if not head:
+    rep["state"], rep["notes"] = "error", ["no usable ref in clone"]
+    return rep
+  head_sha = git(repo, "rev-parse", head).strip()
+  rep["head"] = head_sha[:10]
+  head_ver = pkgbuild_version(git(repo, "show", f"{head}:PKGBUILD", check=False))
+  rep["head_version"] = head_ver
+  baseline, how = find_baseline(repo, head, installed, builddate)
+  rep["baseline"], rep["baseline_how"] = baseline[:10], how
+  if how == "current" or baseline == head_sha:
+    rep["state"] = "unchanged"
+    return rep
+  if how == "date":
+    rep["notes"].append("baseline guessed from build date (typical for -git); check the commit range is sane")
+  if how == "none":
+    rep["notes"].append("no baseline found: the whole current tree is treated as new")
+
+  diff = git(repo, "diff", "--no-color", "--no-ext-diff", "--no-textconv", "--no-renames", baseline, head)
+  rep["diff"] = diff
+
+  # file-level structure: new files, modes, binaries
+  raw = git(repo, "diff", "--raw", "--no-renames", "--no-ext-diff", baseline, head)
+  for line in raw.strip().split("\n"):
+    m = re.match(r":(\d+) (\d+) \w+ \w+ (\w)\t(.+)", line)
+    if not m:
+      continue
+    omode, nmode, status, f = m.groups()
+    if f in ("PKGBUILD", ".SRCINFO", ".gitignore"):
+      continue
+    if status == "A":
+      rep["findings"].append((MED if not f.endswith(PATCH_EXT) else LOW, "new-file", f, 0, f"new file in package repo (mode {nmode})"))
+    if nmode == "100755" and omode != "100755":
+      rep["findings"].append((MED, "new-exec", f, 0, "file became executable"))
+    if nmode == "120000":
+      rep["findings"].append((HIGH, "symlink", f, 0, "symlink in package repo"))
+  for line in git(repo, "diff", "--numstat", "--no-renames", baseline, head).strip().split("\n"):
+    if line.startswith("-\t-\t"):
+      rep["findings"].append((MED, "binary", line.split("\t", 2)[2], 0, "binary file added/changed"))
+
+  added_urls = set()
+  for path, lineno, text in parse_diff(diff):
+    if path == ".SRCINFO":
+      continue
+    for sev, tag, why in scan_line(path, text):
+      rep["findings"].append((sev, tag, path, lineno, text.strip()[:200] + f"   <- {why}"))
+    if not path.lower().endswith(PATCH_EXT):
+      added_urls.update(URL_RE.findall(text))
+
+  # source hosts that did not exist at the baseline
+  old_text = ""
+  if baseline != EMPTY_TREE:
+    for f in git(repo, "ls-tree", "-r", "--name-only", baseline).split("\n"):
+      if f == "PKGBUILD" or f.endswith(".install"):
+        old_text += git(repo, "show", f"{baseline}:{f}", check=False)
+  old_hosts = hosts(URL_RE.findall(old_text))
+  upstream = urllib.parse.urlparse(meta.get("URL") or "").hostname if meta else None
+  for h in sorted(hosts(added_urls) - old_hosts):
+    sev = MED if (h in KNOWN_FORGES or h == upstream) else HIGH
+    rep["findings"].append((sev, "new-host", "PKGBUILD", 0, f"new host not present at baseline: {h}" + (" (matches AUR upstream URL)" if h == upstream else "")))
+
+  # upstream URL moves and newly pulled-in dependencies (PKGBUILD url=, .SRCINFO deps; read as text)
+  def url_of(text):
+    m = re.search(r"^url=['\"]?([^'\"\s]+)", text, re.M)
+    return m.group(1) if m else None
+  old_pkgbuild = git(repo, "show", f"{baseline}:PKGBUILD", check=False) if baseline != EMPTY_TREE else ""
+  new_pkgbuild = git(repo, "show", f"{head}:PKGBUILD", check=False)
+  if baseline != EMPTY_TREE and url_of(old_pkgbuild) != url_of(new_pkgbuild):
+    rep["findings"].append((MED, "url-changed", "PKGBUILD", 0, f"upstream url= {url_of(old_pkgbuild)} -> {url_of(new_pkgbuild)}"))
+
+  def deps_of(ref):
+    out = {}
+    if ref == EMPTY_TREE:
+      return out
+    for line in git(repo, "show", f"{ref}:.SRCINFO", check=False).split("\n"):
+      m = re.match(r"\s*(depends|makedepends|checkdepends)(?:_\w+)? = (.+)", line)
+      if m:
+        out[re.split(r"[<>=:]", m.group(2))[0].strip()] = m.group(1)
+    return out
+  old_deps, new_deps = deps_of(baseline), deps_of(head)
+  fresh = [d for d in sorted(set(new_deps) - set(old_deps)) if baseline != EMPTY_TREE and not dep_installed(d)]
+  aur_only = [d for d in fresh if not dep_in_repos(d)]
+  aur_meta = dep_aur_meta(aur_only)
+  for dep in fresh:
+    kind = new_deps[dep]
+    if dep not in aur_only:
+      rep["findings"].append((LOW, "new-dep", ".SRCINFO", 0, f"new {kind} from the official repos, will be pulled in: {dep}"))
+    elif dep in aur_meta:
+      m = aur_meta[dep]
+      age = int((datetime.datetime.now().timestamp() - m.get("FirstSubmitted", 0)) / 86400)
+      who = m.get("Maintainer") or "ORPHANED"
+      rep["findings"].append((HIGH, "new-aur-dep", ".SRCINFO", 0, f"new {kind} that exists ONLY on the AUR, will be pulled in: {dep} "
+                              f"(maintainer {who}, {m.get('NumVotes', 0)} votes, first submitted {age}d ago, upstream {m.get('URL')}) - audit it too"))
+    else:
+      rep["findings"].append((MED, "new-dep-unresolved", ".SRCINFO", 0, f"new {kind} found in neither the repos nor the AUR by name (provides? custom repo?): {dep}"))
+
+  # who committed: new identities since the baseline
+  log = git(repo, "log", "--format=%h|%an <%ae>|%as|%s", f"{baseline}..{head}" if baseline != EMPTY_TREE else head, check=False).strip().split("\n")
+  rep["log"] = [line for line in log if line]
+  if baseline != EMPTY_TREE:
+    old_authors = set(git(repo, "log", "--format=%ae", baseline, check=False).split())
+    new_authors = {l.split("|")[1] for l in rep["log"]}
+    rep["authors_new"] = sorted(a for a in new_authors if re.search(r"<(.+)>", a) and re.search(r"<(.+)>", a).group(1) not in old_authors)
+    for a in rep["authors_new"]:
+      rep["findings"].append((HIGH, "new-author", "git log", 0, f"commit author not seen before baseline: {a}"))
+
+  rep["findings"].sort(key=lambda f: (-WEIGHT[f[0]], f[2], f[3]))
+  rep["score"] = sum(WEIGHT[f[0]] for f in rep["findings"])
+  rep["state"] = "changed"
+  return rep
+
+
+def aur_flags(base, meta, state):
+  """Non-git red flags from the AUR RPC compared with the last acknowledged snapshot."""
+  flags = []
+  if meta is None:
+    return [(MED, "not-in-aur", "not on the AUR: custom repo, local build, or deleted/renamed upstream")]
+  if not meta.get("Maintainer"):
+    flags.append((HIGH, "orphaned", "orphaned: anyone can adopt this, watch for a takeover"))
+  votes, first = meta.get("NumVotes", 0), meta.get("FirstSubmitted", 0)
+  age = (datetime.datetime.now().timestamp() - first) / 86400
+  if votes < 5 or age < 120:
+    flags.append((MED, "obscure", f"{votes} votes, first submitted {int(age)}d ago"))
+  if meta.get("OutOfDate"):
+    flags.append((LOW, "out-of-date", "flagged out of date"))
+  prev = state.get(meta["PackageBase"])
+  if prev:
+    if prev.get("maintainer") != meta.get("Maintainer"):
+      flags.append((HIGH, "maintainer-changed", f"maintainer {prev.get('maintainer')} -> {meta.get('Maintainer')}"))
+    if prev.get("comaintainers", []) != sorted(meta.get("CoMaintainers", [])):
+      flags.append((MED, "comaintainers-changed", f"co-maintainers {prev.get('comaintainers')} -> {sorted(meta.get('CoMaintainers', []))}"))
+    if prev.get("url") != meta.get("URL"):
+      flags.append((MED, "upstream-url-changed", f"upstream URL {prev.get('url')} -> {meta.get('URL')}"))
+  return flags
+
+
+class Color:
+  on = sys.stdout.isatty()
+  codes = {HIGH: "31;1", MED: "33", LOW: "2", "h": "1", "ok": "32"}
+
+  @classmethod
+  def c(cls, key, s):
+    return f"\033[{cls.codes[key]}m{s}\033[0m" if cls.on else s
+
+
+def latest_label(r):
+  if r["state"] != "changed" or not r.get("head_version"):
+    return "-"
+  if r["base"].endswith(("-git", "-svn", "-hg", "-bzr")) or "$" in r["head_version"]:
+    return "latest-commit"
+  return r["head_version"]
+
+
+# AUR flags that mean something moved since you last looked; everything else
+# (obscure, not-in-aur, no-clone, out-of-date) is a standing property of the package
+# and is folded into a short summary instead of getting a table row.
+CHANGE_TAGS = {"orphaned", "maintainer-changed", "comaintainers-changed", "upstream-url-changed", "error"}
+STATIC_TITLES = {
+  "obscure": "obscure (<5 votes or <120d old)",
+  "not-in-aur": "not in the AUR (custom/renamed/deleted)",
+  "no-clone": "no clone, not diffed (--clone-missing)",
+  "out-of-date": "flagged out of date",
+}
+
+
+def render(results, outdir, verbose):
+  lines = []
+  def noteworthy(r):
+    return r["state"] in ("changed", "error") or any(tag in CHANGE_TAGS for _, tag, _ in r.get("aur_flags", []))
+  changed = [r for r in results if noteworthy(r)]
+  changed.sort(key=lambda r: (r["state"] != "changed", -(r["score"] + sum(WEIGHT[f[0]] for f in r.get("aur_flags", [])))))
+  rest = [r for r in results if r not in changed]
+
+  lines.append(Color.c("h", f"{'pkg':34} {'installed':26} {'-> latest':24} {'H':>3} {'M':>3} {'L':>3}"))
+  for r in changed:
+    cnt = {s: sum(1 for f in r["findings"] if f[0] == s) + sum(1 for f in r.get("aur_flags", []) if f[0] == s) for s in (HIGH, MED, LOW)}
+    lines.append(f"{r['pkg'][:34]:34} {str(r['installed'])[:26]:26} {latest_label(r)[:24]:24} " +
+                 Color.c(HIGH, f"{cnt[HIGH]:>3}") + " " + Color.c(MED, f"{cnt[MED]:>3}") + " " + Color.c(LOW, f"{cnt[LOW]:>3}"))
+  if not changed:
+    lines.append("(nothing changed)")
+
+  quiet = [r for r in rest if not r.get("aur_flags")]
+  groups = {}
+  for r in rest:
+    for sev, tag, why in r.get("aur_flags", []):
+      groups.setdefault(tag, []).append((r["pkg"], why))
+  lines.append("")
+  if quiet:
+    lines.append(Color.c("ok", f"unchanged ({len(quiet)})" + (": " + ", ".join(r["pkg"] for r in quiet) if verbose else " (names in report.txt, or -v)")))
+  for tag, items in groups.items():
+    title = STATIC_TITLES.get(tag, tag)
+    names = [f"{n} [{why}]" for n, why in items] if verbose else [n for n, _ in items]
+    lines.append(Color.c(MED, f"{title} ({len(items)}): ") + ", ".join(names))
+  lines.append("")
+
+  for r in changed:
+    lines.append(Color.c("h", "=" * 100))
+    lines.append(Color.c("h", f"{r['pkg']}") + f"  ({r['base']})  {r['installed']} -> {latest_label(r)}   baseline={r.get('baseline')}[{r.get('baseline_how')}] head={r.get('head')}")
+    for n in r["notes"]:
+      lines.append(f"  note: {n}")
+    for sev, tag, why in r.get("aur_flags", []):
+      if sev == LOW and not verbose:
+        continue
+      lines.append(f"  {Color.c(sev, sev):>4} [{tag}] {why}")
+    if r.get("log"):
+      lines.append(f"  commits ({len(r['log'])}):")
+      for l in r["log"][:8]:
+        lines.append(f"    {l}")
+      if len(r["log"]) > 8:
+        lines.append(f"    ... {len(r['log']) - 8} more")
+    per_group = {}
+    for sev, tag, path, lineno, text in r["findings"]:
+      if sev == LOW and not verbose:
+        continue
+      key = (sev, tag, path)
+      per_group[key] = per_group.get(key, 0) + 1
+      if per_group[key] > MAX_PER_GROUP and not verbose:
+        continue
+      loc = f"{path}:{lineno}" if lineno else path
+      lines.append(f"  {Color.c(sev, sev):>4} [{tag}] {loc}: {text}")
+    for (sev, tag, path), n in per_group.items():
+      if n > MAX_PER_GROUP and not verbose:
+        lines.append(f"  {Color.c(sev, sev):>4} [{tag}] {path}: ... {n - MAX_PER_GROUP} more of the same (see the .diff, or -v)")
+    low = sum(1 for f in r["findings"] if f[0] == LOW)
+    if low and not verbose:
+      lines.append(f"  ({low} LOW hits hidden, use -v)")
+    if r.get("diff") is not None:
+      lines.append(f"  diff: {outdir / (r['base'] + '.diff')}")
+  return "\n".join(lines)
+
+
+def main():
+  ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+  ap.add_argument("packages", nargs="*", help="limit to these package names (default: all installed foreign packages)")
+  ap.add_argument("--no-fetch", action="store_true", help="do not git fetch the clones first")
+  ap.add_argument("--no-rpc", action="store_true", help="skip the AUR RPC (maintainer / orphan / vote checks)")
+  ap.add_argument("--clone-missing", action="store_true", help="clone packages that are not in the yay cache into ~/.cache/aur-audit")
+  ap.add_argument("--ack", action="store_true", help="after the run, store maintainer/URL snapshots as the new known-good state")
+  ap.add_argument("-o", "--outdir", type=Path, help="where to write the report and raw diffs")
+  ap.add_argument("-v", "--verbose", action="store_true", help="also show LOW findings")
+  ap.add_argument("-j", "--jobs", type=int, default=3, help="parallel fetches (the AUR throttles more)")
+  args = ap.parse_args()
+
+  installed = pacman_foreign()
+  if args.packages:
+    installed = {k: v for k, v in installed.items() if k in args.packages}
+  outdir = args.outdir or AUDIT_HOME / "reports" / datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+  outdir.mkdir(parents=True, exist_ok=True)
+
+  meta = {}
+  if not args.no_rpc:
+    try:
+      meta = rpc_info(installed)
+    except Exception as e:
+      print(f"warning: AUR RPC failed ({e}); maintainer checks skipped", file=sys.stderr)
+      args.no_rpc = True
+  state = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
+
+  # pkgname -> pkgbase; RPC knows, otherwise assume they match
+  bases = {n: (meta[n]["PackageBase"] if n in meta else n) for n in installed}
+  repos = {}
+  for name, base in bases.items():
+    if base not in repos:
+      repos[base] = repo_for(base, args.clone_missing)
+
+  if not args.no_fetch:
+    todo = [r for r in repos.values() if r]
+    print(f"fetching {len(todo)} clones...", file=sys.stderr)
+    with concurrent.futures.ThreadPoolExecutor(args.jobs) as ex:
+      for repo, ok in zip(todo, ex.map(fetch, todo)):
+        if not ok:
+          print(f"warning: fetch failed for {repo.name}", file=sys.stderr)
+    # anything not in cache but cloned just now already has current refs
+
+  results, seen = [], set()
+  for name, info in sorted(installed.items()):
+    base = bases[name]
+    if base in seen:
+      continue
+    seen.add(base)
+    repo = repos.get(base)
+    m = meta.get(name) if not args.no_rpc else None
+    if repo is None:
+      r = {"base": base, "installed": info["version"], "findings": [], "notes": ["no clone (not in yay cache); use --clone-missing"], "score": 0, "state": "missing"}
+    else:
+      try:
+        r = analyse(base, repo, info["version"], info["builddate"], m)
+      except Exception as e:
+        r = {"base": base, "installed": info["version"], "findings": [], "notes": [f"analysis failed: {e}"], "score": 0, "state": "error"}
+    r["pkg"] = name if name == base else f"{name} ({base})"
+    if not args.no_rpc:
+      r["aur_flags"] = aur_flags(base, m, state)
+    if r["state"] == "error":
+      r["aur_flags"] = r.get("aur_flags", []) + [(MED, "error", "; ".join(r["notes"]))]
+    if r["state"] == "missing" and (args.no_rpc or m is not None):
+      r["aur_flags"] = r.get("aur_flags", []) + [(MED, "no-clone", "in the AUR but no clone; use --clone-missing")]
+    if r["state"] == "missing":
+      r["notes"] = []
+    results.append(r)
+    if r.get("diff") is not None:
+      (outdir / f"{base}.diff").write_text(r["diff"])
+
+  Color.on = sys.stdout.isatty()
+  if not state and not args.no_rpc:
+    print("note: no maintainer snapshot yet; maintainer/upstream-URL changes cannot be detected until you run once with --ack after reviewing\n", file=sys.stderr)
+  print(render(results, outdir, args.verbose))
+  Color.on = False
+  (outdir / "report.txt").write_text(render(results, outdir, True) + "\n")
+  print(f"\nreport: {outdir / 'report.txt'}\n", file=sys.stderr)
+
+  if args.ack and not args.no_rpc:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    for n, m in meta.items():
+      state[m["PackageBase"]] = {"maintainer": m.get("Maintainer"), "comaintainers": sorted(m.get("CoMaintainers", [])), "url": m.get("URL")}
+    STATE_FILE.write_text(json.dumps(state, indent=2, sort_keys=True))
+    print(f"snapshot saved: {STATE_FILE}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+  main()

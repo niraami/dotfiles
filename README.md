@@ -47,7 +47,7 @@ sudo dotdrop --cfg="config-system.yml" install
 
 Dotdrop picks the profile named after the hostname, so a new machine needs its own profile.
 Each config is split into layers, which a host profile `include`s:
-- `config-user.yml`: `base` (shell and CLI tools, any distro), `desktop` (Hyprland and GUI apps)
+- `config-user.yml`: `base` (shell and CLI tools, any distro), `arch` (pacman/AUR tooling), `desktop` (Hyprland and GUI apps)
 - `config-system.yml`: `arch` (Arch Linux base), `desktop` (Hyprland session)
 
 Hardware-specific files live in the host profile (`mia`), host-specific Hyprland and zsh config under `user/hosts/<host>/`.
