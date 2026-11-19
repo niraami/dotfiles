@@ -261,6 +261,9 @@ dotfiles:
   f_shell:
     src: shell
     dst: ~/.shell
+  f_alsa-min-buffer.conf:
+    src: config/pipewire/client.conf.d/50-alsa-min-buffer.conf
+    dst: ~/.config/pipewire/client.conf.d/50-alsa-min-buffer.conf
   f_sunsetr.toml:
     src: config/sunsetr/sunsetr.toml
     dst: ~/.config/sunsetr/sunsetr.toml
@@ -319,6 +322,7 @@ profiles:
       - f_hyprlock-recover
       - f_hypr_xkb_reset
       - f_sunsetr.toml
+      - f_alsa-min-buffer.conf
       - d_waybar
       - d_rofi
       - d_wofi
