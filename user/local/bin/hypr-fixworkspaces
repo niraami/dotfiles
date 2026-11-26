@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+
+from subprocess import CalledProcessError
+
+# Must match `workspace_count` passed to split-monitor-workspaces in hyprland.lua
+WORKSPACE_COUNT = 10
+
+
+def hyprctl_json(*args):
+  return json.loads(subprocess.check_output(['hyprctl', *args, '-j']))
+
+
+def main():
+  try:
+    monitors = {m['id']: m['name'] for m in hyprctl_json('monitors')}
+
+    for workspace in hyprctl_json('workspaces'):
+      wid = workspace['id']
+      # Skip special and named workspaces
+      if wid <= 0:
+        continue
+
+      # Monitor N owns workspaces N*10+1 .. N*10+10
+      cmid = (wid - 1) // WORKSPACE_COUNT
+      monitor = monitors.get(cmid)
+
+      if monitor is None or cmid == workspace['monitorID']:
+        continue
+
+      subprocess.check_call(
+        ['hyprctl', 'dispatch',
+         f'hl.dsp.workspace.move({{ workspace = "{wid}", monitor = "{monitor}" }})'],
+        stdout=subprocess.DEVNULL,
+      )
+      print(f"Moved workspace {wid} to the correct monitor {monitor} ({cmid})")
+
+  except CalledProcessError as e:
+    raise RuntimeError(f"Error executing hyprctl command: {e}")
+
+
+if __name__ == '__main__':
+  main()
