@@ -133,6 +133,15 @@ hl.config({
     },
 })
 
+-- Never switch the monitor into HDR on fullscreen. The main monitor (DP-1) is HDR
+-- capable, so Auto HDR (on by default) triggered a full modeset when fullscreening
+-- any video: ~5 s of black, then SDR shown inside HDR (80 nit white, lifted blacks).
+hl.config({
+    render = {
+        cm_auto_hdr = 0,
+    },
+})
+
 
 ----------------
 ---- CURSOR ----
