@@ -143,6 +143,13 @@ dotfiles:
     cmpignore:
       - .zcompdump
       - host.zsh
+  f_alsa-min-buffer.conf:
+    src: config/pipewire/client.conf.d/50-alsa-min-buffer.conf
+    dst: ~/.config/pipewire/client.conf.d/50-alsa-min-buffer.conf
+  f_aur-audit:
+    src: local/bin/aur-audit
+    dst: ~/.local/bin/aur-audit
+    chmod: '755'
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
@@ -164,10 +171,6 @@ dotfiles:
   f_electron13-flags.conf:
     src: config/electron13-flags.conf
     dst: ~/.config/electron13-flags.conf
-  f_aur-audit:
-    src: local/bin/aur-audit
-    dst: ~/.local/bin/aur-audit
-    chmod: '755'
   f_extract-audio-streams:
     src: local/bin/extract-audio-streams
     dst: ~/.local/bin/extract-audio-streams
@@ -265,9 +268,6 @@ dotfiles:
   f_shell:
     src: shell
     dst: ~/.shell
-  f_alsa-min-buffer.conf:
-    src: config/pipewire/client.conf.d/50-alsa-min-buffer.conf
-    dst: ~/.config/pipewire/client.conf.d/50-alsa-min-buffer.conf
   f_sunsetr.toml:
     src: config/sunsetr/sunsetr.toml
     dst: ~/.config/sunsetr/sunsetr.toml
@@ -291,6 +291,10 @@ dotfiles:
     src: zshenv
     dst: ~/.zshenv
 profiles:
+  # Arch Linux only: pacman/AUR tooling
+  arch:
+    dotfiles:
+      - f_aur-audit
   # Shell and CLI tools, safe on any distro (headless VMs included)
   base:
     dotfiles:
@@ -313,10 +317,6 @@ profiles:
       - d_plugged
       - f_extract-audio-streams
       - f_get-iommu-groups
-  # Arch Linux only: pacman/AUR tooling
-  arch:
-    dotfiles:
-      - f_aur-audit
   # Hyprland session and GUI applications, no hardware assumptions
   desktop:
     dotfiles:
