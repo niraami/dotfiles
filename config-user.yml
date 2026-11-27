@@ -165,6 +165,9 @@ dotfiles:
   f_dmrc:
     src: dmrc
     dst: ~/.dmrc
+  f_yay-config.json:
+    src: config/yay/config.json
+    dst: ~/.config/yay/config.json
   f_electron-flags.conf:
     src: config/electron-flags.conf
     dst: ~/.config/electron-flags.conf
@@ -295,6 +298,7 @@ profiles:
   arch:
     dotfiles:
       - f_aur-audit
+      - f_yay-config.json
   # Shell and CLI tools, safe on any distro (headless VMs included)
   base:
     dotfiles:
