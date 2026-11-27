@@ -18,6 +18,8 @@ trans_update:
   keepassxc_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop-section KeeShare'
   prusaslicer_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop last_output_path --drop-section recent --drop-section recent_projects'
   qbittorrent_out: '"{{@@ dirname(_dotdrop_cfgpath) @@}}/scripts/dotdrop-trans" update "{0}" "{1}" --drop LastAddPath --drop "Downloads\ScanDirsLastPath" --drop "Session\Port"'
+actions:
+  a_enable-tmpfiles-clean-timer: systemctl --user enable --now systemd-tmpfiles-clean.timer
 dotfiles:
   d_blender:
     src: config/blender
@@ -165,6 +167,11 @@ dotfiles:
   f_dmrc:
     src: dmrc
     dst: ~/.dmrc
+  f_cache-age.conf:
+    src: config/user-tmpfiles.d/cache-age.conf
+    dst: ~/.config/user-tmpfiles.d/cache-age.conf
+    actions:
+      - a_enable-tmpfiles-clean-timer
   f_yay-config.json:
     src: config/yay/config.json
     dst: ~/.config/yay/config.json
@@ -298,6 +305,7 @@ profiles:
   arch:
     dotfiles:
       - f_aur-audit
+      - f_cache-age.conf
       - f_yay-config.json
   # Shell and CLI tools, safe on any distro (headless VMs included)
   base:
