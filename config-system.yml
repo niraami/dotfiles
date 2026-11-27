@@ -11,6 +11,7 @@ config:
 actions:
   # weekly package cache cleanup, keeps the newest 2 versions (see f_pacman-contrib)
   a_enable-paccache-timer: systemctl enable --now paccache.timer
+  a_daemon-reload: systemctl daemon-reload
 dotfiles:
   f_bin-hypr:
     src: usr/local/bin/Hypr
@@ -43,6 +44,11 @@ dotfiles:
     src: etc/pacman.d/hooks.bin/mkinitcpio-mirror
     dst: /etc/pacman.d/hooks.bin/mkinitcpio-mirror
     chmod: '744'
+  f_paccache-uninstalled.conf:
+    src: etc/systemd/system/paccache.service.d/uninstalled.conf
+    dst: /etc/systemd/system/paccache.service.d/uninstalled.conf
+    actions:
+      - a_daemon-reload
   f_pacman-contrib:
     src: etc/conf.d/pacman-contrib
     dst: /etc/conf.d/pacman-contrib
@@ -84,6 +90,7 @@ profiles:
   arch:
     dotfiles:
       - f_makepkg.conf
+      - f_paccache-uninstalled.conf
       - f_pacman-contrib
       - f_pacman.conf
       - f_reflector.conf
